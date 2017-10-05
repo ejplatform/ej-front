@@ -25,6 +25,9 @@ Esse comando também pode ser usado para criar outros elementos de projeto:
 
 `ng generate directive|pipe|service|class|guard|interface|enum|module`
 
+### Uso e criação de branchs para fixes e novas implementações
+Este projeto segue as a política de branches [proposta aqui](http://nvie.com/posts/a-successful-git-branching-model/).
+
 
 # Angular CLI related info
 ## Development server
