@@ -7,7 +7,7 @@ Para informações sobre o desenvolvimento do backend, acesso o [reposiótio cor
 ## Desenvolvimento
 Os processos de desenvolvimento e deploy usam Docker CE. Se você ainda não o tem instalado, consulte [esta documentação](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/) para ter a versão mais recente.
 
-Para levantar seu servidor local, rode:
+Para levantar seu servidor local, rodeo seguinte comando e acesse [localhost:4200](http://localhost:4200/):
 
 `docker-compose up`
 
