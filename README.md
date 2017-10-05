@@ -28,6 +28,13 @@ Esse comando também pode ser usado para criar outros elementos de projeto:
 ### Uso e criação de branchs para fixes e novas implementações
 Este projeto segue as a política de branches [proposta aqui](http://nvie.com/posts/a-successful-git-branching-model/).
 
+As normas mais importantes são:
+- `master` sempre reflete o estado mais recente e "pronto para produção" da plataforma
+- `develop` tem as última melhorias prontas para uso, mas ainda não aprovadas para o próximo release
+- commits feitos diretamente em `master` são proibidos
+- `master` recebe novos desenvolvimentos com merges a partir de `develop`
+- novos features e fixes devem ser desenvolvidos em branchs próprias. Tais branchs devem ser forkadas a partir de `develop`. Quando esses desenvolvimentos são concluídos, eles são mergeados de volta para `develop`. Idealmente, essa volta só acontece depois de o código ser aprovado
+
 
 # Angular CLI related info
 ## Development server
