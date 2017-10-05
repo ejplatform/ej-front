@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: ./compose/local/angular/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "4200:4200"
+    command: /start.sh
