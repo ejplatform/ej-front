@@ -1,0 +1,42 @@
+image: node:7.2.1
+
+cache:
+  key: "$CI_BUILD_REF_NAME"
+  untracked: true
+  paths:
+    - node_modules/
+
+before_script:
+    - export PATH=$PATH:node_modules/.bin
+    - npm install
+
+build:
+  stage: build
+  script:
+    - ng build --output-path dist/empurrandojuntos
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
+
+test:
+  stage: test
+  script:
+    - ng test --code-coverage --single-run
+  artifacts:
+    expire_in: 1 week
+    paths:
+        - coverage/*
+
+pages:
+  stage: deploy
+  script:
+    - rm -rf public/*
+    - mv landing-page/* public/
+    - mv coverage/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master

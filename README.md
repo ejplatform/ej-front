@@ -1,5 +1,8 @@
 # Empurrando Juntos
 
+[![build status](https://gitlab.com/empurrandojuntos/frontend/badges/master/build.svg)](https://gitlab.com/empurrandojuntos/frontend/commits/master)
+[![coverage report](https://gitlab.com/empurrandojuntos/frontend/badges/master/coverage.svg)](https://gitlab.com/empurrandojuntos/frontend/commits/master)
+
 Este projeto é o frontend da plataforma Empurrando Juntos e foi criado com [Angular CLI](https://github.com/angular/angular-cli) versão 1.4.4.
 
 Para informações sobre o desenvolvimento do backend, acesso o [reposiótio correspondente](https://gitlab.com/empurrandojuntos/backend/).
