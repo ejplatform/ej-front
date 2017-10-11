@@ -1,0 +1,179 @@
+// Main navigation styles
+// --------------------------------------------------
+
+
+.main-nav {
+    background-image: url(../img/bg-menu.png);
+    bottom: 0;
+    left: -245px;
+    top: 0;
+    position: fixed;
+    transition: all 0.5s ease;
+    width: 85px;
+    z-index: 1000;
+    a {
+        color: #fff;
+    }
+    ul, ul ul {
+        @extend .list-unstyled;
+        color: #fff;
+    }
+    // Maybe, this is the right way to do it in Bootstrap 4?
+    // @include media-breakpoint-up(sm) {
+    //     left: 0;
+    // }
+    @media screen and (min-width: $screen-xs-min) {
+        left: 0;
+    }
+    @media screen and (min-width: $screen-sm-min) {
+        left: 0;
+        width: 100px;
+    }
+}
+.main-nav-opened { // when the offcanvas menu is opened
+    .main-nav {
+        left: 0;
+        width: 245px;
+    }
+}
+
+.user-nav {
+    font-size: $font-size-small;
+    font-weight: $semi-bold;
+    margin: 80px 10px 10px;
+    text-align: center;
+    @media screen and (min-width: $screen-sm-min) {
+        margin-top: 105px;
+    }
+    li {
+        margin-bottom: 15px;
+        @media screen and (min-height: 768px) {
+            margin-bottom: 20px;
+        }
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+    a {
+        @include link-hover(#fff,#fff,transparent,#fff);
+        display: inline-block;
+        border-bottom-width: 2px !important;
+        &:before {
+            display: block;
+            font-size: $font-size-large;
+        }
+    }
+    .submenu {
+        margin-bottom: 20px;
+        ul {
+            li {
+                font-size: 11px;
+                font-weight: $normal;
+                margin-bottom: 0;
+                padding: 10px 0;
+                a {
+                    border-bottom-width: 1px !important;
+                }
+            }
+            li + li {
+                padding-top: 0;
+            }
+        }
+    }
+    .admin {
+        @extend %icon-briefcase;
+    }
+    .cards {
+        @extend %icon-lightbulb;
+    }
+    .chat {
+        @extend %icon-chat;
+        position: relative;
+    }
+    .courses {
+        @extend %icon-courses;
+    }
+    .forum {
+        @extend %icon-forum;
+    }
+    .help {
+        @extend %icon-help;
+    }
+    .login {
+        @extend %icon-login;
+    }
+    .logout {
+        @extend %icon-logout;
+    }
+    .messages {
+        @extend %icon-messages;
+        position: relative;
+    }
+    .notes {
+        @extend %icon-edit;
+    }
+    .profile {
+        @extend %icon-profile;
+    }
+    .register {
+        @extend %icon-register;
+    }
+    .repositories {
+        @extend %icon-repositories;
+    }
+}
+.main-nav-opened { // when the offcanvas menu is opened
+    .user-nav {
+        font-size: $font-size-large;
+        margin: 80px 25px 25px;
+        text-align: left;
+        @media screen and (min-width: $screen-sm-min) {
+            margin-top: 105px;
+        }
+        a {
+            &:before {
+                display: inline-block;
+                margin-right: 10px;
+            }
+        }
+        .submenu {
+            margin-bottom: 15px;
+            ul {
+                border-left: 1px solid;
+                padding-left: 10px;
+                li {
+                    font-size: 14px;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+}
+
+.site-info {
+    display: none;
+    padding: 0 30px 30px;
+    position: absolute;
+    bottom: 0;
+    .site-nav {
+        @extend .list-inline;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        text-align: center;
+        li {
+            font-weight: 700;
+            margin: 0 10px;
+        }
+    }
+    .legal-text {
+        color: #fff;
+        font-size: $font-size-small;
+        text-align: center;
+    }
+}
+.main-nav-opened {  // when the offcanvas menu is opened
+    .site-info {
+        display: block;
+    }
+}
