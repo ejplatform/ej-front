@@ -1,12 +1,35 @@
-import { Observable } from 'rxjs/Observable'; 
+import { Observable } from 'rxjs/Observable';
 
 export function getMocks() {
-    let mocks = {
+    const mocks = {
+        restangular: {
+            one: () => {
+                return {
+                    get: () => {
+                        return Observable.of({});
+                    }
+                };
+            },
+            all: () => {
+                return {
+                    getList: () => {
+                        return Observable.of({});
+                    }
+                };
+            },
+        },
         commentService: {
-            list: () => { return {} },
+            list: () => {
+                return {};
+            },
         },
         profileService: {
-            get: (id: number) => { return {} },
+            get: (id: number) => {
+                return Observable.of({});
+            },
+            list: () => {
+                return Observable.of([{}]);
+            }
         }
     };
     return mocks;
