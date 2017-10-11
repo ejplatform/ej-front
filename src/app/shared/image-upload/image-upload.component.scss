@@ -1,0 +1,28 @@
+.picture-group {
+    .picture  {
+      width: 100%;
+      display: inline-block;
+    }
+    .picture-placeholder {
+      width: 100%;
+      display: inline-block;
+      background-color: #c7c7c7;
+      height: 175px;
+      padding: 0 20px;
+      i {
+        font-size: 70px;
+        text-align: center;
+        width: 100%;
+        margin-top: 70px;
+      }
+    }
+    .btn-file {
+      position: absolute;
+      left: 15px;
+      top: 0;
+    }
+    .picture-input {
+      display: none;
+    }
+    display: inline-block;
+  }

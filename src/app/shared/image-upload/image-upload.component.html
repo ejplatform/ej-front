@@ -1,0 +1,10 @@
+<div class="picture-group">
+    <img class="picture media-object" [src]="imageData?.content || image" *ngIf="imageData?.content || image">
+    <span class="picture-placeholder media-object" *ngIf="!image && !imageData?.content">
+      <i class="fa fa-photo fa-lg"></i>
+    </span>
+    <button *ngIf="editionEnabled" class="btn btn-default btn-file" (click)="picture.click()">
+      <i class="fa fa-camera fa-lg"></i>
+    </button>
+    <input class="picture-input" #picture type="file" (change)="fileChange($event)" />
+  </div>

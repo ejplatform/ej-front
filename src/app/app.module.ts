@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { CommentsComponent } from './comments/comments.component';
+import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 
 
 export function RestangularConfigFactory (RestangularProvider) {
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     NavigationBarComponent,
-    CommentsComponent
+    CommentsComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
