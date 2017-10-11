@@ -1,15 +1,16 @@
-<div *ngIf="profile" class="col-sm-10 col-sm-offset-1">
+<div *ngIf="profile" class="col-sm-10 col-sm-offset-1" >
   <div class="media">
     <div class="media-left">
       <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
     </div>
+
     <div class="media-body">
       <h4 class="media-heading">
         <inline-editor
           type="text"
           [(ngModel)]="profile.name"
           #name="ngModel"
-          (onSave)="save($event)">
+          (onSave)="save($event)" ngDefaultControl>
         </inline-editor>
       </h4>
       <div *ngIf="profile.email" class="email">
