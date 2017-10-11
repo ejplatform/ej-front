@@ -2,6 +2,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -12,6 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [TranslateModule.forRoot()],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
      
     });

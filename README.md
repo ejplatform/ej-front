@@ -14,6 +14,10 @@ Para levantar seu servidor local, rodeo seguinte comando e acesse [localhost:420
 
 `docker-compose up`
 
+Iniciar servidor com dados de teste
+
+`json-server --watch src/assets/data/db.json --routes src/assets/data/routes.json`
+
 ### Execução de comandos no Angular CLI
 A linha de comando do Angular está disponível dentro do container de desenvolvimento. Para acessar essa interface, execute:
 

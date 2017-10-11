@@ -5,7 +5,7 @@ import { Observable }     from 'rxjs/Observable';
 import { Comment }     from '../models/comment';
 
 @Injectable()
-export class CommentsService {
+export class CommentService {
 
   constructor (private restangular: Restangular) {}
   
