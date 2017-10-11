@@ -1,16 +1,7 @@
-<p>
-  profile works!
-</p>
-
 <div *ngIf="profile" class="col-sm-10 col-sm-offset-1">
   <div class="media">
     <div class="media-left">
-      <img class="media-object" [src]="profile.picture" *ngIf="profile.picture">
-      <span class="picture-placeholder media-object" *ngIf="!profile.picture">
-        <i class="fa fa-photo fa-lg"></i>
-      </span>
       <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
-      
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{profile.name}}
