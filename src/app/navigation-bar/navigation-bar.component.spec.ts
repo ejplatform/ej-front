@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RestangularModule } from 'ngx-restangular';
+import { By } from '@angular/platform-browser';
 
 
 import { NavigationBarComponent } from './navigation-bar.component';
@@ -35,4 +36,13 @@ describe('NavigationBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('display link to comments', () => {
+    expect(fixture.debugElement.query(By.css(".comments a")).nativeElement.href).toContain('comments');
+  });
+
+  it('display link to profile', () => {
+    expect(fixture.debugElement.query(By.css(".profile a")).nativeElement.href).toContain('profile');
+  });
+
 });
