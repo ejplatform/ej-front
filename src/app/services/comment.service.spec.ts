@@ -1,17 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { Restangular } from 'ngx-restangular';
+import { RestangularModule } from 'ngx-restangular';
 
 import { CommentService } from './comment.service';
 import * as helpers from "../../spec/helpers";
 
 describe('CommentService', () => {
-  let mocks = helpers.getMocks();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CommentService,          
-        { provide: Restangular, useValue: mocks.restangular},
-      ]
+      imports: [RestangularModule],
+      providers: [CommentService]
     });
   });
 

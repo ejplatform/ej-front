@@ -33,10 +33,6 @@ describe('NavigationBarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('display link to comments', () => {
     expect(fixture.debugElement.query(By.css(".comments a")).nativeElement.href).toContain('comments');
   });
