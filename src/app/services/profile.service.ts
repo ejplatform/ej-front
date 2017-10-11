@@ -12,9 +12,7 @@ export class ProfileService {
   get(id: number): Observable<Profile> {
     return this.restangular.one('profiles', id).get();
   }
-
-  list (): Observable<Profile[]> {
-    return this.restangular.all('profiles').getList();
+  save(profile: Profile): Observable<Profile> {
+    return this.restangular.one('profiles', profile.id).put({name: profile.name});
   }
-
 }

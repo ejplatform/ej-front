@@ -6,7 +6,7 @@ import { RestangularModule } from 'ngx-restangular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
+import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -36,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,    
+    HttpClientModule,
+    InlineEditorModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -45,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     RouterModule.forRoot(rootRouterConfig),
-    RestangularModule.forRoot(RestangularConfigFactory),    
+    RestangularModule.forRoot(RestangularConfigFactory),
   ],
   providers: [],
   bootstrap: [AppComponent]

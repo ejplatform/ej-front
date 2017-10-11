@@ -16,13 +16,16 @@ export class ProfileComponent implements OnInit {
     this.profileService.get(1).subscribe((profile: Profile) => {
       this.profile = profile;
     });
-
-    // this.profileService.list().subscribe((profiles: Profile[]) => {
-    //   const bli = profiles;
-    // });
   }
 
   ngOnInit() {
+  }
+
+  save(value) {
+    console.log('http.service: ', value, this.profile);
+    this.profileService.save(this.profile).subscribe((profile: Profile) => {
+      this.profile = profile;
+    });
   }
 
 }

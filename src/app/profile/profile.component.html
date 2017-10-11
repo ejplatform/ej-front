@@ -4,48 +4,17 @@
       <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
     </div>
     <div class="media-body">
-      <h4 class="media-heading">{{profile.name}}
-          <!-- <inline-editor
+      <h4 class="media-heading">
+        <inline-editor
           type="text"
           [(ngModel)]="profile.name"
           #name="ngModel"
           (onSave)="save($event)">
-        </inline-editor> -->
-        <!-- <input id="restaurantName" type="text" [(ngModel)]="restaurant.name" #name="ngModel" required placeholder="Nome do restaurante" name="name" class="form-control name-field form-field"> -->
-        
-        <!-- <validation-message #nameErrors [field]="name" [prefix]="'create-restaurant.name'"></validation-message> -->
-        
+        </inline-editor>
       </h4>
-      <!-- teste
-      <inline-editor
-      type="text"
-      [(ngModel)]="restaurant.name"
-      (onSave)="save($event)"
-      name="editableText1"
-      size="8"
-      disabled="false"
-      min="1"
-      max="8"
-      pattern="^[a-zA-Z]{1,3}"
-      (onError)="myHandleError"></inline-editor> -->
-
-      <!-- <div>
-        <inline-editor type="text" [(ngModel)]="editableText" (onSave)="save($event)" name="editableText1" size="8"></inline-editor>
-    </div>
-    <div>
-        <inline-editor type="password" [(ngModel)]="editablePassword" (onSave)="save($event)"></inline-editor>
-    </div>
-    <div>
-        <inline-editor type="textarea" [(ngModel)]="editableTextArea" (onSave)="save($event)"> </inline-editor>
-    </div> -->
-    <!-- <div>
-        <inline-editor type="select" [(ngModel)]="editableSelect" (onSave)="save($event)" [options]="editableSelectOptions"
-        value="valor"></inline-editor>
-  </div>` -->
-
-        <div *ngIf="profile.email" class="email">
-          <p>{{profile.email}}</p>
-        </div>
+      <div *ngIf="profile.email" class="email">
+        <p>{{profile.email}}</p>
+      </div>
     </div>
   </div>
 </div>
