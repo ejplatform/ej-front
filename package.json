@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "@ngx-translate/core": "^8.0.0",
+    "@ngx-translate/http-loader": "^2.0.0",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
     "karma-phantomjs-launcher": "^1.0.4",
