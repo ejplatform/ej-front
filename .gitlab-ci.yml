@@ -31,7 +31,9 @@ test:
 pages:
   stage: deploy
   script:
+    - ls -la
     - rm -rf public/*
+    - mkdir -p public/
     - mv landing-page/* public/
     - mv coverage/ public/
   artifacts:
