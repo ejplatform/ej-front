@@ -1,0 +1,19 @@
+@mixin link-hover($color,$color-hover,$border,$border-hover) {
+    color: $color;
+    border-bottom-color: $border !important;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    cursor: pointer;
+    line-height: 1.2;
+    @include transition(all 0.2s ease);
+    &:before {
+      color: $color;
+    }
+    &:hover, &:focus, &:active {
+      color: $color-hover;
+      border-bottom-color: $border-hover !important;
+      &:before {
+        color: $color-hover;
+      }
+    }
+  }
