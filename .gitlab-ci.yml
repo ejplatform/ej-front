@@ -32,9 +32,10 @@ pages:
   stage: deploy
   script:
     - ls -la
+    - ls -la dist/
     - rm -rf public/*
     - mkdir -p public/
-    - mv landing-page/* public/
+    - mv dist/landing-page/* public/
     - mv coverage/ public/
   artifacts:
     paths:
