@@ -16,83 +16,54 @@
 
 
       <ul class="user-nav">
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'profile' %}" class="profile">{% trans "Profile" %}</a></li>
-            <li><a href="{% url 'user_notes' %}" class="notes">{% trans "Notes" %}</a></li>
-            <!--<li><a href="{% url 'user_courses' %}" class="courses">{% trans 'Meus módulos' %}</a></li>-->
-            <li><a href="{% url 'courses' %}" class="courses">Módulos</a></li>
+            <li><a href="/profile" class="fa fa-user">Profile</a></li>
+            <li><a href="/user_notes" class="fa fa-pencil-square-o">Notes</a></li>
+            <li><a href="/courses" class="fa fa-graduation-cap">Módulos</a></li>
             <li>
-                {% verbatim %}
-                <a class="messages" href="/messages/">
-                    <span class="notification-bubble" ng-show="messages_unread_count">{{ messages_unread_count }}</span>
+
+                <a class="fa fa-envelope" href="/messages/">
+                    <span class="notification-bubble" ng-show="messages_unread_count">5</span>
                     <span class="">Avisos</span>
                 </a>
-                {% endverbatim %}
+
             </li>
             <!--<li><a href="#" class="repositories">{% trans "Repository" %}</a></li>-->
-            <li><a href="{% url 'discussion:forum-home' %}" class="forum">Fóruns</a></li>
+            <li><a href="/discussion/forum-home/" class="fa fa-comments">Fóruns</a></li>
             <!--<li><a href="#" class="help">{% trans "Help" %}</a></li>-->
-            {% if user.is_superuser %}
+
                 <li><a href="/cards" class="cards">Assim se faz</a></li>
-            {% endif %}
+
             <li>
-                {% verbatim %}
-                <a class="chat" href="/paralapraca/chat">
-                    <span class="notification-bubble" ng-show="chat.notifications">{{ chat.notifications }}</span>
+
+                <a class="fa fa-commenting-o" href="/paralapraca/chat">
+                    <span class="notification-bubble" >notifications</span>
                     <span class="">Chat</span>
                 </a>
-                {% endverbatim %}
+
             </li>
 
-            {% if user.is_superuser %}
             <li class="submenu">
-                <a class="admin"
-                    ng-init="collapsedSubmenu=true"
-                    ng-click="collapsedSubmenu=!collapsedSubmenu">
+                <a class="admin">
                     <span class="visible-xs-inline">Admin</span>
                     <span class="hidden-xs">Administração</span>
                 </a>
                 <ul uib-collapse="collapsedSubmenu">
-                    <li><a href="{% url 'administration.courses' %}" id="admin-link">Módulos</a></li>
-                    <li><a href="{% url 'administration.users' %}" id="admin-link">Usuários</a></li>
-                    <li><a href="{% url 'general_reports' %}" id="admin-link">Relatórios</a></li>
+                    <li><a href="/courses" id="admin-link">Módulos</a></li>
+                    <li><a href="/users" id="admin-link">Usuários</a></li>
+                    <li><a href="/general_reports" id="admin-link">Relatórios</a></li>
                     <!--<li><a href="{% url 'administration.users' %}">{% trans 'Usuários e grupos' %}</a></li>-->
                 </ul>
             </li>
-            {% elif user|is_coordinator %}
-            <li class="submenu">
-                <a href="{% url 'administration.courses' %}">
-                    {% trans "Admin" %}
-                </a>
-            </li>
-            {% endif %}
-            <li><a href="{% url 'timtec_logout' %}" class="logout">{% trans "Logout" %}</a></li>
-        {% else %}
-            <li><a href="{% url 'courses' %}" class="courses">{% trans 'Módulos' %}</a></li>
-            <li>
-                <a href="#" class="dropdown-toggle login" data-toggle="dropdown">{% trans 'Sign In' %}</a>
-                {% include '_login_modal.html' %}
-            </li>
-            <li>
-            {% block header_signup_link %}
-                <a href="#" class="dropdown-toggle register" data-toggle="dropdown">{% trans 'Sign Up' %}</a>
-                {% include '_signup_modal.html' %}
-            {% endblock %}
-            </li>
-        {% endif %}
+
+            <li><a href="/timtec_logout" class="fa fa-sign-out">Logout</a></li>
         </ul>
 
         <div class="site-info">
             <ul class="site-nav">
-                {% block header_site_nav %}
-                <li><a href="/pages/sobre">{% trans 'About' %}</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#modal-contact">{% trans 'Contact' %}</a></li>
+                <li><a href="/pages/sobre">About</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a></li>
                 <li><a href="/accept_terms">Termos de Uso</a></li>
-                {% endblock %}
             </ul>
-            <!--<div class="legal-text">-->
-                <!--{% trans 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in aliquam eros.' %}-->
-            <!--</div>-->
         </div>
 
 
