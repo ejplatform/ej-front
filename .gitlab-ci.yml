@@ -40,5 +40,7 @@ pages:
     paths:
       - public
     expire_in: 30 days
+  dependencies:
+    - build
 #  only:
 #    - master
