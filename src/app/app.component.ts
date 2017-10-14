@@ -15,7 +15,6 @@ export class AppComponent {
   private profile: Profile;
   isMenuCollapsed: boolean = false;
   
-
   constructor(private _state: GlobalState, private translate: TranslateService, private profileService: ProfileService) {
     translate.setDefaultLang('pt');
     translate.use('pt');

@@ -30,7 +30,10 @@ export function getMocks() {
             list: () => {
                 return Observable.of([{}]);
             }
-        }
+        },
+        globalState: {
+            subscribe: () => Observable.of({}),
+        },
     };
     return mocks;
 };

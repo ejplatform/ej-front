@@ -8,6 +8,8 @@ import { By } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
 import * as helpers from "../../spec/helpers";
+import { ProfileService } from '../services/profile.service';
+import { GlobalState } from '../global.state';
 
 
 describe('HeaderComponent', () => {
@@ -21,7 +23,9 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
       imports: [RouterTestingModule, RestangularModule, TranslateModule.forRoot()],
-      
+      providers: [{ provide: GlobalState, useValue: mocks.globalState },
+        { provide: ProfileService, useValue: mocks.profileService },
+      ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
