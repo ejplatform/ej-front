@@ -1,0 +1,126 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+.logged {
+    background-image: url("/assets/images/bg.jpg");
+    
+    background-color: transparent;
+    height: 100%;
+    min-height: 100%;
+
+    // wrap the whole content of the site to prevent overflow on mobile devices
+    .site-wrapper {
+        overflow: hidden;
+        position: relative;
+        min-height: 100%;
+        width: 100%;
+    }
+    // content wrapper
+    .wrapper {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 60px;
+        padding-bottom: 65px;
+        @include transition(all 0.5s ease);
+        @include media-breakpoint-up(xs) {
+            left: 85px;
+            padding-right: 85px;
+        }
+        @include media-breakpoint-up(sm) {
+            left: 100px;
+            padding-bottom: 85px;
+            padding-right: 100px;
+            margin-top: 80px;
+        }
+        @include media-breakpoint-up(md) {
+            padding-bottom: 110px;            
+        }
+        @media screen and (min-width: 1025px) {
+            margin-top: 110px;
+        }
+        // @include media-breakpoint-up(sm) {
+        //     left: 0;
+        //     width: 100px;
+        // }
+    }
+    .container-fluid {
+        max-width: 1050px;
+    }
+}
+
+    // when the main navbar is opened
+.main-nav-opened {
+    .wrapper {
+        left: 245px;
+        @include media-breakpoint-up(md) {
+            padding-right: 245px;
+        }
+    }
+}
+
+:host /deep/ .main-nav-opened {
+    nav{
+        .user-nav {
+            font-size: $font-size-lg;
+            margin: 80px 25px 25px;
+            text-align: left;
+            @include media-breakpoint-up(sm) {
+                margin-top: 105px;
+            }
+            a {
+                &:before {
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+            .notification-bubble{
+                left: 16px;
+            }
+            .submenu {
+                margin-bottom: 15px;
+                ul {
+                    border-left: 1px solid;
+                    padding-left: 10px;
+                    li {
+                        font-size: 14px;
+                        padding: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    .site-info {
+        display: block;
+    }
+    .main-nav {
+        left: 0;
+        width: 245px;
+    }    
+    header {
+        .user-info {
+            width: 245px;
+            @include media-breakpoint-up(sm) {
+                padding: 20px 25px;
+            }
+            .user-icon {
+                float: left;
+                margin: 0 5px; 
+            }
+            .user-name {
+                display: block;
+            }
+            .menu-label {
+                display: none;
+            }
+            @include media-breakpoint-down(xs) {
+                .hide-menu {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+

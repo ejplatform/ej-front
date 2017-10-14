@@ -1,8 +1,9 @@
-<div class="app-root">
-  <app-header></app-header>
-  <app-navigation-bar></app-navigation-bar>
-    
-  <div id="content">
-    <router-outlet></router-outlet>
+<div class="app-root" [ngClass]="{'logged': isLogged()}">
+  <div class="site-wrapper" [ngClass]="{'main-nav-opened': isMenuCollapsed}">
+    <app-header></app-header>
+    <app-navigation-bar></app-navigation-bar>
+    <div class="wrapper wrapper-bg">
+        <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

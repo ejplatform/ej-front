@@ -10,6 +10,7 @@ import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
+import { GlobalState } from './global.state';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -57,7 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RestangularModule.forRoot(RestangularConfigFactory),
     // NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [GlobalState],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

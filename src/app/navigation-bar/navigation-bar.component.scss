@@ -35,12 +35,6 @@
         width: 100px;
     }
 }
-.main-nav-opened { // when the offcanvas menu is opened
-    .main-nav {
-        left: 0;
-        width: 245px;
-    }
-}
 
 .user-nav {
     font-size: $font-size-sm;
@@ -132,33 +126,7 @@
     //     @extend %icon-repositories;
     // }
 }
-.main-nav-opened { // when the offcanvas menu is opened
-    .user-nav {
-        font-size: $font-size-lg;
-        margin: 80px 25px 25px;
-        text-align: left;
-        @include media-breakpoint-up(sm) {
-            margin-top: 105px;
-        }
-        a {
-            &:before {
-                display: inline-block;
-                margin-right: 10px;
-            }
-        }
-        .submenu {
-            margin-bottom: 15px;
-            ul {
-                border-left: 1px solid;
-                padding-left: 10px;
-                li {
-                    font-size: 14px;
-                    padding: 5px 0;
-                }
-            }
-        }
-    }
-}
+
 
 .site-info {
     display: none;
@@ -182,8 +150,4 @@
         text-align: center;
     }
 }
-.main-nav-opened {  // when the offcanvas menu is opened
-    .site-info {
-        display: block;
-    }
-}
+

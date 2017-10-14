@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
 
   constructor(private profileService: ProfileService) {
+    // FIXME remove this code when login service be ready
     this.profileService.get(1).subscribe((profile: Profile) => {
       this.profile = profile;
     });
