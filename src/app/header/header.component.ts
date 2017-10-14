@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _state: GlobalState, private profileService: ProfileService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
-      console.log('HeaderComponent: constructor isCollapsed subscribe ', isCollapsed);
-      
       this.isMenuCollapsed = isCollapsed;
     });
 
@@ -32,7 +30,6 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu() {
-    console.log('executando toggleMenu');
     this.isMenuCollapsed = !this.isMenuCollapsed;
     this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
     return false;

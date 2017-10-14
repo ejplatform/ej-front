@@ -14,8 +14,6 @@ export class GlobalState {
   }
 
   notifyDataChanged(event, value) {
-    console.log('GlobalState: notifyDataChanged');
-
     const current = this._data[event];
     if (current !== value) {
       this._data[event] = value;

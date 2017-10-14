@@ -21,7 +21,6 @@ export class AppComponent {
     translate.use('pt');
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
-      console.log('AppComponent: constructor isCollapsed subscribe ');
       this.isMenuCollapsed = isCollapsed;
     });
 
