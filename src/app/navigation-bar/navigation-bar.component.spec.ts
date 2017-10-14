@@ -34,11 +34,11 @@ describe('NavigationBarComponent', () => {
   });
 
   it('display link to comments', () => {
-    expect(fixture.debugElement.query(By.css(".comments a")).nativeElement.href).toContain('comments');
+    expect(fixture.debugElement.query(By.css(".comments")).nativeElement.href).toContain('comments');
   });
 
   it('display link to profile', () => {
-    expect(fixture.debugElement.query(By.css(".profile a")).nativeElement.href).toContain('profile');
+    expect(fixture.debugElement.query(By.css(".profile")).nativeElement.href).toContain('profile');
   });
 
 });

@@ -12,7 +12,4 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  // is_authenticated() {
-  //   return true;
-  // }
 }
