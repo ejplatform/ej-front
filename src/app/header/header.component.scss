@@ -1,0 +1,312 @@
+// Site header styles
+// --------------------------------------------------
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../variables';
+@import '../../mixins';
+
+.site-header {
+    background-color: $site-header-bg-color;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+    height: 60px;
+    // @include transition(width 0.5s ease);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    @include media-breakpoint-up(sm) {
+        height: 80px;
+    }
+}
+
+.user-info {
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    height: 60px;
+    padding: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 54px;
+    z-index: 1;
+
+    @include media-breakpoint-up(xs) {
+        width: 85px;
+    }
+
+    @include media-breakpoint-up(sm) {
+        height: 80px;
+        padding: 10px;
+        width: 100px;
+    }
+
+    .user-icon {
+        border-radius: 100%;
+        box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+        float: none;
+        height: 34px;
+        margin: 0 auto;
+        text-align: center;
+        width: 34px;
+        @include media-breakpoint-up(sm) {
+            height: 40px;
+            width: 40px
+        }
+        img {
+            height: 34px;
+            width: 34px;
+            @include media-breakpoint-up(sm) {
+                height: 40px;
+                width: 40px
+            }
+        }
+    }
+    .user-name {
+        display: none;
+        float: left;
+        font-size: $font-size-base;
+        font-weight: $semi-bold;
+        margin: 15px 0 0 10px;
+        text-align: left;
+        @include media-breakpoint-up(xs) {
+            margin: 10px 0 0 10px;
+        }
+    }
+    .menu-label, .hide-menu {
+        display: block;
+        font-size: 1.6vmax;
+        font-weight: $bold;
+        margin-top: 4px;
+        text-align: center;
+        @include media-breakpoint-up(xs) {
+            font-size: 10px;
+        }
+        @include media-breakpoint-up(sm) {
+            font-size: $font-size-sm;
+            margin-top: 5px;
+        }
+    }
+    .hide-menu {
+        display: none;
+    }
+}
+
+.main-nav-opened { // when the offcanvas menu is opened
+    .user-info {
+        width: 245px;
+        @include media-breakpoint-up(sm) {
+            padding: 20px 25px;
+        }
+        .user-icon {
+            float: left;
+            margin: 0 5px; 
+        }
+        .user-name {
+            display: block;
+        }
+        .menu-label {
+            display: none;
+        }
+        @include media-breakpoint-up(xs) {
+            .hide-menu {
+                display: block;
+            }
+        }
+    }
+}
+
+.site-logo {
+    height: 60px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    @include media-breakpoint-up(sm) {
+        height: 80px;
+        left: 100px;
+    }
+    h1 {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+.main-nav-opened { // when the offcanvas menu is opened
+    .site-logo {
+        display: none;
+        @include media-breakpoint-up(xs) {
+            display: block;
+            left: 270px;
+            text-align: left;
+        }
+        @include media-breakpoint-up(sm) {
+            display: block;
+            left: 250px;
+            text-align: center;
+        }
+    }
+}
+
+.user-tools {
+    @extend .list-inline;
+    position: absolute;
+    right: 8px;
+    top: 17px;
+    @include media-breakpoint-up(sm) {
+        right: 15px;
+        top: 20px;
+    }
+    li {
+        margin-left: 10px;
+        @include media-breakpoint-up(xs) {
+            margin-left: 15px;
+        }
+    }
+    a {
+        display: inline-block;
+        font-size: 1.6vmax;
+        font-weight: $bold;
+        line-height: 120%;
+        text-align: center;
+        @include link-hover(#9b9b9b,#9b9b9b,transparent,#9b9b9b);
+        border-bottom-width: 2px !important;
+        @include media-breakpoint-up(xs) {
+            font-size: $font-size-sm;
+        }
+        &:before {
+            display: block;
+            font-size: 24px;
+            @include media-breakpoint-up(xs) {
+                font-size: $font-size-lg;
+                margin-bottom: 5px;
+            }
+        }
+        &.active {
+            @include link-hover(#000,#000,transparent,#000);
+        }
+    }
+    .chat, .notifications {
+        position: relative;
+    }
+    .chat {
+        .bubble {
+            @include media-breakpoint-up(sm) {
+                top: -5px;
+                right: -5px;
+            }
+        }
+    }
+    .notifications {
+        .bubble {
+            @include media-breakpoint-up(sm) {
+                top: -5px;
+                right: 18px;
+            }
+        }
+    }
+}
+
+.notifications-panel {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24), 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 2px 2px 6px 0 rgba(0, 0, 0, 0.38);
+    min-width: 320px;
+    max-width: 420px;
+    position: fixed;
+    right: 0;
+    top: 61px;
+    z-index: 1100;
+    @include media-breakpoint-up(sm) {
+        right: 19px;
+        top: 80px;
+    }
+    &:before {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid $purple;
+        content: "";
+        height: 0;
+        width: 0;
+        position: absolute;
+        right: 3px;
+        top: -15px;
+        @include media-breakpoint-up(xs) {
+            top: -10px;
+        }
+        @include media-breakpoint-up(sm) {
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid $purple;
+            right: 15px;
+            top: -20px;
+        }
+    }
+    .notifications-title {
+        background-color: $purple;
+        color: #fff;
+        font-family: $font-family-sans-serif;
+        font-size: $font-size-sm;
+        font-weight: $bold;
+        margin: 0;
+        padding: 10px;
+    }
+    .notifications-list {
+        background-color: #fff;
+        list-style: none;
+        height: auto;
+        max-height: 490px;
+        margin-bottom: 0;
+        overflow: auto;
+        padding: 0;
+        .notifications-item {
+            border-bottom: 1px solid rgba(theme-color("light"),0.3);
+            font-size: 11px;
+            overflow: hidden;
+            padding: 10px;
+            &.not-read {
+                background-color: rgba(theme-color("light"),0.15);
+            }
+            a {
+                font-weight: $bold;
+                @include link-hover(theme-color("dark"),theme-color("dark"),transparent,theme-color("dark"));
+            }
+            .icon {
+                border-radius: 100%;
+                display: block;
+                float: left;
+                height: 40px;
+                width: 40px;
+                img {
+                    border-radius: 100%;
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+            .info, .date {
+                display: block;
+                margin-left: 50px;
+            }
+            .date {
+                color: color("gray");
+            }
+        }
+    }
+    .see-more {
+        background-color: theme-color("light");
+        box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.3);
+        color:  color("gray");
+        display: block;
+        font-size: 11px;
+        font-weight: $bold;
+        line-height: 11px;
+        padding: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+}

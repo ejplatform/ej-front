@@ -9,6 +9,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
+import { CollapseModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     // BsDropdownModule.forRoot(),
     Ng2BootstrapModule.forRoot(),
+    CollapseModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
