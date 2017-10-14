@@ -13,7 +13,7 @@ before_script:
 build:
   stage: build
   script:
-    - ng build --output-path dist/empurrandojuntos --base-href /frontend --deploy-url /frontend
+    - ng build --output-path dist/empurrandojuntos --deploy-url /frontend
   artifacts:
     expire_in: 1 week
     paths:
