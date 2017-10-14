@@ -1,47 +1,23 @@
-  <!-- <nav class="navbar navbar-inverse navbar-toggleable-md navbar-light main-nav"> -->
-    <nav class="main-nav">
-      <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <!-- <a class="navbar-brand" href="#">Navbar Brand</a> -->
-      <div class="collapse.show navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item profile" [routerLinkActive]="['active']">
-            <a [routerLink]="['/profile']">{{'navigation-bar-profile' | translate}}</a>
-          </li>
-          <li class="nav-item comments" [routerLinkActive]="['active']">
-            <a [routerLink]="['/comments']">{{'navigation-bar-comments' | translate}}</a>
-          </li>
-        </ul>
-      </div>
+<nav class="main-nav">
 
-
-      <ul class="user-nav">
-            <li><a href="/profile" class="fa fa-user">Profile</a></li>
-            <li><a href="/user_notes" class="fa fa-pencil-square-o">Notes</a></li>
-            <li><a href="/courses" class="fa fa-graduation-cap">Módulos</a></li>
-            <li>
-
-                <a class="fa fa-envelope" href="/messages/">
-                    <span class="notification-bubble" ng-show="messages_unread_count">5</span>
-                    <span class="">Avisos</span>
-                </a>
-
-            </li>
-            <!--<li><a href="#" class="repositories">{% trans "Repository" %}</a></li>-->
-            <li><a href="/discussion/forum-home/" class="fa fa-comments">Fóruns</a></li>
-            <!--<li><a href="#" class="help">{% trans "Help" %}</a></li>-->
-
-                <li><a href="/cards" class="cards">Assim se faz</a></li>
-
-            <li>
-
-                <a class="fa fa-commenting-o" href="/paralapraca/chat">
-                    <span class="notification-bubble" >notifications</span>
-                    <span class="">Chat</span>
-                </a>
-
-            </li>
+    <ul class="user-nav">
+        <li><a [routerLink]="['/profile']" class="fa fa-user">Profile</a></li>
+        <li><a href="/user_notes" class="fa fa-pencil-square-o">Notes</a></li>
+        <li><a href="/courses" class="fa fa-puzzle-piece">Módulos</a></li>
+        <li>
+            <a [routerLink]="['/comments']" class="fa fa-bullhorn">
+                <span class="notification-bubble">5</span>
+                <span class="">Avisos</span>
+            </a>
+        </li>
+        <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li>
+        <li><a href="/cards" class="cards">Assim se faz</a></li>
+        <li>
+            <a class="fa fa-commenting" href="/paralapraca/chat">
+                <span class="notification-bubble" >1</span>
+                <span class="">Chat</span>
+            </a>
+        </li>
 <!-- 
             <li class="submenu">
                 <a class="admin">
@@ -56,16 +32,15 @@
                 </ul>
             </li> -->
 
-            <li><a href="/timtec_logout" class="fa fa-sign-out">Logout</a></li>
+        <li><a href="/timtec_logout" class="fa fa-sign-out">Logout</a></li>
+    </ul>
+<!-- #FIXME unused code
+    <div class="site-info">
+        <ul class="site-nav">
+            <li><a href="/pages/sobre">About</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a></li>
+            <li><a href="/accept_terms">Termos de Uso</a></li>
         </ul>
-
-        <div class="site-info">
-            <ul class="site-nav">
-                <li><a href="/pages/sobre">About</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a></li>
-                <li><a href="/accept_terms">Termos de Uso</a></li>
-            </ul>
-        </div>
-
-
+    </div>
+ -->
   </nav>

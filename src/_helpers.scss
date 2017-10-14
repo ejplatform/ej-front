@@ -1,0 +1,16 @@
+.notification-bubble {
+    display: inline-block;
+    background-color: theme-color("warning");
+    border-radius: 100%;
+    color: #fff;
+    font-size: $font-size-sm;
+    line-height: 18px;
+    position: absolute;
+    top: -3px;
+    right: 16px;
+    text-align: center;
+    height: 19px;
+    width: 19px;
+    position: absolute;
+    vertical-align: middle;
+}

@@ -51,6 +51,7 @@
         margin-top: 105px;
     }
     li {
+        position: relative;
         margin-bottom: 15px;
         @media screen and (min-height: 768px) {
             margin-bottom: 20px;
@@ -64,6 +65,9 @@
         @include link-hover(#fff,#fff,transparent,#fff);
         display: inline-block;
         border-bottom-width: 2px !important;
+        &:hover {
+            text-decoration: none;
+        }
         &:before {
             display: block;
             font-size: $font-size-lg;
