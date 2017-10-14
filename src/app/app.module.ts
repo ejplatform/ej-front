@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     NavigationBarComponent,
+    HeaderComponent,
     CommentsComponent,
     ImageUploadComponent
   ],
