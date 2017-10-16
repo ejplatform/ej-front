@@ -18,6 +18,11 @@ export class ProfileService {
   save(profile: Profile): Observable<Profile> {
     return this.restangular.one('profiles', profile.id).put({name: profile.name});
   }
+
+  login(profile: Profile){
+    // lcurl  --data "email=leandronunes@gmail.com&password=leobest04"  https://ej.brasilqueopovoquer.org.br/rest-auth/login/ 
+    // {"key":"4224422b5a656856b36a9ed0c2b5641d71f1ee0f"}
+  }
   
   setProfile(profile:Profile) {
     this.profile = profile;

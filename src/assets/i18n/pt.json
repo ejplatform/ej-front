@@ -1,6 +1,7 @@
 {
     "navigation-bar-profile": "Perfil",
     "navigation-bar-logout": "Logout",
-    "navigation-bar-comments": "Comentarios"
+    "navigation-bar-comments": "Comentarios",
+    "login.email": "you@example.com"
 }
   

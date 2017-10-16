@@ -11,6 +11,7 @@ import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
 import { GlobalState } from './global.state';
+import { Angular2TokenService } from 'angular2-token';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -18,6 +19,7 @@ import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
+import { LoginComponent } from './login/login.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 
 
@@ -37,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavigationBarComponent,
     HeaderComponent,
     CommentsComponent,
+    LoginComponent,
     ImageUploadComponent
   ],
   imports: [
@@ -58,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RestangularModule.forRoot(RestangularConfigFactory),
     // NgbModule.forRoot(),
   ],
-  providers: [GlobalState],
+  providers: [GlobalState, Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

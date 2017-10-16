@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProfileService } from './services/profile.service';
 import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   private profile: Profile;
   isMenuCollapsed: boolean = false;
   
-  constructor(private _state: GlobalState, private translate: TranslateService, private profileService: ProfileService) {
+  constructor(private _state: GlobalState, private translate: TranslateService, private profileService: ProfileService,
+    private _tokenService: Angular2TokenService) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 
@@ -27,6 +29,43 @@ export class AppComponent {
       this.profile = profile;
     });
 
+    this._tokenService.init({
+      apiBase:                    'https://ej.brasilqueopovoquer.org.br',
+      apiPath:                    null,
+
+      signInPath:                 'rest-auth/login/',
+      signInRedirect:             null,
+      // signInStoredUrlStorageKey:  null,
+
+      // signOutPath:                'auth/sign_out',
+      // validateTokenPath:          'auth/validate_token',
+      // signOutFailedValidate:      false,
+
+      // registerAccountPath:        'auth',
+      // deleteAccountPath:          'auth',
+      // registerAccountCallback:    window.location.href,
+
+      // updatePasswordPath:         'auth',
+      // resetPasswordPath:          'auth/password',
+      // resetPasswordCallback:      window.location.href,
+
+      // oAuthBase:                  window.location.origin,
+      // oAuthPaths: {
+      //     github:                 'auth/github'
+      // },
+      // oAuthCallbackPath:          'oauth_callback',
+      // oAuthWindowType:            'newWindow',
+      // oAuthWindowOptions:         null,
+
+      // userTypes:                  null,
+
+      // globalOptions: {
+      //     headers: {
+      //         'Content-Type':     'application/json',
+      //         'Accept':           'application/json'
+      //     }
+      // }
+    });
   }
 
   isLogged(){
