@@ -21,6 +21,8 @@ import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
 import { LoginComponent } from './login/login.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
+import { AuthService } from './services/auth.service';
+import { ProfileService } from './services/profile.service';
 
 
 export function RestangularConfigFactory (RestangularProvider) {
@@ -61,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RestangularModule.forRoot(RestangularConfigFactory),
     // NgbModule.forRoot(),
   ],
-  providers: [GlobalState, Angular2TokenService],
+  providers: [GlobalState, Angular2TokenService, AuthService, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

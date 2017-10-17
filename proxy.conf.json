@@ -6,6 +6,12 @@
     "/system": {
        "target": "http://localhost:3000",
        "secure": false
-    }
+    },
+    "/rest-auth": {
+      "target": "https://ej.brasilqueopovoquer.org.br",
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "secure": false
+   }
   }
   

@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
     this.profile = this.profileService.getProfile();    
     
     this.profileService.profileChangeEvent.subscribe(profile => {
+      console.log('HeaderComponent: constructor - profileChangeEvent', profile);
       this.profile = profile;
     });
   }

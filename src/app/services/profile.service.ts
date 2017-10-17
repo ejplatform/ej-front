@@ -30,6 +30,7 @@ export class ProfileService {
   }
   
   getProfile():Profile {
+    console.log('ProfileService: getProfile', this.profile);
     return this.profile;
   }
 

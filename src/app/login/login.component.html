@@ -4,7 +4,7 @@
       <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Email</label>
       <div class="col-sm-10">
         <!-- <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="you@example.com"> -->
-        <input [(ngModel)]="signInData.email" #email="ngModel" required type="email" name="email" class="form-control form-control-lg" placeholder="{{'login.email' | translate}}">
+        <input [(ngModel)]="profile.email" #email="ngModel" required type="email" name="email" class="form-control form-control-lg" placeholder="{{'login.email' | translate}}">
       </div>
     </div>
 
@@ -18,7 +18,7 @@
     <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
       <label for="password-input" class="col-sm-2 col-form-label col-form-label-lg">Password</label>
       <div class="col-sm-10">
-        <input [(ngModel)]="signInData.password" #password="ngModel" required type="password" name="password" class="form-control form-control-lg" placeholder="{{'login.password' | translate}}">
+        <input [(ngModel)]="profile.password" #password="ngModel" required type="password" name="password" class="form-control form-control-lg" placeholder="{{'login.password' | translate}}">
       </div>
     </div>
     <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.sign_in'}}</button>   

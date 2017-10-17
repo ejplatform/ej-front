@@ -1,8 +1,10 @@
 <nav class="main-nav "  id="collapseExample2">
 
     <ul class="user-nav">
-        <li><a [routerLink]="['/profile']" class="profile fa fa-user">{{'navigation-bar-profile' | translate}}</a></li>
-        <li><a href="/user_notes" class="fa fa-pencil-square-o">Notes</a></li>
+         <li *ngIf="profile"><a routerLink="/profile" class="profile fa fa-user">{{profile.key}}</a></li>
+            
+        <li><a routerLink="/profile" class="profile fa fa-user">{{'navigation-bar-profile' | translate}}</a></li>
+        <li><a routerLink="/login" class="fa fa-pencil-square-o">Login</a></li>
         <li><a href="/courses" class="fa fa-puzzle-piece">Módulos</a></li>
         <li>
             <a [routerLink]="['/comments']" class="comments fa fa-bullhorn">

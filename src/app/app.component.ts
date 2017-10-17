@@ -29,43 +29,43 @@ export class AppComponent {
       this.profile = profile;
     });
 
-    this._tokenService.init({
-      apiBase:                    'https://ej.brasilqueopovoquer.org.br',
-      apiPath:                    null,
+    // this._tokenService.init({
+    //   apiBase:                    'https://ej.brasilqueopovoquer.org.br',
+    //   apiPath:                    null,
 
-      signInPath:                 'rest-auth/login/',
-      signInRedirect:             null,
-      // signInStoredUrlStorageKey:  null,
+    //   signInPath:                 'rest-auth/login/',
+    //   signInRedirect:             null,
+    //   // signInStoredUrlStorageKey:  null,
 
-      // signOutPath:                'auth/sign_out',
-      // validateTokenPath:          'auth/validate_token',
-      // signOutFailedValidate:      false,
+    //   // signOutPath:                'auth/sign_out',
+    //   // validateTokenPath:          'auth/validate_token',
+    //   // signOutFailedValidate:      false,
 
-      // registerAccountPath:        'auth',
-      // deleteAccountPath:          'auth',
-      // registerAccountCallback:    window.location.href,
+    //   // registerAccountPath:        'auth',
+    //   // deleteAccountPath:          'auth',
+    //   // registerAccountCallback:    window.location.href,
 
-      // updatePasswordPath:         'auth',
-      // resetPasswordPath:          'auth/password',
-      // resetPasswordCallback:      window.location.href,
+    //   // updatePasswordPath:         'auth',
+    //   // resetPasswordPath:          'auth/password',
+    //   // resetPasswordCallback:      window.location.href,
 
-      // oAuthBase:                  window.location.origin,
-      // oAuthPaths: {
-      //     github:                 'auth/github'
-      // },
-      // oAuthCallbackPath:          'oauth_callback',
-      // oAuthWindowType:            'newWindow',
-      // oAuthWindowOptions:         null,
+    //   // oAuthBase:                  window.location.origin,
+    //   // oAuthPaths: {
+    //   //     github:                 'auth/github'
+    //   // },
+    //   // oAuthCallbackPath:          'oauth_callback',
+    //   // oAuthWindowType:            'newWindow',
+    //   // oAuthWindowOptions:         null,
 
-      // userTypes:                  null,
+    //   // userTypes:                  null,
 
-      // globalOptions: {
-      //     headers: {
-      //         'Content-Type':     'application/json',
-      //         'Accept':           'application/json'
-      //     }
-      // }
-    });
+    //   // globalOptions: {
+    //   //     headers: {
+    //   //         'Content-Type':     'application/json',
+    //   //         'Accept':           'application/json'
+    //   //     }
+    //   // }
+    // });
   }
 
   isLogged(){

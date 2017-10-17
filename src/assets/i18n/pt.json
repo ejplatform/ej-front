@@ -2,6 +2,7 @@
     "navigation-bar-profile": "Perfil",
     "navigation-bar-logout": "Logout",
     "navigation-bar-comments": "Comentarios",
-    "login.email": "you@example.com"
+    "login.email": "you@example.com",
+    "login.sign_in": "Entrar"
 }
   

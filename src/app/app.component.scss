@@ -98,25 +98,25 @@
         left: 0;
         width: 245px;
     }    
-    header {
+    header.site-header {
         .user-info {
             width: 245px;
             @include media-breakpoint-up(sm) {
                 padding: 20px 25px;
             }
             .user-icon {
-                float: left;
-                margin: 0 5px; 
+                float: left !important;
+                margin: 0 5px !important; 
             }
             .user-name {
-                display: block;
+                display: block !important;
             }
             .menu-label {
-                display: none;
+                display: none !important;
             }
             @include media-breakpoint-down(xs) {
                 .hide-menu {
-                    display: block;
+                    display: block !important;
                 }
             }
         }

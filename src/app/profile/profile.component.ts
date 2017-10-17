@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 
@@ -6,17 +6,25 @@ import { ProfileService } from '../services/profile.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [ProfileService],
+  // providers: [ProfileService],
 })
 export class ProfileComponent implements OnInit {
 
   profile: Profile;
-
+  // @Input() profile: Profile;
+  
   constructor(private profileService: ProfileService) {
     // FIXME remove this code when login service be ready
-    this.profileService.get(1).subscribe((profile: Profile) => {
+    // this.profileService.get(1).subscribe((profile: Profile) => {
+    //   this.profile = profile;
+    // });
+    this.profile = this.profileService.getProfile();
+    
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      console.log('ProfileComponent: constructor - profileChangeEvent', profile);
       this.profile = profile;
     });
+    console.log('ProfileComponent: constructor - ', this.profile);  
   }
 
   ngOnInit() {
