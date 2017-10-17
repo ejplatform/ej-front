@@ -1,41 +1,53 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
-// import { Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { Http, Jsonp, Response } from '@angular/http';
 
 import { Profile } from '../models/profile';
+import { SessionService } from './session.service';
 
 @Injectable()
 export class AuthService {
 
-  // private profile: Profile;
-  
-  // @Output() profileChangeEvent: EventEmitter<Profile> = new EventEmitter(true);
+  public loginSuccess: EventEmitter<any> = new EventEmitter<any>();
+  public loginFailed: EventEmitter<any> = new EventEmitter<any>();
+  public logoutSuccess: EventEmitter<any> = new EventEmitter<any>();
 
-  // constructor (private restangular: Restangular) {}
-  constructor(private http: HttpClient) {}
-  
-  // get(id: number): Observable<Profile> {
-  //   return this.restangular.one('profiles', id).get();
-  // }
-  // save(profile: Profile): Observable<Profile> {
-  //   return this.restangular.one('profiles', profile.id).put({name: profile.name});
-  // }
+  constructor(private http: Http, private sessionService: SessionService) {}
 
-  signIn(profile: Profile): Observable<Profile> {
-    // lcurl  --data "email=leandronunes@gmail.com&password=leobest04"  https://ej.brasilqueopovoquer.org.br/rest-auth/login/ 
-    // {"key":"4224422b5a656856b36a9ed0c2b5641d71f1ee0f"}
-    console.log('AuthService: signIn - ', profile);
-    return this.http.post<Profile>('/rest-auth/login/', profile);
+
+  signOut() {
+    const profile: Profile = this.sessionService.currentProfile();
+    return this.http.post('/rest-auth/logout/', profile).map(
+      data => {
+        return this.logoutSuccessCallback(profile);
+      });
   }
+
+  signIn(profile: Profile) {
+    return this.http.post('/rest-auth/login/', profile).map(
+        data => {
+          return this.loginSuccessCallback(data);
+        }, 
+        resp => { this.loginFailedCallback(resp);}
+      );
+  }
+
+  private logoutSuccessCallback(profile: Profile) {
+    this.sessionService.destroy();
+    this.logoutSuccess.next(profile);
+  }
+
+  private loginFailedCallback(response: any): any {
+    this.loginFailed.next(response);
+    return null;
+  }
+
+  private loginSuccessCallback(response: any) {
+    const token: string = this.sessionService.setToken(response.json()['key']);
+    this.loginSuccess.emit(token);
+    return token;
+  }
+
   
-  // setProfile(profile:Profile) {
-  //   this.profile = profile;
-  //   this.profileChangeEvent.emit(profile);
-  // }
-  
-  // getProfile():Profile {
-  //   return this.profile;
-  // }
 
 }

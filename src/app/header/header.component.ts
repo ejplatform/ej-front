@@ -7,7 +7,6 @@ import { GlobalState } from '../global.state';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [ProfileService],  
 })
 export class HeaderComponent implements OnInit {
 
@@ -20,9 +19,10 @@ export class HeaderComponent implements OnInit {
     });
 
     this.profile = this.profileService.getProfile();    
-    
+    if(!this.profile){
+      this.profile = new Profile();
+    }
     this.profileService.profileChangeEvent.subscribe(profile => {
-      console.log('HeaderComponent: constructor - profileChangeEvent', profile);
       this.profile = profile;
     });
   }

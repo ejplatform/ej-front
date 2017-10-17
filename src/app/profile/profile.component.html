@@ -1,3 +1,7 @@
+<div *ngIf="!profile" class="col-sm-10 col-sm-offset-1" >
+    Nenhum perfil carregado
+</div>    
+
 <div *ngIf="profile" class="col-sm-10 col-sm-offset-1" >
   <div class="media">
     <div class="media-left">
@@ -8,7 +12,7 @@
       <h4 class="media-heading">
         <inline-editor
           type="text"
-          [(ngModel)]="profile.name"
+          [(ngModel)]="profile.first_name"
           #name="ngModel"
           (onSave)="save($event)" ngDefaultControl>
         </inline-editor>

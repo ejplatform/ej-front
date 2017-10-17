@@ -19,13 +19,11 @@ export class CommentsComponent implements OnInit {
   constructor(private commentService: CommentService, private profileService: ProfileService) {
     this.profile = this.profileService.getProfile();
     
-    console.log('CommentsComponent: constructor - ', this.profile);
     // FIXME get the comment of user
     this.commentService.list().subscribe((comments: Comment[]) => {
       this.comments = comments;
     });
     this.profileService.profileChangeEvent.subscribe(profile => {
-      console.log('CommentsComponent: constructor - profileChangeEvent', profile);
       this.profile = profile;
     });
   }

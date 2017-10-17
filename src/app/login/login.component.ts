@@ -10,37 +10,30 @@ import { Profile } from '../models/profile';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  // providers: [ProfileService,AuthService],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   profile: Profile;
-  signInData: SignInData = <SignInData>{};
   
   constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) {
-    console.log('LoginComponent: constructor', this.profile);
-    
-    if(!this.profile){
+
+    this.profile = this.profileService.getProfile();
+    if(this.profile){
+      this.router.navigate(['']);
+    }else{
       this.profile = new Profile();
     }
+    
   }
 
-  ngOnInit() {
-    if (this.profileService.getProfile()) {
-      // this.router.navigate(['/dashboard']);
-    }
+  login() {
+    this.authService.signIn(this.profile).subscribe((response) => {
+      this.profileService.get().subscribe( profile => {
+        this.profileService.setProfile(profile);
+        this.profile = profile;
+        this.router.navigate(['']);
+      });
+    });
   }
 
-
-  signIn() {
-    console.log('LoginComponent: signIn');
-    this.authService.signIn(this.profile).subscribe(
-        response => {
-          console.log('LoginComponent: signIn - subscribe', response);
-            // const profile = <Profile>response.json().data;
-            this.profileService.setProfile(response);
-            // this.router.navigateByUrl('/');
-        },
-    );
-  }
 }

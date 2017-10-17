@@ -6,7 +6,6 @@ import { ProfileService } from '../services/profile.service';
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss'],
-  // providers: [ProfileService],  
 })
 export class NavigationBarComponent implements OnInit {
 
@@ -14,10 +13,8 @@ export class NavigationBarComponent implements OnInit {
   
   constructor(private profileService: ProfileService) {
     this.profileService.profileChangeEvent.subscribe(profile => {
-      console.log('NavigationBarComponent: constructor - profileChangeEvent', profile);
       this.profile = profile;
     });
-    console.log('NavigationBarComponent: constructor - ', this.profile);    
   }
 
   ngOnInit() {

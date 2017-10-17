@@ -3,6 +3,7 @@
     "navigation-bar-logout": "Logout",
     "navigation-bar-comments": "Comentarios",
     "login.email": "you@example.com",
-    "login.sign_in": "Entrar"
+    "login.sign_in": "Entrar",
+    "header-login": "Login"
 }
   

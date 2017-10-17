@@ -1,36 +1,36 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { Profile } from '../models/profile';
+import { SessionService } from './session.service';
+
 
 @Injectable()
 export class ProfileService {
+
   private profile: Profile;
   
+  
   @Output() profileChangeEvent: EventEmitter<Profile> = new EventEmitter(true);
-
-  constructor (private restangular: Restangular) {}
-
-  get(id: number): Observable<Profile> {
-    return this.restangular.one('profiles', id).get();
-  }
-  save(profile: Profile): Observable<Profile> {
-    return this.restangular.one('profiles', profile.id).put({name: profile.name});
-  }
-
-  login(profile: Profile){
-    // lcurl  --data "email=leandronunes@gmail.com&password=leobest04"  https://ej.brasilqueopovoquer.org.br/rest-auth/login/ 
-    // {"key":"4224422b5a656856b36a9ed0c2b5641d71f1ee0f"}
+  @Output() tokenChangeEvent: EventEmitter<string> = new EventEmitter(true);
+  
+  constructor(private http: HttpClient, private sessionService: SessionService) {}
+  
+  get(): Observable<Profile> {
+    return this.http.get<Profile>('/rest-auth/user/');
   }
   
   setProfile(profile:Profile) {
     this.profile = profile;
+    this.sessionService.setProfile(profile);
     this.profileChangeEvent.emit(profile);
   }
   
   getProfile():Profile {
-    console.log('ProfileService: getProfile', this.profile);
+    this.profile = this.sessionService.currentProfile();
     return this.profile;
   }
 

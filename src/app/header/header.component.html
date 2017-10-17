@@ -5,14 +5,19 @@
             <div class="menu-label">menu</div>
             <div class="hide-menu">ocultar</div>
         </div>
-        <div class="user-name">Some user</div>
+        <div class="user-name">{{profile.first_name}}</div>
     </div>
 
     <div class="site-logo">
         <h1><a href="/"><img src="/assets/images/site-logo-orange.png" alt="Empurrando Juntos"></a></h1>
-    </div>
+        <div>
+            <a routerLink="/login" class="fa fa-pencil-square-o">{{ 'header-login' | translate }}</a>
+            
+        </div>
+    </div>        
 
     <ul id="top-right-menu" class="user-tools">
+            
         <li>
             <a class="notifications active fa fa-exclamation-circle">
             <!-- <a class="notifications active" ng-click="toggle_notifications()"> -->
