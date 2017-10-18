@@ -99,7 +99,7 @@
     }    
     header.site-header {
         .user-info {
-            width: 245px;
+            width: 245px !important;
             @include media-breakpoint-up(sm) {
                 padding: 20px 25px;
             }
