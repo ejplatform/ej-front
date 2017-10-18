@@ -8,13 +8,11 @@ import { AuthService } from '../services/auth.service';
     selector: 'logout',
     template: '',
 })
-export class LogoutComponent implements OnInit {
+export class LogoutComponent {
 
   profile: Profile;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit() {
+  constructor(private authService: AuthService, private router: Router) { 
     this.authService.signOut().subscribe(
       response => {
         this.router.navigate(['']);
@@ -24,5 +22,5 @@ export class LogoutComponent implements OnInit {
       },
     );
   }
-
+  
 }

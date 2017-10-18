@@ -1,36 +1,44 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RestangularModule } from 'ngx-restangular';
 import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import * as helpers from '../../spec/helpers';
 
 import { LogoutComponent } from './logout.component';
 import { ProfileService } from '../services/profile.service';
-import * as helpers from '../../spec/helpers';
+import { AuthService } from '../services/auth.service';
+
 
 describe('LogoutComponent', () => {
   let component: LogoutComponent;
   let fixture: ComponentFixture<LogoutComponent>;
   const mocks = helpers.getMocks();
-
+  
+  
   beforeEach(async(() => {
+    let authService = spyOn(mocks.authService, 'signOut');
+    authService.and.callThrough();
+
     TestBed.configureTestingModule({
-      imports: [RestangularModule, TranslateModule.forRoot()],
+      imports: [ TranslateModule.forRoot(), RouterTestingModule],
       declarations: [ LogoutComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: AuthService, useValue: mocks.authService },
       ],
-    })
-    .compileComponents();
-  }));
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LogoutComponent);
     component = fixture.componentInstance;
+  }));
+
+  it('should call logout', () => {
+    expect(mocks.authService.signOut).toHaveBeenCalled();
   });
 
-  it('display form', () => {
-    fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('form')).length).toBe(1);
-  });
 
 });

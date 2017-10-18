@@ -5,19 +5,16 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProfileService } from './profile.service';
 import { SessionService } from './session.service';
 
-describe('CommentService', () => {
+describe('SessionService', () => {
+
     const mocks = helpers.getMocks();
     
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-                providers: [ProfileService,
-                { provide: SessionService, useValue: mocks.sessionService },
-            ]
         });
     });
 
-    it('should be created', inject([ProfileService], (service: ProfileService) => {
+    it('should be created', inject([SessionService], (service: SessionService) => {
         expect(service).toBeTruthy();
     }));
 

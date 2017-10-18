@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RestangularModule } from 'ngx-restangular';
 import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 
 import { CommentsComponent } from './comments.component';
 import { CommentService } from '../services/comment.service';
+import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
 
 describe('CommentsComponent', () => {
@@ -14,10 +14,11 @@ describe('CommentsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RestangularModule, TranslateModule.forRoot()],
+      imports: [ TranslateModule.forRoot()],
       declarations: [ CommentsComponent ],
       providers: [
         { provide: CommentService, useValue: mocks.commentService },
+        { provide: ProfileService, useValue: mocks.profileService },
       ],
     })
     .compileComponents();

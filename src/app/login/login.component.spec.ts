@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RestangularModule } from 'ngx-restangular';
 import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
 import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
 
 describe('LoginComponent', () => {
@@ -14,10 +16,12 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RestangularModule, TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), FormsModule, RouterTestingModule],
       declarations: [ LoginComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: AuthService, useValue: mocks.authService },
+        
       ],
     })
     .compileComponents();

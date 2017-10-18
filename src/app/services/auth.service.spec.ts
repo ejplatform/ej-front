@@ -1,19 +1,25 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { RestangularModule } from 'ngx-restangular';
+import { HttpModule } from '@angular/http';
 
-import { AuthService } from './auth.service';
 import * as helpers from '../../spec/helpers';
+import { AuthService } from './auth.service';
+import { SessionService } from './session.service';
 
 describe('AuthService', () => {
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [RestangularModule],
-      providers: [AuthService]
-    });
-  });
+    const mocks = helpers.getMocks();
 
-  it('should be created', inject([AuthService], (service: AuthService) => {
-    expect(service).toBeTruthy();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpModule],
+            providers: [AuthService, 
+                { provide: SessionService, useValue: mocks.sessionService },
+            ]
+        });
+    });
+
+    it('should be created', inject([AuthService], (service: AuthService) => {
+        expect(service).toBeTruthy();
+    }));
+    
 });

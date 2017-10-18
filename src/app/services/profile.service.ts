@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
-import { Restangular } from 'ngx-restangular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -12,8 +11,7 @@ import { SessionService } from './session.service';
 export class ProfileService {
 
   private profile: Profile;
-  
-  
+
   @Output() profileChangeEvent: EventEmitter<Profile> = new EventEmitter(true);
   @Output() tokenChangeEvent: EventEmitter<string> = new EventEmitter(true);
   
