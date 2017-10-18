@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../models/profile';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-embed',
@@ -10,13 +11,19 @@ export class EmbedComponent implements OnInit {
 
   url: string;
   el: HTMLFrameElement;
+  private baseUrl: string
   
-  constructor() {
-    // this.url = "http://localhost:3003/";
-    this.url = "https://brasilqueopovoquer.org.br/"
+  constructor(private route: ActivatedRoute) {
+    this.baseUrl = "https://brasilqueopovoquer.org.br/";
+    this.url = "https://brasilqueopovoquer.org.br/";
   }
 
   ngOnInit() {
+    let path = this.route.snapshot.url.map(p => p.path).join("/"); 
+    if(path == 'inicio'){
+      path = '';
+    }
+    this.url = this.baseUrl + path;
   }
 
   checkHeight(ev: Event) {

@@ -13,5 +13,8 @@ export const rootRouterConfig: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'comments', component: CommentsComponent },
   { path: 'login', component: LoginComponent },  
-  { path: 'logout', component: LogoutComponent },  
+  { path: 'logout', component: LogoutComponent },
+  { path: 'inicio', component: EmbedComponent },
+  { path: 'sobre-nos', component: EmbedComponent },
+  { path: 'perguntas-frequentes', component: EmbedComponent },
 ];
