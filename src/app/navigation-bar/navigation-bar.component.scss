@@ -7,8 +7,9 @@
 // @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../mixins';
 
-.main-nav {
-    background-image: url("/assets/images/bg-menu.png");
+nav {
+    // background-image: url("/assets/images/bg-menu.png");
+    background-color: #60A976;
     bottom: 0;
     left: -245px;
     top: 0;
