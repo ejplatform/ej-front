@@ -1,7 +1,7 @@
 {
     "navigation-bar-profile": "Perfil",
     "navigation-bar-logout": "Logout",
-    "navigation-bar-comments": "Comentarios",
+    "navigation-bar-my-votes": "Meus Votos",
     "login.email": "you@example.com",
     "login.sign_in": "Entrar",
     "header-login": "Login"

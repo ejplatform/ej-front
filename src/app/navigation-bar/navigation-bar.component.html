@@ -1,37 +1,30 @@
 <nav>
 
     <ul class="user-nav">
-        <li><a routerLink="/profile" class="profile fa fa-user">{{'navigation-bar-profile' | translate}}</a></li>
-        <li><a routerLink="/notes" class="fa fa-pencil-square-o">Notes</a></li>
-        <li><a href="/courses" class="fa fa-puzzle-piece">Módulos</a></li>
+        <li >
+            <div class="profile">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" alt="Some user" class="img-circle">
+            <a routerLink="/profile" >
+            
+            {{'navigation-bar-profile' | translate}}</a>
+            </div>
+        </li>
+        <!-- <li><a routerLink="/notes" class="fa fa-pencil-square-o">Notes</a></li> -->
+        <!-- <li><a href="/courses" class="fa fa-puzzle-piece">Conversas</a></li> -->
         <li>
             <a [routerLink]="['/comments']" class="comments fa fa-bullhorn">
                 <span class="notification-bubble">5</span>
-                <span class="">{{'navigation-bar-comments' | translate}}</span>
+                <span class="">{{'navigation-bar-my-votes' | translate}}</span>
             </a>
         </li>
-        <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li>
+        <!-- <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li> -->
         <!-- <li><a href="/cards" class="cards">Assim se faz</a></li> -->
         <li>
             <a class="fa fa-commenting" href="/paralapraca/chat">
                 <span class="notification-bubble" >1</span>
-                <span class="">Chat</span>
+                <span class="">Conversas</span>
             </a>
         </li>
-<!-- 
-            <li class="submenu">
-                <a class="admin">
-                    <span class="visible-xs-inline">Admin</span>
-                    <span class="hidden-xs">Administração</span>
-                </a>
-                <ul uib-collapse="collapsedSubmenu">
-                    <li><a href="/courses" id="admin-link">Módulos</a></li>
-                    <li><a href="/users" id="admin-link">Usuários</a></li>
-                    <li><a href="/general_reports" id="admin-link">Relatórios</a></li>
-                    <li><a href="{% url 'administration.users' %}">{% trans 'Usuários e grupos' %}</a></li>
-                </ul>
-            </li> -->
-
         <li><a routerLink="/logout" class="fa fa-sign-out">{{'navigation-bar-logout' | translate}}</a></li>
     </ul>
 
