@@ -19,16 +19,17 @@ export class CommentsComponent implements OnInit {
   constructor(private commentService: CommentService, private profileService: ProfileService) {
     this.profile = this.profileService.getProfile();
     
-    // FIXME get the comment of user
-    this.commentService.list().subscribe((comments: Comment[]) => {
-      this.comments = comments;
-    });
+  
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
   }
 
   ngOnInit() {
+      // FIXME get the comment of user
+      this.commentService.list().subscribe((comments: Comment[]) => {
+        this.comments = comments;
+      });
   }
 
 }

@@ -13,8 +13,7 @@ export class ProfileService {
   private profile: Profile;
 
   @Output() profileChangeEvent: EventEmitter<Profile> = new EventEmitter(true);
-  @Output() tokenChangeEvent: EventEmitter<string> = new EventEmitter(true);
-  
+ 
   constructor(private http: HttpClient, private sessionService: SessionService) {}
   
   get(): Observable<Profile> {

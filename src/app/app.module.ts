@@ -6,13 +6,16 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// import { Ng2BootstrapModule } from 'ngx-bootstrap';
-import { CollapseModule } from 'ngx-bootstrap';
 import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { HttpModule } from '@angular/http';
+
+// Bootstrap
+// import { Ng2BootstrapModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -53,11 +56,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    InlineEditorModule,
-    BsDropdownModule.forRoot(),
+    InlineEditorModule,    
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     CollapseModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -73,10 +77,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     Angular2TokenService, 
     AuthService,
     SessionService,
-    ProfileService,
+    ProfileService,    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
   ],
+  entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

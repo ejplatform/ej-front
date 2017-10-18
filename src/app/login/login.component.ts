@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Angular2TokenService, SignInData } from 'angular2-token';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -14,16 +15,12 @@ import { Profile } from '../models/profile';
 export class LoginComponent {
 
   profile: Profile;
-  
-  constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) {
-
-    this.profile = this.profileService.getProfile();
-    if(this.profile){
-      this.router.navigate(['']);
-    }else{
-      this.profile = new Profile();
-    }
+  bsModalRef: BsModalRef;
+  loggedIn = new EventEmitter();
     
+  constructor(private authService: AuthService, private profileService: ProfileService, private modal: BsModalRef) {
+    this.bsModalRef = modal;
+    this.profile = new Profile();
   }
 
   login() {
@@ -31,7 +28,8 @@ export class LoginComponent {
       this.profileService.get().subscribe( profile => {
         this.profileService.setProfile(profile);
         this.profile = profile;
-        this.router.navigate(['']);
+        this.bsModalRef.hide();
+        this.loggedIn.emit();
       });
     });
   }

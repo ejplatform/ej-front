@@ -1,8 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Router } from '@angular/router';
+import * as _ from 'lodash' 
+
 import { ProfileService } from '../services/profile.service';
+import { LoginComponent  } from '../login/login.component';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
-import * as _ from 'lodash' 
 
 @Component({
   selector: 'app-header',
@@ -12,12 +17,18 @@ import * as _ from 'lodash'
 export class HeaderComponent implements OnInit {
 
   isMenuCollapsed: boolean = false;
+  bsModalRef: BsModalRef;
   @Input() profile: Profile;
 
-  constructor(private _state: GlobalState, private profileService: ProfileService) {
+  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, private router: Router) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      this.profile = profile;
+    });
+
   }
 
   ngOnInit() {
@@ -31,6 +42,14 @@ export class HeaderComponent implements OnInit {
 
   isLogged(){
     return _.isObject(this.profile);
+  }
+
+  openLogin() {
+    this.bsModalRef = this.modalService.show(LoginComponent);
+    this.bsModalRef.content.loggedIn.subscribe(() => {
+      this.profile = this.profileService.getProfile();
+      this.profileService.profileChangeEvent.emit(this.profile);
+    });
   }
 
 }
