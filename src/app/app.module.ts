@@ -27,7 +27,7 @@ import { ImageUploadComponent } from './shared/image-upload/image-upload.compone
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { SessionService } from './services/session.service';
-
+import { SafePipe } from './shared/pipes/safe.pipe';
 
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -46,7 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsComponent,
     LoginComponent,
     LogoutComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

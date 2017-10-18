@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../models/profile';
-// import { ProfileService } from '../services/profile.service';
-// import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-embed',
@@ -10,17 +8,20 @@ import { Profile } from '../models/profile';
 })
 export class EmbedComponent implements OnInit {
 
-  // profile: Profile;
+  url: string;
+  el: HTMLFrameElement;
   
   constructor() {
-
-    // this.profile = this.profileService.getProfile();
-    // this.profileService.profileChangeEvent.subscribe(profile => {
-    //   this.profile = profile;
-    // });
+    // this.url = "http://localhost:3003/";
+    this.url = "https://brasilqueopovoquer.org.br/"
   }
 
   ngOnInit() {
+  }
+
+  checkHeight(ev: Event) {
+    this.el = <HTMLFrameElement>ev.srcElement;
+    this.el.height = 7000 + 'px'; 
   }
 
 }

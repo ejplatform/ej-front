@@ -7,9 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import * as helpers from '../../spec/helpers';
 import { EmbedComponent } from './embed.component';
-// import { ImageUploadComponent } from '../shared/image-upload/image-upload.component';
-// import { ProfileService } from '../services/profile.service';
-// import { AuthService } from '../services/auth.service';
 
 
 describe('EmbedComponent', () => {
@@ -19,15 +16,10 @@ describe('EmbedComponent', () => {
   const mocks = helpers.getMocks();
 
   beforeEach(async(() => {
-
-
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), FormsModule, ReactiveFormsModule],
       declarations: [ EmbedComponent ],
-      providers: [
-        // { provide: ProfileService, useValue: mocks.profileService },
-        // { provide: AuthService, useValue: mocks.authService },
-      ],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
     }).compileComponents();
