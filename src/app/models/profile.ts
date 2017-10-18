@@ -4,6 +4,7 @@ export class Profile {
     public pk: number;
     public token: string;
     public name: string;
+    public password: string;
     public email: string;
     public picture: any;
     public picture_data: any;
