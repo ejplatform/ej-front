@@ -15,7 +15,7 @@ import * as _ from 'lodash'
 export class AppComponent implements OnInit  {
 
   title = 'app';
-  private profile: Profile;
+  profile: Profile;
   isMenuCollapsed: boolean = false;
   
   constructor(private _state: GlobalState, private translate: TranslateService, private profileService: ProfileService) {
@@ -37,7 +37,6 @@ export class AppComponent implements OnInit  {
   }
 
   isLogged(){
-    console.log(this.profile);
     return _.isObject(this.profile);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 
@@ -9,12 +9,9 @@ import { ProfileService } from '../services/profile.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  profile: Profile;
+  @Input() profile: Profile;
   
   constructor(private profileService: ProfileService) {
-    this.profileService.profileChangeEvent.subscribe(profile => {
-      this.profile = profile;
-    });
   }
 
   ngOnInit() {

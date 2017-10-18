@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
@@ -11,19 +11,11 @@ import { GlobalState } from '../global.state';
 export class HeaderComponent implements OnInit {
 
   isMenuCollapsed: boolean = false;
-  profile: Profile;
+  @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
-    });
-
-    this.profile = this.profileService.getProfile();    
-    if(!this.profile){
-      this.profile = new Profile();
-    }
-    this.profileService.profileChangeEvent.subscribe(profile => {
-      this.profile = profile;
     });
   }
 
