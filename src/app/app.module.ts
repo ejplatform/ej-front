@@ -12,6 +12,7 @@ import { CollapseModule } from 'ngx-bootstrap';
 import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     RouterModule.forRoot(rootRouterConfig),
+    HttpModule
   ],
   providers: [GlobalState, 
     Angular2TokenService, 
