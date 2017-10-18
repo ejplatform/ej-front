@@ -1,10 +1,6 @@
 <div class="app-root" [ngClass]="{'logged': isLogged()}">
   <div class="site-wrapper" [ngClass]="{'main-nav-opened': isMenuCollapsed}">
-      <div>
-          <a routerLink="/login" class="fa fa-pencil-square-o">{{ 'header-login' | translate }}</a>
-          
-      </div>
-    <app-header *ngIf="profile" [profile]="profile"></app-header>
+    <app-header [profile]="profile"></app-header>
     <app-navigation-bar *ngIf="profile" [profile]="profile"></app-navigation-bar>
     <div class="wrapper wrapper-bg">
         <router-outlet></router-outlet>

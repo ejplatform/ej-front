@@ -1,39 +1,47 @@
-<header class="site-header">
-    <div class="user-info" (click)="toggleMenu()"  >
-        <div class="user-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" alt="Some user" class="img-circle">
-            <div class="menu-label">menu</div>
-            <div class="hide-menu">ocultar</div>
+<header class="site-header" [ngClass]="{'logged': isLogged()}">
+    <div *ngIf="profile">
+        <div class="user-info" (click)="toggleMenu()"  >
+            <div class="user-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" alt="Some user" class="img-circle">
+                <div class="menu-label">menu</div>
+                <div class="hide-menu">ocultar</div>
+            </div>
+            <div class="user-name">{{profile.first_name}}</div>
         </div>
-        <div class="user-name">{{profile.first_name}}</div>
+
+        <div class="site-logo">
+            <h1><a href="/"><img src="/assets/images/site-logo-orange.png" alt="Empurrando Juntos"></a></h1>
+        </div>        
+
+        <ul id="top-right-menu" class="user-tools">
+            <li>
+                <a class="notifications active fa fa-exclamation-circle">
+                <!-- <a class="notifications active" ng-click="toggle_notifications()"> -->
+                    <span class="notification-bubble">3</span>
+                    <span class="hidden-xs">Notificações</span>
+                </a>
+            </li>
+            <!-- <li>
+                <a class="chat fa fa-commenting" href="#">
+                    <span class="notification-bubble">1</span>
+                    <span class="hidden-xs">{% trans 'Chat' %}</span>
+                </a>
+            </li> -->
+        </ul>
+        
+        <div id="notification-wrapper">
+            <div class="notifications-panel">
+                <h2 class="notifications-title">Notificações</h2>
+                <!-- <notifications ng-model="notifications"></notifications> -->
+                <a href="#" class="see-more">ver todos</a>
+            </div>
+        </div>
     </div>
 
-    <div class="site-logo">
-        <h1><a href="/"><img src="/assets/images/site-logo-orange.png" alt="Empurrando Juntos"></a></h1>
-    </div>        
-
-    <ul id="top-right-menu" class="user-tools">
-            
-        <li>
-            <a class="notifications active fa fa-exclamation-circle">
-            <!-- <a class="notifications active" ng-click="toggle_notifications()"> -->
-                <span class="notification-bubble">3</span>
-                <span class="hidden-xs">Notificações</span>
-            </a>
-        </li>
-        <!-- <li>
-            <a class="chat fa fa-commenting" href="#">
-                <span class="notification-bubble">1</span>
-                <span class="hidden-xs">{% trans 'Chat' %}</span>
-            </a>
-        </li> -->
-    </ul>
-        
-    <div id="notification-wrapper">
-        <div class="notifications-panel">
-            <h2 class="notifications-title">Notificações</h2>
-            <!-- <notifications ng-model="notifications"></notifications> -->
-            <a href="#" class="see-more">ver todos</a>
-        </div>
-    </div>    
+    <div *ngIf="!profile">
+        <ul>
+            <li>Cadastrar</li>
+            <li><a routerLink="/login" class="fa fa-pencil-square-o">{{ 'header-login' | translate }}</a></li>
+        </ul>
+    </div>
 </header>
