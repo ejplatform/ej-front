@@ -4,6 +4,7 @@ import { ProfileService } from './services/profile.service';
 import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
+import * as _ from 'lodash' 
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { Angular2TokenService } from 'angular2-token';
   styleUrls: ['./app.component.scss'],
   providers: [ProfileService],  
 })
-export class AppComponent {
+export class AppComponent implements OnInit  {
+
   title = 'app';
   private profile: Profile;
   isMenuCollapsed: boolean = false;
@@ -24,19 +26,19 @@ export class AppComponent {
       this.isMenuCollapsed = isCollapsed;
     });
 
+  }
+  
+  ngOnInit(): void {
+    this.profile = this.profileService.getProfile();
+
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
-    });
+    });  
   }
 
   isLogged(){
-    return true;
-    // Make the loggin works and uncomment this code
-    // if(this.profile){
-    //   return true;
-    // } else {
-    //   return false;      
-    // }
+    console.log(this.profile);
+    return _.isObject(this.profile);
   }
 
 }
