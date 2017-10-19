@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { Profile } from '../models/profile';
@@ -18,6 +19,10 @@ export class ProfileService {
   
   get(): Observable<Profile> {
     return this.http.get<Profile>('/rest-auth/user/');
+  }
+
+  save(profile: Profile): Observable<Profile> {
+    return this.http.put<Profile>('/api/profiles/' + profile.id, profile);
   }
   
   setProfile(profile:Profile) {

@@ -1,9 +1,62 @@
-<div *ngIf="!profile" class="col-sm-10 col-sm-offset-1" >
-    Nenhum perfil carregado
-</div>    
+<div *ngIf="profile">
 
-<div *ngIf="profile" class="col-sm-10 col-sm-offset-1" >
-  <div class="media">
+  <form  (ngSubmit)="save()"  name="profileForm" #profileForm="ngForm">
+    <div class="row">
+      <div class="picture col-md-3 mb-3">
+        <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
+        <p>
+          {{'profile-change-picture-detail' | translate}}
+        </p>
+      </div>
+      <div class="information col-md-9 mb-3">
+        <h1>{{'profile-title' | translate}}</h1>
+
+        <div class="form-group first_name-field" [ngClass]="[ firstName.touched ? (firstName.valid ? 'is-valid' : 'is-invalid') : '' ]">
+          <i class="inside-icon"></i>
+          <input type="text" class="form-control" 
+            id="firstName" name="firstName" placeholder="{{'profile.first_name' | translate }}" 
+            [(ngModel)]="profile.first_name" required #firstName='ngModel'>
+        </div>
+
+        <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
+          <i class="inside-icon"></i>            
+          <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}" 
+            [(ngModel)]="profile.email" required #email='ngModel'>
+        </div>
+
+        <button type="submit" class="btn btn-default submit-button" [disabled]="profileForm.invalid" >
+          {{"profile.button.save" | translate}}
+        </button> 
+        
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer03">City</label>
+        <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationServer04">State</label>
+        <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationServer05">Zip</label>
+        <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
+        <div class="invalid-feedback">
+          Please provide a valid zip.
+        </div>
+      </div>
+    </div> -->
+  
+    <!-- <button class="btn btn-primary" type="submit">Submit form</button> -->
+  </form>
+  <!-- <div class="media">
     <div class="media-left">
       <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
     </div>
@@ -21,5 +74,5 @@
         <p>{{profile.email}}</p>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

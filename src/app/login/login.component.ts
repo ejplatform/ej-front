@@ -26,8 +26,9 @@ export class LoginComponent {
   login() {
     this.authService.signIn(this.profile).subscribe((response) => {
       this.profileService.get().subscribe( profile => {
-        this.profileService.setProfile(profile);
+        profile.id = profile.pk;
         this.profile = profile;
+        this.profileService.setProfile(this.profile);        
         this.bsModalRef.hide();
         this.loggedIn.emit();
       });
