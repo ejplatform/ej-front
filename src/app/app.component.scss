@@ -59,10 +59,20 @@
     nav{
         .user-nav {
             font-size: $font-size-lg;
-            margin: 80px 25px 25px;
             text-align: left;
             @include media-breakpoint-up(sm) {
                 margin-top: 105px;
+            }
+            li{
+                @include media-breakpoint-down(xs) {
+                    min-height: 75px;
+                    padding: 25px;
+                }
+                &:before {
+                    @include media-breakpoint-down(xs) {
+                        top: 24px !important;
+                    }
+                }
             }
             a {
                 &:before {
@@ -74,7 +84,7 @@
                 display: inline-block;
             }
             .notification-bubble{
-                left: 16px;
+                left: 37px;
             }
             .submenu {
                 margin-bottom: 15px;
@@ -96,7 +106,12 @@
     .main-nav {
         left: 0;
         width: 245px;
-    }    
+    }   
+    .site-logo{
+        @include media-breakpoint-down(xs) {
+            display: none ;
+        }
+    } 
     header.site-header {
         .user-info {
             width: 245px !important;
@@ -119,6 +134,7 @@
                 }
             }
         }
+
     }
 }
 
