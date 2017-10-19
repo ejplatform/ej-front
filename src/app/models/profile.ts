@@ -11,5 +11,8 @@ export class Profile {
     public first_name: string;
     public last_name: string;
     public username: string;
+    public city: string;
+    public state: string;
+    public country: string;
 
 }

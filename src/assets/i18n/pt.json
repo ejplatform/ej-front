@@ -6,7 +6,10 @@
     "profile-change-picture-detail": "Sua imagem deve ter, no minimo, 200 x 200 pixels e no maximo, 800 x 800 pixels",    
     "profile.email": "Email",
     "profile.button.save": "Salvar",
-    "profile.first_name": "Primeiro Nome",    
+    "profile.first_name": "Primeiro Nome",
+    "profile.city": "Cidade",
+    "profile.state": "Estado",
+    "profile.country": "Pais",
     "login.email": "you@example.com",
     "login.sign_in": "Entrar",
     "header-login": "Login"

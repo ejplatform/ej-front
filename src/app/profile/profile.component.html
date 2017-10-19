@@ -23,7 +23,31 @@
           <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}" 
             [(ngModel)]="profile.email" required #email='ngModel'>
         </div>
+        <div class="row">
 
+          <div class="col-md-6 form-group city-field" [ngClass]="[ city.touched ? (city.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="inside-icon"></i>
+            <input type="text" class="form-control" 
+              id="city" name="city" placeholder="{{'profile.city' | translate }}" 
+              [(ngModel)]="profile.city" required #city='ngModel'>
+          </div>
+
+          <div class="col-md-3 form-group state-field" [ngClass]="[ state.touched ? (state.valid ? 'is-valid' : 'is-invalid') : '' ]">
+              <i class="inside-icon"></i>
+              <input type="text" class="form-control" 
+                id="state" name="state" placeholder="{{'profile.state' | translate }}" 
+                [(ngModel)]="profile.state" required #state='ngModel'>
+          </div>
+
+          <div class="col-md-3 form-group  country-field" [ngClass]="[ country.touched ? (country.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="inside-icon"></i>
+            <input type="text" class="form-control" 
+              id="country" name="country" placeholder="{{'profile.country' | translate }}" 
+              [(ngModel)]="profile.country" required #country='ngModel'>
+          </div>
+
+        </div>
+        
         <button type="submit" class="btn btn-default submit-button" [disabled]="profileForm.invalid" >
           {{"profile.button.save" | translate}}
         </button> 
