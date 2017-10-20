@@ -16,7 +16,7 @@ cache:
     - node_modules/
 
 before_script:
-    - export NODE="docker run --rm -u node -v $PWD:/app -w /app node:7.2.1"
+    - export NODE="docker run --rm -v $PWD:/app -w /app node:7.2.1"
     - $NODE npm install
 
 build:
