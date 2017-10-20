@@ -1,5 +1,8 @@
 ---
-image: docker:dind
+image: docker:git
+
+services:
+- docker:dind
 
 stages:
   - build
@@ -30,6 +33,8 @@ build:
     expire_in: 1 week
     paths:
       - dist
+  tags:
+    - docker
 
 test:
   stage: test
