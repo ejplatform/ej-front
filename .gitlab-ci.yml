@@ -1,4 +1,11 @@
+---
 image: node:7.2.1
+
+stages:
+  - build
+  - test
+  - dockerize
+  - deploy
 
 cache:
   key: "$CI_BUILD_REF_NAME"
@@ -13,7 +20,7 @@ before_script:
 build:
   stage: build
   script:
-    - ng build --prod --output-path dist/empurrandojuntos --deploy-url /frontend/
+    - ng build --prod --output-path dist/empurrandojuntos --deploy-url /
   artifacts:
     expire_in: 1 week
     paths:
@@ -27,6 +34,19 @@ test:
     expire_in: 1 week
     paths:
         - coverage/*
+
+dockerize:
+  stage: dockerize
+  image: docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker create --name frontend nginx
+    - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
+    - docker commit frontend registry.gitlab.com/empurrandojuntos/frontend:latest
+    - docker push registry.gitlab.com/empurrandojuntos/frontend:latest
+    - docker rm frontend
+  dependencies:
+    - build
 
 pages:
   stage: deploy
