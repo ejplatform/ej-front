@@ -15,24 +15,25 @@ cache:
   paths:
     - node_modules/
 
+variables:
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+
 before_script:
     - export NODE="docker run --rm -v $PWD:/app -w /app node:7.2.1"
     - $NODE npm install
 
-build:
+build to homolog:
   stage: build
   script:
     - $NODE ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
-    - docker commit frontend registry.gitlab.com/empurrandojuntos/frontend:latest
-    - docker push registry.gitlab.com/empurrandojuntos/frontend:latest
-    - docker rm frontend
-  artifacts:
-    expire_in: 1 week
-    paths:
-      - dist
+    - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+    - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+    - docker push $CI_REGISTRY_IMAGE:latest
+  environment: homolog
   tags:
     - docker
 
@@ -45,21 +46,11 @@ test:
     paths:
         - coverage/*
 
-pages:
+deploy to homolog:
   stage: deploy
+  image: cdrx/rancher-gitlab-deploy
   script:
-    - ls -la
-    - ls -la dist/
-    - rm -rf public/*
-    - mkdir -p public/
-#    - mv landing-page/* public/
-    - mv dist/empurrandojuntos/* public/
-    - mv coverage/ public/
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-  dependencies:
-    - build
-#  only:
-#    - master
+    - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --new-image $CONTAINER_RELEASE_IMAGE --no-finish-upgrade --debug
+  environment: homolog
+  tags:
+    - docker:dind
