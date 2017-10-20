@@ -1,10 +1,9 @@
 ---
-image: node:7.2.1
+image: docker:dind
 
 stages:
   - build
   - test
-  - dockerize
   - deploy
 
 cache:
@@ -14,13 +13,19 @@ cache:
     - node_modules/
 
 before_script:
-    - export PATH=$PATH:node_modules/.bin
-    - npm install
+    - export NODE="docker run --rm -u node -v $PWD:/app -w /app -it node:7.2.1"
+    - $NODE npm install
 
 build:
   stage: build
   script:
-    - ng build --prod --output-path dist/empurrandojuntos --deploy-url /
+    - $NODE ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker create --name frontend nginx
+    - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
+    - docker commit frontend registry.gitlab.com/empurrandojuntos/frontend:latest
+    - docker push registry.gitlab.com/empurrandojuntos/frontend:latest
+    - docker rm frontend
   artifacts:
     expire_in: 1 week
     paths:
@@ -29,24 +34,11 @@ build:
 test:
   stage: test
   script:
-    - ng test --code-coverage --single-run
+    - $NODE ./node_modules/.bin/ng test --code-coverage --single-run
   artifacts:
     expire_in: 1 week
     paths:
         - coverage/*
-
-dockerize:
-  stage: dockerize
-  image: docker:dind
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker create --name frontend nginx
-    - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
-    - docker commit frontend registry.gitlab.com/empurrandojuntos/frontend:latest
-    - docker push registry.gitlab.com/empurrandojuntos/frontend:latest
-    - docker rm frontend
-  dependencies:
-    - build
 
 pages:
   stage: deploy
