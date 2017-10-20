@@ -20,11 +20,11 @@ variables:
 
 before_script:
     - export NODE="docker run --rm -v $PWD:/app -w /app node:7.2.1"
-    - $NODE npm install
 
 build to homolog:
   stage: build
   script:
+    - $NODE npm install
     - $NODE ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
@@ -41,10 +41,6 @@ test:
   stage: test
   script:
     - $NODE ./node_modules/.bin/ng test --code-coverage --single-run
-  artifacts:
-    expire_in: 1 week
-    paths:
-        - coverage/*
 
 deploy to homolog:
   stage: deploy
