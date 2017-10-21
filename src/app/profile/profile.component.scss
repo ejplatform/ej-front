@@ -25,6 +25,8 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         @extend .border-left-0;
         @extend .px-5;
         @extend .pt-3;
+        // @extend .pb-5;
+        padding-bottom: 200px;
         border: 1px solid theme-color("secondary");
         
     }
