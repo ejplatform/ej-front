@@ -3,6 +3,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import * as _ from 'lodash' 
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   genderOptions = [
     {id: 1, name: "Mulher"},
-    {id: 2, name: "Home"},
+    {id: 2, name: "Homem"},
     {id: 3, name: "Mulher Cis"},
     {id: 4, name: "Homem Cis"},
     {id: 5, name: "Agênero"},
@@ -32,8 +33,8 @@ export class ProfileComponent implements OnInit {
   ];
 
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {
-
-    this.profile = this.profileService.getProfile();
+    this.profile = <Profile>{};
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
     console.log(this.profile);
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
@@ -41,14 +42,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.profile.gender = '';
-    this.profile.skin_color = '';
+    this.initializeFields();
   }
 
   save() {
     this.profileService.save(this.profile).subscribe( profile => {
         // this.notificationService.success({ title: "account.register.success.title", message: "account.register.success.message" });
-        console.log('Profile saved');
         this.profileService.setProfile(this.profile);
         this.router.navigate(['profile']);
 
@@ -57,5 +56,17 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  cancel(){
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+  }
+
+  initializeFields(){
+    if(_.isUndefined(this.profile.gender)){
+      this.profile.gender = '';
+    }
+    if(_.isUndefined(this.profile.skin_color)){
+      this.profile.skin_color = '';  
+    }     
+  }
 
 }

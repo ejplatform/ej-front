@@ -1,6 +1,6 @@
 <div *ngIf="profile">
 
-  <form  (ngSubmit)="save()"  name="profileForm" #profileForm="ngForm">
+  <form   name="profileForm" #profileForm="ngForm">
     <div class="profile-form" >
       <div class="profile-picture-column">
         <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
@@ -23,7 +23,7 @@
           <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}" 
             [(ngModel)]="profile.email" required #email='ngModel'>
         </div>
-        <!-- <div class="row">
+        <div class="row">
 
           <div class="col-md-6 form-group city-field" [ngClass]="[ city.touched ? (city.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
@@ -46,8 +46,8 @@
               [(ngModel)]="profile.country" required #country='ngModel'>
           </div>
 
-        </div> -->
-<!-- 
+        </div>
+
         <div class="row">
 
           <div class="col-md-5 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
@@ -75,7 +75,7 @@
               [(ngModel)]="profile.age" required #age='ngModel'>
           </div>     
 
-        </div> -->
+        </div>
 
         <div class="form-group biography-field" [ngClass]="[ biography.touched ? (biography.valid ? 'is-valid' : 'is-invalid') : '' ]">
           <i class="textarea inside-icon"></i>
@@ -85,8 +85,18 @@
           </textarea>
         </div>
 
-        <button type="submit" class="btn btn-default submit-button" [disabled]="profileForm.invalid" >
+        <div class="form-group occupation-field" [ngClass]="[ occupation.touched ? (occupation.valid ? 'is-valid' : 'is-invalid') : '' ]">
+          <i class="inside-icon"></i>
+          <input type="text" class="form-control" 
+              id="occupation" name="occupation" placeholder="{{'profile.occupation' | translate }}" 
+              [(ngModel)]="profile.occupation" required #occupation='ngModel'>
+        </div>
+
+        <button  (click)="save()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
           {{"profile.button.save" | translate}}
+        </button> 
+        <button (click)="cancel()" class="form-button cancel"  >
+            {{"profile.button.cancel" | translate}}
         </button> 
         
       </div>

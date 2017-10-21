@@ -17,6 +17,7 @@ export class Profile {
     public skin_color: string;
     public gender: string;
     public age: string;
-    public biography: string;   
+    public biography: string;
+    public occupation: string;   
 
 }
