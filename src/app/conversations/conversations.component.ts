@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash' 
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
@@ -20,10 +21,13 @@ export class ConversationsComponent implements OnInit {
   }
 
   ngOnInit() {
-      // FIXME get the comment of user
-      this.conversationService.list().subscribe((conversations: Conversation[]) => {
-        this.conversations = conversations;
-      });
+    this.conversationService.list().subscribe((conversations: Conversation[]) => {
+      this.conversations = conversations;
+    });
+  }
+
+  amount(){
+    _.size(this.conversations);
   }
 
 }
