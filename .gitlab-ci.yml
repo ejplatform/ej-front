@@ -42,6 +42,8 @@ build to homolog:
 test:
   stage: test
   script:
+    - ls -la
+    - ls -la ./node_modules/
     - $NODE ./node_modules/.bin/ng test --code-coverage --single-run
 
 deploy to homolog:
