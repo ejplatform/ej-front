@@ -1,14 +1,14 @@
 <div *ngIf="profile">
 
   <form  (ngSubmit)="save()"  name="profileForm" #profileForm="ngForm">
-    <div class="row d-flex justify-content-center">
-      <div class="picture col-md-2 mb-3">
+    <div class="profile-form" >
+      <div class="profile-picture-column">
         <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
         <p>
           {{'profile-change-picture-detail' | translate}}
         </p>
       </div>
-      <div class="information col-md-8 mb-3 ">
+      <div class="profile-information-column">
         <h1>{{'profile-title' | translate}}</h1>
 
         <div class="form-group first_name-field" [ngClass]="[ firstName.touched ? (firstName.valid ? 'is-valid' : 'is-invalid') : '' ]">

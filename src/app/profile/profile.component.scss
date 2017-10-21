@@ -2,6 +2,35 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+.profile-form{
+    @extend .row;
+    @extend .d-flex;
+    @extend .justify-content-center;
+    @extend .p-4;
+
+    .profile-picture-column{
+        @extend .col-md-3; 
+        @extend .mb-3;
+        border: 1px solid theme-color("secondary");
+        p{
+            @extend .p-4;
+            @extend .mt-2;
+            font-size: $font-size-sm;
+            text-align: center;
+        }
+    }
+    .profile-information-column{
+        @extend .col-md-8;
+        @extend .mb-3;
+        @extend .border-left-0;
+        @extend .px-5;
+        @extend .pt-3;
+        border: 1px solid theme-color("secondary");
+        
+    }
+
+}
+
 .form-group {
     position: relative;
 }
