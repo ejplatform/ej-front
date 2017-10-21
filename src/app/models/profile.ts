@@ -8,6 +8,7 @@ export class Profile {
     public email: string;
     public picture: any;
     public picture_data: any;
+    public picture_path: string;
     public first_name: string;
     public last_name: string;
     public username: string;

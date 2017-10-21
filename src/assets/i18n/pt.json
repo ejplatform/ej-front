@@ -1,7 +1,8 @@
 {
-    "navigation-bar-profile": "Perfil",
-    "navigation-bar-logout": "Logout",
-    "navigation-bar-my-votes": "Meus Votos",
+    "navigation-bar.item.profile": "Perfil",
+    "navigation-bar.item.conversations": "Conversas",
+    "navigation-bar.item.logout": "Logout",
+    "navigation-bar.item.my-votes": "Meus Votos",
     "profile-title": "Informacoes do Perfil",
     "profile-change-picture-detail": "Sua imagem deve ter, no minimo, 200 x 200 pixels e no maximo, 800 x 800 pixels",    
     "profile.email": "Email",
