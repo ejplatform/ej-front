@@ -14,5 +14,9 @@ export class Profile {
     public city: string;
     public state: string;
     public country: string;
+    public skin_color: string;
+    public gender: string;
+    public age: string;
+    
 
 }

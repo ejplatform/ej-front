@@ -23,7 +23,7 @@
           <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}" 
             [(ngModel)]="profile.email" required #email='ngModel'>
         </div>
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6 form-group city-field" [ngClass]="[ city.touched ? (city.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
@@ -45,6 +45,36 @@
               id="country" name="country" placeholder="{{'profile.country' | translate }}" 
               [(ngModel)]="profile.country" required #country='ngModel'>
           </div>
+
+        </div> -->
+
+        <div class="row">
+          <div class="col-md-5 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
+            <i class="select inside-icon"></i>
+            <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel' required 
+                  class=" custom-select" id="gender">
+              <option disabled selected>{{'profile.gender' | translate }}</option>
+              <option *ngFor="let gender of genderOptions" [value]="gender.id">{{gender.name}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 form-group skin_color-field" [ngClass]="[ skin_color.touched ? (skin_color.valid ? 'is-valid' : 'is-invalid') : '' ]" >
+            <i class="select inside-icon"></i>
+            <select [(ngModel)]="profile.skin_color"  name="skin_color" #skin_color='ngModel' required 
+                    class=" custom-select" id="skin_color">
+              <option disabled selected>{{'profile.skin_color' | translate }}</option>
+              <option *ngFor="let skin_color of skinColorOptions" [value]="skin_color.id">{{skin_color.name}}</option>
+            </select>
+          </div>
+
+
+          <div class="col-md-3 form-group age-field" [ngClass]="[ age.touched ? (age.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="inside-icon"></i>
+            <input type="text" class="form-control" 
+              id="age" name="age" placeholder="{{'profile.age' | translate }}" 
+              [(ngModel)]="profile.age" required #age='ngModel'>
+          </div> 
+     
 
         </div>
         

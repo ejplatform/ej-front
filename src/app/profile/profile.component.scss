@@ -33,6 +33,13 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 
 .form-group {
     position: relative;
+    .select.inside-icon{
+        right: 40px;
+    }
+    .skin_color.inside-icon{
+        right: 45px;
+    }
+    
 }
 
 .form-group .inside-icon {
@@ -54,6 +61,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         @extend .fa-check-circle;        
         color: #7ED321;
     }
+
 }
 
 .is-invalid {

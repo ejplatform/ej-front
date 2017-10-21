@@ -12,7 +12,25 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   profile: Profile;
+
+  genderOptions = [
+    {id: 1, name: "Mulher"},
+    {id: 2, name: "Home"},
+    {id: 3, name: "Mulher Cis"},
+    {id: 4, name: "Homem Cis"},
+    {id: 5, name: "Agênero"},
+  ];
   
+  skinColorOptions = [
+    {id: 1, name: "Preta"},
+    {id: 2, name: "Parda"},
+    {id: 3, name: "Branca"},
+    {id: 4, name: "Amarela"},
+    {id: 5, name: "Indígena"},
+    {id: 5, name: "Não sei"},
+    {id: 5, name: "Não declarada"},
+  ];
+
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {
 
     this.profile = this.profileService.getProfile();
@@ -23,22 +41,21 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.profile.gender = '';
+    this.profile.skin_color = '';
   }
 
   save() {
-    // public onSubmit(empForm: any, event: Event) {
-      // event.preventDefault();
     this.profileService.save(this.profile).subscribe( profile => {
-        // this.router.navigate(['/']);
         // this.notificationService.success({ title: "account.register.success.title", message: "account.register.success.message" });
         console.log('Profile saved');
-        // this.router.navigate(['/profile']);
+        this.profileService.setProfile(this.profile);
         this.router.navigate(['profile']);
-        // return false;
+
       }, error => {
         console.log('Something wrong happened...');
       });
-      // return false;
   }
+
 
 }
