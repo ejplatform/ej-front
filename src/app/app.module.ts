@@ -12,10 +12,13 @@ import { Ng2Webstorage } from 'ngx-webstorage';
 import { HttpModule } from '@angular/http';
 
 // Bootstrap
+
 // import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap';
+
+// Application imports
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -24,6 +27,7 @@ import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
+import { ConversationsComponent } from './conversations/conversations.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
@@ -47,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavigationBarComponent,
     HeaderComponent,
     CommentsComponent,
+    ConversationsComponent,
     LoginComponent,
     LogoutComponent,
     ImageUploadComponent,

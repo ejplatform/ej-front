@@ -1,0 +1,8 @@
+<h1>{{'conversations.title' | translate}}</h1>
+<h2>{{'conversations.subtitle' | translate}}</h2>
+<ul *ngFor="let conversation of conversations">
+  <li>
+    <h2>{{conversation.title}}</h2>
+    {{conversation.body}}
+  </li>
+</ul>

@@ -8,6 +8,13 @@
             <a routerLink="/profile" >{{'navigation-bar-profile' | translate}}</a>
             
         </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/conversations']">
+                    <span class="notification-bubble" >1</span>
+                <img src="/assets/images/icons/conversas_icon.svg" alt="Some user" class="img-circle">
+                <span class="">Conversas</span>
+            </a>
+        </li>
         <!-- <li><a routerLink="/notes" class="fa fa-pencil-square-o">Notes</a></li> -->
         <!-- <li><a href="/courses" class="fa fa-puzzle-piece">Conversas</a></li> -->
         <li routerLinkActive="active">
@@ -18,14 +25,7 @@
         </li>
         <!-- <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li> -->
         <!-- <li><a href="/cards" class="cards">Assim se faz</a></li> -->
-        <li routerLinkActive="active">
-            <a [routerLink]="['/comments']">
-                <!-- <span class="notification-bubble" >1</span> -->
-                <img src="/assets/images/icons/conversas_icon.svg" alt="Some user" class="img-circle">
-                
-                <span class="">Conversas</span>
-            </a>
-        </li>
+
         <li>
             <a routerLink="/logout">
                 <img src="/assets/images/icons/sair_icon.svg" alt="Some user" class="img-circle">

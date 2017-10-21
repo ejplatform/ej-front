@@ -7,6 +7,11 @@ export function getMocks() {
                 return {};
             },
         },
+        conversationService: {
+            list: () => {
+                return {};
+            },
+        },
         authService: {
             signIn: () => {
                 return {};
