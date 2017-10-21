@@ -18,7 +18,8 @@ export class LoginComponent {
   bsModalRef: BsModalRef;
   loggedIn = new EventEmitter();
     
-  constructor(private authService: AuthService, private profileService: ProfileService, private modal: BsModalRef) {
+  constructor(private authService: AuthService, private profileService: ProfileService, 
+    private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
     this.profile = new Profile();
   }
@@ -31,6 +32,7 @@ export class LoginComponent {
         this.profileService.setProfile(this.profile);        
         this.bsModalRef.hide();
         this.loggedIn.emit();
+        this.router.navigate(['conversations']);
       });
     });
   }
