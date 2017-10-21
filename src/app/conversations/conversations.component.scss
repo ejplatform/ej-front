@@ -1,5 +1,19 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+h1{
+    font-size: x-large;
+    color: #4A4A4A;
+    //FIXME put a bootstrap variable
+    font-weight: 500;
+    // line-height: 33px;
+    @extend .m-5;
+}
+
+h2, h3{
+    text-align: center;
+    font-weight: bold;
+    color: #D30000;
+}
 .card{
     // @extend .p-4;
     @extend .mx-4;
@@ -30,6 +44,10 @@
     
     }
 }
+.card-text{
+    font-size: small;
+    @extend .m-4;    
+}
 
 
 .card-cover{
@@ -56,5 +74,23 @@
         height:100%;
         // background: rgba(0, 0, 0, 0.5);
         background-color: rgba(208,2,27,0.66);
+    }
+}
+
+.card-footer{
+    padding-left: 0px;
+    .amount{
+        font-weight: bold;
+        @extend .mx-1;
+        
+    }
+    .card-footer-left{
+        float: left;
+        // @extend .ml-3;
+    }
+    
+    .card-footer-right{
+        float: right;
+    
     }
 }

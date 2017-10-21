@@ -23,7 +23,8 @@
         height: 60px;
         width: 100%;
         border-left: 1px solid black;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        
         @include media-breakpoint-up(sm) {
             height: 80px;
             left: 100px;
