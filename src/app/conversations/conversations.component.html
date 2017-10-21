@@ -1,8 +1,37 @@
 <h1>{{'conversations.title' | translate}}</h1>
 <h2>{{'conversations.subtitle' | translate}}</h2>
-<ul *ngFor="let conversation of conversations">
-  <li>
-    <h2>{{conversation.title}}</h2>
-    {{conversation.body}}
-  </li>
-</ul>
+
+<div *ngFor="let conversations of groupConversations()"class="card-deck">
+  <div  *ngFor="let conversation of conversations" class="card">
+      <div class="card-header">
+          <div class="card-header-left">
+          <small class="category">{{conversation.category}} </small>
+          <small class="date">{{conversation.date}} </small>
+          </div>
+          <div class="card-header-right">
+              <small class="identifier">Conversas #{{conversation.id}} </small>
+          </div>
+          
+          
+        </div>
+        <div class="card-cover">
+            <div class="card-cover-img">
+      <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
+      </div>
+        <h5 class="card-title mt-4">{{conversation.title}}</h5>
+        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+      </div>
+            
+      <div class="card-block">
+        <!-- <h4 class="card-title">Card title</h4> -->
+        <p class="card-text">{{'conversations.card.info' | translate}}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">{{'conversations.card.comments' | translate}} </small>
+        <small class="text-muted">{{'conversations.card.votes' | translate}} </small>
+        <!-- <div>{{'conversations.card.participation' | translate}} </div> -->
+        
+      </div>
+    </div>
+  </div>

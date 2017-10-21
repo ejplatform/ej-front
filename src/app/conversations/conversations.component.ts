@@ -16,6 +16,7 @@ export class ConversationsComponent implements OnInit {
 
   // profile: Profile;
   conversations: Conversation[];
+  // groupConversations: Conversation[];
 
   constructor(private conversationService: ConversationService) {
   }
@@ -24,6 +25,10 @@ export class ConversationsComponent implements OnInit {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = conversations;
     });
+  }
+
+  groupConversations(){
+    return _.chunk(this.conversations, 3)
   }
 
   amount(){
