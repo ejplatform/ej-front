@@ -29,6 +29,7 @@ import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsComponent,
     ConversationsComponent,
     LoginComponent,
+    RegistrationComponent,
     LogoutComponent,
     ImageUploadComponent,
     SafePipe
@@ -86,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
   ],
-  entryComponents: [LoginComponent],
+  entryComponents: [LoginComponent, RegistrationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
