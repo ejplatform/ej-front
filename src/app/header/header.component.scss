@@ -5,6 +5,54 @@
 @import '../../variables';
 @import '../../mixins';
 
+.site-header.unlogged{
+    @extend .clearfix;
+    @extend .mt-5;
+    border-bottom: 1px solid #00AD4B;
+    
+    .site-logo{
+        float: left;
+        @extend .ml-5;
+    }
+    .without-profile{
+        @extend .mr-5;
+        .access{
+            // float: right;
+            @extend .row;
+            font-size: x-small;
+            color: #F10000;
+            i{
+                // font-size: -webkit-xxx-large;
+            }
+
+        }
+        .site-links{
+            // float: right;
+            @extend .row;
+            font-size: small;
+            
+        }
+        
+        @extend .text-uppercase;
+        ul{
+            list-style: none;
+            // text-align: right;
+            @extend .justify-content-end;
+            // @extend .align-middle;
+            li{
+                @extend .ml-4;
+                display: inline;
+                @extend .align-middle;
+                a{
+                    cursor: pointer;
+                }
+                
+            }
+        }
+    }  
+    
+}
+
 .logged.site-header {
     background-color: $site-header-bg-color;
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
