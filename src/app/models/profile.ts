@@ -1,10 +1,13 @@
-export class Profile {
+export class Profile { 
+    
+    [x: string]: string|number;
 
     public id: number;
     public pk: number;
     public token: string;
     public name: string;
     public password: string;
+    public password_confirmation: string;
     public email: string;
     public picture: any;
     public picture_data: any;

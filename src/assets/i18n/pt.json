@@ -26,6 +26,12 @@
     "conversations.card.participation":"Seu nivel de participacao",
     "login.email": "you@example.com",
     "login.sign_in": "Entrar",
+    "registration.name": "Nome",
+    "registration.email": "Endereco de email",
+    "registration.label.email": "Email",
+    "registration.password": "Senha",
+    "registration.password.confirm": "Confirmar Senha",    
+    "registration.sign_up": "Registrar-se",    
     "image-send": "Enviar Foto",
     "header.login": "Login",
     "header.registration": "Registrar-se"

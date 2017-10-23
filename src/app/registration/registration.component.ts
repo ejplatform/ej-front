@@ -25,6 +25,8 @@ export class RegistrationComponent {
   }
 
   register() {
+    this.profile.password1 = this.profile.password;
+    this.profile.password2 = this.profile.password_confirmation;
     this.authService.signUp(this.profile).subscribe((response) => {
       console.log('TESTANDOOOOO', response);
     //   this.profileService.get().subscribe( profile => {

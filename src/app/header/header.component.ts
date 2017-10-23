@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openRegistration() {
-    this.bsModalRef = this.modalService.show(RegistrationComponent);
+    this.bsModalRef = this.modalService.show(RegistrationComponent, {class: 'modal-lg'});
     this.bsModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);

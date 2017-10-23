@@ -8,7 +8,7 @@
        "secure": false
     },
     "/rest-auth": {
-      "target": "https://ej.brasilqueopovoquer.org.br",
+      "target": "https://dev.app.brasilqueopovoquer.org.br/",
       "changeOrigin": true,
       "logLevel": "debug",
       "secure": false
