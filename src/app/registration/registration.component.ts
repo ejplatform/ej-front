@@ -28,15 +28,14 @@ export class RegistrationComponent {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
     this.authService.signUp(this.profile).subscribe((response) => {
-      console.log('TESTANDOOOOO', response);
-    //   this.profileService.get().subscribe( profile => {
-    //     profile.id = profile.pk;
-    //     this.profile = profile;
-    //     this.profileService.setProfile(this.profile);        
-    //     this.bsModalRef.hide();
-    //     this.loggedIn.emit();
-    //     this.router.navigate(['conversations']);
-    //   });
+      this.profileService.get().subscribe( profile => {
+        profile.id = profile.pk;
+        this.profile = profile;
+        this.profileService.setProfile(this.profile);        
+        this.bsModalRef.hide();
+        this.loggedIn.emit();
+        this.router.navigate(['conversations']);
+      });
     });
   }
 
