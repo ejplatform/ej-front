@@ -47,6 +47,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+export function xsrfFactory() {
+  new CookieXSRFStrategy('RESPONSE_TOKEN', 'RESPONSE_TOKEN');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthService,
     SessionService,
     ProfileService,
-    { provide: XSRFStrategy, useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken') },
+    { provide: XSRFStrategy, useFactory: xsrfFactory},   
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
