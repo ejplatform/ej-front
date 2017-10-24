@@ -11,6 +11,8 @@ import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // Bootstrap
 
@@ -66,6 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     InlineEditorModule,
     NgProgressModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
