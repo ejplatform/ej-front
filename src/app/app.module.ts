@@ -49,7 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 export function xsrfFactory() {
-  new CookieXSRFStrategy('RESPONSE_TOKEN', 'RESPONSE_TOKEN');
+  return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
 }
 
 @NgModule({
