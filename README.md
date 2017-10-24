@@ -1,5 +1,8 @@
 # Empurrando Juntos
 
+[![build status](https://gitlab.com/empurrandojuntos/frontend/badges/master/build.svg)](https://gitlab.com/empurrandojuntos/frontend/commits/master)
+[![coverage report](https://gitlab.com/empurrandojuntos/frontend/badges/master/coverage.svg)](https://gitlab.com/empurrandojuntos/frontend/commits/master)
+
 Este projeto é o frontend da plataforma Empurrando Juntos e foi criado com [Angular CLI](https://github.com/angular/angular-cli) versão 1.4.4.
 
 Para informações sobre o desenvolvimento do backend, acesso o [reposiótio correspondente](https://gitlab.com/empurrandojuntos/backend/).
@@ -10,6 +13,10 @@ Os processos de desenvolvimento e deploy usam Docker CE. Se você ainda não o t
 Para levantar seu servidor local, rodeo seguinte comando e acesse [localhost:4200](http://localhost:4200/):
 
 `docker-compose up`
+
+Iniciar servidor com dados de teste
+
+`json-server --watch src/assets/data/db.json --routes src/assets/data/routes.json`
 
 ### Execução de comandos no Angular CLI
 A linha de comando do Angular está disponível dentro do container de desenvolvimento. Para acessar essa interface, execute:

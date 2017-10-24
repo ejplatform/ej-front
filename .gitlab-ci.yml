@@ -1,0 +1,54 @@
+---
+image: docker:git
+
+services:
+- docker:dind
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  key: "$CI_BUILD_REF_NAME"
+  untracked: true
+  paths:
+    - node_modules/
+
+variables:
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+
+before_script:
+    - export NODE="docker run --rm -v $PWD:/app -w /app node:7.2.1"
+    - $NODE npm install
+
+build to homolog:
+  stage: build
+  script:
+    - $NODE ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker create --name frontend nginx
+    - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
+    - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+    - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+    - docker push $CI_REGISTRY_IMAGE:latest
+  environment: homolog
+  tags:
+    - docker
+  only:
+    - master
+
+test:
+  stage: test
+  script:
+    - $NODE ./node_modules/.bin/ng test --code-coverage --single-run
+
+deploy to homolog:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --new-image $CONTAINER_RELEASE_IMAGE --no-finish-upgrade --debug
+  environment: homolog
+  only:
+    - master

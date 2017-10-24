@@ -1,0 +1,12 @@
+<div class="picture-group">
+    <img class="picture" [src]="imageData?.content || image" *ngIf="imageData?.content || image">
+    <span class="picture-placeholder" *ngIf="!image && !imageData?.content">
+      <i class="fa fa-photo fa-lg"></i>
+    </span>
+    <div class='send-picture '>
+    <button *ngIf="editionEnabled" class="btn btn-default btn-file" (click)="picture.click()">
+      <p>{{'image-send' | translate}}</p>
+    </button>
+    </div>
+    <input class="picture-input" #picture type="file" (change)="fileChange($event)" />
+  </div>

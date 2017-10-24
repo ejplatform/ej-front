@@ -1,0 +1,19 @@
+{
+    "/api": {
+       "target": "https://dev.app.brasilqueopovoquer.org.br/",
+       "changeOrigin": true,
+       "logLevel": "debug",
+       "secure": false
+    },
+    "/system": {
+       "target": "http://localhost:3000",
+       "secure": false
+    },
+    "/rest-auth": {
+      "target": "https://dev.app.brasilqueopovoquer.org.br/",
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "secure": false
+   }
+  }
+  

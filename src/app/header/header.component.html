@@ -1,0 +1,44 @@
+<header class="site-header" [ngClass]="{'logged': isLogged(),'unlogged': !isLogged() }">
+    <div *ngIf="profile" class='with-profile'>
+        <div class="user-info" (click)="toggleMenu()"  >
+            <div class="user-icon">
+                <img src="/assets/images/icons/menu_icon .svg" alt="Some user" class="img-circle">
+                <div class="menu-label">menu</div>
+                <div class="hide-menu">ocultar</div>
+            </div>
+            <div class="user-name">{{profile.first_name}}</div>
+        </div>
+        <!-- <ul id="top-right-menu" class="user-tools">
+            <li>
+                <a class="notifications active fa fa-exclamation-circle">
+                    <span class="notification-bubble">3</span>
+                    <span class="hidden-xs">Notificações</span>
+                </a>
+            </li>
+        </ul> -->
+        
+        <!-- <div id="notification-wrapper">
+            <div class="notifications-panel">
+                <h2 class="notifications-title">Notificações</h2>
+                <a href="#" class="see-more">ver todos</a>
+            </div>
+        </div>  -->
+    </div>
+    <div class="site-logo">
+        <h1><a href="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
+    </div> 
+    <div *ngIf="!profile" class='without-profile'>
+        <ul class='access'>
+            <li><a (click)="openRegistration()">{{ 'header.registration' | translate }}</a></li>
+            <li>
+                <a (click)="openLogin()">{{ 'header.login' | translate }}</a>
+                <i  class="fa fa-user"></i>
+            </li>            
+        </ul>
+        <ul class='site-links'>
+            <li><a routerLink="/inicio">Inicio</a></li>
+            <li><a routerLink="/sobre-nos">Sobre Nos</a></li>
+            <li><a routerLink="/perguntas-frequentes">Perguntas Frequentes</a></li>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,1 @@
+export {getMocks} from "./mocks";

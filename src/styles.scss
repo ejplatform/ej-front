@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.css";
+
+// @import "~boootstrap/scss/bootstrap";
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+@import 'variables';
+@import 'mixins';
+@import 'helpers';
+
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+// @import "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css";
+
+body, html {
+    font-family: 'Roboto';
+}
+
+.modal .modal-lg  {
+    @extend .row;
+    @extend .col-sm-12;
+    @extend .justify-content-md-center;
+    .modal-content{
+        @extend .col-sm-6;
+    }
+  }

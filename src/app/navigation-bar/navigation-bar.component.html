@@ -1,0 +1,45 @@
+<nav class="main-nav">
+
+    <ul class="user-nav">
+        <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
+            <div class="profile">
+                <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
+            </div>
+            <a routerLink="/profile" >{{'navigation-bar.item.profile' | translate}}</a>
+            
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/conversations']">
+                <!-- <span class="notification-bubble" >1</span> -->
+                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
+                <span class="">{{'navigation-bar.item.conversations' | translate}}</span>
+            </a>
+        </li>
+        <!-- <li><a routerLink="/notes" class="fa fa-pencil-square-o">Notes</a></li> -->
+        <!-- <li><a href="/courses" class="fa fa-puzzle-piece">Conversas</a></li> -->
+        <!-- <li routerLinkActive="active">
+            <a [routerLink]="['/comments']" class="comments fa fa-bullhorn">
+                <span class="notification-bubble">5</span>
+                <span class="">{{'navigation-bar.item.my-votes' | translate}}</span>
+            </a>
+        </li> -->
+        <!-- <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li> -->
+        <!-- <li><a href="/cards" class="cards">Assim se faz</a></li> -->
+
+        <li>
+            <a routerLink="/logout">
+                <img src="/assets/images/icons/sair_icon.svg" alt="Some user" class="img-circle">
+                {{'navigation-bar.item.logout' | translate }}
+            </a>
+        </li>
+    </ul>
+
+    <div class="site-info">
+        <ul class="site-nav">
+            <li><a href="/pages/sobre">About</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a></li>
+            <li><a href="/accept_terms">Termos de Uso</a></li>
+        </ul>
+    </div>
+
+  </nav>
