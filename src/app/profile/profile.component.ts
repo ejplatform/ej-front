@@ -3,6 +3,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import * as _ from 'lodash' 
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +13,28 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   profile: Profile;
-  
-  constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {
 
-    this.profile = this.profileService.getProfile();
+  genderOptions = [
+    {id: 1, name: "Mulher"},
+    {id: 2, name: "Homem"},
+    {id: 3, name: "Mulher Cis"},
+    {id: 4, name: "Homem Cis"},
+    {id: 5, name: "Agênero"},
+  ];
+  
+  skinColorOptions = [
+    {id: 1, name: "Preta"},
+    {id: 2, name: "Parda"},
+    {id: 3, name: "Branca"},
+    {id: 4, name: "Amarela"},
+    {id: 5, name: "Indígena"},
+    {id: 5, name: "Não sei"},
+    {id: 5, name: "Não declarada"},
+  ];
+
+  constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {
+    this.profile = <Profile>{};
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
     console.log(this.profile);
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
@@ -23,22 +42,31 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initializeFields();
   }
 
   save() {
-    // public onSubmit(empForm: any, event: Event) {
-      // event.preventDefault();
     this.profileService.save(this.profile).subscribe( profile => {
-        // this.router.navigate(['/']);
         // this.notificationService.success({ title: "account.register.success.title", message: "account.register.success.message" });
-        console.log('Profile saved');
-        // this.router.navigate(['/profile']);
+        this.profileService.setProfile(this.profile);
         this.router.navigate(['profile']);
-        // return false;
+
       }, error => {
         console.log('Something wrong happened...');
       });
-      // return false;
+  }
+
+  cancel(){
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+  }
+
+  initializeFields(){
+    if(_.isUndefined(this.profile.gender)){
+      this.profile.gender = '';
+    }
+    if(_.isUndefined(this.profile.skin_color)){
+      this.profile.skin_color = '';  
+    }     
   }
 
 }

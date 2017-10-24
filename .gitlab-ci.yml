@@ -20,11 +20,11 @@ variables:
 
 before_script:
     - export NODE="docker run --rm -v $PWD:/app -w /app node:7.2.1"
+    - $NODE npm install
 
 build to homolog:
   stage: build
   script:
-    - $NODE npm install
     - $NODE ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
@@ -37,7 +37,7 @@ build to homolog:
   tags:
     - docker
   only:
-    - /master/
+    - master
 
 test:
   stage: test
@@ -51,4 +51,4 @@ deploy to homolog:
     - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --new-image $CONTAINER_RELEASE_IMAGE --no-finish-upgrade --debug
   environment: homolog
   only:
-    - /master/
+    - master

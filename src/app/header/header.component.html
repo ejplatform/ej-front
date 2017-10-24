@@ -1,5 +1,5 @@
-<header class="site-header" [ngClass]="{'logged': isLogged()}">
-    <div *ngIf="profile">
+<header class="site-header" [ngClass]="{'logged': isLogged(),'unlogged': !isLogged() }">
+    <div *ngIf="profile" class='with-profile'>
         <div class="user-info" (click)="toggleMenu()"  >
             <div class="user-icon">
                 <img src="/assets/images/icons/menu_icon .svg" alt="Some user" class="img-circle">
@@ -8,33 +8,35 @@
             </div>
             <div class="user-name">{{profile.first_name}}</div>
         </div>
-
-        <div class="site-logo">
-            <h1><a href="/"><img src="/assets/images/logo.svg" alt="Empurrando Juntos"></a></h1>
-        </div>        
-<!-- 
-        <ul id="top-right-menu" class="user-tools">
+        <!-- <ul id="top-right-menu" class="user-tools">
             <li>
                 <a class="notifications active fa fa-exclamation-circle">
                     <span class="notification-bubble">3</span>
                     <span class="hidden-xs">Notificações</span>
                 </a>
             </li>
-        </ul>
+        </ul> -->
         
-        <div id="notification-wrapper">
+        <!-- <div id="notification-wrapper">
             <div class="notifications-panel">
                 <h2 class="notifications-title">Notificações</h2>
                 <a href="#" class="see-more">ver todos</a>
             </div>
-        </div> -->
+        </div>  -->
     </div>
-
-    <div *ngIf="!profile">
-        <ul>
-            <li>Cadastrar</li>
-            <li><a (click)="openLogin()" class="fa fa-pencil-square-o">{{ 'header-login' | translate }}</a></li>
-            <li><a routerLink="/inicio">Inicio Brasil que o Povo Quer</a></li>
+    <div class="site-logo">
+        <h1><a href="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
+    </div> 
+    <div *ngIf="!profile" class='without-profile'>
+        <ul class='access'>
+            <li><a (click)="openRegistration()">{{ 'header.registration' | translate }}</a></li>
+            <li>
+                <a (click)="openLogin()">{{ 'header.login' | translate }}</a>
+                <i  class="fa fa-user"></i>
+            </li>            
+        </ul>
+        <ul class='site-links'>
+            <li><a routerLink="/inicio">Inicio</a></li>
             <li><a routerLink="/sobre-nos">Sobre Nos</a></li>
             <li><a routerLink="/perguntas-frequentes">Perguntas Frequentes</a></li>
         </ul>

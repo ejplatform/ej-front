@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as _ from 'lodash' 
+
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 
@@ -15,6 +17,9 @@ export class NavigationBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(_.isUndefined(this.profile.picture_path)){
+      this.profile.picture_path = '/assets/images/icons/profile_icon.svg';
+    }
   }
 
 }
