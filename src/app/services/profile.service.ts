@@ -22,7 +22,8 @@ export class ProfileService {
   }
 
   save(profile: Profile): Observable<Profile> {
-    return this.http.put<Profile>('/api/profiles/' + profile.id, profile);
+    // return this.http.put<Profile>('/api/profiles/' + profile.id, profile);
+    return this.http.put<Profile>('/rest-auth/user/', profile);
   }
   
   setProfile(profile:Profile) {
