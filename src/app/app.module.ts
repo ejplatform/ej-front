@@ -10,6 +10,7 @@ import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { HttpModule } from '@angular/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 
 // Bootstrap
 
@@ -63,7 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    InlineEditorModule,    
+    InlineEditorModule,
+    NgProgressModule,
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
@@ -84,7 +86,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     Angular2TokenService, 
     AuthService,
     SessionService,
-    ProfileService,    
+    ProfileService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
   ],
