@@ -37,6 +37,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
+import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 
@@ -95,6 +96,7 @@ export function xsrfFactory() {
     AuthService,
     SessionService,
     ProfileService,
+    NotificationService,
     { provide: XSRFStrategy, useFactory: xsrfFactory},   
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
