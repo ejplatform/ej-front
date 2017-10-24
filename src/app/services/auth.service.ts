@@ -32,6 +32,16 @@ export class AuthService {
       );
   }
 
+  signUp(profile: Profile): Observable<any> {
+    return this.http.post('/rest-auth/registration/', profile).map(
+      data => {
+        return this.loginSuccessCallback(data);
+      }, 
+      resp => { this.loginFailedCallback(resp);}
+    );
+  }
+
+
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
     this.logoutSuccess.next(profile);

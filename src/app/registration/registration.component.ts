@@ -8,11 +8,11 @@ import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss'],
 })
-export class LoginComponent {
+export class RegistrationComponent {
 
   profile: Profile;
   bsModalRef: BsModalRef;
@@ -24,8 +24,10 @@ export class LoginComponent {
     this.profile = new Profile();
   }
 
-  login() {
-    this.authService.signIn(this.profile).subscribe((response) => {
+  register() {
+    this.profile.password1 = this.profile.password;
+    this.profile.password2 = this.profile.password_confirmation;
+    this.authService.signUp(this.profile).subscribe((response) => {
       this.profileService.get().subscribe( profile => {
         profile.id = profile.pk;
         this.profile = profile;

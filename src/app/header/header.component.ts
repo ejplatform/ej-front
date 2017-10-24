@@ -6,6 +6,7 @@ import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
 import { LoginComponent  } from '../login/login.component';
+import { RegistrationComponent  } from '../registration/registration.component';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
 
@@ -45,7 +46,15 @@ export class HeaderComponent implements OnInit {
   }
 
   openLogin() {
-    this.bsModalRef = this.modalService.show(LoginComponent);
+    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-lg' });
+    this.bsModalRef.content.loggedIn.subscribe(() => {
+      this.profile = this.profileService.getProfile();
+      this.profileService.profileChangeEvent.emit(this.profile);
+    });
+  }
+
+  openRegistration() {
+    this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
