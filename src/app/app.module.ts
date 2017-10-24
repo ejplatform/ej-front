@@ -9,8 +9,10 @@ import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
-import { HttpModule } from '@angular/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpModule, XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
 
 // Bootstrap
 
@@ -35,6 +37,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
+import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 
@@ -43,6 +46,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function xsrfFactory() {
+  return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
 }
 
 @NgModule({
@@ -66,6 +73,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     InlineEditorModule,
     NgProgressModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
@@ -87,6 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthService,
     SessionService,
     ProfileService,
+    NotificationService,
+    { provide: XSRFStrategy, useFactory: xsrfFactory},   
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
