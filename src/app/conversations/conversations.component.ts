@@ -16,13 +16,14 @@ export class ConversationsComponent implements OnInit {
 
   // profile: Profile;
   conversations: Conversation[];
-  // groupConversations: Conversation[];
-
+  
   constructor(private conversationService: ConversationService) {
   }
 
   ngOnInit() {
+    console.log('ConversationsComponent ngOnInit');
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
+      console.log('ConversationsComponent ngOnInit - subscribe');
       this.conversations = conversations;
     });
   }
@@ -33,6 +34,14 @@ export class ConversationsComponent implements OnInit {
 
   amount(){
     _.size(this.conversations);
+  }
+
+  amountComments(conversation: Conversation): number {
+    return _.size(conversation.comments);
+  }
+
+  amountVotes(conversation: Conversation): number {
+    return 10000;
   }
 
 }
