@@ -36,6 +36,7 @@ build to homolog:
   environment: homolog
   tags:
     - docker
+    - hacklab
   only:
     - master
 
@@ -50,5 +51,8 @@ deploy to homolog:
   script:
     - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --new-image $CONTAINER_RELEASE_IMAGE --no-finish-upgrade --debug
   environment: homolog
+  tags:
+    - docker
+    - hacklab
   only:
     - master
