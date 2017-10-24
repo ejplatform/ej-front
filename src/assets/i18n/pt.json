@@ -25,6 +25,8 @@
     "conversations.card.votes":"votos",
     "conversations.card.participation":"Seu nivel de participacao",
     "login.label.email": "Email",
+    "login.success.title": "",
+    "login.success.message": "Voce realizou o login com sucesso",
     "login.email": "you@example.com",
     "login.password": "Senha",
     "login.sign_in": "Entrar",

@@ -4,6 +4,7 @@ import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { ProfileService } from '../services/profile.service';
+import { NotificationService } from '../services/notification.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 
@@ -19,6 +20,7 @@ export class LoginComponent {
   loggedIn = new EventEmitter();
     
   constructor(private authService: AuthService, private profileService: ProfileService, 
+    private notificationService: NotificationService,
     private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
     this.profile = new Profile();
@@ -32,6 +34,7 @@ export class LoginComponent {
         this.profileService.setProfile(this.profile);        
         this.bsModalRef.hide();
         this.loggedIn.emit();
+        this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
         this.router.navigate(['conversations']);
       });
     });
