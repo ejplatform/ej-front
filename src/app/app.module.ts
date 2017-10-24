@@ -9,10 +9,10 @@ import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { GlobalState } from './global.state';
 import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
-import { HttpModule } from '@angular/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpModule, XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
 
 // Bootstrap
 
@@ -91,6 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthService,
     SessionService,
     ProfileService,
+    { provide: XSRFStrategy, useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken') },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
