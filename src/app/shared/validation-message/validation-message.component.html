@@ -1,0 +1,5 @@
+<div [hidden]="field.valid || !field.touched || (field.pristine && !form?.submitted)" class="alert alert-danger">
+  <div *ngFor="let error of getErrors()" class="field-error">
+    {{error}}
+  </div>
+</div>

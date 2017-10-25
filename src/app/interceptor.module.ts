@@ -12,7 +12,6 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
     const authRequest = request.clone({ setHeaders: { 
       Authorization: 'Token ' + this.session.getToken(), 
-      // 'X-CSRFToken': 'testeeeeeeeeeeeee' 
     }});
 
     return next.handle(authRequest);

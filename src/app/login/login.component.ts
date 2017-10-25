@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -18,7 +18,10 @@ export class LoginComponent {
   profile: Profile;
   bsModalRef: BsModalRef;
   loggedIn = new EventEmitter();
-    
+
+  @ViewChild('passwordErrors') passwordErrors;
+  @ViewChild('emailErrors') emailErrors;
+
   constructor(private authService: AuthService, private profileService: ProfileService, 
     private notificationService: NotificationService,
     private modal: BsModalRef, private router: Router) {
@@ -37,7 +40,14 @@ export class LoginComponent {
         this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
         this.router.navigate(['conversations']);
       });
-    });
+    }, error => this.handleError(error));
+  }
+
+  handleError(error: any){
+    const errors = error.json();
+    this.emailErrors.setErrors(errors['email']);
+    this.passwordErrors.setErrors(errors['password']);
+    this.passwordErrors.setErrors(errors['non_field_errors']);
   }
 
 }
