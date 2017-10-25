@@ -17,6 +17,8 @@
     "profile.biography": "Biografia",
     "profile.occupation": "Profissao",    
     "profile.age": "Idade",
+    "profile.save.success.title": "",
+    "profile.save.success.message": "Perfil salvo com sucesso",
     "conversations.topic":"Conversas",
     "conversations.title":"Qual sua opiniao?",
     "conversations.subtitle":"Ajude a construir o Brasil que o povo quer!",
