@@ -40,6 +40,7 @@ import { ProfileService } from './services/profile.service';
 import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
+import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -66,7 +67,8 @@ export function xsrfFactory() {
     RegistrationComponent,
     LogoutComponent,
     ImageUploadComponent,
-    SafePipe
+    SafePipe,
+    ValidationMessageComponent
   ],
   imports: [
     BrowserModule,

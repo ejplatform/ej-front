@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import * as _ from 'lodash' 
+
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import * as _ from 'lodash' 
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -32,7 +34,8 @@ export class ProfileComponent implements OnInit {
     {id: 5, name: "Não declarada"},
   ];
 
-  constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {
+  constructor(private profileService: ProfileService, private authService: AuthService, private router: Router, 
+    private notificationService: NotificationService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     console.log(this.profile);
@@ -47,7 +50,7 @@ export class ProfileComponent implements OnInit {
 
   save() {
     this.profileService.save(this.profile).subscribe( profile => {
-        // this.notificationService.success({ title: "account.register.success.title", message: "account.register.success.message" });
+        this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(this.profile);
         this.router.navigate(['profile']);
 
