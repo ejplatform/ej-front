@@ -21,9 +21,7 @@ export class ConversationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ConversationsComponent ngOnInit');
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
-      console.log('ConversationsComponent ngOnInit - subscribe');
       this.conversations = conversations;
     });
   }
