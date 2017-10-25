@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash' 
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
-// import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-conversations',
@@ -14,16 +14,25 @@ import { Profile } from '../models/profile';
 })
 export class ConversationsComponent implements OnInit {
 
-  // profile: Profile;
   conversations: Conversation[];
+  @Input() profile: Profile;
   
-  constructor(private conversationService: ConversationService) {
+  constructor(private conversationService: ConversationService, private profileService: ProfileService) {
+    this.profile = <Profile>{};
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      this.profile = profile;
+    });
   }
 
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = conversations;
+      console.log(this.conversations);
     });
+    if(_.isUndefined(this.profile.picture_path)){
+      this.profile.picture_path = '/assets/images/icons/profile_icon.svg';
+    }
   }
 
   groupConversations(){
@@ -34,12 +43,26 @@ export class ConversationsComponent implements OnInit {
     _.size(this.conversations);
   }
 
-  amountComments(conversation: Conversation): number {
-    return _.size(conversation.comments);
+  ratio(conversation: Conversation){
+    let ratio = conversation.user_participation_ratio;
+    if(!ratio){
+      ratio = 0;
+    }
+    ratio = 50;
+    return ratio;
   }
 
-  amountVotes(conversation: Conversation): number {
-    return 10000;
+  parserDate(strDate: string){
+    strDate = this.convertDate(strDate);
+    const newDate = new Date(strDate);
+    return newDate;
+  }
+
+  convertDate(date){
+    let dateArray = date.split("-");
+    let newDate = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
+  
+    return newDate;
   }
 
 }

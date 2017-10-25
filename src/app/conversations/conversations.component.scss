@@ -5,7 +5,6 @@ h1{
     color: #4A4A4A;
     //FIXME put a bootstrap variable
     font-weight: 500;
-    // line-height: 33px;
     @extend .m-5;
 }
 
@@ -15,7 +14,6 @@ h2, h3{
     color: #D30000;
 }
 .card{
-    // @extend .p-4;
     @extend .mx-4;
     @extend .mt-5;
     
@@ -72,7 +70,6 @@ h2, h3{
         top:0px;
         width:100%;
         height:100%;
-        // background: rgba(0, 0, 0, 0.5);
         background-color: rgba(208,2,27,0.66);
     }
 }
@@ -86,11 +83,31 @@ h2, h3{
     }
     .card-footer-left{
         float: left;
-        // @extend .ml-3;
     }
     
     .card-footer-right{
         float: right;
     
+    }
+    .participation{
+        @extend .pl-4;
+        @extend .pt-5;
+        
+        clear: both;
+        .content{
+            display: inline-block;
+            .teste{
+                display: inline-block;
+            }
+        }
+        .profile{
+            img{
+                width: 50px;
+                // height: 40px;
+            }
+        }
+        progressbar{
+            @extend .pl-3;
+        }
     }
 }
