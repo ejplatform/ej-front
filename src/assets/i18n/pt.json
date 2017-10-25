@@ -36,6 +36,7 @@
     "registration.password": "Senha",
     "registration.password.confirm": "Confirmar Senha",    
     "registration.sign_up": "Registrar-se",    
+    "registration.name.required": "O campo nome eh obrigatorio",
     "image-send": "Enviar Foto",
     "header.login": "Login",
     "header.site": "Empurrando Juntos",

@@ -17,14 +17,11 @@ export class ValidationMessageComponent {
     constructor(private slugifyPipe: SlugifyPipe, private translate: TranslateService) { }
 
     setErrors(errorObjects: any) {
-        console.log('errorssss', errorObjects);
-        
         if (!errorObjects) return;
         let errors = {};
         for (let errorObj of errorObjects) {
             errors[errorObj] = true;
         }
-        console.log(errors);
         this.field.control.setErrors(errors);
     }
 
