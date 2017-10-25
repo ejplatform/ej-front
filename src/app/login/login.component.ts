@@ -23,8 +23,7 @@ export class LoginComponent {
   @ViewChild('emailErrors') emailErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService, 
-    private notificationService: NotificationService,
-    private modal: BsModalRef, private router: Router) {
+    private notificationService: NotificationService, private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
     this.profile = new Profile();
   }
