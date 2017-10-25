@@ -30,7 +30,9 @@
             // float: right;
             @extend .row;
             font-size: small;
-            
+            a{
+                color: black;
+            }
         }
         
         @extend .text-uppercase;
