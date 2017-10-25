@@ -24,7 +24,6 @@ build to homolog:
     - docker run --rm -v $PWD:/app -w /app node:7.2.1 npm install
     - docker run --rm -v $PWD:/app -w /app node:7.2.1 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker rm -f frontend
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
     - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
