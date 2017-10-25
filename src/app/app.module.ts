@@ -47,6 +47,8 @@ import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
+import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -71,7 +73,8 @@ export function xsrfFactory() {
     LogoutComponent,
     ImageUploadComponent,
     SafePipe,
-    ValidationMessageComponent
+    ValidationMessageComponent,
+    ValidateOnBlurDirective
   ],
   imports: [
     BrowserModule,
