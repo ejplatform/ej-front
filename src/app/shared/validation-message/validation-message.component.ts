@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgModel, NgForm } from '@angular/forms';
-import { SlugifyPipe } from 'ngx-pipes/src/app/pipes/string/slugify';
+import { SlugifyPipe } from 'ngx-pipes';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
