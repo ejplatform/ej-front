@@ -31,7 +31,7 @@ describe('ConversationsComponent', () => {
   });
 
   it('display all comments in list', () => {
-    component.conversations = [{title: 'comment 1', body: 'comment body 1', comments: [] }, {title: 'comment 2', body: 'comment body 2', comments: [] }, {title: 'comment 3', body: 'comment body 3', comments: [] }];
+    component.conversations = [<Conversation>{title: 'comment 1', description: 'comment body 1'}, <Conversation>{title: 'comment 2', description: 'comment body 2' }, <Conversation>{title: 'comment 3', description: 'comment body 3'}];
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(3);
   });

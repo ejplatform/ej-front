@@ -4,7 +4,6 @@ export class Conversation {
     
     public title: string;
     public description: string;
-    public comments: Comment[]
     public total_approved_comments: number;
     public total_votes: number;
     public response: string;
