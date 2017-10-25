@@ -35,14 +35,18 @@
       <small class="card-footer-right">
         <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}} 
       </small>
-      <div class='participation'>
-        <h4>{{'conversations.card.participation' | translate}}</h4>
-        <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
-        
-        <progressbar class="progress-striped active" [value]="ratio(conversation)" type="warning">
-            {{ratio(conversation)}}%
-        </progressbar>
-          
+      <div class='participation '>
+        <div class='title'>
+          <h4>{{'conversations.card.participation' | translate}}</h4>
+        </div>
+        <div class='content d-flex align-items-stretch bd-highlight '>
+          <div class='profile'>
+            <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
+          </div>
+          <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
+              {{ratio(conversation)}}%
+          </progressbar>
+        </div>          
       </div>
     </div>
   </div>

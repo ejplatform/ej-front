@@ -48,7 +48,7 @@ export class ConversationsComponent implements OnInit {
     if(!ratio){
       ratio = 0;
     }
-    // ratio = 50;
+    ratio = 50;
     return ratio;
   }
 
