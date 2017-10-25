@@ -13,13 +13,19 @@ import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpModule, XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
+import { HttpsRequestInterceptor } from './interceptor.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientXsrfModule } from '@angular/common/http';
+import { LOCALE_ID } from '@angular/core';
 
 // Bootstrap
 
 // import { Ng2BootstrapModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
+import { ProgressbarModule } from 'ngx-bootstrap';
+
 
 // Application imports
 
@@ -42,9 +48,6 @@ import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 
-import { HttpsRequestInterceptor } from './interceptor.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClientXsrfModule } from '@angular/common/http';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -83,6 +86,7 @@ export function xsrfFactory() {
     // Ng2BootstrapModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    ProgressbarModule.forRoot(),
     CollapseModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -104,6 +108,7 @@ export function xsrfFactory() {
     SessionService,
     ProfileService,
     NotificationService,
+    { provide: LOCALE_ID, useValue: "pt-BR" },
     { provide: XSRFStrategy, useFactory: xsrfFactory},   
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },

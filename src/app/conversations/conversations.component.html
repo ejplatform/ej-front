@@ -7,7 +7,7 @@
     <div class="card-header">
       <div class="card-header-left">
         <small class="category">{{conversation.category}} </small>
-        <small class="date">{{conversation.date}} </small>
+        <small class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </small>
       </div>
       <div class="card-header-right">
         <small class="identifier">Conversas #{{conversation.id}} </small>
@@ -30,12 +30,20 @@
 
     <div class="card-footer">
       <small class="card-footer-left">
-        <small class="amount">{{amountComments(conversation) | number:'1.0'}}</small>{{'conversations.card.comments' | translate}} 
+        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}} 
       </small>
       <small class="card-footer-right">
-        <!-- <small class="amount">{{amountVotes(conversation) | number:'1.0'}}</small>{{'conversations.card.votes' | translate}}  -->
+        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}} 
       </small>
-      <!-- <div>{{'conversations.card.participation' | translate}} </div> -->
+      <div class='participation'>
+        <h4>{{'conversations.card.participation' | translate}}</h4>
+        <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
+        
+        <progressbar class="progress-striped active" [value]="ratio(conversation)" type="warning">
+            {{ratio(conversation)}}%
+        </progressbar>
+          
+      </div>
     </div>
   </div>
 </div>
