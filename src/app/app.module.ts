@@ -43,6 +43,7 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientXsrfModule } from '@angular/common/http';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -87,6 +88,10 @@ export function xsrfFactory() {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'csrftoken',
+      headerName: 'X-CSRFToken',
     }),
     RouterModule.forRoot(rootRouterConfig),
     HttpModule

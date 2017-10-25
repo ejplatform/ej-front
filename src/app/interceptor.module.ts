@@ -10,9 +10,10 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const authRequest = request.clone({
-      headers: request.headers.set('Authorization', 'Token ' + this.session.getToken())
-    });
+    const authRequest = request.clone({ setHeaders: { 
+      Authorization: 'Token ' + this.session.getToken(), 
+      // 'X-CSRFToken': 'testeeeeeeeeeeeee' 
+    }});
 
     return next.handle(authRequest);
 
