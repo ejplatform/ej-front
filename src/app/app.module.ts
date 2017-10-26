@@ -43,12 +43,15 @@ import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
+import { SocialFacebookService } from './services/social-facebook.service';
 import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 
+import { FacebookModule } from 'ngx-facebook';
+import { FacebookService } from 'ngx-facebook';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,6 +87,7 @@ export function xsrfFactory() {
     NgProgressModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    FacebookModule.forRoot(),    
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
@@ -110,6 +114,8 @@ export function xsrfFactory() {
     AuthService,
     SessionService,
     ProfileService,
+    SocialFacebookService,
+    FacebookService,
     NotificationService,
     { provide: LOCALE_ID, useValue: "pt-BR" },
     { provide: XSRFStrategy, useFactory: xsrfFactory},   
