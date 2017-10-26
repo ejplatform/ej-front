@@ -32,6 +32,20 @@ export class AuthService {
       );
   }
 
+  signInFacebook(accessToken: string) {
+    console.log('AuthService: signInFacebook', accessToken);
+    return this.http.post('/rest-auth/facebook/', {access_token: accessToken}).map(
+        data => {
+          console.log('AuthService: signInFacebook - sucesso',data);
+          return this.loginSuccessCallback(data);
+        }, 
+        resp => { 
+          console.log('AuthService: signInFacebook - erro',resp);
+          this.loginFailedCallback(resp);
+        }
+      );
+  }
+
   signUp(profile: Profile): Observable<any> {
     return this.http.post('/rest-auth/registration/', profile).map(
       data => {
