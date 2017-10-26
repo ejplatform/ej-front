@@ -3,8 +3,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Router } from '@angular/router';
 import * as _ from 'lodash' 
+import { FacebookService, LoginResponse } from 'ngx-facebook';
+
 
 import { ProfileService } from '../services/profile.service';
+import { SocialFacebookService } from '../services/social-facebook.service';
 import { LoginComponent  } from '../login/login.component';
 import { RegistrationComponent  } from '../registration/registration.component';
 import { Profile } from '../models/profile';
@@ -21,7 +24,10 @@ export class HeaderComponent implements OnInit {
   bsModalRef: BsModalRef;
   @Input() profile: Profile;
 
-  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, private router: Router) {
+  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, 
+    private router: Router,
+    private fb: FacebookService,
+    private socialFacebookService: SocialFacebookService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -51,6 +57,11 @@ export class HeaderComponent implements OnInit {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
+  }
+  loginWithFacebook(){
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    this.socialFacebookService.login();
+    console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
   }
 
   openRegistration() {
