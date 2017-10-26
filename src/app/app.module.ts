@@ -51,6 +51,7 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 
 import { FacebookModule } from 'ngx-facebook';
+import { FacebookService } from 'ngx-facebook';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -114,6 +115,7 @@ export function xsrfFactory() {
     SessionService,
     ProfileService,
     SocialFacebookService,
+    FacebookService,
     NotificationService,
     { provide: LOCALE_ID, useValue: "pt-BR" },
     { provide: XSRFStrategy, useFactory: xsrfFactory},   

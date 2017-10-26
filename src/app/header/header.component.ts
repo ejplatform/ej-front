@@ -7,7 +7,7 @@ import { FacebookService, LoginResponse } from 'ngx-facebook';
 
 
 import { ProfileService } from '../services/profile.service';
-// import { TwitterService } from '../services/twitter.service';
+import { SocialFacebookService } from '../services/social-facebook.service';
 import { LoginComponent  } from '../login/login.component';
 import { RegistrationComponent  } from '../registration/registration.component';
 import { Profile } from '../models/profile';
@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, 
     private router: Router,
-    private fb: FacebookService) {
+    private fb: FacebookService,
+    private socialFacebookService: SocialFacebookService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -57,20 +58,10 @@ export class HeaderComponent implements OnInit {
       this.profileService.profileChangeEvent.emit(this.profile);
     });
   }
-
   loginWithFacebook(){
-    console.log('HeaderComponent: loginWithFacebook INICIO');
-
-    this.fb.login().then((response: LoginResponse) =>{
-      console.log('loginWithFacebook : deu certo');
-      console.log(response);
-
-    }).catch((error: any) => {
-      console.log('loginWithFacebook : deu errado');
-      console.error(error);
-    });
-
-    console.log('HeaderComponent: loginWithFacebook FINAL');
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    this.socialFacebookService.login();
+    console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
   }
 
   openRegistration() {
