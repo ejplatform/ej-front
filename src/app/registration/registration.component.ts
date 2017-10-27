@@ -6,6 +6,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
+import { SocialFacebookService } from '../services/social-facebook.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-registration',
@@ -24,8 +26,8 @@ export class RegistrationComponent {
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
       
-  constructor(private authService: AuthService, private profileService: ProfileService, 
-    private modal: BsModalRef, private router: Router) {
+  constructor(private authService: AuthService, private profileService: ProfileService, private notificationService: NotificationService,
+    private socialFacebookService: SocialFacebookService, private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
     this.profile = new Profile();
   }
@@ -43,6 +45,24 @@ export class RegistrationComponent {
         this.router.navigate(['conversations']);
       });
     }, error => this.handleError(error));
+  }
+
+  loginWithFacebook(){
+    this.socialFacebookService.login();
+    this.authService.loginSuccess.subscribe(profile => {
+      this.handleloginSuccess();
+    });
+  }
+
+  handleloginSuccess(){
+    this.profileService.get().subscribe( profile => {
+      profile.id = profile.pk;
+      this.profileService.setProfile(this.profile);        
+      this.bsModalRef.hide();
+      this.loggedIn.emit();
+      this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
+      this.router.navigate(['conversations']);
+    });
   }
 
   handleError(error: any){

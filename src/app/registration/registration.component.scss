@@ -1,0 +1,21 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.social-media{
+    @extend .py-3;
+    color: white;
+    
+    #facebook-button{
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-block;
+        text-align: left;
+        i{
+            border-right: 1px solid rgba(0,0,0,0.2);
+            line-height: 8px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        
+    }
+
+}
