@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// FIXME unused code. Make twitter login works.
 @Injectable()
 export class TwitterService {
 

@@ -35,6 +35,7 @@ import { EmbedComponent } from './embed/embed.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
+import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { LoginComponent } from './login/login.component';
@@ -70,6 +71,7 @@ export function xsrfFactory() {
     EmbedComponent,
     NavigationBarComponent,
     HeaderComponent,
+    AlertsComponent,
     CommentsComponent,
     ConversationsComponent,
     LoginComponent,

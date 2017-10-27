@@ -6,9 +6,10 @@
 // $fa-font-path: "../node_modules/font-awesome/fonts";
 // @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../mixins';
+@import '../../variables';
 
 .main-nav {    
-    background-color: #60A976;
+    background-color: $default-color;
     bottom: 0;
     left: -245px;
     top: 0;

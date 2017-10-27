@@ -44,6 +44,9 @@
     "image-send": "Enviar Foto",
     "header.login": "Login",
     "header.site": "Empurrando Juntos",
-    "header.registration": "Cadastre-se"
+    "header.registration": "Cadastre-se",
+    "alerts.notifications": "Notificacoes",
+    "alerts.all": "Ver Historico de Notificacoes",
+    "alerts.off": "nenhuma notificacao"
 }
   
