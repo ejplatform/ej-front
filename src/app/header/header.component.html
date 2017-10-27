@@ -8,6 +8,7 @@
             </div>
             <div class="user-name">{{profile.first_name}}</div>
         </div>
+        <app-alerts [profile]="profile" ></app-alerts>
         <!-- <ul id="top-right-menu" class="user-tools">
             <li>
                 <a class="notifications active fa fa-exclamation-circle">
@@ -15,9 +16,9 @@
                     <span class="hidden-xs">Notificações</span>
                 </a>
             </li>
-        </ul> -->
+        </ul>
         
-        <!-- <div id="notification-wrapper">
+        <div id="notification-wrapper">
             <div class="notifications-panel">
                 <h2 class="notifications-title">Notificações</h2>
                 <a href="#" class="see-more">ver todos</a>
