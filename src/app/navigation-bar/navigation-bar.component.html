@@ -2,11 +2,12 @@
 
     <ul class="user-nav">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
-            <div class="profile">
-                <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
-            </div>
-            <a routerLink="/profile" >{{'navigation-bar.item.profile' | translate}}</a>
-            
+            <a routerLink="/profile" >
+                <div class="profile">
+                    <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
+                </div>
+                {{'navigation-bar.item.profile' | translate}}
+            </a>
         </li>
         <li routerLinkActive="active">
             <a [routerLink]="['/conversations']">
