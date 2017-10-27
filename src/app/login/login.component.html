@@ -7,7 +7,12 @@
 </div>
 
 <div class="modal-body">
-
+  <div class='social-media'>
+    <a id="facebook-button" (click)="loginWithFacebook()">
+      <i class="fa fa-facebook"></i>
+      {{'login.facebook' | translate }}
+    </a>
+  </div>
   <form #signInForm="ngForm" (ngSubmit)="login()" class="login_form">
     <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
       <label for="lgFormGroupInput" class="col-sm-2 col-form-label">{{'login.label.email' | translate}}</label>
