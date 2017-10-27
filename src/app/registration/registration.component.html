@@ -6,6 +6,12 @@
 </div>
 
 <div class="modal-body">
+  <div class='social-media'>
+    <a id="facebook-button" (click)="loginWithFacebook()">
+      <i class="fa fa-facebook"></i>
+      {{'login.facebook' | translate }}
+    </a>
+  </div>
   <form #signInForm="ngForm" (ngSubmit)="register()" class="login_form">
 
     <div class="form-group row" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
