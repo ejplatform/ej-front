@@ -3,13 +3,13 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Router } from '@angular/router';
 import * as _ from 'lodash' 
-import { FacebookService, LoginResponse } from 'ngx-facebook';
 
 
 import { ProfileService } from '../services/profile.service';
-import { SocialFacebookService } from '../services/social-facebook.service';
+import { TwitterService } from '../services/twitter.service';
 import { LoginComponent  } from '../login/login.component';
 import { RegistrationComponent  } from '../registration/registration.component';
+import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
 
@@ -25,9 +25,9 @@ export class HeaderComponent implements OnInit {
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, 
-    private router: Router,
-    private fb: FacebookService,
-    private socialFacebookService: SocialFacebookService ) {
+    private router: Router, private twitterService: TwitterService,
+    
+    private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -58,9 +58,14 @@ export class HeaderComponent implements OnInit {
       this.profileService.profileChangeEvent.emit(this.profile);
     });
   }
-  loginWithFacebook(){
+  
+  loginWithTwitter(){
     console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    this.socialFacebookService.login();
+    this.twitterService.requestToken().subscribe((resp) => {
+      console.log('HeaderComponent: loginWithTwitter sucesso', resp);
+    }, error => {
+      console.log('HeaderComponent: loginWithTwitter erro ', error);
+    });
     console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
   }
 

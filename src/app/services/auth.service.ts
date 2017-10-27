@@ -34,7 +34,7 @@ export class AuthService {
 
   signInFacebook(accessToken: string) {
     console.log('AuthService: signInFacebook', accessToken);
-    return this.http.post('/rest-auth/facebook/', {access_token: accessToken}).map(
+    return this.http.post('/api/auth/facebook/', {access_token: accessToken}).map(
         data => {
           console.log('AuthService: signInFacebook - sucesso',data);
           return this.loginSuccessCallback(data);

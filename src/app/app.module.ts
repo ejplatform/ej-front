@@ -46,6 +46,7 @@ import { ProfileService } from './services/profile.service';
 import { SocialFacebookService } from './services/social-facebook.service';
 import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
+import { TwitterService } from './services/twitter.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
@@ -115,6 +116,7 @@ export function xsrfFactory() {
     SessionService,
     ProfileService,
     SocialFacebookService,
+    TwitterService,
     FacebookService,
     NotificationService,
     { provide: LOCALE_ID, useValue: "pt-BR" },

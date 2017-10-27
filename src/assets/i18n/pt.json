@@ -32,6 +32,7 @@
     "login.email": "you@example.com",
     "login.password": "Senha",
     "login.sign_in": "Entrar",
+    "login.facebook": "Conectar com Facebook",
     "registration.name": "Nome",
     "registration.email": "Endereco de email",
     "registration.label.email": "Email",

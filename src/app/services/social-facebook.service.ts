@@ -22,12 +22,21 @@ export class SocialFacebookService {
     }
 
     login(){
-        this.fb.login()
-        .then((response: LoginResponse) => {
-            console.log('SocialFacebookService: login', response);
-            this.authService.signInFacebook(response.authResponse.accessToken).subscribe();
-        })
-        .catch((error: any) => console.error(error));
+        this.fb.getLoginStatus().then((response:LoginResponse) =>{
+            if(response.status != 'connected'){
+                this.fb.login().then((response: LoginResponse) => {
+                    this.authService.signInFacebook(response.authResponse.accessToken).subscribe();
+                }).catch((error: any) =>{
+                    console.error(error);
+                });
+
+            }else{
+                this.authService.signInFacebook(response.authResponse.accessToken).subscribe();                
+            }
+        }).catch((error: any) => {
+            console.log(error);
+        });
+
     }
 
 }
