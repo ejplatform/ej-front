@@ -56,7 +56,6 @@ export class LoginComponent {
   handleloginSuccess(){
     this.profileService.get().subscribe( profile => {
       profile.id = profile.pk
-      // profile.name = profile.first_name + profile.last_name;
       // FIXME load the profile again to get the complete register.
       // remove this code when login endpoint returns the complete information
       this.profileService.get(profile).subscribe( profile => {
@@ -67,6 +66,7 @@ export class LoginComponent {
         this.router.navigate(['conversations']);
       });
     });
+    
   }
 
 }

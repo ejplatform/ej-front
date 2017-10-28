@@ -28,8 +28,10 @@ export class AuthService {
         data => {
           return this.loginSuccessCallback(data);
         }, 
-        resp => { this.loginFailedCallback(resp);}
+        resp => { 
+          this.loginFailedCallback(resp);}
       );
+      
   }
 
   signInFacebook(accessToken: string) {
@@ -67,7 +69,7 @@ export class AuthService {
   }
 
   private loginSuccessCallback(response: any) {
-    const token: string = this.sessionService.setToken(response.json()['key']);
+    const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
     return token;
   }
