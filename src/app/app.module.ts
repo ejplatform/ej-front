@@ -12,10 +12,8 @@ import { Ng2Webstorage } from 'ngx-webstorage';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpModule, XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClientXsrfModule } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
 
 // Bootstrap
@@ -60,10 +58,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export function xsrfFactory() {
-  return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,12 +99,7 @@ export function xsrfFactory() {
         deps: [HttpClient]
       }
     }),
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'csrftoken',
-      headerName: 'X-CSRFToken',
-    }),
     RouterModule.forRoot(rootRouterConfig),
-    HttpModule
   ],
   providers: [GlobalState, 
     Angular2TokenService, 
@@ -122,7 +111,6 @@ export function xsrfFactory() {
     FacebookService,
     NotificationService,
     { provide: LOCALE_ID, useValue: "pt-BR" },
-    { provide: XSRFStrategy, useFactory: xsrfFactory},   
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     
