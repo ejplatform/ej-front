@@ -1,10 +1,10 @@
 <div *ngIf="conversation" class='conversation'>
-  <h1>{{'conversations.topic' | translate}} > {{conversation.category}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </h1>
+  <h1>{{'conversations.topic' | translate}} > {{conversation.title}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </h1>
 
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
-        <small class="category">{{conversation.category}} </small>
+        <small class="category">{{conversation.title}} </small>
         <small class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </small>
       </div>
       <div class="card-header-right">
@@ -16,7 +16,7 @@
       <div class="card-cover-img">
         <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
       </div>
-      <h5 class="card-title mt-4">{{conversation.title}}</h5>
+      <h5 class="card-title mt-4">{{conversation.description}}</h5>
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
     </div>
