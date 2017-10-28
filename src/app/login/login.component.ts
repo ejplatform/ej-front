@@ -55,12 +55,17 @@ export class LoginComponent {
 
   handleloginSuccess(){
     this.profileService.get().subscribe( profile => {
-      profile.id = profile.pk;
-      this.profileService.setProfile(this.profile);        
-      this.bsModalRef.hide();
-      this.loggedIn.emit();
-      this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
-      this.router.navigate(['conversations']);
+      profile.id = profile.pk
+      // profile.name = profile.first_name + profile.last_name;
+      // FIXME load the profile again to get the complete register.
+      // remove this code when login endpoint returns the complete information
+      this.profileService.get(profile).subscribe( profile => {
+        this.profileService.setProfile(profile);
+        this.bsModalRef.hide();
+        this.loggedIn.emit();
+        this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
+        this.router.navigate(['conversations']);
+      });
     });
   }
 

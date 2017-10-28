@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import * as _ from 'lodash' 
 
 import { Profile } from '../models/profile';
 import { SessionService } from './session.service';
@@ -17,13 +17,17 @@ export class ProfileService {
  
   constructor(private http: HttpClient, private sessionService: SessionService) {}
   
-  get(): Observable<Profile> {
-    return this.http.get<Profile>('/rest-auth/user/');
+  get(profile?: Profile): Observable<Profile> {
+    const contextProfile = _.isObject(profile) ? profile : this.profile;
+    if(_.isObject(contextProfile) && contextProfile.id){
+      return this.http.get<Profile>('/api/profile/' + contextProfile.id + '/');
+    }else if(!_.isObject(contextProfile)){
+      return this.http.get<Profile>('/rest-auth/user/');      
+    }
   }
 
   save(profile: Profile): Observable<Profile> {
-    // return this.http.put<Profile>('/api/profiles/' + profile.id, profile);
-    return this.http.put<Profile>('/rest-auth/user/', profile);
+    return this.http.put<Profile>('/api/profile/' + profile.id + '/', profile);
   }
   
   setProfile(profile:Profile) {
