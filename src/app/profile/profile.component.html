@@ -11,11 +11,11 @@
       <div class="profile-information-column">
         <h1>{{'profile-title' | translate}}</h1>
 
-        <div class="form-group first_name-field" [ngClass]="[ firstName.touched ? (firstName.valid ? 'is-valid' : 'is-invalid') : '' ]">
+        <div class="form-group name-field" [ngClass]="[ name.touched ? (name.valid ? 'is-valid' : 'is-invalid') : '' ]">
           <i class="inside-icon"></i>
           <input type="text" class="form-control" 
-            id="firstName" name="firstName" placeholder="{{'profile.first_name' | translate }}" 
-            [(ngModel)]="profile.first_name" required #firstName='ngModel'>
+            id="name" name="name" placeholder="{{'profile.name' | translate }}" 
+            [(ngModel)]="profile.name" required #name='ngModel'>
         </div>
 
         <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
@@ -59,12 +59,12 @@
             </select>
           </div>
 
-          <div class="col-md-4 form-group skin_color-field" [ngClass]="[ skin_color.touched ? (skin_color.valid ? 'is-valid' : 'is-invalid') : '' ]" >
+          <div class="col-md-4 form-group race-field" [ngClass]="[ race.touched ? (race.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
-            <select [(ngModel)]="profile.skin_color"  name="skin_color" #skin_color='ngModel'  
-                    class=" custom-select" id="skin_color">
-              <option disabled selected>{{'profile.skin_color' | translate }}</option>
-              <option *ngFor="let skin_color of skinColorOptions" [value]="skin_color.id">{{skin_color.name}}</option>
+            <select [(ngModel)]="profile.race"  name="race" #race='ngModel'  
+                    class=" custom-select" id="race">
+              <option disabled selected>{{'profile.race' | translate }}</option>
+              <option *ngFor="let race of raceColorOptions" [value]="race.id">{{race.name}}</option>
             </select>
           </div>
 
@@ -92,6 +92,15 @@
               [(ngModel)]="profile.occupation" #occupation='ngModel'>
         </div>
 
+
+        <div class="form-group political_movement-field" [ngClass]="[ political_movement.touched ? (political_movement.valid ? 'is-valid' : 'is-invalid') : '' ]">
+          <i class="inside-icon"></i>
+          <input type="text" class="form-control" 
+              id="political_movement" name="political_movement" placeholder="{{'profile.political_movement' | translate }}" 
+              [(ngModel)]="profile.political_movement" #political_movement='ngModel'>
+        </div>
+  
+          
         <button  (click)="save()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
           {{"profile.button.save" | translate}}
         </button> 
@@ -136,7 +145,7 @@
       <h4 class="media-heading">
         <inline-editor
           type="text"
-          [(ngModel)]="profile.first_name"
+          [(ngModel)]="profile.name"
           #name="ngModel"
           (onSave)="save($event)" ngDefaultControl>
         </inline-editor>

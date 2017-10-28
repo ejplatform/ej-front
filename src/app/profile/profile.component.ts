@@ -17,21 +17,36 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
 
   genderOptions = [
-    {id: 1, name: "Mulher"},
-    {id: 2, name: "Homem"},
-    {id: 3, name: "Mulher Cis"},
-    {id: 4, name: "Homem Cis"},
-    {id: 5, name: "Agênero"},
+    {id: 'FEMALE', name: "Mulher"},
+    {id: 'MALE', name: "Homem"},
+    {id: 'CIS_FEMALE', name: "Mulher Cis"},
+    {id: 'CIS_MALE', name: "Homem Cis"},
+    {id: 'AGENDER', name: "Agênero"},
+    {id: 'GENDERQUEER', name: 'Genderquer'},
+    {id: 'GENDERFLUID', name: 'Gênero Fluído'},
+    {id: 'NON-CONFORMIST_GENDER', name: 'Gênero Não-conformista'},
+    {id: 'VARIANT_GENDER', name: 'Gênero Variante'},
+    {id: 'INTERSEX', name: 'Intersex'},
+    {id: 'NON-BINARY', name: 'Não-binário'},
+    {id: 'TRANSGENDERED', name: 'Transgênero'},
+    {id: 'PANGENDER', name: 'Pangênero'},
+    {id: 'TRANSSEXUAL_WOMAN', name: 'Mulher Transexual'},
+    {id: 'TRANSSEXUAL_MAN', name: 'Homem Transexual'},
+    {id: 'TRANSFEMINAL', name: 'Transfeminino'},
+    {id: 'TRANSMASCULINE', name: 'Transmasculino'},
+    {id: 'DO_NOT_KNOW', name: 'Não sei'},
+    {id: 'NONE', name: 'Nenhum'},
+    {id: 'OTHER', name: 'Outro'},
   ];
-  
-  skinColorOptions = [
-    {id: 1, name: "Preta"},
-    {id: 2, name: "Parda"},
-    {id: 3, name: "Branca"},
-    {id: 4, name: "Amarela"},
-    {id: 5, name: "Indígena"},
-    {id: 5, name: "Não sei"},
-    {id: 5, name: "Não declarada"},
+
+  raceColorOptions = [
+    {id: 'BLACK', name: "Preta"},
+    {id: 'BROWN', name: "Parda"},
+    {id: 'WHITE', name: "Branca"},
+    {id: 'YELLOW', name: "Amarela"},
+    {id: 'INDIGENOUS', name: "Indígena"},
+    {id: 'DO_NOT_KNOW', name: "Não sei"},
+    {id: 'UNDECLARED', name: "Não declarada"},
   ];
 
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router, 
@@ -42,6 +57,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
+
   }
 
   ngOnInit() {
@@ -49,6 +65,7 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
+    console.log('ssssssssssssssssssssssss',this.profile);
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(this.profile);
@@ -67,8 +84,8 @@ export class ProfileComponent implements OnInit {
     if(_.isUndefined(this.profile.gender)){
       this.profile.gender = '';
     }
-    if(_.isUndefined(this.profile.skin_color)){
-      this.profile.skin_color = '';  
+    if(_.isUndefined(this.profile.race)){
+      this.profile.race = '';  
     }     
   }
 
