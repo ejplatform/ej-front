@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Jsonp, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Profile } from '../models/profile';
 import { SessionService } from './session.service';
@@ -12,7 +12,7 @@ export class AuthService {
   public loginFailed: EventEmitter<any> = new EventEmitter<any>();
   public logoutSuccess: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private http: Http, private sessionService: SessionService) {}
+  constructor(private http: HttpClient, private sessionService: SessionService) {}
 
 
   signOut() {
@@ -28,8 +28,10 @@ export class AuthService {
         data => {
           return this.loginSuccessCallback(data);
         }, 
-        resp => { this.loginFailedCallback(resp);}
+        resp => { 
+          this.loginFailedCallback(resp);}
       );
+      
   }
 
   signInFacebook(accessToken: string) {
@@ -67,7 +69,7 @@ export class AuthService {
   }
 
   private loginSuccessCallback(response: any) {
-    const token: string = this.sessionService.setToken(response.json()['key']);
+    const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
     return token;
   }

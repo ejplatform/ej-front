@@ -65,7 +65,6 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
-    console.log('ssssssssssssssssssssssss',this.profile);
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(this.profile);

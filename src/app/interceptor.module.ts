@@ -9,10 +9,13 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
   constructor(private session: SessionService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    const authRequest = request.clone({ setHeaders: { 
-      Authorization: 'Token ' + this.session.getToken(), 
-    }});
+    let authRequest = request;
+    const token = this.session.getToken();
+    if(token){
+      authRequest = request.clone({ setHeaders: { 
+        Authorization: 'Token ' + token, 
+      }});
+    }   
 
     return next.handle(authRequest);
 
