@@ -43,10 +43,29 @@
                 }
                 
             }
+            &.access{
+                @include media-breakpoint-down(md) {  
+                    display: block;
+
+                }
+            }
+            &.site-links{
+                @include media-breakpoint-down(md) {  
+                    display: inline-block;
+
+                }
+            }
+            
+    
+            
         }
+        
+
     }  
     
 }
+
+
 
 .logged.site-header {
     background-color: $site-header-bg-color;
