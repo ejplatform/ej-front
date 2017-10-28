@@ -25,12 +25,12 @@ export class EmbedComponent implements OnInit {
   ngOnInit() {
     this.profile = this.profileService.getProfile();
     
-    this.profileService.profileChangeEvent.subscribe(profile => {
-      this.profile = profile;
-      this.checkRedirection();
-    });
-
-    this.checkRedirection();
+    // FIXME check is this code is needed
+    // this.profileService.profileChangeEvent.subscribe(profile => {
+    //   this.profile = profile;
+    //   this.checkRedirection();
+    // });
+    // this.checkRedirection();
     let path = this.route.snapshot.url.map(p => p.path).join("/"); 
     if(path == 'inicio'){
       path = '';
