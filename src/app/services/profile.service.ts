@@ -26,6 +26,11 @@ export class ProfileService {
     }
   }
 
+  me(): Observable<Profile> {
+    return this.http.get<Profile>('/api/profile/me');
+  }
+
+
   save(profile: Profile): Observable<Profile> {
     return this.http.put<Profile>('/api/profile/' + profile.id + '/', profile);
   }
