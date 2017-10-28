@@ -34,6 +34,13 @@ export class ProfileService {
   save(profile: Profile): Observable<Profile> {
     return this.http.put<Profile>('/api/profile/' + profile.id + '/', profile);
   }
+
+
+  changePassword(profile: Profile): Observable<Profile> {
+    profile.new_password1 = profile.password;
+    profile.new_password2 = profile.passwordConfirmation;
+    return this.http.post<Profile>('/rest-auth/password/change/', profile);
+  }
   
   setProfile(profile:Profile) {
     this.profile = profile;

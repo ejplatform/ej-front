@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash' 
 
@@ -15,6 +15,9 @@ import { NotificationService } from '../services/notification.service';
 export class ProfileComponent implements OnInit {
 
   profile: Profile;
+
+  @ViewChild('password') password;
+  @ViewChild('passwordConfirmation') passwordConfirmation;
 
   genderOptions = [
     {id: 'FEMALE', name: "Mulher"},
@@ -53,7 +56,6 @@ export class ProfileComponent implements OnInit {
     private notificationService: NotificationService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
-    console.log(this.profile);
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initializeFields();
+    this.profile = this.initializeFields();
   }
 
   save() {
@@ -76,16 +78,32 @@ export class ProfileComponent implements OnInit {
   }
 
   cancel(){
-    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    let profile  = <Profile>{};
+    profile = this.initializeFields(profile);
+    this.profile = Object.assign(profile, this.profileService.getProfile());
+
   }
 
-  initializeFields(){
-    if(_.isUndefined(this.profile.gender)){
-      this.profile.gender = '';
+  changePassword() {
+    this.profileService.changePassword(this.profile).subscribe( profile => {
+        this.notificationService.success({ title: "profile.password.success.title", message: "profile.password.success.message" });
+        this.password.reset();
+        this.passwordConfirmation.reset();
+
+      }, error => {
+        console.log('Something wrong happened...');
+      });
+  }
+
+  initializeFields(profile?: Profile){
+    let localProfile = _.isNil(profile) ? this.profile : profile; 
+    if(_.isNil(localProfile.gender)){
+      localProfile.gender = '';
     }
-    if(_.isUndefined(this.profile.race)){
-      this.profile.race = '';  
-    }     
+    if(_.isNil(localProfile.race)){
+      localProfile.race = '';  
+    }
+    return localProfile;
   }
 
 }

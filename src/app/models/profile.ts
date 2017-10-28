@@ -7,7 +7,9 @@ export class Profile {
     public token: string;
     public name: string;
     public password: string;
-    public password_confirmation: string;
+    public passwordConfirmation: string;
+    public new_password1: string;
+    public new_password2: string;
     public email: string;
     public picture: any;
     public picture_data: any;

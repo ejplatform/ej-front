@@ -2,11 +2,14 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+$profile-font-color: #6B7479;
+
 .profile-form{
     @extend .row;
     @extend .d-flex;
     @extend .justify-content-center;
     @extend .p-4;
+    color: $profile-font-color;
 
     .profile-picture-column{
         @extend .col-md-3; 
@@ -28,6 +31,17 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         // @extend .pb-5;
         padding-bottom: 200px;
         border: 1px solid theme-color("secondary");
+        h1{
+            font-size: x-large;
+            font-weight: initial;
+        }
+        .password-form{
+            @extend .mt-4;
+            h1{
+                @extend .py-3;
+            }
+            
+        }
         
     }
 
@@ -53,10 +67,29 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
     position: relative;
     .select.inside-icon{
         right: 40px;
+        z-index: 1;
     }
     .textarea.inside-icon{
         right: 25px;
         top: 20px;
+    }
+    &.biography-field{
+        label{
+            @extend .py-3;
+            font-size: x-large;
+        }
+        textarea{
+            min-height: 150px;
+        }
+    }
+    &.political_movement-field{
+        label{
+            @extend .py-3;
+            font-size: large;
+        }
+    }
+    .number.inside-icon{
+        right: 45px;        
     }
     .inside-icon {
         @extend .fa;    

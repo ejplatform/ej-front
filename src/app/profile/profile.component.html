@@ -1,6 +1,5 @@
 <div *ngIf="profile">
 
-  <form   name="profileForm" #profileForm="ngForm">
     <div class="profile-form" >
       <div class="profile-picture-column">
         <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
@@ -9,6 +8,8 @@
         </p>
       </div>
       <div class="profile-information-column">
+          <form   name="profileForm" #profileForm="ngForm">
+              
         <h1>{{'profile-title' | translate}}</h1>
 
         <div class="form-group name-field" [ngClass]="[ name.touched ? (name.valid ? 'is-valid' : 'is-invalid') : '' ]">
@@ -49,8 +50,7 @@
         </div>
 
         <div class="row">
-
-          <div class="col-md-5 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
+          <div class="col-md-6 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
             <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel'  
                   class=" custom-select" id="gender">
@@ -59,47 +59,51 @@
             </select>
           </div>
 
-          <div class="col-md-4 form-group race-field" [ngClass]="[ race.touched ? (race.valid ? 'is-valid' : 'is-invalid') : '' ]" >
+          <div class="col-md-6 form-group race-field" [ngClass]="[ race.touched ? (race.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
             <select [(ngModel)]="profile.race"  name="race" #race='ngModel'  
-                    class=" custom-select" id="race">
+                    class="col-md-6 custom-select" id="race">
               <option disabled selected>{{'profile.race' | translate }}</option>
               <option *ngFor="let race of raceColorOptions" [value]="race.id">{{race.name}}</option>
             </select>
           </div>
-
-          <div class="col-md-3 form-group age-field" [ngClass]="[ age.touched ? (age.valid ? 'is-valid' : 'is-invalid') : '' ]">
-            <i class="inside-icon"></i>
-            <input type="text" class="form-control" 
-              id="age" name="age" placeholder="{{'profile.age' | translate }}" 
-              [(ngModel)]="profile.age"  #age='ngModel'>
-          </div>     
-
         </div>
 
+        <div class="form-group political_movement-field" [ngClass]="[ political_movement.touched ? (political_movement.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="inside-icon"></i>
+            <label for="political_movement-field">{{'profile.political_movement.label' | translate }}</label>
+            <input type="text" class="form-control" 
+                id="political_movement" name="political_movement" placeholder="{{'profile.political_movement' | translate }}" 
+                [(ngModel)]="profile.political_movement" #political_movement='ngModel'>
+          </div>
+    
         <div class="form-group biography-field" [ngClass]="[ biography.touched ? (biography.valid ? 'is-valid' : 'is-invalid') : '' ]">
-          <i class="textarea inside-icon"></i>
+          <label for="biography-field">{{'profile.biography' | translate }}</label>
+          
+          <!-- <i class="textarea inside-icon"></i> -->
           <textarea class="form-control" 
               id="biography" name="biography" placeholder="{{'profile.biography' | translate }}" 
               [(ngModel)]="profile.biography"  #biography='ngModel'>
           </textarea>
         </div>
 
-        <div class="form-group occupation-field" [ngClass]="[ occupation.touched ? (occupation.valid ? 'is-valid' : 'is-invalid') : '' ]">
-          <i class="inside-icon"></i>
-          <input type="text" class="form-control" 
+        <div class="row">
+            
+          <div class="col-md-3 form-group age-field" [ngClass]="[ age.touched ? (age.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="number inside-icon"></i>
+            <input type="number" class="form-control" 
+              id="age" name="age" placeholder="{{'profile.age' | translate }}" 
+              [(ngModel)]="profile.age"  #age='ngModel'>
+          </div>    
+
+          <div class="col-md-9 form-group occupation-field" [ngClass]="[ occupation.touched ? (occupation.valid ? 'is-valid' : 'is-invalid') : '' ]">
+            <i class="inside-icon"></i>
+            <input type="text" class="form-control" 
               id="occupation" name="occupation" placeholder="{{'profile.occupation' | translate }}" 
               [(ngModel)]="profile.occupation" #occupation='ngModel'>
+          </div>
         </div>
 
-
-        <div class="form-group political_movement-field" [ngClass]="[ political_movement.touched ? (political_movement.valid ? 'is-valid' : 'is-invalid') : '' ]">
-          <i class="inside-icon"></i>
-          <input type="text" class="form-control" 
-              id="political_movement" name="political_movement" placeholder="{{'profile.political_movement' | translate }}" 
-              [(ngModel)]="profile.political_movement" #political_movement='ngModel'>
-        </div>
-  
           
         <button  (click)="save()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
           {{"profile.button.save" | translate}}
@@ -107,52 +111,36 @@
         <button (click)="cancel()" class="form-button cancel"  >
             {{"profile.button.cancel" | translate}}
         </button> 
-        
+      </form>
+      <form name="passwordForm" #passwordForm="ngForm">
+          <div class="password-form" >
+              <h1>{{'profile.password.change' | translate}}</h1>
+      
+              <div class="form-group password-field" [ngClass]="[ password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : '' ]">
+                <i class="inside-icon"></i>
+                <input type="password" class="form-control" 
+                  id="password" name="password" placeholder="{{'profile.password.new' | translate }}" 
+                  [(ngModel)]="profile.password" required #password='ngModel'>
+              </div>
+      
+              <div class="form-group passwordConfirmation-field" [ngClass]="[ passwordConfirmation.touched ? (passwordConfirmation.valid ? 'is-valid' : 'is-invalid') : '' ]">
+                <i class="inside-icon"></i>            
+                <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="{{'profile.password.new.confirmation' | translate }}" 
+                  [(ngModel)]="profile.passwordConfirmation" required #passwordConfirmation='ngModel'>
+              </div>
+                
+                
+              <button  (click)="changePassword()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
+                {{"profile.button.password" | translate}}
+              </button> 
+              <button (click)="cancel()" class="form-button cancel"  >
+                  {{"profile.button.cancel" | translate}}
+              </button> 
+              
+          </div>
+        </form>
       </div>
-    </div>
-    <!-- <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="validationServer03">City</label>
-        <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
-        <div class="invalid-feedback">
-          Please provide a valid city.
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationServer04">State</label>
-        <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
-        <div class="invalid-feedback">
-          Please provide a valid state.
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationServer05">Zip</label>
-        <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
-        <div class="invalid-feedback">
-          Please provide a valid zip.
-        </div>
-      </div>
-    </div> -->
-  
-    <!-- <button class="btn btn-primary" type="submit">Submit form</button> -->
-  </form>
-  <!-- <div class="media">
-    <div class="media-left">
-      <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
     </div>
 
-    <div class="media-body">
-      <h4 class="media-heading">
-        <inline-editor
-          type="text"
-          [(ngModel)]="profile.name"
-          #name="ngModel"
-          (onSave)="save($event)" ngDefaultControl>
-        </inline-editor>
-      </h4>
-      <div *ngIf="profile.email" class="email">
-        <p>{{profile.email}}</p>
-      </div>
-    </div>
-  </div> -->
+
 </div>
