@@ -23,10 +23,10 @@ export class AlertsComponent implements OnInit {
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
-
-    this.alertService.list().subscribe((alerts) => {
-      this.alerts = alerts;
-    });
+    // FIXME uncoment this code after notifications endpoint is ready
+    // this.alertService.list().subscribe((alerts) => {
+    //   this.alerts = alerts;
+    // });
     this.alerts = [{id: 1, body: 'notificacao 1'}, {id: 2, body: 'notificacao 2'}, {id: 3, body: 'notificacao 3'}]
     
   }

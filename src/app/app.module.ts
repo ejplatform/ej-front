@@ -36,6 +36,7 @@ import { HeaderComponent } from './header/header.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
+import { ConversationComponent } from './conversation/conversation.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AlertsComponent,
     CommentsComponent,
     ConversationsComponent,
+    ConversationComponent,
     LoginComponent,
     RegistrationComponent,
     LogoutComponent,

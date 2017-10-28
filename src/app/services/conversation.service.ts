@@ -13,4 +13,8 @@ export class ConversationService {
       return this.http.get<Conversation[]>('/api/conversations/');
     }
 
+    get(id: number): Observable<Conversation> {
+      return this.http.get<Conversation>('/api/conversations/'+ id + '/');
+    }
+
 }

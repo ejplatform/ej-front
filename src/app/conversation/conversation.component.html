@@ -1,10 +1,7 @@
-<h1>{{'conversations.topic' | translate}}</h1>
-<h2>{{'conversations.title' | translate}}</h2>
-<h3>{{'conversations.subtitle' | translate}}</h3>
+<div *ngIf="conversation" class='conversation'>
+  <h1>{{'conversations.topic' | translate}} > {{conversation.category}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </h1>
 
-<div *ngFor="let local_conversations of groupConversations()"class="card-deck">
-  <div  *ngFor="let conversation of local_conversations" class="card">
-    
+  <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <small class="category">{{conversation.category}} </small>
@@ -14,7 +11,7 @@
         <small class="identifier">Conversas #{{conversation.id}} </small>
       </div>
     </div>
-    <a routerLink="/conversations/{{conversation.id}}">
+    
     <div class="card-cover">
       <div class="card-cover-img">
         <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
@@ -23,11 +20,10 @@
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
     </div>
-    </a>
             
     <div class="card-block">
-        <!-- <h4 class="card-title">Card title</h4> -->
-      <p class="card-text">{{'conversations.card.info' | translate}}</p>
+      <h2>{{'conversations.title' | translate}}</h2>
+      <h3>{{'conversations.subtitle' | translate}}</h3>
     </div>
 
     <div class="card-footer">
