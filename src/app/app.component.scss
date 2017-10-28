@@ -38,6 +38,10 @@
         @media screen and (min-width: 1025px) {
             margin-top: 110px;
         }
+        @include media-breakpoint-down(sm) {
+            left: 0;
+            padding-right: 0;
+        }
     }
     .container-fluid {
         max-width: 1050px;
@@ -56,6 +60,7 @@
 
 :host /deep/ .main-nav-opened {
     nav{
+        display: block;
         .user-nav {
             font-size: $font-size-lg;
             text-align: left;

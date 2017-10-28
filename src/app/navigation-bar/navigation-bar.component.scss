@@ -35,6 +35,9 @@
         left: 0;
         width: 100px;
     }
+    @include media-breakpoint-down(sm) {
+        display: none;
+    }
 }
 
 .user-nav {
@@ -71,6 +74,7 @@
     @include media-breakpoint-up(sm) {
         margin-top: 105px;
     }
+
     li {
         position: relative;
         // margin-bottom: 15px;

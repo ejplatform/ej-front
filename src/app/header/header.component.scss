@@ -155,9 +155,12 @@
             margin: 15px 0 0 10px;
             text-align: left;
             color: #D93E25;
+            max-width: 160px;
+            word-wrap: break-word;
             @include media-breakpoint-up(xs) {
-                margin: 10px 0 0 10px;
+                margin: 0px 0 0 10px;
             }
+
         }
         .menu-label, .hide-menu {
             display: block;
