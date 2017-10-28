@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Jsonp, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Profile } from '../models/profile';
 import { SessionService } from './session.service';
@@ -12,7 +12,7 @@ export class AuthService {
   public loginFailed: EventEmitter<any> = new EventEmitter<any>();
   public logoutSuccess: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private http: Http, private sessionService: SessionService) {}
+  constructor(private http: HttpClient, private sessionService: SessionService) {}
 
 
   signOut() {
