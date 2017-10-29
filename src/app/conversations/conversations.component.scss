@@ -1,11 +1,12 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
 h1{
+    @extend .m-5;
+    @extend .p-4;
     font-size: x-large;
     color: #4A4A4A;
     //FIXME put a bootstrap variable
     font-weight: 500;
-    @extend .m-5;
 }
 
 h2, h3{
