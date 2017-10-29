@@ -53,7 +53,7 @@
           <div class="col-md-6 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
             <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel'  
-                  class=" custom-select" id="gender">
+                  class="col-md-6 custom-select" id="gender">
               <option disabled selected>{{'profile.gender' | translate }}</option>
               <option *ngFor="let gender of genderOptions" [value]="gender.id">{{gender.name}}</option>
             </select>
