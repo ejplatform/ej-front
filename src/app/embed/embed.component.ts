@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import * as _ from 'lodash' 
+import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
@@ -16,10 +16,10 @@ export class EmbedComponent implements OnInit {
   el: HTMLFrameElement;
   private baseUrl: string
   profile: Profile;
-  
+
   constructor(private route: ActivatedRoute, private profileService: ProfileService, private router: Router) {
-    this.baseUrl = "https://brasilqueopovoquer.org.br/";
-    this.url = "https://brasilqueopovoquer.org.br/";
+    this.baseUrl = "https://brasilqueopovoquer.hacklab.com.br/";
+    this.url = "https://brasilqueopovoquer.hacklab.com.br/";
   }
 
   ngOnInit() {
@@ -45,8 +45,8 @@ export class EmbedComponent implements OnInit {
   }
 
   checkHeight(ev: Event) {
-    this.el = <HTMLFrameElement>ev.srcElement;
-    this.el.height = 7000 + 'px'; 
+    this.el = <HTMLFrameElement>ev.target;
+    this.el.height = 4000;
   }
 
 }
