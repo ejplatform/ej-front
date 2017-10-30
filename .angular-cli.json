@@ -20,15 +20,16 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/scss/bootstrap.scss",
-        "../node_modules/ngx-toastr/toastr.css",        
+        "../node_modules/ngx-toastr/toastr.css",
         "../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss",
          "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environment.prod.ts",
+        "homolog": "environments/environment.homolog.ts",
+        "dev": "environments/environment.dev.ts"
       }
     }
   ],
