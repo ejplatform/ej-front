@@ -1,7 +1,7 @@
 # This image is intended for development purposes only
-FROM node:7
+FROM node:8
 
-RUN npm install -g @angular/cli@1.4
+ENV NPM_CONFIG_LOGLEVEL info
 
 ADD ./compose/local/angular/start.sh /start.sh
 RUN chmod +x /start.sh
