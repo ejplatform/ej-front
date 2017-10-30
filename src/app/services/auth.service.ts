@@ -14,7 +14,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private sessionService: SessionService) {}
 
-
   signOut() {
     const profile: Profile = this.sessionService.currentProfile();
     return this.http.post('/rest-auth/logout/', profile).map(
@@ -27,11 +26,11 @@ export class AuthService {
     return this.http.post('/rest-auth/login/', profile).map(
         data => {
           return this.loginSuccessCallback(data);
-        }, 
-        resp => { 
+        },
+        resp => {
           this.loginFailedCallback(resp);}
       );
-      
+
   }
 
   signInFacebook(accessToken: string) {
@@ -40,8 +39,8 @@ export class AuthService {
         data => {
           console.log('AuthService: signInFacebook - sucesso',data);
           return this.loginSuccessCallback(data);
-        }, 
-        resp => { 
+        },
+        resp => {
           console.log('AuthService: signInFacebook - erro',resp);
           this.loginFailedCallback(resp);
         }
@@ -52,11 +51,10 @@ export class AuthService {
     return this.http.post('/rest-auth/registration/', profile).map(
       data => {
         return this.loginSuccessCallback(data);
-      }, 
+      },
       resp => { this.loginFailedCallback(resp);}
     );
   }
-
 
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
@@ -73,7 +71,4 @@ export class AuthService {
     this.loginSuccess.emit(token);
     return token;
   }
-
-  
-
 }
