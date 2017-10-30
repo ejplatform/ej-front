@@ -17,25 +17,22 @@ cache:
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+  CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 build to homolog:
   stage: build
   script:
-    - docker run --rm -v $PWD:/app -w /app node:7.2.1 npm install
-    - docker run --rm -v $PWD:/app -w /app node:7.2.1 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker create --name frontend nginx
-    - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
-    - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
-    - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
-    - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
-    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker build -t $CONTAINER_RELEASE_IMAGE .
+    - docker tag $CONTAINER_RELEASE_IMAGE $CONTAINER_LATEST_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_LATEST_IMAGE
   environment: homolog
   tags:
     - docker
     - hacklab
   only:
     - master
+    - dockerfile-refactor
 
 test:
   stage: test
@@ -57,3 +54,4 @@ deploy to homolog:
     - hacklab
   only:
     - master
+    - dockerfile-refactor
