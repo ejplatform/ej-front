@@ -1,4 +1,4 @@
-FROM node as builder
+FROM node:7.2.1 as builder
 COPY . /app
 WORKDIR /app
 RUN yarn install
