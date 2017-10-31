@@ -22,6 +22,7 @@ variables:
 build to homolog:
   stage: build
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build -t $CONTAINER_RELEASE_IMAGE .
     - docker tag $CONTAINER_RELEASE_IMAGE $CONTAINER_LATEST_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
