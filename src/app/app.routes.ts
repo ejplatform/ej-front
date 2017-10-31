@@ -4,6 +4,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { CommentsComponent } from "./comments/comments.component";
 import { ConversationsComponent } from "./conversations/conversations.component";
 import { ConversationComponent } from "./conversation/conversation.component";
+import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LogoutComponent } from "./logout/logout.component";
 import { EmbedComponent } from "./embed/embed.component";
 
@@ -23,6 +24,7 @@ export const rootRouterConfig: Routes = [
     children: [
       { path: '', component: ConversationsComponent },
       { path: ':id', component: ConversationComponent },
+      { path: 'participate/:id', component: ConversationEmbedComponent },
     ],
   },
   { path: 'inicio', component: EmbedComponent },

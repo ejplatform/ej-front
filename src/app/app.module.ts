@@ -36,6 +36,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
+import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
+    ConversationEmbedComponent,
     LoginComponent,
     RegistrationComponent,
     LogoutComponent,
