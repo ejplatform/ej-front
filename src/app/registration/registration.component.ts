@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -66,7 +67,8 @@ export class RegistrationComponent {
   }
 
   handleError(error: any){
-    const errors = error.json();
+    const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
+    
     console.log(errors);
     this.nameErrors.setErrors(errors['name']);
     this.emailErrors.setErrors(errors['email']);
