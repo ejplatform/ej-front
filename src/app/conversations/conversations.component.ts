@@ -28,7 +28,6 @@ export class ConversationsComponent implements OnInit {
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = conversations;
-      console.log(this.conversations);
     });
     if(_.isUndefined(this.profile.picture_path)){
       this.profile.picture_path = '/assets/images/icons/profile_icon.svg';

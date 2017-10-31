@@ -25,11 +25,8 @@ export class ConversationComponent implements OnInit {
       this.profile = profile;
     });
     this.route.params.subscribe( params => {
-      console.log('ddddddddddddddddddddd', params);
       conversationService.get(params.id).subscribe(conversation => {
         this.conversation = conversation;
-        console.log(conversation);
-
       });
     });
   }
