@@ -1,7 +1,7 @@
 FROM node:7.2.1 as builder
 COPY . /app
 WORKDIR /app
-RUN yarn install
+RUN npm install
 RUN ./node_modules/.bin/ng build            \
         --prod                              \
         --output-path dist/empurrandojuntos \
