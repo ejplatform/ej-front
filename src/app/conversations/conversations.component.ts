@@ -43,12 +43,16 @@ export class ConversationsComponent implements OnInit {
     _.size(this.conversations);
   }
 
+  backgroundImage(conversation: Conversation): string{
+    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/images/card-bg.jpg' : conversation.background_image;
+    return imagem_path;
+  }
+
   ratio(conversation: Conversation){
     let ratio = conversation.user_participation_ratio;
     if(!ratio){
       ratio = 0;
     }
-    ratio = 50;
     return ratio;
   }
 
