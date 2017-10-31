@@ -85,7 +85,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgProgressModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FacebookModule.forRoot(),    
+    FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
@@ -102,7 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     RouterModule.forRoot(rootRouterConfig),
   ],
-  providers: [GlobalState, 
+  providers: [GlobalState,
     AuthService,
     SessionService,
     ProfileService,

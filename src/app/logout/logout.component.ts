@@ -13,7 +13,7 @@ export class LogoutComponent {
 
   profile: Profile;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) { 
+  constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) {
     this.authService.signOut().subscribe(
       response => {
         this.profileService.setProfile(null);
@@ -25,5 +25,5 @@ export class LogoutComponent {
       },
     );
   }
-  
+
 }
