@@ -1,7 +1,7 @@
-import { Comment } from './comment'
+import { Comment } from './comment';
 
 export class Conversation {
-    
+
     public title: string;
     public description: string;
     public total_approved_comments: number;

@@ -110,10 +110,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     TwitterService,
     FacebookService,
     NotificationService,
-    { provide: LOCALE_ID, useValue: "pt-BR" },
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
-    
+
   ],
   entryComponents: [LoginComponent, RegistrationComponent],
   bootstrap: [AppComponent]
