@@ -7,7 +7,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { GlobalState } from './global.state';
-import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -104,7 +103,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot(rootRouterConfig),
   ],
   providers: [GlobalState, 
-    Angular2TokenService, 
     AuthService,
     SessionService,
     ProfileService,

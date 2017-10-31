@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProfileService } from './services/profile.service';
 import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
-import { Angular2TokenService } from 'angular2-token';
 import * as _ from 'lodash' 
 
 @Component({
