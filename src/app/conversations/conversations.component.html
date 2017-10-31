@@ -17,7 +17,7 @@
     <a routerLink="/conversations/{{conversation.id}}">
     <div class="card-cover">
       <div class="card-cover-img">
-        <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
+        <img class="card-img" [src]="backgroundImage(conversation)" alt="Card image cap">
       </div>
       <h5 class="card-title mt-4">{{conversation.description}}</h5>
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
