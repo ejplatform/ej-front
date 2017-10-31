@@ -48,7 +48,7 @@ export class LoginComponent {
   }
 
   handleError(error: any){
-    let errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
+    const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
     
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password']);
