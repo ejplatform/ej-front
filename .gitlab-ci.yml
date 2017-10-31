@@ -33,7 +33,6 @@ build to homolog:
     - hacklab
   only:
     - master
-    - dockerfile-refactor
 
 test:
   stage: test
@@ -55,4 +54,3 @@ deploy to homolog:
     - hacklab
   only:
     - master
-    - dockerfile-refactor
