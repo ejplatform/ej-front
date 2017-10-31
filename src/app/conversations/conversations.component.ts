@@ -28,7 +28,6 @@ export class ConversationsComponent implements OnInit {
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = conversations;
-      console.log(this.conversations);
     });
     if(_.isUndefined(this.profile.picture_path)){
       this.profile.picture_path = '/assets/images/icons/profile_icon.svg';
@@ -43,12 +42,16 @@ export class ConversationsComponent implements OnInit {
     _.size(this.conversations);
   }
 
+  backgroundImage(conversation: Conversation): string{
+    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/images/card-bg.jpg' : conversation.background_image;
+    return imagem_path;
+  }
+
   ratio(conversation: Conversation){
     let ratio = conversation.user_participation_ratio;
     if(!ratio){
       ratio = 0;
     }
-    ratio = 50;
     return ratio;
   }
 

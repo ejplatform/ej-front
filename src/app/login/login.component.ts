@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
 import { NotificationService } from '../services/notification.service';
@@ -47,8 +48,8 @@ export class LoginComponent {
   }
 
   handleError(error: any){
-    let errors = JSON.parse(error.error);
-
+    const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
+    
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password']);
     this.passwordErrors.setErrors(errors['non_field_errors']);

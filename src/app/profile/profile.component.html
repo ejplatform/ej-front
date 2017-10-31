@@ -54,7 +54,7 @@
             <i class="select inside-icon"></i>
             <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel'  
                   class="col-md-6 custom-select" id="gender">
-              <option disabled selected>{{'profile.gender' | translate }}</option>
+              <option disabled value="" selected>{{'profile.gender' | translate }}</option>
               <option *ngFor="let gender of genderOptions" [value]="gender.id">{{gender.name}}</option>
             </select>
           </div>
@@ -63,7 +63,7 @@
             <i class="select inside-icon"></i>
             <select [(ngModel)]="profile.race"  name="race" #race='ngModel'  
                     class="col-md-6 custom-select" id="race">
-              <option disabled selected>{{'profile.race' | translate }}</option>
+              <option disabled value="" selected>{{'profile.race' | translate }}</option>
               <option *ngFor="let race of raceColorOptions" [value]="race.id">{{race.name}}</option>
             </select>
           </div>

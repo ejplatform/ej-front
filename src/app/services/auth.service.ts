@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Profile } from '../models/profile';
 import { SessionService } from './session.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -14,34 +15,36 @@ export class AuthService {
 
   constructor(private http: HttpClient, private sessionService: SessionService) {}
 
-
   signOut() {
     const profile: Profile = this.sessionService.currentProfile();
-    return this.http.post('/rest-auth/logout/', profile).map(
+    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/logout/`;
+    return this.http.post(fullEndpointUrl, profile).map(
       data => {
         return this.logoutSuccessCallback(profile);
       });
   }
 
   signIn(profile: Profile) {
-    return this.http.post('/rest-auth/login/', profile).map(
+    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/login/`;
+    return this.http.post(fullEndpointUrl, profile).map(
         data => {
           return this.loginSuccessCallback(data);
-        }, 
-        resp => { 
+        },
+        resp => {
           this.loginFailedCallback(resp);}
       );
-      
+
   }
 
   signInFacebook(accessToken: string) {
     console.log('AuthService: signInFacebook', accessToken);
-    return this.http.post('/api/auth/facebook/', {access_token: accessToken}).map(
+    let fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
+    return this.http.post(fullEndpointUrl, {access_token: accessToken}).map(
         data => {
           console.log('AuthService: signInFacebook - sucesso',data);
           return this.loginSuccessCallback(data);
-        }, 
-        resp => { 
+        },
+        resp => {
           console.log('AuthService: signInFacebook - erro',resp);
           this.loginFailedCallback(resp);
         }
@@ -49,14 +52,14 @@ export class AuthService {
   }
 
   signUp(profile: Profile): Observable<any> {
-    return this.http.post('/rest-auth/registration/', profile).map(
+    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/registration/`;
+    return this.http.post(fullEndpointUrl, profile).map(
       data => {
         return this.loginSuccessCallback(data);
-      }, 
+      },
       resp => { this.loginFailedCallback(resp);}
     );
   }
-
 
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
@@ -73,7 +76,4 @@ export class AuthService {
     this.loginSuccess.emit(token);
     return token;
   }
-
-  
-
 }
