@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as _ from 'lodash'
 
@@ -25,10 +24,10 @@ export class LoginComponent {
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('emailErrors') emailErrors;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, 
-    private socialFacebookService: SocialFacebookService, private notificationService: NotificationService, 
+  constructor(private authService: AuthService, private profileService: ProfileService,
+    private socialFacebookService: SocialFacebookService, private notificationService: NotificationService,
     private modal: BsModalRef, private router: Router) {
-      
+
     this.bsModalRef = modal;
     this.profile = new Profile();
 

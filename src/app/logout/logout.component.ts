@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
 import { Router } from '@angular/router';
 
 import { Profile } from '../models/profile';
@@ -14,7 +13,7 @@ export class LogoutComponent {
 
   profile: Profile;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) { 
+  constructor(private authService: AuthService, private profileService: ProfileService, private router: Router) {
     this.authService.signOut().subscribe(
       response => {
         this.profileService.setProfile(null);
@@ -26,5 +25,5 @@ export class LogoutComponent {
       },
     );
   }
-  
+
 }
