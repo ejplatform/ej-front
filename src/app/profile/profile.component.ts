@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash' 
 
@@ -12,7 +12,7 @@ import { NotificationService } from '../services/notification.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
   profile: Profile;
 
@@ -59,11 +59,9 @@ export class ProfileComponent implements OnInit {
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
-
-  }
-
-  ngOnInit() {
-    this.profile = this.initializeFields();
+    this.initializeFields(this.profile);
+    console.log('constructor', this.profile);
+    
   }
 
   save() {
@@ -79,7 +77,7 @@ export class ProfileComponent implements OnInit {
 
   cancel(){
     let profile  = <Profile>{};
-    profile = this.initializeFields(profile);
+    this.initializeFields(profile);
     this.profile = Object.assign(profile, this.profileService.getProfile());
 
   }
@@ -95,15 +93,14 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  initializeFields(profile?: Profile){
-    let localProfile = _.isNil(profile) ? this.profile : profile; 
-    if(_.isNil(localProfile.gender)){
-      localProfile.gender = '';
+  initializeFields(profile: Profile){
+    if(_.isNil(profile.gender)){
+      profile.gender = '';
     }
-    if(_.isNil(localProfile.race)){
-      localProfile.race = '';  
+    if(_.isNil(profile.race)){
+      profile.race = '';  
     }
-    return localProfile;
+    return profile;
   }
 
 }
