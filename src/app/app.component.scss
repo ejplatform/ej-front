@@ -73,7 +73,7 @@
             li{
                 @include media-breakpoint-down(xs) {
                     min-height: 75px;
-                    padding: 25px;
+                    padding: 20px;
                 }
                 &:before {
                     @include media-breakpoint-down(xs) {
@@ -85,6 +85,10 @@
                 &:before {
                     display: inline-block;
                     margin-right: 10px;
+                }
+
+                img{
+                    width: 25px;
                 }
             }
             .profile{
