@@ -27,10 +27,19 @@ h4{
     @extend .mx-4;
     @extend .mt-5;
     
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+    border: none;
+
+    &, .card-header, .card-footer {
+        background-color: white;
+    }
 }
+
 
 .card-header{
     padding-left: 0px;
+    padding-top: 20px;
+
     .card-header-left{
         float: left;
         @extend .ml-3;
@@ -61,13 +70,14 @@ h4{
 .card-cover{
     position: relative;
     background-color: rgba(208,2,27,0.66);
-    h5{
+
+    h5.card-title{
         color: white;
         position: absolute;
         top: 0px;
-        font-weight: bold;
+        padding: 0 20px;
+        font-weight: normal;
         text-align: center;
-
     }
 
     .card-cover-img{
