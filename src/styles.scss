@@ -17,8 +17,8 @@ body, html {
     font-family: 'Roboto';
 }
 @media screen and (min-width: 1400px){
-    .site-wrapper .container[_ngcontent-c6] {
-        max-width: 1400px;
+    .site-wrapper .container {
+        max-width: 1400px !important;
     }
 }   
 
