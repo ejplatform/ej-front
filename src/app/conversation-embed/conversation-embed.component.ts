@@ -16,7 +16,7 @@ import { ProfileService } from '../services/profile.service';
 export class ConversationEmbedComponent implements OnInit {
 
   @Input() profile: Profile;
-  private polis_url = '';
+  public polis_url = '';
   el: HTMLFrameElement;
 
   constructor(private conversationService: ConversationService, private route: ActivatedRoute, private profileService: ProfileService) {

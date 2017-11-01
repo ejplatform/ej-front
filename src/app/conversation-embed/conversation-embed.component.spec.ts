@@ -29,10 +29,9 @@ describe('ConversationsEmbedComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('display all comments in list', () => {
-    component.conversation = <Conversation>{title: 'comment 1', description: 'comment body 1'};
+  it('display component', () => {
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('card')).length).toBe(1);
+    expect(fixture.debugElement.queryAll(By.css('iframe')).length).toBe(1);
   });
 
 });
