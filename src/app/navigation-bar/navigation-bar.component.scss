@@ -99,6 +99,15 @@
             display: block;
             font-size: $font-size-lg;
         }
+
+        img{
+            width: 25px;
+            
+            @include media-breakpoint-up(md) {
+                width: 30px;
+                margin-bottom: 5px;
+            }
+        }
     }
     .submenu {
         margin-bottom: 20px;
