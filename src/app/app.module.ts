@@ -106,7 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    RouterModule.forRoot(rootRouterConfig),
+    RouterModule.forRoot(rootRouterConfig, { useHash: true }),
   ],
   providers: [GlobalState,
     AuthService,
