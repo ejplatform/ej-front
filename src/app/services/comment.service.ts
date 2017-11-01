@@ -20,4 +20,22 @@ export class CommentService {
       return this.http.post<Comment>(fullEndpointUrl, comment);
     }
 
+    agree(comment: Comment): Observable<Comment> {
+      let fullEndpointUrl = environment.apiUrl + '/api/comments/'  + comment.id + '/';
+      return this.http.post<Comment>(fullEndpointUrl, {});
+    }
+
+
+    disagree(comment: Comment): Observable<Comment> {
+      let fullEndpointUrl = environment.apiUrl + '/api/comments/'  + comment.id + '/';
+      return this.http.post<Comment>(fullEndpointUrl, {});
+    }
+
+
+    pass(comment: Comment): Observable<Comment> {
+      let fullEndpointUrl = environment.apiUrl + '/api/comments/'  + comment.id + '/';
+      return this.http.post<Comment>(fullEndpointUrl, {});
+    }
+
+
 }

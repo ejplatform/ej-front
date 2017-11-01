@@ -6,5 +6,6 @@ export class Comment {
     public body: string;
     public content: string;
     public conversation: number;
+    public id: number;
 
 }

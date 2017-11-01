@@ -20,21 +20,4 @@ export class ConversationService {
       return this.http.get<Conversation>(fullEndpointUrl);
     }
 
-    agree(conversation: Conversation): Observable<Conversation> {
-      let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + conversation.id + '/';
-      return this.http.post<Conversation>(fullEndpointUrl, {});
-    }
-
-
-    disagree(conversation: Conversation): Observable<Conversation> {
-      let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + conversation.id + '/';
-      return this.http.post<Conversation>(fullEndpointUrl, {});
-    }
-
-
-    pass(conversation: Conversation): Observable<Conversation> {
-      let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + conversation.id + '/';
-      return this.http.post<Conversation>(fullEndpointUrl, {});
-    }
-
 }
