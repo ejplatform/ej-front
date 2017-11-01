@@ -17,6 +17,12 @@ h2, h3{
     @extend .mx-4;
     @extend .mt-5;
     
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+    border: none;
+
+    &, .card-header, .card-footer {
+        background-color: white;
+    }
 }
 
 .card-header{
@@ -51,13 +57,15 @@ h2, h3{
 .card-cover{
     position: relative;
     background-color: rgba(208,2,27,0.66);
-    h5{
+
+    h5.card-title{
         color: white;
         position: absolute;
-        top: 0px;
-        font-weight: bold;
+        padding: 0 20px;
+        font-weight: normal;
         text-align: center;
-
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .card-cover-img{
@@ -106,7 +114,11 @@ h2, h3{
                 // height: 40px;
             }
         }
+
         progressbar{
+            display: flex;
+            align-items: center;
+            
             @extend .pl-3;
         }
     }

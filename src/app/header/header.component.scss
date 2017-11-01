@@ -18,9 +18,12 @@
         @extend .mr-5;
         .access{
             @extend .row;
-            font-size: x-small;
+            font-size: small;
             color: #F10000;
-
+            
+            @include media-breakpoint-down(md) {  
+                a { line-height: 2.3; }
+            }
         }
         .site-links{
             @extend .row;
