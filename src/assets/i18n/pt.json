@@ -56,6 +56,7 @@
     "header.registration": "Cadastre-se",
     "alerts.notifications": "Notificacoes",
     "alerts.all": "Ver Historico de Notificacoes",
-    "alerts.off": "nenhuma notificacao"
+    "alerts.off": "nenhuma notificacao",
+    "nudge.title": "Sera que voce pode comentar?"    
 }
   

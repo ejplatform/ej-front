@@ -5,33 +5,30 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 
-import { FooterComponent } from './footer.component';
+import { NudgeComponent } from './nudge.component';
 import * as helpers from "../../spec/helpers";
 
 
-describe('FooterComponent', () => {
 
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+describe('NudgeComponent', () => {
+
+  let component: NudgeComponent;
+  let fixture: ComponentFixture<NudgeComponent>;
   let mocks = helpers.getMocks();
   
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
+      declarations: [ NudgeComponent ],
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(NudgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('display component', () => {
-      expect(fixture.debugElement.queryAll(By.css('sponsors')).length).toBe(1);
-  });
-
 });

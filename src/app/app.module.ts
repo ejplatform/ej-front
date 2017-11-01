@@ -39,6 +39,7 @@ import { ConversationsComponent } from './conversations/conversations.component'
 import { ConversationComponent } from './conversation/conversation.component';
 import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LoginComponent } from './login/login.component';
+import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConversationComponent,
     ConversationEmbedComponent,
     LoginComponent,
+    NudgeComponent,
     RegistrationComponent,
     LogoutComponent,
     ImageUploadComponent,
@@ -119,7 +121,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
 
   ],
-  entryComponents: [LoginComponent, RegistrationComponent],
+  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 
 import { CommentsComponent } from './comments.component';
+import { Comment } from '../models/comment';
 import { CommentService } from '../services/comment.service';
 import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
@@ -30,9 +31,9 @@ describe('CommentsComponent', () => {
   });
 
   it('display all comments in list', () => {
-    component.comments = [{title: 'comment 1', body: 'comment body 1' }, {title: 'comment 2', body: 'comment body 2' }, {title: 'comment 3', body: 'comment body 3' }];
+    component.comments = [{content: 'teste', conversation: 1, title: 'comment 1', body: 'comment body 1' }, {content: 'teste', conversation: 1,title: 'comment 2', body: 'comment body 2' }];
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(3);
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(2);
   });
 
 });
