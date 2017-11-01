@@ -7,7 +7,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { GlobalState } from './global.state';
-import { Angular2TokenService } from 'angular2-token';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,10 +32,12 @@ import { EmbedComponent } from './embed/embed.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
+import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -66,10 +67,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmbedComponent,
     NavigationBarComponent,
     HeaderComponent,
+    FooterComponent,
     AlertsComponent,
     CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
+    ConversationEmbedComponent,
     LoginComponent,
     RegistrationComponent,
     LogoutComponent,
@@ -86,7 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgProgressModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FacebookModule.forRoot(),    
+    FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     // For load all bootstrap modules
     // Ng2BootstrapModule.forRoot(),
@@ -103,8 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     RouterModule.forRoot(rootRouterConfig),
   ],
-  providers: [GlobalState, 
-    Angular2TokenService, 
+  providers: [GlobalState,
     AuthService,
     SessionService,
     ProfileService,
@@ -112,10 +114,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     TwitterService,
     FacebookService,
     NotificationService,
-    { provide: LOCALE_ID, useValue: "pt-BR" },
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },    
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
-    
+
   ],
   entryComponents: [LoginComponent, RegistrationComponent],
   bootstrap: [AppComponent]

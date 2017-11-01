@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as _ from 'lodash'
 
@@ -21,12 +20,12 @@ export class RegistrationComponent {
   bsModalRef: BsModalRef;
   loggedIn = new EventEmitter();
 
-      
+
   @ViewChild('nameErrors') nameErrors;
   @ViewChild('emailErrors') emailErrors;
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
-      
+
   constructor(private authService: AuthService, private profileService: ProfileService, private notificationService: NotificationService,
     private socialFacebookService: SocialFacebookService, private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
@@ -40,7 +39,7 @@ export class RegistrationComponent {
       this.profileService.get().subscribe( profile => {
         profile.id = profile.pk;
         this.profile = profile;
-        this.profileService.setProfile(this.profile);        
+        this.profileService.setProfile(this.profile);
         this.bsModalRef.hide();
         this.loggedIn.emit();
         this.router.navigate(['conversations']);
@@ -58,7 +57,7 @@ export class RegistrationComponent {
   handleloginSuccess(){
     this.profileService.get().subscribe( profile => {
       profile.id = profile.pk;
-      this.profileService.setProfile(this.profile);        
+      this.profileService.setProfile(this.profile);
       this.bsModalRef.hide();
       this.loggedIn.emit();
       this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
