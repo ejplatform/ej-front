@@ -30,6 +30,18 @@ h4{
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
     border: none;
 
+    @include media-breakpoint-up(sm) {
+        max-width: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+        max-width: calc(50% - 50px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        max-width: calc(33.3% - 50px);
+    }
+
     &, .card-header, .card-footer {
         background-color: white;
     }
