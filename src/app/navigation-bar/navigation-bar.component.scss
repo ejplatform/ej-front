@@ -45,6 +45,12 @@
     font-weight: $font-weight-normal;
     margin: 80px 0px 0px;
     text-align: center;
+
+
+    img[src="/assets/images/icons/profile_icon.svg"]{
+        filter: invert(100%);
+    }
+
     .active{
         background-color: #00D345;
         &:before {
@@ -172,4 +178,3 @@
         text-align: center;
     }
 }
-
