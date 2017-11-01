@@ -25,9 +25,7 @@ export class HeaderComponent implements OnInit {
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, 
-    private router: Router, private twitterService: TwitterService,
-    
-    private authService: AuthService ) {
+    private router: Router, private twitterService: TwitterService, private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });

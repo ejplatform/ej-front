@@ -30,6 +30,8 @@ export const rootRouterConfig: Routes = [
   { path: 'inicio', component: EmbedComponent },
   { path: 'sobre-nos', component: EmbedComponent },
   { path: 'perguntas-frequentes', component: EmbedComponent },
+  { path: 'conversas', component: EmbedComponent },
+  { path: 'termos-de-uso', component: EmbedComponent },
 ];
 
 
