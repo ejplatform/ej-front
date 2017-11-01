@@ -74,10 +74,11 @@ h4{
     h5.card-title{
         color: white;
         position: absolute;
-        top: 0px;
         padding: 0 20px;
         font-weight: normal;
         text-align: center;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .card-cover-img{
@@ -122,7 +123,7 @@ h4{
         }
         .profile{
             img{
-                width: 50px;
+                width: 30px;
                 // height: 40px;
             }
         }
