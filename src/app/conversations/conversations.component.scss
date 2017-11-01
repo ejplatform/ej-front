@@ -108,8 +108,8 @@ h4{
     
     .card-footer-right{
         float: right;
-    
     }
+    
     .participation{
         @extend .pl-4;
         @extend .pt-5;
@@ -128,6 +128,9 @@ h4{
             }
         }
         progressbar{
+            display: flex;
+            align-items: center;
+
             @extend .pl-3;
         }
     }
