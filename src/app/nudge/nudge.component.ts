@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
 import { CommentService } from '../services/comment.service';
 import { Comment } from '../models/comment';
 import { Conversation } from '../models/conversation';
@@ -10,13 +12,14 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './nudge.component.html',
   styleUrls: ['./nudge.component.scss'],
   providers: [CommentService],
-  
+
 })
 export class NudgeComponent implements OnInit {
 
   @Input() conversation: Conversation;
   message: string
-  
+  bsModalRef: BsModalRef;
+
   constructor(private commentService: CommentService, private route: ActivatedRoute) {
   }
 
@@ -46,4 +49,3 @@ export class NudgeComponent implements OnInit {
   }
 
 }
-
