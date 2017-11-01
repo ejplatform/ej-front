@@ -7,12 +7,25 @@
 
 .site-header.unlogged{
     @extend .clearfix;
-    @extend .mt-5;
-    border-bottom: 1px solid #00AD4B;
     
+    max-width: 1140px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:after{
+        display: none !important;
+    }
+
     .site-logo{
         float: left;
         @extend .ml-5;
+
+        img[src="/assets/images/logo-unlogged.svg"]{
+            height: 120px;
+        }
     }
     .without-profile{
         @extend .mr-5;
