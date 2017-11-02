@@ -6,6 +6,7 @@ export class Profile {
     public pk: number;
     public token: string;
     public name: string;
+    public image: any;
     public password: string;
     public passwordConfirmation: string;
     public new_password1: string;

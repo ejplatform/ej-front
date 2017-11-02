@@ -77,6 +77,10 @@ export class ProfileComponent {
   }
 
   save() {
+    if(this.profile.picture_data){
+      this.saveImage();
+    }
+    
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(this.profile);
@@ -88,6 +92,21 @@ export class ProfileComponent {
       });
   }
 
+  saveImage(){
+    if(this.profile.picture_data){
+      this.profile.image = this.profile.picture_data.content
+    }
+        
+    this.profileService.saveImage(this.profile).subscribe( profile => {
+      this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
+      // this.profileService.setProfile(this.profile);
+      // this.router.navigate(['profile']);
+
+    }, error => {
+      // this.handleError(error);
+      console.log(error);
+    });
+  }
   cancel(){
     let profile  = <Profile>{};
     this.initializeFields(profile);
@@ -115,6 +134,20 @@ export class ProfileComponent {
       profile.race = '';  
     }
     return profile;
+  }
+
+  fileChange($event: any) {
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    
+    let fileList: FileList = event.target['files'];
+    if (fileList.length > 0) {
+      const reader = new FileReader();
+      let file: File = fileList[0];
+      reader.onload = (e: any) => {
+        this.profile.image = { name: file.name, content: e.target.result };
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   handleError(error: any){

@@ -39,6 +39,11 @@ export class ProfileService {
     return this.http.put<Profile>(fullEndpointUrl, profile);
   }
 
+  saveImage(profile: Profile): Observable<Profile> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image`;
+    return this.http.put<Profile>(fullEndpointUrl, {image: profile.image});
+  }
+  
   changePassword(profile: Profile): Observable<Profile> {
     profile.new_password1 = profile.password;
     profile.new_password2 = profile.passwordConfirmation;
