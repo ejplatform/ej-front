@@ -15,6 +15,25 @@
     justify-content: space-between;
     align-items: center;
 
+    @include media-breakpoint-down(sm) {  
+        flex-direction: column;
+        justify-items: center;
+
+        .site-logo, .access, .site-links{
+            margin: 0px !important;
+            padding-left: 0px !important;
+        }
+
+        .without-profile{
+            text-align: center;
+            margin: 10px 0 !important; 
+
+            ul li:first-child {
+                margin-left: 0px !important;
+            }
+        }
+    }        
+
     &:after{
         display: none !important;
     }
@@ -23,9 +42,20 @@
         float: left;
         @extend .ml-5;
 
-        img[src="/assets/images/logo-unlogged.svg"]{
-            height: 120px;
-        }
+        img{
+            @include media-breakpoint-down(sm) {  
+                height: 40px;
+            }
+            
+            &[src="/assets/images/logo-unlogged.svg"]{
+                height: 120px;
+
+                @include media-breakpoint-down(sm) {  
+                    height: 90px;
+                }
+            }
+        }      
+
     }
     .without-profile{
         @extend .mr-5;
