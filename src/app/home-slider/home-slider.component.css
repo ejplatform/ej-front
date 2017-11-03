@@ -157,7 +157,7 @@
         width: 60px;
         justify-content: space-between;
         padding: 0;
-        margin: 30px auto 0px auto;
+        margin: 0px auto 0px auto;
     }
 
     .home-slider--carousel_pagination li{
@@ -182,11 +182,14 @@
     }
 
     .number-intro {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 }
 
 @media screen and (max-width: 620px) {     
+    .home-slider--carousel_pagination{
+        margin: 30px auto 0px auto;
+    }
 
     .box-intro {
         padding: 35px 0;
