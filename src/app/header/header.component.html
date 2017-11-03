@@ -17,7 +17,7 @@
                 </a>
             </li>
         </ul>
-        
+
         <div id="notification-wrapper">
             <div class="notifications-panel">
                 <h2 class="notifications-title">Notificações</h2>
@@ -27,14 +27,14 @@
     </div>
     <div class="site-logo">
         <h1><a href="/"><img [src]="'/assets/images/logo' + ( !isLogged() ? '-unlogged' : '' ) + '.svg'" alt="{{ 'header.site' | translate }}"></a></h1>
-    </div> 
+    </div>
     <div *ngIf="!profile" class='without-profile'>
         <ul class='access'>
             <li><a (click)="openRegistration()">{{ 'header.registration' | translate }}</a></li>
             <li>
                 <a (click)="openLogin()">{{ 'header.login' | translate }}</a>
                 <i  class="fa fa-user"></i>
-            </li>            
+            </li>
         </ul>
         <ul class='site-links'>
             <!-- <li><a (click)="loginWithFacebook()"  >Logar com Facebook</a></li> -->
