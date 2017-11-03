@@ -12,12 +12,6 @@ export const rootRouterConfig: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'comments', component: CommentsComponent },
   { path: 'logout', component: LogoutComponent },
-  // {
-  //   path: 'conversations', component: ConversationsComponent,
-  //   children: [
-  //     { path: ':id', component: ConversationComponent },
-  //   ],
-  // },
   {
     path: 'conversations',
     children: [
@@ -32,22 +26,3 @@ export const rootRouterConfig: Routes = [
   { path: 'conversas', component: EmbedComponent },
   { path: 'termos-de-uso', component: EmbedComponent },
 ];
-
-
-// children: [
-//   {
-//     path: '',
-//     component: LayoutComponent,
-//     canActivate: [Angular2TokenService],
-//     children: [
-//       {
-//         path: '',
-//         component: ProposalsComponent
-//       },
-//       {
-//         path: 'proposals',
-//         component: ProposalsComponent
-//       },
-//     ]
-// },
-// ],
