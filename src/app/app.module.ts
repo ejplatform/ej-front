@@ -37,7 +37,6 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
-import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LoginComponent } from './login/login.component';
 import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -52,6 +51,7 @@ import { TwitterService } from './services/twitter.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
+import { HomeSliderComponent } from './home-slider/home-slider.component';
 
 import { FacebookModule } from 'ngx-facebook';
 import { FacebookService } from 'ngx-facebook';
@@ -73,7 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
-    ConversationEmbedComponent,
+    HomeSliderComponent,
     LoginComponent,
     NudgeComponent,
     RegistrationComponent,

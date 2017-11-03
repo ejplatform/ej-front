@@ -1,1 +1,4 @@
-<iframe (load)="checkHeight($event)" [src]="url | safe" height="3000" frameborder="0" scrolling="no"></iframe>
+<app-home-slider></app-home-slider>
+<br><br>
+<iframe [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
+<app-conversations></app-conversations>

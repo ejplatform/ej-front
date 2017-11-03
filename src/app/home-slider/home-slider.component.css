@@ -1,0 +1,243 @@
+.box-intro {
+    background: #239C47;
+    padding: 30px 0;
+    position: relative;
+    font-weight: 100;
+}
+
+.txt-intro {
+    letter-spacing: -0.5px;
+    font-size: 30px;
+    line-height: 30px;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: center;
+    margin: auto auto 25px auto;
+    max-width: 900px;
+    text-transform: uppercase;
+}
+
+.txt-intro p {
+    line-height: 40px;
+}
+
+.txt-intro strong {
+    font-weight: 700px;
+}
+
+.number-intro {
+    float: left;
+    margin: 30px 20px 50px 0;
+}
+
+.number-intro a:hover,
+.number-intro a:focus {
+    text-decoration: none;
+}
+
+.number-intro span {
+    display: block;
+    text-align: center;
+    margin: -8px auto auto auto;
+    border-radius: 90%;
+    color: #fff;
+    position: relative;
+    z-index: 9;
+}
+
+.number-intro span i {
+    color: #E74C3C;
+    font-size: 40px;
+    margin-top: 5px;
+}
+
+.number-intro span {
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding-top: 21px;
+    position: relative;
+}
+
+.number-intro span span {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    padding-top: 2px;
+    top: 0;
+    background: #FEC013;
+    border: none;
+    right: 0;
+    margin: -1px -1px 0 0;
+    display: none;
+}
+
+.number-intro span span i {
+    font-size: 14px;
+    color: #fff;
+}
+
+.info-intro a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.info-intro h2 {
+    margin-bottom: 8px;
+    font-size: 23px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.info-intro p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 21px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+
+.info-intro p.btn-home-intro {
+    position: relative;
+    top: 25px;
+    opacity: 0.99 !important;
+    font-size: 13px !important;
+    font-weight: 300;
+}
+
+.info-intro p.btn-home-intro a {
+    color: #fff;
+    background: #E74C3C;
+    border-radius: 20px;
+    padding: 4px 12px;
+}
+
+.home-slider--carousel_pagination{
+    display: none;
+}    
+
+@media screen and (max-width: 1024px) {
+    .home-slider--carousel{
+        overflow:hidden;
+        width:100%;
+    }
+
+    .home-slider--carousel_slides{
+        width: 300vw;
+        max-width: 300vw;
+        flex-wrap: nowrap;
+        transition: transform .6s;
+    }
+
+    .home-slider--carousel_slides.active-1{
+        transform: translateX(0vw);
+    }
+
+    .home-slider--carousel_slides.active-2{
+        transform: translateX(-100vw);
+    }
+
+    .home-slider--carousel_slides.active-3{
+        transform: translateX(-200vw);
+    }
+
+    .home-slider--carousel_slide{
+        float: left;
+        flex: 1;
+        min-width: 100vw;
+    }
+
+    .home-slider--carousel_pagination{
+        list-style-type: none;
+        display: flex;
+        width: 60px;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0px auto 0px auto;
+    }
+
+    .home-slider--carousel_pagination li{
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.5;
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+    }
+
+    .home-slider--carousel_pagination li.active{
+        opacity: 1;
+    }   
+
+    .txt-intro {
+        max-width: 100%;
+    }
+
+    .txt-intro * {
+        text-align: left;
+    }
+
+    .number-intro {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 620px) {     
+    .home-slider--carousel_pagination{
+        margin: 30px auto 0px auto;
+    }
+
+    .box-intro {
+        padding: 35px 0;
+    }
+    .txt-intro p {
+        font-size: 32px;
+        line-height: 35px;
+        margin: 10px 0 20px 0;
+    }
+    .number-intro {
+        float: left;
+        margin: 10px 30px 70px 0;
+    }
+    .number-intro span {
+        display: block;
+        text-align: center;
+        margin: -8px auto auto auto;
+        border-radius: 90%;
+    }
+    .number-intro span i {
+        font-size: 28px;
+        margin-top: 7px;
+        line-height: 10px;
+    }
+    .number-intro span {
+        width: 60px;
+        height: 60px;
+        font-size: 12px;
+        padding-top: 20px;
+    }
+    .number-intro span span {
+        width: 21px;
+        height: 21px;
+        font-size: 14px;
+        padding-top: 2px;
+        margin: 3px -6px 0 0;
+    }
+    .info-intro h2 {
+        margin-bottom: 5px;
+        font-size: 20px;
+        margin-top: 0;
+    }
+    .info-intro p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .info-intro p.btn-home-intro {
+        margin-bottom: 24px;
+    }
+}
