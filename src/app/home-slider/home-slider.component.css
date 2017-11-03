@@ -82,6 +82,7 @@
 .info-intro a {
     color: #fff;
     text-decoration: none;
+    font-weight: 300;
 }
 
 .info-intro h2 {
@@ -119,22 +120,7 @@
     display: none;
 }    
 
-@media screen and (max-width: 1000px) {
-    .txt-intro {
-        max-width: 100%;
-    }
-
-    .txt-intro * {
-        text-align: left;
-    }
-
-    .number-intro {
-        margin-bottom: 40px;
-    }
-}
-
-@media screen and (max-width: 620px) {
-
+@media screen and (max-width: 1024px) {
     .home-slider--carousel{
         overflow:hidden;
         width:100%;
@@ -185,10 +171,25 @@
 
     .home-slider--carousel_pagination li.active{
         opacity: 1;
-    }        
+    }   
+
+    .txt-intro {
+        max-width: 100%;
+    }
+
+    .txt-intro * {
+        text-align: left;
+    }
+
+    .number-intro {
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 620px) {     
 
     .box-intro {
-        padding: 35px 0 50px 0;
+        padding: 35px 0;
     }
     .txt-intro p {
         font-size: 32px;
@@ -197,7 +198,7 @@
     }
     .number-intro {
         float: left;
-        margin: 10px 30px 50px 0;
+        margin: 10px 30px 70px 0;
     }
     .number-intro span {
         display: block;
