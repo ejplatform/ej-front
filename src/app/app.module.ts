@@ -37,7 +37,6 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
-import { ConversationEmbedComponent } from './conversation-embed/conversation-embed.component';
 import { LoginComponent } from './login/login.component';
 import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -74,7 +73,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
-    ConversationEmbedComponent,
     HomeSliderComponent,
     LoginComponent,
     NudgeComponent,
