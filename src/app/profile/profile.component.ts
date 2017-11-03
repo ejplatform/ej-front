@@ -77,6 +77,9 @@ export class ProfileComponent {
   }
 
   save() {
+    this.profile.image = this.profile.picture_data;
+    // this.profile.image = this.profile.picture_data.content;
+    console.log(this.profile);
     if(this.profile.picture_data){
       this.saveImage();
     }
@@ -93,9 +96,9 @@ export class ProfileComponent {
   }
 
   saveImage(){
-    if(this.profile.picture_data){
-      this.profile.image = this.profile.picture_data.content
-    }
+    // if(this.profile.picture_data){
+    //   this.profile.image = this.profile.picture_data
+    // }
         
     this.profileService.saveImage(this.profile).subscribe( profile => {
       this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });

@@ -12,9 +12,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     let authRequest = request;
     const token = this.session.getToken();
     if(token){
-      authRequest = request.clone({ setHeaders: { 
-        Authorization: 'Token ' + token, 
-      }});
+      authRequest = request.clone({headers: request.headers.set('Authorization', 'Token ' + token)});
     }   
 
     return next.handle(authRequest);

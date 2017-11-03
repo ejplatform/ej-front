@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import * as _ from 'lodash'
 
@@ -40,8 +40,20 @@ export class ProfileService {
   }
 
   saveImage(profile: Profile): Observable<Profile> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image`;
-    return this.http.put<Profile>(fullEndpointUrl, {image: profile.image});
+    console.log('saveImage', profile);
+
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
+    headers.set('Accept', 'application/json');
+    const formData = new FormData();
+
+    formData.append('image', profile.image);
+    
+    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image/`;
+
+    return this.http.post<Profile>(fullEndpointUrl, formData, {headers: headers});
+
+        // return this.http.post<Profile>(fullEndpointUrl, {image: profile.image}, {headers: headers});
   }
   
   changePassword(profile: Profile): Observable<Profile> {
