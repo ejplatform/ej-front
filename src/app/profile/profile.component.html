@@ -2,7 +2,7 @@
 
     <div class="profile-form" >
       <div class="profile-picture-column">
-        <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.picture" [(imageData)]="profile.picture_data"></image-upload>
+        <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.image" (onChange)="saveImage($event)" [(imageData)]="profile.imageData"></image-upload>
         <p>
           {{'profile-change-picture-detail' | translate}}
         </p>

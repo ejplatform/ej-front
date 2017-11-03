@@ -26,6 +26,8 @@
     "profile.age": "Idade",
     "profile.save.success.title": "",
     "profile.save.success.message": "Perfil salvo com sucesso",
+    "profile.save.image.success.title": "",
+    "profile.save.image.success.message": "Image do perfil salva com sucesso",
     "profile.password.success.title": "",
     "profile.password.success.message": "Senha atualizada com sucesso",
     "conversations.topic":"Conversas",
