@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Router } from '@angular/router';
-import * as _ from 'lodash' 
+import * as _ from 'lodash'
 
 
 import { ProfileService } from '../services/profile.service';
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   bsModalRef: BsModalRef;
   @Input() profile: Profile;
 
-  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService, 
+  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService,
     private router: Router, private twitterService: TwitterService, private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
@@ -52,11 +52,12 @@ export class HeaderComponent implements OnInit {
   openLogin() {
     this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-lg' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
+      window.location.reload();
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
   }
-  
+
   loginWithTwitter(){
     console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     this.twitterService.requestToken().subscribe((resp) => {
@@ -70,9 +71,20 @@ export class HeaderComponent implements OnInit {
   openRegistration() {
     this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
+      window.location.reload();
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
   }
 
+  @HostListener('window:message', ['$event'])
+  getPolisMessage(event) {
+    if (event.data === 'askForLogin') {
+      this.openLogin();
+      // FIXME refactor this like there is no tomorrow!!!
+      this.bsModalRef.content.loggedIn.subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
 }

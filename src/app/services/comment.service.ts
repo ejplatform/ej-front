@@ -15,8 +15,13 @@ export class CommentService {
       return this.http.get<Comment[]>(fullEndpointUrl);
     }
 
+    getByPolisId(polisId): Observable<Comment[]> {
+      let fullEndpointUrl = `${environment.apiUrl}/api/comments/?polis_id=${polisId}`;
+      return this.http.get<Comment[]>(fullEndpointUrl);
+    }
+
     create(comment: Comment): Observable<Comment> {
-      let fullEndpointUrl = `${environment.apiUrl}/api/comments`;
+      let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
       return this.http.post<Comment>(fullEndpointUrl, comment);
     }
 }
