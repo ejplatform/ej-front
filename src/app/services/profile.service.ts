@@ -35,26 +35,23 @@ export class ProfileService {
 
 
   save(profile: Profile): Observable<Profile> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/`;
-    return this.http.put<Profile>(fullEndpointUrl, profile);
+    let localProfile = new Profile();
+    localProfile = Object.assign(localProfile, profile);
+    localProfile.image = undefined;
+
+    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${localProfile.id}/`;
+    return this.http.put<Profile>(fullEndpointUrl, localProfile);
   }
 
   saveImage(profile: Profile): Observable<Profile> {
-    console.log('saveImage', profile);
-
-    let headers = new HttpHeaders();
-    headers.set('Content-Type', 'multipart/form-data');
-    headers.set('Accept', 'application/json');
-    const formData = new FormData();
-
-    formData.append('image', profile.image);
+    let formData = new FormData();
+    formData.append('image', profile.imageFile);
     
     let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image/`;
 
-    return this.http.post<Profile>(fullEndpointUrl, formData, {headers: headers});
-
-        // return this.http.post<Profile>(fullEndpointUrl, {image: profile.image}, {headers: headers});
+    return this.http.post<Profile>(fullEndpointUrl, formData);
   }
+
   
   changePassword(profile: Profile): Observable<Profile> {
     profile.new_password1 = profile.password;
@@ -64,6 +61,7 @@ export class ProfileService {
   }
 
   setProfile(profile:Profile) {
+    console.log('wwwwwwwww', profile);
     this.profile = profile;
     this.sessionService.setProfile(profile);
     this.profileChangeEvent.emit(profile);

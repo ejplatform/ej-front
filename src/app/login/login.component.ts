@@ -60,7 +60,6 @@ export class LoginComponent {
       this.bsModalRef.hide();
       this.loggedIn.emit();
       this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
-      // this.router.navigate(['conversations']);
     }, error => {
       this.handleError(error);
     });

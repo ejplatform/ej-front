@@ -77,16 +77,10 @@ export class ProfileComponent {
   }
 
   save() {
-    this.profile.image = this.profile.picture_data;
-    // this.profile.image = this.profile.picture_data.content;
-    console.log(this.profile);
-    if(this.profile.picture_data){
-      this.saveImage();
-    }
-    
+
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
-        this.profileService.setProfile(this.profile);
+        this.profileService.setProfile(profile);
         this.router.navigate(['profile']);
 
       }, error => {
@@ -95,18 +89,14 @@ export class ProfileComponent {
       });
   }
 
-  saveImage(){
-    // if(this.profile.picture_data){
-    //   this.profile.image = this.profile.picture_data
-    // }
-        
+  saveImage(file){
+    this.profile.imageFile = file;
     this.profileService.saveImage(this.profile).subscribe( profile => {
-      this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
-      // this.profileService.setProfile(this.profile);
-      // this.router.navigate(['profile']);
+      this.notificationService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
+      this.profileService.setProfile(this.profile);
+      this.router.navigate(['profile']);
 
     }, error => {
-      // this.handleError(error);
       console.log(error);
     });
   }
@@ -137,20 +127,6 @@ export class ProfileComponent {
       profile.race = '';  
     }
     return profile;
-  }
-
-  fileChange($event: any) {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    
-    let fileList: FileList = event.target['files'];
-    if (fileList.length > 0) {
-      const reader = new FileReader();
-      let file: File = fileList[0];
-      reader.onload = (e: any) => {
-        this.profile.image = { name: file.name, content: e.target.result };
-      };
-      reader.readAsDataURL(file);
-    }
   }
 
   handleError(error: any){
