@@ -52,6 +52,7 @@ import { TwitterService } from './services/twitter.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
+import { HomeSliderComponent } from './home-slider/home-slider.component';
 
 import { FacebookModule } from 'ngx-facebook';
 import { FacebookService } from 'ngx-facebook';
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConversationsComponent,
     ConversationComponent,
     ConversationEmbedComponent,
+    HomeSliderComponent,
     LoginComponent,
     NudgeComponent,
     RegistrationComponent,
