@@ -1,45 +1,52 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
-h1{
-    @extend .m-5;
-    @extend .p-4;
-    font-size: x-large;
-    color: #4A4A4A;
-    //FIXME put a bootstrap variable
-    font-weight: 500;
+h2,h3{
+    font-weight: 300;
 }
 
-h2, h3{
-    text-align: center;
-    font-weight: bold;
-    color: #D30000;
-}
 h2{
-    font-size: 1.75rem;
+    font-size: 32PX;
 }
 h3{
-    font-size: 1.0rem;
+    font-size: 24px;
 }
 h4{
     font-size: 0.8rem;
 }
 .card{
-    @extend .mx-4;
     @extend .mt-5;
     
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
     border: none;
+    position: relative;
+
+    &.new{
+        box-shadow: 0 0 0 5px #4A90E2, 0 0 2px 7px rgba(0,0,0,0.12), 0 2px 2px 6px rgba(0,0,0,0.24);
+
+        &:after{
+            content: '#Novidade';
+            background-image: url('/assets/images/bg-card-new.png');
+            right: 16px;
+            top: -14px;
+            z-index: 100;
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 3px 30px;
+        }
+    }
 
     @include media-breakpoint-up(sm) {
         max-width: 100%;
     }
 
     @include media-breakpoint-up(md) {
-        max-width: calc(50% - 50px);
+        max-width: calc(50% - 30px);
     }
 
     @include media-breakpoint-up(lg) {
-        max-width: calc(33.3% - 50px);
+        max-width: calc(33.3% - 30px);
     }
 
     &, .card-header, .card-footer {
@@ -51,20 +58,22 @@ h4{
 .card-header{
     padding-left: 0px;
     padding-top: 20px;
+    font-size: 14px;
 
     .card-header-left{
         float: left;
         @extend .ml-3;
+
         .category{
             display: block;
             font-weight: bold;
             margin: 0px;
             padding: 0px;
-    
         }
         .date{
             margin: 0px;
             padding: 0px;
+            color: rgba(0,0,0,0.54);
         }
     }
     
@@ -73,11 +82,6 @@ h4{
     
     }
 }
-.card-text{
-    font-size: small;
-    @extend .m-4;    
-}
-
 
 .card-cover{
     position: relative;
@@ -86,11 +90,13 @@ h4{
     h5.card-title{
         color: white;
         position: absolute;
-        padding: 0 20px;
         font-weight: normal;
         text-align: center;
-        top: 50%;
-        transform: translateY(-50%);
+        border: 0px;
+        transform: translateY(-100%);
+        padding: 20px;
+        background-color: rgba(21,13,1,0.4);
+        min-height: 60%;
     }
 
     .card-cover-img{
@@ -107,38 +113,36 @@ h4{
     }
 }
 
-.card-footer{
-    padding-left: 0px;
-    .amount{
-        font-weight: bold;
-        @extend .mx-1;
-        
+.card-block{
+    padding: 10px 20px 20px 20px;
+    color: rgba(0,0,0,0.54);
+    font-size: 14px;
+
+    .card-text{
+        color: rgba(0,0,0,0.87);
     }
-    .card-footer-left{
-        float: left;
+
+    .card-numbers{
+        display: flex;
+        justify-content: space-between;
     }
-    
-    .card-footer-right{
-        float: right;
-    }
-    
+
     .participation{
-        @extend .pl-4;
-        @extend .pt-5;
-        
+        margin-top: 25px;
         clear: both;
+
         .content{
             display: inline-block;
+
             .teste{
                 display: inline-block;
             }
         }
-        .profile{
-            img{
-                width: 30px;
-                // height: 40px;
-            }
+
+        .profile img{
+            width: 30px;
         }
+        
         progressbar{
             display: flex;
             align-items: center;
