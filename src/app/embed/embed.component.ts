@@ -49,7 +49,7 @@ export class EmbedComponent implements OnInit {
     // this.profile = this.profileService.getProfile();
     if (this.conversation === undefined) {
       let path = this.route.snapshot.url.map(p => p.path).join("/");
-      if(path == 'inicio'){
+      if(path == 'inicio' || path == ''){
         path = '';
         this.isHome = true;
       }
