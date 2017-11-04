@@ -23,6 +23,7 @@ export class EmbedComponent implements OnInit {
   @Input() conversation: Conversation;
   public polis_url = 'https://brasilqueopovoquer.hacklab.com.br/';
   iframeHeight: number = 1500;
+  isHome: boolean = false;
 
   constructor(private conversationService: ConversationService,
               private route: ActivatedRoute,
@@ -46,10 +47,11 @@ export class EmbedComponent implements OnInit {
 
   ngOnInit() {
     // this.profile = this.profileService.getProfile();
-    if (this.conversation !== undefined) {
+    if (this.conversation === undefined) {
       let path = this.route.snapshot.url.map(p => p.path).join("/");
       if(path == 'inicio'){
         path = '';
+        this.isHome = true;
       }
       this.polis_url = this.polis_url + path;
     }
