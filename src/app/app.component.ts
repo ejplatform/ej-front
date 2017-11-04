@@ -39,4 +39,8 @@ export class AppComponent implements OnInit  {
     return _.isObject(this.profile);
   }
 
+  onActivate(e) {
+    window.scrollTo(0, 0);
+  }
+
 }
