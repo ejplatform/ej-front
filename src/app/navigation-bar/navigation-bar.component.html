@@ -1,14 +1,14 @@
 <nav class="main-nav">
 
-    <ul class="user-nav">
+    <ul class="user-nav hidden-lg-down">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/profile" >
+            <a routerLink="/profile" (click)="toggleMenu()" >
                 <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}" width="25">
                 {{'navigation-bar.item.profile' | translate}}
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/conversations']">
+            <a [routerLink]="['/conversations']"  (click)="toggleMenu()">
                 <!-- <span class="notification-bubble" >1</span> -->
                 <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
                 <span class="">{{'navigation-bar.item.conversations' | translate}}</span>
