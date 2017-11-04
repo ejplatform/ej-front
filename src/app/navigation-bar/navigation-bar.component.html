@@ -3,7 +3,8 @@
     <ul class="user-nav hidden-lg-down">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
             <a routerLink="/profile" (click)="toggleMenu()" >
-                <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}" width="25">
+                <!-- <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}" width="25"> -->
+                <img src="/assets/images/icons/profile_icon.svg" alt="{{'navigation-bar.item.profile' | translate}}" width="25">
                 {{'navigation-bar.item.profile' | translate}}
             </a>
         </li>
