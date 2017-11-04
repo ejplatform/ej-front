@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openLogin() {
-    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-lg' });
+    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-md' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
       window.location.reload();
       this.profile = this.profileService.getProfile();

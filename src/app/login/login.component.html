@@ -30,8 +30,13 @@
       </div>
      
     </div>
-              
-    <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.sign_in'}}</button>   
+    <div class='button-action'>
+      <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.sign_in'}}</button>   
+    </div>
   </form>
-
+  <div class='registration'>
+    <a id="registration-button" (click)="openRegistration()">
+       {{'login.registration' | translate }}
+    </a>
+  </div>
 </div>

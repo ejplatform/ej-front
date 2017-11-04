@@ -49,7 +49,9 @@
         </div>
       </div>
               
-    <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'registration.sign_up'}}</button>   
+    <div class='button-action'>
+        <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'registration.sign_up'}}</button>   
+    </div>
   </form>
 
 </div>

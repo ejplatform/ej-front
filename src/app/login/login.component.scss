@@ -6,6 +6,40 @@
     
     #facebook-button{
         @extend .btn;
+        // @extend .btn-primary;
+        @extend .btn-block;
+        text-align: left;
+        background-color: #3b5998;
+        border-color: #3b5998;
+        i{
+            border-right: 1px solid rgba(0,0,0,0.2);
+            line-height: 8px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        
+    }
+
+}
+.button-action{
+    @extend .d-flex;
+    @extend .justify-content-end;
+    button{
+        @extend .btn;
+        @extend .btn-primary;
+        border-right: 1px solid rgba(0,0,0,0.2);
+        line-height: 8px;
+        padding: 10px;
+        margin-right: 10px;
+    }
+}
+.registration{
+    @extend .py-3;
+    color: white;
+    text-align: center;
+    
+    #registration-button{
+        @extend .btn;
         @extend .btn-primary;
         @extend .btn-block;
         text-align: left;
