@@ -17,11 +17,25 @@ body, html {
     font-family: 'Roboto';
 }
 
-.modal .modal-lg  {
-    @extend .row;
-    @extend .col-sm-12;
-    @extend .justify-content-md-center;
-    .modal-content{
-        @extend .col-sm-6;
+.modal {    
+    .modal-lg  {
+        @extend .row;
+        @extend .col-sm-12;
+        @extend .justify-content-md-center;
+        .modal-content{
+            @extend .col-sm-6;
+        }
     }
-  }
+
+    .modal-md  {
+        @extend .row;
+        @extend .col-sm-12;
+        @extend .justify-content-md-center;
+        .modal-content{
+            @extend .col-sm-4;
+        }
+    }
+    
+}
+
+ 

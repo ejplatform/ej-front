@@ -36,13 +36,17 @@ export class RegistrationComponent {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
     this.authService.signUp(this.profile).subscribe((response) => {
-      this.profileService.get().subscribe( profile => {
-        profile.id = profile.pk;
-        this.profile = profile;
-        this.profileService.setProfile(this.profile);
-        this.bsModalRef.hide();
-        this.loggedIn.emit();
-        this.router.navigate(['conversations']);
+      this.profileService.me().subscribe( profile => {
+        // console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', profile);
+
+        // this.profile = profile;
+        // console.log('ggggggggggggggggggggggggggggg', this.profile);
+        // this.profileService.setProfile(this.profile);
+        // this.loggedIn.emit();
+        // this.bsModalRef.hide();
+        // this.router.navigate(['conversations']);
+        this.handleloginSuccess();
+        
       });
     }, error => this.handleError(error));
   }
@@ -55,13 +59,12 @@ export class RegistrationComponent {
   }
 
   handleloginSuccess(){
-    this.profileService.get().subscribe( profile => {
-      profile.id = profile.pk;
+    this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(this.profile);
       this.bsModalRef.hide();
       this.loggedIn.emit();
-      this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
-      this.router.navigate(['conversations']);
+      this.notificationService.success({ title: "registration.success.title", message: "registration.success.message" });
+      // this.router.navigate(['conversations']);
     });
   }
 

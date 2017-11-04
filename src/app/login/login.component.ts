@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { RegistrationComponent  } from '../registration/registration.component';
+import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
 
 
 @Component({
@@ -51,12 +52,19 @@ export class LoginComponent {
   }
 
   openRegistration() {
+    this.bsModalRef.hide();
     this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
     this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
-      window.location.reload();
+      console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
       this.profile = this.profileService.getProfile();
+      this.loggedIn.emit();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
+  }
+
+  openRecoverPassword() {
+    this.bsModalRef.hide();
+    this.bsRegistrationModalRef = this.modalService.show(RecoverPasswordComponent, { class: 'modal-lg' });
   }
 
   handleError(error: any){

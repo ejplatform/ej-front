@@ -60,8 +60,8 @@ export class ProfileService {
     return this.http.post<Profile>(fullEndpointUrl, profile);
   }
 
-  setProfile(profile:Profile) {
-    console.log('wwwwwwwww', profile);
+  setProfile(profile: Profile) {
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', profile);
     this.profile = profile;
     this.sessionService.setProfile(profile);
     this.profileChangeEvent.emit(profile);
