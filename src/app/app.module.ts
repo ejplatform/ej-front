@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
+import { NgPipesModule } from 'ngx-pipes';
 
 // Bootstrap
 
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
+    NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,

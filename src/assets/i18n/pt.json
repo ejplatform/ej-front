@@ -54,6 +54,8 @@
     "registration.email.pattern": "Digite um email válido",
     "image-send": "Enviar Foto",
     "header.login": "Login",
+    "header.menu": "Menu",
+    "header.hide": "Ocultar",
     "header.site": "Empurrando Juntos",
     "header.registration": "Cadastre-se",
     "alerts.notifications": "Notificações",
