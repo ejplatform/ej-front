@@ -36,6 +36,19 @@ export class AuthService {
 
   }
 
+  reset(profile: Profile) {
+    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/reset/`;
+    return this.http.post(fullEndpointUrl, profile)
+    // .map(
+    //     data => {
+    //       console.log('sssssssssssssssss', data);
+    //     },
+    //     resp => {
+    //       console.log('sssssssssssssssss', resp);
+    //   );
+
+  }
+
   signInFacebook(accessToken: string) {
     console.log('AuthService: signInFacebook', accessToken);
     let fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
