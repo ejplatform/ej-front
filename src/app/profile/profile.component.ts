@@ -77,9 +77,10 @@ export class ProfileComponent {
   }
 
   save() {
+
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
-        this.profileService.setProfile(this.profile);
+        this.profileService.setProfile(profile);
         this.router.navigate(['profile']);
 
       }, error => {
@@ -88,6 +89,17 @@ export class ProfileComponent {
       });
   }
 
+  saveImage(file){
+    this.profile.imageFile = file;
+    this.profileService.saveImage(this.profile).subscribe( profile => {
+      this.notificationService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
+      this.profileService.setProfile(this.profile);
+      this.router.navigate(['profile']);
+
+    }, error => {
+      console.log(error);
+    });
+  }
   cancel(){
     let profile  = <Profile>{};
     this.initializeFields(profile);

@@ -1,4 +1,3 @@
-<app-home-slider></app-home-slider>
-<br><br>
+<app-home-slider *ngIf="isHome" ></app-home-slider>
 <iframe [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
 <app-conversations></app-conversations>
