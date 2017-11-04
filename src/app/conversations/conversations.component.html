@@ -1,6 +1,8 @@
-<h1 class="text-uppercase">{{'conversations.topic' | translate}}</h1>
-<h2>{{'conversations.title' | translate}}</h2>
-<h3>{{'conversations.subtitle' | translate}}</h3>
+<div class="page-title">
+  <div class="container">
+    <h1 >{{'conversations.topic' | translate}}</h1>
+  </div>
+</div>
 
 <div class="container">
   <div *ngFor="let local_conversations of groupConversations()"class="card-deck">
