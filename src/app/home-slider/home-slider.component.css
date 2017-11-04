@@ -192,16 +192,21 @@
     }
 
     .box-intro {
-        padding: 35px 0;
+        padding: 15px 0;
     }
+
+    .txt-intro{
+        margin: auto auto 0px auto;
+    }
+
     .txt-intro p {
-        font-size: 32px;
-        line-height: 35px;
+        font-size: 30px;
+        line-height: 32px;
         margin: 10px 0 20px 0;
     }
     .number-intro {
         float: left;
-        margin: 10px 30px 70px 0;
+        margin: 10px 20px 70px 0;
     }
     .number-intro span {
         display: block;
@@ -239,5 +244,9 @@
 
     .info-intro p.btn-home-intro {
         margin-bottom: 24px;
+    }
+
+    .home-slider--carousel_pagination{
+        margin: 20px auto 0px auto;
     }
 }
