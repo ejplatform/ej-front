@@ -1,10 +1,4 @@
-// Main navigation styles
-// --------------------------------------------------
 @import '../../../node_modules/bootstrap/scss/bootstrap';
-// @import "~boootstrap/scss/bootstrap";
-
-// $fa-font-path: "../node_modules/font-awesome/fonts";
-// @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../mixins';
 @import '../../variables';
 
@@ -24,10 +18,7 @@
         @extend .list-unstyled;
         color: #fff;
     }
-    // Maybe, this is the right way to do it in Bootstrap 4?
-    // @include media-breakpoint-up(sm) {
-    //     left: 0;
-    // }
+
     @include media-breakpoint-up(xs) {
         left: 0;
     }
@@ -41,11 +32,17 @@
 }
 
 .user-nav {
+    @extend .pb-5;
+    
     font-size: $font-size-sm;
     font-weight: $font-weight-normal;
     margin: 80px 0px 0px;
     text-align: center;
 
+    &.menu{
+        @extend .pt-2;
+        border-top: 1px solid;
+    }
 
     img[src="/assets/images/icons/profile_icon.svg"]{
         filter: invert(100%);
@@ -83,11 +80,9 @@
 
     li {
         position: relative;
-        // margin-bottom: 15px;
         padding: 25px 20px 25px 15px;
 
         @media screen and (min-height: 768px) {
-            // margin-bottom: 20px;
         }
         
         &:last-child {
