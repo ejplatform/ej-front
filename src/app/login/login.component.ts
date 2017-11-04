@@ -22,6 +22,7 @@ export class LoginComponent {
 
   profile: Profile;
   bsModalRef: BsModalRef;
+  bsRegistrationModalRef: BsModalRef;
   loggedIn = new EventEmitter();
 
   @ViewChild('passwordErrors') passwordErrors;
@@ -50,8 +51,8 @@ export class LoginComponent {
   }
 
   openRegistration() {
-    this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
-    this.bsModalRef.content.loggedIn.subscribe(() => {
+    this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
+    this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
       window.location.reload();
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
