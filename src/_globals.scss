@@ -13,5 +13,17 @@
         line-height: 33px !important;
         text-transform: uppercase;
         margin-bottom: 0 !important;
+
+        a {
+            color: white !important;
+
+            &:hover .icon { text-decoration: none; }
+        }
+
+        .icon{
+            font-size: 51px;
+            line-height: 0px;
+            vertical-align: -4px;
+        }
     }
 }
