@@ -38,6 +38,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { LoginComponent } from './login/login.component';
+import { SliderModalComponent } from './home-slider/slider-modal/slider-modal.component';
 import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -75,6 +76,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConversationComponent,
     HomeSliderComponent,
     LoginComponent,
+    SliderModalComponent,
     NudgeComponent,
     RegistrationComponent,
     LogoutComponent,
@@ -121,7 +123,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
 
   ],
-  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent],
+  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent, SliderModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
