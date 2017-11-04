@@ -133,7 +133,6 @@
                   id="password" name="password" placeholder="{{'profile.password.new' | translate }}" 
                   [(ngModel)]="profile.password" required #password='ngModel'>
                   <validation-message #passwordErrors [field]="password" [prefix]="'profile.password'"></validation-message>
-                  
               </div>
       
               <div class="form-group passwordConfirmation-field" [ngClass]="[ passwordConfirmation.touched ? (passwordConfirmation.valid ? 'is-valid' : 'is-invalid') : '' ]">

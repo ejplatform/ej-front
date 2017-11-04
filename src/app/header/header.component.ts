@@ -50,9 +50,8 @@ export class HeaderComponent implements OnInit {
   }
 
   openLogin() {
-    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-lg' });
+    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-md' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
-      window.location.reload();
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
@@ -69,9 +68,8 @@ export class HeaderComponent implements OnInit {
   }
 
   openRegistration() {
-    this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
+    this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-md' });
     this.bsModalRef.content.loggedIn.subscribe(() => {
-      window.location.reload();
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
     });
@@ -83,7 +81,8 @@ export class HeaderComponent implements OnInit {
       this.openLogin();
       // FIXME refactor this like there is no tomorrow!!!
       this.bsModalRef.content.loggedIn.subscribe(() => {
-        window.location.reload();
+        // FIXME see if it's necessary
+        // window.location.reload();
       });
     }
   }

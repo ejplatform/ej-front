@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { BsModalService } from 'ngx-bootstrap/modal';
+
 import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
@@ -8,6 +10,8 @@ import { NotificationService } from '../services/notification.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
+import { RegistrationComponent  } from '../registration/registration.component';
+import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
 
 
 @Component({
@@ -19,14 +23,15 @@ export class LoginComponent {
 
   profile: Profile;
   bsModalRef: BsModalRef;
+  bsRegistrationModalRef: BsModalRef;
   loggedIn = new EventEmitter();
 
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('emailErrors') emailErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService,
-    private socialFacebookService: SocialFacebookService, private notificationService: NotificationService,
-    private modal: BsModalRef, private router: Router) {
+    private socialFacebookService: SocialFacebookService, private modalService: BsModalService,
+    private notificationService: NotificationService, private modal: BsModalRef, private router: Router) {
 
     this.bsModalRef = modal;
     this.profile = new Profile();
@@ -44,6 +49,22 @@ export class LoginComponent {
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
     });
+  }
+
+  openRegistration() {
+    this.bsModalRef.hide();
+    this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
+    this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
+      console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+      this.profile = this.profileService.getProfile();
+      this.loggedIn.emit();
+      this.profileService.profileChangeEvent.emit(this.profile);
+    });
+  }
+
+  openRecoverPassword() {
+    this.bsModalRef.hide();
+    this.bsRegistrationModalRef = this.modalService.show(RecoverPasswordComponent, { class: 'modal-lg' });
   }
 
   handleError(error: any){

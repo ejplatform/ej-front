@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
+import { NgPipesModule } from 'ngx-pipes';
 
 // Bootstrap
 
@@ -38,8 +39,10 @@ import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { LoginComponent } from './login/login.component';
+import { SliderModalComponent } from './home-slider/slider-modal/slider-modal.component';
 import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
@@ -75,8 +78,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConversationComponent,
     HomeSliderComponent,
     LoginComponent,
+    SliderModalComponent,
     NudgeComponent,
     RegistrationComponent,
+    RecoverPasswordComponent,
     LogoutComponent,
     ImageUploadComponent,
     SafePipe,
@@ -90,6 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
+    NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
@@ -121,7 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
 
   ],
-  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent],
+  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent, SliderModalComponent, RecoverPasswordComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
