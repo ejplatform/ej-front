@@ -1,59 +1,62 @@
 <div class="page-title">
-  <div class="container">
-    <h1 >{{'conversations.topic' | translate}}</h1>
-  </div>
+    <div class="container">
+        <h1>{{'conversations.topic' | translate}}</h1>
+    </div>
 </div>
 
 <div class="container">
-  
-  <h3>{{'conversations.title' | translate}}</h3>
-  <h2>{{'conversations.subtitle' | translate}}</h2>
-  
-  <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
-    <div  *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : (e + 1) * (i + 1) < 3 && i == 0 }">
-      
-      <div class="card-header">
-        <div class="card-header-left">
-          <span class="category">{{conversation.title}} </span>
-          <span class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </span>
-        </div>
-      </div>
-      <a routerLink="/conversations/participate/{{conversation.id}}">
-        <div class="card-cover">
-          <div class="card-cover-img">
-            <img class="card-img" [src]="backgroundImage(conversation)" alt="Card image cap">
-          </div>
-          <h5 class="card-title">{{conversation.description}}</h5>
-          <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-        </div>
-      </a>
-      
-      <div class="card-block">
-        <!-- <h4 class="card-title">Card title</h4> -->
-        <p class="card-text">{{'conversations.card.info' | translate}}</p>
-        
-        <div class="card-numbers">
-          <span><strong>{{conversation.total_approved_comments | number:'1.0'}}</strong>  {{'conversations.card.comments' | translate}} </span>
-          <span><strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}} </span>
-        </div>
-        
-        <div class="participation">
-          <div class="title">
-            <h4>{{'conversations.card.participation' | translate}}</h4>
-          </div>
-          <div class='content d-flex align-items-stretch bd-highlight '>
-            <div class="profile">
-              <img [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+
+    <h3>{{'conversations.title' | translate}}</h3>
+    <h2>{{'conversations.subtitle' | translate}}</h2>
+
+    <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
+        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : (e + 1) * (i + 1) < 3 && i == 0 }">
+
+            <div class="card-header">
+                <div class="card-header-left">
+                    <span class="category">{{conversation.title}} </span>
+                    <span class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </span>
+                </div>
             </div>
-            <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
-                {{ratio(conversation)}}%
-            </progressbar>
-          </div>          
+            <a routerLink="/conversations/participate/{{conversation.id}}">
+                <div class="card-cover">
+                    <div class="card-cover-img">
+                        <img class="card-img" [src]="backgroundImage(conversation)" alt="Card image cap">
+                    </div>
+                    <h5 class="card-title">{{conversation.description}}</h5>
+                    <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+            </a>
+
+            <div class="card-block">
+                <!-- <h4 class="card-title">Card title</h4> -->
+                <p class="card-text">{{'conversations.card.info' | translate}}</p>
+
+                <div class="card-numbers">
+                    <span>
+                        <strong>{{conversation.total_approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments'
+                        | translate}} </span>
+                    <span>
+                        <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}} </span>
+                </div>
+
+                <div class="participation">
+                    <div class="title">
+                        <h4>{{'conversations.card.participation' | translate}}</h4>
+                    </div>
+                    <div class='content d-flex align-items-stretch bd-highlight '>
+                        <div class="profile">
+                            <img [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+                        </div>
+                        <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
+                            {{ratio(conversation)}}%
+                        </progressbar>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        
-      </div>
-      
     </div>
-  </div>
 </div>
