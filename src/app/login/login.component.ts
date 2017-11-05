@@ -69,7 +69,7 @@ export class LoginComponent {
 
   handleError(error: any){
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-    
+
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password']);
     this.passwordErrors.setErrors(errors['non_field_errors']);

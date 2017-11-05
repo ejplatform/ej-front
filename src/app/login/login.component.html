@@ -16,16 +16,16 @@
   <form #signInForm="ngForm" (ngSubmit)="login()" class="login_form">
 
     <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
-      <i class="inside-icon"></i>            
-      <input type="email" class="form-control" id="email" name="email" placeholder="{{'login.email' | translate }}" 
+      <i class="inside-icon"></i>
+      <input type="email" class="form-control" id="email" name="email" placeholder="{{'login.email' | translate }}"
           [(ngModel)]="profile.email" required #email='ngModel'>
-      <validation-message #emailErrors [field]="email" [prefix]="'login.email'"></validation-message>            
+      <validation-message #emailErrors [field]="email" [prefix]="'login.email'"></validation-message>
     </div>
-      
+
     <div class="form-group password-field" [ngClass]="[ password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : '' ]">
       <i class="inside-icon"></i>
-      <input type="password" class="form-control" 
-        id="password" name="password" placeholder="{{'login.password' | translate }}" 
+      <input type="password" class="form-control"
+        id="password" name="password" placeholder="{{'login.password' | translate }}"
         [(ngModel)]="profile.password" required #password='ngModel'>
       <validation-message #passwordErrors [field]="password" [prefix]="'login.password'"></validation-message>
     </div>
@@ -45,7 +45,7 @@
     </div>
 
     <div class='button-action'>
-      <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.button.sign_in'}}</button>   
+      <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.button.sign_in'}}</button>
     </div>
 
   </form>
