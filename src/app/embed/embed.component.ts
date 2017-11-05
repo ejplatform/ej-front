@@ -24,6 +24,7 @@ export class EmbedComponent implements OnInit {
   public polis_url = 'https://brasilqueopovoquer.hacklab.com.br/';
   iframeHeight: number = 1500;
   isHome: boolean = false;
+  pageTitle: String;
 
   constructor(private conversationService: ConversationService,
               private route: ActivatedRoute,
@@ -41,6 +42,7 @@ export class EmbedComponent implements OnInit {
           this.polis_url = conversation.polis_url;
           this.conversation = conversation;
         });
+        this.pageTitle = 'Conversas';
       }
     });
   }
@@ -52,6 +54,14 @@ export class EmbedComponent implements OnInit {
       if(path == 'inicio' || path == ''){
         path = '';
         this.isHome = true;
+      } else if (path == 'sobre-nos') {
+        this.pageTitle = 'Sobre nós';
+      } else if (path == 'perguntas-frequentes') {
+        this.pageTitle = 'Perguntas frequentes';
+      } else if (path == 'conversas') {
+        this.pageTitle = 'Conversas';
+      } else if (path == 'termos-de-uso') {
+        this.pageTitle = 'Termos de uso';
       }
       this.polis_url = this.polis_url + path;
     }

@@ -1,4 +1,10 @@
-<div *ngIf="profile" class="container">
+<div class="page-title">
+  <div class="container">
+    <h1> Perfil </h1>
+  </div>
+</div>
+
+<div *ngIf="profile" class="container profile-container">
 
     <div class="profile-form" >
       <div class="profile-picture-column">
@@ -9,45 +15,45 @@
       </div>
       <div class="profile-information-column">
           <form   name="profileForm" #profileForm="ngForm">
-              
+
         <h1>{{'profile-title' | translate}}</h1>
 
         <div class="form-group name-field" [ngClass]="[ name.touched ? (name.valid ? 'is-valid' : 'is-invalid') : '' ]">
           <i class="inside-icon"></i>
-          <input type="text" class="form-control" 
-            id="name" name="name" placeholder="{{'profile.name' | translate }}" 
+          <input type="text" class="form-control"
+            id="name" name="name" placeholder="{{'profile.name' | translate }}"
             [(ngModel)]="profile.name" #name='ngModel'>
-            <validation-message #nameErrors [field]="name" [prefix]="'profile.name'"></validation-message>            
+            <validation-message #nameErrors [field]="name" [prefix]="'profile.name'"></validation-message>
         </div>
 
         <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
-          <i class="inside-icon"></i>            
-          <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}" 
+          <i class="inside-icon"></i>
+          <input type="email" class="form-control" id="email" name="email" placeholder="{{'profile.email' | translate }}"
             [(ngModel)]="profile.email" required #email='ngModel'>
-            <validation-message #emailErrors [field]="email" [prefix]="'profile.email'"></validation-message>            
+            <validation-message #emailErrors [field]="email" [prefix]="'profile.email'"></validation-message>
         </div>
         <div class="row">
 
           <div class="col-md-6 form-group city-field" [ngClass]="[ city.touched ? (city.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
-            <input type="text" class="form-control" 
-              id="city" name="city" placeholder="{{'profile.city' | translate }}" 
+            <input type="text" class="form-control"
+              id="city" name="city" placeholder="{{'profile.city' | translate }}"
               [(ngModel)]="profile.city" #city='ngModel'>
               <validation-message #cityErrors [field]="city" [prefix]="'profile.city'"></validation-message>
           </div>
 
           <div class="col-md-3 form-group state-field" [ngClass]="[ state.touched ? (state.valid ? 'is-valid' : 'is-invalid') : '' ]">
               <i class="inside-icon"></i>
-              <input type="text" class="form-control" 
-                id="state" name="state" placeholder="{{'profile.state' | translate }}" 
+              <input type="text" class="form-control"
+                id="state" name="state" placeholder="{{'profile.state' | translate }}"
                 [(ngModel)]="profile.state" #state='ngModel'>
                 <validation-message #stateErrors [field]="state" [prefix]="'profile.state'"></validation-message>
           </div>
 
           <div class="col-md-3 form-group  country-field" [ngClass]="[ country.touched ? (country.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
-            <input type="text" class="form-control" 
-              id="country" name="country" placeholder="{{'profile.country' | translate }}" 
+            <input type="text" class="form-control"
+              id="country" name="country" placeholder="{{'profile.country' | translate }}"
               [(ngModel)]="profile.country" #country='ngModel'>
               <validation-message #countryErrors [field]="country" [prefix]="'profile.country'"></validation-message>
           </div>
@@ -57,7 +63,7 @@
         <div class="row">
           <div class="col-md-6 form-group gender-field" [ngClass]="[ gender.touched ? (gender.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
-            <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel'  
+            <select [(ngModel)]="profile.gender"  name="gender" #gender='ngModel'
                   class="col-md-6 custom-select" id="gender">
               <option disabled value="" selected>{{'profile.gender' | translate }}</option>
               <option *ngFor="let gender of genderOptions" [value]="gender.id">{{gender.name}}</option>
@@ -67,89 +73,89 @@
 
           <div class="col-md-6 form-group race-field" [ngClass]="[ race.touched ? (race.valid ? 'is-valid' : 'is-invalid') : '' ]" >
             <i class="select inside-icon"></i>
-            <select [(ngModel)]="profile.race"  name="race" #race='ngModel'  
+            <select [(ngModel)]="profile.race"  name="race" #race='ngModel'
                     class="col-md-6 custom-select" id="race">
               <option disabled value="" selected>{{'profile.race' | translate }}</option>
               <option *ngFor="let race of raceColorOptions" [value]="race.id">{{race.name}}</option>
             </select>
-            <validation-message #raceErrors [field]="race" [prefix]="'profile.race'"></validation-message>            
+            <validation-message #raceErrors [field]="race" [prefix]="'profile.race'"></validation-message>
           </div>
         </div>
 
         <div class="form-group political_movement-field" [ngClass]="[ political_movement.touched ? (political_movement.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
             <label for="political_movement-field">{{'profile.political_movement.label' | translate }}</label>
-            <input type="text" class="form-control" 
-                id="political_movement" name="political_movement" placeholder="{{'profile.political_movement' | translate }}" 
+            <input type="text" class="form-control"
+                id="political_movement" name="political_movement" placeholder="{{'profile.political_movement' | translate }}"
                 [(ngModel)]="profile.political_movement" #political_movement='ngModel'>
               <validation-message #politicalMovementErrors [field]="political_movement" [prefix]="'profile.political_movement'"></validation-message>
           </div>
-    
+
         <div class="form-group biography-field" [ngClass]="[ biography.touched ? (biography.valid ? 'is-valid' : 'is-invalid') : '' ]">
           <label for="biography-field">{{'profile.biography' | translate }}</label>
-          
+
           <!-- <i class="textarea inside-icon"></i> -->
-          <textarea class="form-control" 
-              id="biography" name="biography" placeholder="{{'profile.biography' | translate }}" 
+          <textarea class="form-control"
+              id="biography" name="biography" placeholder="{{'profile.biography' | translate }}"
               [(ngModel)]="profile.biography"  #biography='ngModel'>
           </textarea>
           <validation-message #biographyErrors [field]="biography" [prefix]="'profile.biography'"></validation-message>
         </div>
 
         <div class="row">
-            
+
           <div class="col-md-3 form-group age-field" [ngClass]="[ age.touched ? (age.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="number inside-icon"></i>
-            <input type="number" class="form-control" 
-              id="age" name="age" placeholder="{{'profile.age' | translate }}" 
+            <input type="number" class="form-control"
+              id="age" name="age" placeholder="{{'profile.age' | translate }}"
               [(ngModel)]="profile.age"  #age='ngModel'>
               <validation-message #ageErrors [field]="age" [prefix]="'profile.age'"></validation-message>
-          </div>    
+          </div>
 
           <div class="col-md-9 form-group occupation-field" [ngClass]="[ occupation.touched ? (occupation.valid ? 'is-valid' : 'is-invalid') : '' ]">
             <i class="inside-icon"></i>
-            <input type="text" class="form-control" 
-              id="occupation" name="occupation" placeholder="{{'profile.occupation' | translate }}" 
+            <input type="text" class="form-control"
+              id="occupation" name="occupation" placeholder="{{'profile.occupation' | translate }}"
               [(ngModel)]="profile.occupation" #occupation='ngModel'>
               <validation-message #occupationErrors [field]="occupation" [prefix]="'profile.occupation'"></validation-message>
           </div>
         </div>
 
-          
+
         <button  (click)="save()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
           {{"profile.button.save" | translate}}
-        </button> 
+        </button>
         <button (click)="cancel()" class="form-button cancel"  >
             {{"profile.button.cancel" | translate}}
-        </button> 
+        </button>
       </form>
       <form name="passwordForm" #passwordForm="ngForm">
           <div class="password-form" >
               <h1>{{'profile.password.change' | translate}}</h1>
-      
+
               <div class="form-group password-field" [ngClass]="[ password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : '' ]">
                 <i class="inside-icon"></i>
-                <input type="password" class="form-control" 
-                  id="password" name="password" placeholder="{{'profile.password.new' | translate }}" 
+                <input type="password" class="form-control"
+                  id="password" name="password" placeholder="{{'profile.password.new' | translate }}"
                   [(ngModel)]="profile.password" required #password='ngModel'>
                   <validation-message #passwordErrors [field]="password" [prefix]="'profile.password'"></validation-message>
               </div>
-      
+
               <div class="form-group passwordConfirmation-field" [ngClass]="[ passwordConfirmation.touched ? (passwordConfirmation.valid ? 'is-valid' : 'is-invalid') : '' ]">
-                <i class="inside-icon"></i>            
-                <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="{{'profile.password.new.confirmation' | translate }}" 
+                <i class="inside-icon"></i>
+                <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="{{'profile.password.new.confirmation' | translate }}"
                   [(ngModel)]="profile.passwordConfirmation" required #passwordConfirmation='ngModel'>
                   <validation-message #passwordConfirmationErrors [field]="passwordConfirmation" [prefix]="'profile.passwordConfirmation'"></validation-message>
               </div>
-                
-                
+
+
               <button  (click)="changePassword()" type="submit" class="form-button submit" [disabled]="profileForm.invalid" >
                 {{"profile.button.password" | translate}}
-              </button> 
+              </button>
               <button (click)="cancel()" class="form-button cancel"  >
                   {{"profile.button.cancel" | translate}}
-              </button> 
-              
+              </button>
+
           </div>
         </form>
       </div>

@@ -10,7 +10,7 @@
     <h2>{{'conversations.subtitle' | translate}}</h2>
 
     <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
-        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : (e + 1) * (i + 1) < 3 && i == 0 }">
+        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : !ratio(conversation) }">
 
             <div class="card-header">
                 <div class="card-header-left">
@@ -34,14 +34,16 @@
                 <p class="card-text">{{'conversations.card.info' | translate}}</p>
 
                 <div class="card-numbers">
-                    <span>
-                        <strong>{{conversation.total_approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments'
-                        | translate}} </span>
-                    <span>
-                        <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}} </span>
+                    <span *ngIf="conversation.approved_comments">
+                        <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments'
+                        | translate}}
+                    </span>
+                    <span *ngIf="conversation.total_votes">
+                        <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}}
+                      </span>
                 </div>
 
-                <div class="participation">
+                <div class="participation" *ngIf="ratio(conversation)">
                     <div class="title">
                         <h4>{{'conversations.card.participation' | translate}}</h4>
                     </div>
@@ -52,6 +54,14 @@
                         <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
                             {{ratio(conversation)}}%
                         </progressbar>
+                    </div>
+                </div>
+
+                <div class="participation" *ngIf="!ratio(conversation)">
+                    <div class="title" class='button button-action'>
+                      <a routerLink="/conversations/participate/{{conversation.id}}"
+                         class='btn btn-primary btn-block'>Participe Agora!
+                      </a>
                     </div>
                 </div>
 

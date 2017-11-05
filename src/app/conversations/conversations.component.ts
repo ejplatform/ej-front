@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as _ from 'lodash' 
+import { Router, NavigationEnd } from '@angular/router';
+import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
@@ -16,8 +17,18 @@ export class ConversationsComponent implements OnInit {
 
   conversations: Conversation[];
   @Input() profile: Profile;
-  
-  constructor(private conversationService: ConversationService, private profileService: ProfileService) {
+
+  constructor(private conversationService: ConversationService,
+              private profileService: ProfileService,
+              private router: Router) {
+
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd){
+        // FIXME use this: https://github.com/zefoy/ngx-perfect-scrollbar
+        window.scrollTo(0,0);
+      }
+    });
+
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -64,7 +75,7 @@ export class ConversationsComponent implements OnInit {
   convertDate(date){
     let dateArray = date.split("-");
     let newDate = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
-  
+
     return newDate;
   }
 
