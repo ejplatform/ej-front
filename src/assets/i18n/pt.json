@@ -37,7 +37,7 @@
     "conversations.topic":"Conversas",
     "conversations.title":"Qual sua opinião?",
     "conversations.subtitle":"Ajude a construir o Brasil que o povo quer!",
-    "conversations.card.info":"Contribua, Analise os comentários e expresse sua opinião por meio do seu voto!",
+    "conversations.card.info":"Analise os comentários e opine por meio do seu voto!",
     "conversations.card.comments":"comentários",
     "conversations.card.votes":"votos",
     "conversations.card.participation":"Seu nível de participação",
@@ -91,4 +91,3 @@
     "alerts.off": "nenhuma notificação",
     "nudge.title": "Será que voce pode comentar?"
 }
-

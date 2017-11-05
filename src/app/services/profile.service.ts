@@ -61,7 +61,6 @@ export class ProfileService {
   }
 
   setProfile(profile: Profile) {
-    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', profile);
     this.profile = profile;
     this.sessionService.setProfile(profile);
     this.profileChangeEvent.emit(profile);
