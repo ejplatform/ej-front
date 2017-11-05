@@ -74,17 +74,26 @@ export class AuthService {
     );
   }
 
+  getToken() {
+    let fullEndpointUrl = `${environment.apiUrl}/api/profile/key/`;
+    return this.http.get(fullEndpointUrl).map(
+      (data: any) => {
+        return data.json().key;
+      }
+    );
+  }
+
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
     this.logoutSuccess.next(profile);
   }
 
-  private loginFailedCallback(response: any): any {
+  public loginFailedCallback(response: any): any {
     this.loginFailed.next(response);
     return null;
   }
 
-  private loginSuccessCallback(response: any) {
+  public loginSuccessCallback(response: any) {
     const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
     return token;

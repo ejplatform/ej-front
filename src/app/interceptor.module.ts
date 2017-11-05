@@ -13,7 +13,9 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     const token = this.session.getToken();
     if(token){
       authRequest = request.clone({headers: request.headers.set('Authorization', 'Token ' + token)});
-    }   
+    } else {
+      authRequest = request.clone({withCredentials: true});
+    }
 
     return next.handle(authRequest);
 

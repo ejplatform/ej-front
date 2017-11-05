@@ -12,6 +12,10 @@
       <i class="fa fa-facebook"></i>
       {{'login.facebook' | translate }}
     </a>
+    <a id="twitter-button" (click)="loginWithTwitter()">
+      <i class="fa fa-twitter"></i>
+      {{'login.twitter' | translate }}
+    </a>
   </div>
   <form #signInForm="ngForm" (ngSubmit)="login()" class="login_form">
 
