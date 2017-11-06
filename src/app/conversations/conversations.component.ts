@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
@@ -19,15 +18,7 @@ export class ConversationsComponent implements OnInit {
   @Input() profile: Profile;
 
   constructor(private conversationService: ConversationService,
-              private profileService: ProfileService,
-              private router: Router) {
-
-    this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd){
-        // FIXME use this: https://github.com/zefoy/ngx-perfect-scrollbar
-        window.scrollTo(0,0);
-      }
-    });
+              private profileService: ProfileService) {
 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
@@ -78,5 +69,19 @@ export class ConversationsComponent implements OnInit {
 
     return newDate;
   }
+
+  hexToRGBA(hex){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', 0.66)';
+    }
+    throw new Error('Bad Hex');
+}
+
 
 }
