@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit  {
   isMenuCollapsed: boolean = false;
   alreadeyCollapsed: boolean = false;
 
-  constructor(private _state: GlobalState, private translate: TranslateService, private profileService: ProfileService) {
+  constructor(private _state: GlobalState, private translate: TranslateService, 
+    private profileService: ProfileService, private router: Router) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 
@@ -32,6 +34,13 @@ export class AppComponent implements OnInit  {
         this.alreadeyCollapsed = true;
       }
       this.isMenuCollapsed = isCollapsed;
+    });
+
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd){
+        // FIXME use this: https://github.com/zefoy/ngx-perfect-scrollbar
+        window.scrollTo(0,0);
+      }
     });
 
   }
@@ -46,10 +55,6 @@ export class AppComponent implements OnInit  {
 
   isLogged(){
     return _.isObject(this.profile);
-  }
-
-  onActivate(e) {
-    window.scrollTo(0, 0);
   }
 
   hideNavigationBar(e, isCollapsed){

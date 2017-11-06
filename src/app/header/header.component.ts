@@ -85,7 +85,7 @@ export class HeaderComponent implements OnInit {
       // FIXME refactor this like there is no tomorrow!!!
       this.bsModalRef.content.loggedIn.subscribe(() => {
         // FIXME see if it's necessary
-        // window.location.reload();
+        window.location.reload();
       });
     }
   }

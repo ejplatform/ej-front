@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
@@ -19,15 +18,7 @@ export class ConversationsComponent implements OnInit {
   @Input() profile: Profile;
 
   constructor(private conversationService: ConversationService,
-              private profileService: ProfileService,
-              private router: Router) {
-
-    this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd){
-        // FIXME use this: https://github.com/zefoy/ngx-perfect-scrollbar
-        window.scrollTo(0,0);
-      }
-    });
+              private profileService: ProfileService) {
 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
