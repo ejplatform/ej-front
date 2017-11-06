@@ -42,11 +42,11 @@
             {{'login.password.forgot' | translate }}
           </a>
         </div>
+        <div class='button-action'>
+          <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.button.sign_in'}}</button>   
+        </div>
     </div>
 
-    <div class='button-action'>
-      <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'login.button.sign_in'}}</button>   
-    </div>
 
   </form>
 
