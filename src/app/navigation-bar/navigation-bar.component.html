@@ -2,14 +2,14 @@
 
     <ul class="user-nav">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/profile" (click)="toggleMenu()" >
+            <a routerLink="/profile" (click)="toggleMenu(true)" >
                 <!-- <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}" width="25"> -->
                 <img src="/assets/images/icons/profile_icon.svg" alt="{{'navigation-bar.item.profile' | translate}}" width="25">
                 {{'navigation-bar.item.profile' | translate}}
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/conversations']"  (click)="toggleMenu()">
+            <a [routerLink]="['/conversations']"  (click)="toggleMenu(true)">
                 <!-- <span class="notification-bubble" >1</span> -->
                 <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
                 <span class="">{{'navigation-bar.item.conversations' | translate}}</span>
@@ -36,21 +36,21 @@
 
     <ul class="user-nav menu">
         <li routerLinkActive="active">
-            <a [routerLink]="['/perguntas-frequentes']"  (click)="toggleMenu()">
+            <a [routerLink]="['/perguntas-frequentes']"  (click)="toggleMenu(true)">
                 <!-- <span class="notification-bubble" >1</span> -->
                 <img src="/assets/images/icons/perguntas_frequentes_icon.svg" alt="{{'navigation-bar.item.asks' | translate}}" >
                 <span class="">{{'navigation-bar.item.asks' | translate}}</span>
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/termos-de-uso']"  (click)="toggleMenu()">
+            <a [routerLink]="['/termos-de-uso']"  (click)="toggleMenu(true)">
                 <!-- <span class="notification-bubble" >1</span> -->
                 <img src="/assets/images/icons/termos_de_uso_icon.svg" alt="{{'navigation-bar.item.terms' | translate}}" >
                 <span class="">{{'navigation-bar.item.terms' | translate}}</span>
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/sobre-nos']"  (click)="toggleMenu()">
+            <a [routerLink]="['/sobre-nos']"  (click)="toggleMenu(true)">
                 <!-- <span class="notification-bubble" >1</span> -->
                 <img src="/assets/images/icons/sobre_nos_icon.svg" alt="{{'navigation-bar.item.us' | translate}}" >
                 <span class="">{{'navigation-bar.item.us' | translate}}</span>

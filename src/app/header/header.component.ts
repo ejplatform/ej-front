@@ -39,7 +39,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleMenu() {
+  toggleMenu(keepOpen = false) {
+      if(keepOpen && window.innerWidth > 640)
+        return false;
+
       this.isMenuCollapsed = !this.isMenuCollapsed;
       this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
       return false;
