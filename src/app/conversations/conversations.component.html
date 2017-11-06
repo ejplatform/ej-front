@@ -60,7 +60,9 @@
                 <div class="participation" *ngIf="!ratio(conversation)">
                     <div class="title" class='button button-action'>
                       <a routerLink="/conversations/participate/{{conversation.id}}"
-                         class='btn btn-primary btn-block'>Participe Agora!
+                         class='btn btn-primary btn-block'>
+                         <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
+                         Participe Agora!
                       </a>
                     </div>
                 </div>
