@@ -78,7 +78,7 @@ export class AuthService {
     let fullEndpointUrl = `${environment.apiUrl}/api/profile/key/`;
     return this.http.get(fullEndpointUrl).map(
       (data: any) => {
-        return data.json().key;
+        return data.key;
       }
     );
   }

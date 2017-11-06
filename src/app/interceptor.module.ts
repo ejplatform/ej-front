@@ -11,10 +11,16 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authRequest = request;
     const token = this.session.getToken();
-    if(token){
+
+    // If there is an API key stored, send it in this request
+    if (token) {
       authRequest = request.clone({headers: request.headers.set('Authorization', 'Token ' + token)});
     } else {
-      authRequest = request.clone({withCredentials: true});
+
+      // If there is no key, allow cookies to be sent, but only if this is a request for an API key
+      if (authRequest.url.includes('/profile/key')) {
+        authRequest = request.clone({withCredentials: true});
+      }
     }
 
     return next.handle(authRequest);
