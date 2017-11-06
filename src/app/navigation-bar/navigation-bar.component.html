@@ -2,14 +2,14 @@
 
     <ul class="user-nav">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/profile" (click)="toggleMenu(true)" >
-                <img src="/assets/images/icons/profile_icon.svg" alt="{{'navigation-bar.item.profile' | translate}}" width="25">
+            <a routerLink="/profile" (click)="toggleMenu()" >
+                <img src="/assets/images/icons/profile_icon.svg" alt="{{'navigation-bar.item.profile' | translate}}" width="25"/>
                 {{'navigation-bar.item.profile' | translate}}
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/conversations']"  (click)="toggleMenu(true)">
-                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
+            <a [routerLink]="['/conversations']"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" />
                 <span class="">{{'navigation-bar.item.conversations' | translate}}</span>
             </a>
         </li>
@@ -26,7 +26,7 @@
 
         <li>
             <a routerLink="/logout">
-                <img src="/assets/images/icons/sair_icon.svg" alt="Some user" class="img-circle">
+                <img src="/assets/images/icons/sair_icon.svg" alt="Some user" class="img-circle"/>
                 {{'navigation-bar.item.logout' | translate }}
             </a>
         </li>
@@ -34,20 +34,20 @@
 
     <ul class="user-nav menu">
         <li routerLinkActive="active">
-            <a [routerLink]="['/perguntas-frequentes']"  (click)="toggleMenu(true)">
-                <img src="/assets/images/icons/perguntas_frequentes_icon.svg" alt="{{'navigation-bar.item.asks' | translate}}" >
+            <a [routerLink]="['/perguntas-frequentes']"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/perguntas_frequentes_icon.svg" alt="{{'navigation-bar.item.asks' | translate}}" />
                 <span class="">{{'navigation-bar.item.asks' | translate}}</span>
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/termos-de-uso']"  (click)="toggleMenu(true)">
-                <img src="/assets/images/icons/termos_de_uso_icon.svg" alt="{{'navigation-bar.item.terms' | translate}}" >
+            <a [routerLink]="['/termos-de-uso']"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/termos_de_uso_icon.svg" alt="{{'navigation-bar.item.terms' | translate}}" />
                 <span class="">{{'navigation-bar.item.terms' | translate}}</span>
             </a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/sobre-nos']"  (click)="toggleMenu(true)">
-                <img src="/assets/images/icons/sobre_nos_icon.svg" alt="{{'navigation-bar.item.us' | translate}}" >
+            <a [routerLink]="['/sobre-nos']"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/sobre_nos_icon.svg" alt="{{'navigation-bar.item.us' | translate}}" />
                 <span class="">{{'navigation-bar.item.us' | translate}}</span>
             </a>
         </li>
