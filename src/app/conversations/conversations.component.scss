@@ -95,21 +95,22 @@ h4{
         border: 0px;
         transform: translateY(-100%);
         padding: 20px;
-        background-color: rgba(21,13,1,0.4);
-        min-height: 60%;
+        padding-top: calc(40% - 30px);
+        height: 100%;
     }
 
     .card-cover-img{
         position: relative;
     }
-    .card-cover-img:after {
+    .card-title:before {
         content:'';
         position:absolute;
+        z-index: -1;
         left:0px;
-        top:0px;
+        bottom:0px;
         width:100%;
-        height:100%;
-        background-color: rgba(208,2,27,0.66);
+        height:60%;
+        background-color: rgba(21,13,1,0.4);
     }
 }
 
