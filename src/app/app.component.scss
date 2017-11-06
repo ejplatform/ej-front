@@ -72,8 +72,9 @@
             }
             li{
                 @include media-breakpoint-down(xs) {
-                    min-height: 75px;
-                    padding: 20px;
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    font-size: 16px;
                 }
                 &:before {
                     @include media-breakpoint-down(xs) {
@@ -82,6 +83,9 @@
                 }
             }
             a {
+                display: flex;
+                align-items: center;
+                
                 &:before {
                     display: inline-block;
                     margin-right: 10px;
