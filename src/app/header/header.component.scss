@@ -41,22 +41,8 @@
     .site-logo{
         float: left;
         @extend .ml-5;
-
-        img{
-            @include media-breakpoint-down(sm) {  
-                height: 40px;
-            }
-            
-            &[src="/assets/images/logo-unlogged.svg"]{
-                height: 120px;
-
-                @include media-breakpoint-down(sm) {  
-                    height: 90px;
-                }
-            }
-        }      
-
     }
+
     .without-profile{
         @extend .mr-5;
         .access{
@@ -87,31 +73,36 @@
                 a{
                     cursor: pointer;
                 }
-                
             }
+
             &.access{
                 @include media-breakpoint-down(md) {  
                     display: block;
-
                 }
             }
+
             &.site-links{
                 @include media-breakpoint-down(md) {  
                     display: inline-block;
-
                 }
             }
-            
-    
-            
         }
-        
-
     }  
-    
 }
 
+.site-logo  img{
+    @include media-breakpoint-down(sm) {  
+        height: 40px;
+    }
+    
+    &[src="/assets/images/logo-unlogged.svg"]{
+        height: 120px;
 
+        @include media-breakpoint-down(sm) {  
+            height: 90px;
+        }
+    }
+}      
 
 .logged.site-header {
     background-color: $site-header-bg-color;

@@ -80,7 +80,6 @@ export class ConversationsComponent implements OnInit {
         c= '0x'+c.join('');
         return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', 0.66)';
     }
-    throw new Error('Bad Hex');
 }
 
 
