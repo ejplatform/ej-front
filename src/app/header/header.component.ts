@@ -40,9 +40,9 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu() {
-    this.isMenuCollapsed = !this.isMenuCollapsed;
-    this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
-    return false;
+      this.isMenuCollapsed = !this.isMenuCollapsed;
+      this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
+      return false;
   }
 
   isLogged(){

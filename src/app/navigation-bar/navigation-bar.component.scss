@@ -27,7 +27,7 @@
         width: 100px;
     }
     @include media-breakpoint-down(sm) {
-        display: none;
+        left: -245px;
     }
 }
 
