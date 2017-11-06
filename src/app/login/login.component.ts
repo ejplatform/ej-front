@@ -12,7 +12,6 @@ import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { RegistrationComponent  } from '../registration/registration.component';
 import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
-import { TwitterService } from '../services/twitter.service';
 
 
 @Component({
@@ -31,7 +30,7 @@ export class LoginComponent {
   @ViewChild('emailErrors') emailErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService,
-    private socialFacebookService: SocialFacebookService, private modalService: BsModalService, private twitterService: TwitterService,
+    private socialFacebookService: SocialFacebookService, private modalService: BsModalService,
     private notificationService: NotificationService, private modal: BsModalRef, private router: Router) {
 
     this.bsModalRef = modal;
@@ -72,19 +71,21 @@ export class LoginComponent {
     const windowRef: Window = window.open(
                                 'http://localhost:8000/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
                                 'twitter-window',
-                                'menubar=false,toolbar=false,location=false');
-  }
+                                'menubar=false,toolbar=false');
 
-  @HostListener('window:message', ['$event'])
-  getPolisMessage(event) {
-    console.log(event);
-    if (event.data.xid !== undefined) {
-      this.authService.getToken().subscribe( (key: any) => {
-        this.authService.loginSuccessCallback(key);
-      }, (error: any) => {
-        this.authService.loginFailedCallback(error);
-      });
-    }
+    const that = this;
+    const popupTick = setInterval(function() {
+      if (windowRef.closed) {
+        clearInterval(popupTick);
+
+        that.authService.getToken().subscribe((key: any) => {
+          that.authService.loginSuccessCallback({ 'key': key });
+          that.handleloginSuccess();
+        }, (error: any) => {
+          that.authService.loginFailedCallback(error);
+        });
+      }
+    }, 500);
   }
 
   handleError(error: any){
