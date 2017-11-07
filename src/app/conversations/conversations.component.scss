@@ -14,7 +14,7 @@ h4{ font-size: 0.8rem; }
     position: relative;
 
     &.new{
-        box-shadow: 0 0 0 5px #4A90E2, 0 0 2px 7px rgba(0,0,0,0.12), 0 2px 2px 6px rgba(0,0,0,0.24);
+        box-shadow: 0 0 0 5px #EF4438, 0 0 2px 7px rgba(0,0,0,0.12), 0 2px 2px 6px rgba(0,0,0,0.24);
 
         &:after{
             content: '#Novidade';
@@ -103,7 +103,8 @@ h4{ font-size: 0.8rem; }
         
         .btn-primary{
             text-transform: uppercase;
-            // font-weight: 100;
+            background-color: #EF4438;
+            border-color: #EF4438;
             font-size: 14px;
             letter-spacing: 1px;
 
