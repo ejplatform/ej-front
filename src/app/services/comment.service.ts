@@ -10,18 +10,18 @@ export class CommentService {
 
   constructor (private http: HttpClient) {}
 
-    list(): Observable<Comment[]> {
-      let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
-      return this.http.get<Comment[]>(fullEndpointUrl);
-    }
+  public list(): Observable<Comment[]> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
+    return this.http.get<Comment[]>(fullEndpointUrl);
+  }
 
-    getByPolisId(polisId): Observable<Comment[]> {
-      let fullEndpointUrl = `${environment.apiUrl}/api/comments/?polis_id=${polisId}`;
-      return this.http.get<Comment[]>(fullEndpointUrl);
-    }
+  public getByPolisId(polisId: number, conversationId: number): Observable<Comment[]> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments/?polis_id=${polisId}&conversation__id=${conversationId}`;
+    return this.http.get<Comment[]>(fullEndpointUrl);
+  }
 
-    create(comment: Comment): Observable<Comment> {
-      let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
-      return this.http.post<Comment>(fullEndpointUrl, comment);
-    }
+  public create(comment: Comment): Observable<Comment> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
+    return this.http.post<Comment>(fullEndpointUrl, comment);
+  }
 }

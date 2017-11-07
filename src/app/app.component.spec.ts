@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {RouterTestingModule} from "@angular/router/testing";
 
 import * as helpers from "../spec/helpers";
 import { GlobalState } from './global.state';
@@ -17,7 +18,7 @@ fdescribe('AppComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        imports: [TranslateModule.forRoot(), HttpClientTestingModule],
+        imports: [TranslateModule.forRoot(), HttpClientTestingModule, RouterTestingModule],
         declarations: [ AppComponent ],
         providers: [{ provide: GlobalState, useValue: mocks.globalState },
             { provide: SessionService, useValue: mocks.sessionService },

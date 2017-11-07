@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as _ from 'lodash' 
+import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
@@ -16,8 +16,10 @@ export class ConversationsComponent implements OnInit {
 
   conversations: Conversation[];
   @Input() profile: Profile;
-  
-  constructor(private conversationService: ConversationService, private profileService: ProfileService) {
+
+  constructor(private conversationService: ConversationService,
+              private profileService: ProfileService) {
+
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -64,8 +66,21 @@ export class ConversationsComponent implements OnInit {
   convertDate(date){
     let dateArray = date.split("-");
     let newDate = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
-  
+
     return newDate;
   }
+
+  hexToRGBA(hex){
+    var c;
+    // if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+    c= hex.substring(1).split('');
+    if(c.length== 3){
+        c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c= '0x'+c.join('');
+    return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', 0.66)';
+    // }
+}
+
 
 }

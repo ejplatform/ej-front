@@ -54,6 +54,7 @@ export class EmbedComponent implements OnInit {
       if(path == 'inicio' || path == ''){
         path = '';
         this.isHome = true;
+        this.pageTitle = 'Por um Novo Programa para o Brasil';
       } else if (path == 'sobre-nos') {
         this.pageTitle = 'Sobre nós';
       } else if (path == 'perguntas-frequentes') {
@@ -89,7 +90,7 @@ export class EmbedComponent implements OnInit {
       this.commentService.create(comment).subscribe();
     // Test if it is a vote
   } else if (event.data && event.data.tid !== undefined && event.data.vote !== undefined) {
-      this.commentService.getByPolisId(event.data.tid).subscribe(comment => {
+      this.commentService.getByPolisId(event.data.tid, this.conversation.id).subscribe(comment => {
         if (comment.length == 1){
           let vote = new Vote;
           vote.comment = comment[0].id;
