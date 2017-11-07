@@ -30,6 +30,7 @@ import { ProgressbarModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { SoonComponent } from './soon/soon.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    SoonComponent,
     NavigationBarComponent,
     HeaderComponent,
     FooterComponent,
