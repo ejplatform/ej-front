@@ -40,8 +40,8 @@
                         <div class="profile">
                             <img [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
                         </div>
-                        <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
-                            {{ratio(conversation)}}%
+                        <progressbar class="progress-striped active align-middle" [value]="toPercentage(ratio(conversation))" type="warning">
+                            {{toPercentage(ratio(conversation))}}%
                         </progressbar>
                     </div>
                 </div>
