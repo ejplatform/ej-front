@@ -46,7 +46,7 @@ export class RegistrationComponent {
         // this.bsModalRef.hide();
         // this.router.navigate(['conversations']);
         this.handleloginSuccess();
-        
+
       });
     }, error => this.handleError(error));
   }
@@ -56,6 +56,27 @@ export class RegistrationComponent {
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
     });
+  }
+
+  loginWithTwitter() {
+    const windowRef: Window = window.open(
+                                '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+                                'twitter-window',
+                                'menubar=false,toolbar=false');
+
+    const that = this;
+    const popupTick = setInterval(function() {
+      if (windowRef.closed) {
+        clearInterval(popupTick);
+
+        that.authService.getToken().subscribe((key: any) => {
+          that.authService.loginSuccessCallback({ 'key': key });
+          that.handleloginSuccess();
+        }, (error: any) => {
+          that.handleError(error);
+        });
+      }
+    }, 500);
   }
 
   handleloginSuccess(){
@@ -70,7 +91,7 @@ export class RegistrationComponent {
 
   handleError(error: any){
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-    
+
     console.log(errors);
     this.nameErrors.setErrors(errors['name']);
     this.emailErrors.setErrors(errors['email']);

@@ -14,7 +14,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 .social-media{
     @extend .py-3;
     color: white;
-    
+
     #facebook-button{
         @extend .btn;
         @extend .btn-block;
@@ -27,7 +27,19 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
             padding: 10px;
             margin-right: 10px;
         }
-        
+    }
+
+    #twitter-button{
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-block;
+        text-align: left;
+        i{
+            border-right: 1px solid rgba(0,0,0,0.2);
+            line-height: 8px;
+            padding: 10px;
+            margin-right: 10px;
+        }
     }
 
 }
@@ -35,9 +47,9 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
     @extend .d-flex;
     @extend .justify-content-center;
     @extend .py-2;
-    
+
     font-size: small;
-    
+
     .terms-of-use-button{
         margin-left: 3px;
         color: #00AFF0;
@@ -61,7 +73,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 .form-group {
     position: relative;
     .inside-icon {
-        @extend .fa;    
+        @extend .fa;
         color: #7ED321;
         top: 10px;
         right: 25px;
@@ -76,7 +88,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         border-color: #00AFF0;
     }
     .inside-icon {
-        @extend .fa-check-circle;        
+        @extend .fa-check-circle;
         color: #7ED321;
     }
 }
