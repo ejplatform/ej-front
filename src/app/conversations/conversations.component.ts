@@ -57,6 +57,10 @@ export class ConversationsComponent implements OnInit {
     return ratio;
   }
 
+  toPercentage(value){
+    return Math.floor(value * 100);
+  }
+
   parserDate(strDate: string){
     strDate = this.convertDate(strDate);
     const newDate = new Date(strDate);
