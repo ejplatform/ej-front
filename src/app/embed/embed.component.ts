@@ -21,7 +21,7 @@ export class EmbedComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() conversation: Conversation;
-  public polis_url = 'https://brasilqueopovoquer.hacklab.com.br/';
+  public polis_url = 'https://wp.brasilqueopovoquer.org.br/';
   iframeHeight: number = 1500;
   isHome: boolean = false;
   pageTitle: String;
