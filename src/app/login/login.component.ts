@@ -69,7 +69,7 @@ export class LoginComponent {
 
   loginWithTwitter() {
     const windowRef: Window = window.open(
-                                'http://localhost:8000/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+                                '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
                                 'twitter-window',
                                 'menubar=false,toolbar=false');
 
