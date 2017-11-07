@@ -111,10 +111,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 
     .registration {
         text-align: left;
-<<<<<<< HEAD
-=======
         margin-bottom: 10px;
->>>>>>> develop
 
         .registration-button{
             color: #00AFF0;
@@ -127,9 +124,9 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         cursor: pointer;
     }
 
-    @include media-breakpoint-down(md) {  
+    @include media-breakpoint-down(md) {
         .forgot{ text-align: left; }
         .button-action{ min-width: 50%; }
-    }        
+    }
 }
 
