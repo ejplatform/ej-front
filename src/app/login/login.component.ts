@@ -82,7 +82,7 @@ export class LoginComponent {
           that.authService.loginSuccessCallback({ 'key': key });
           that.handleloginSuccess();
         }, (error: any) => {
-          that.authService.loginFailedCallback(error);
+          that.handleError(error);
         });
       }
     }, 500);
