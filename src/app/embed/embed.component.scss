@@ -10,6 +10,22 @@
     padding-bottom:56.25%;
     position:relative;
     height:0;
+
+    @media screen and (min-width: 768px){
+        padding-bottom: 53.25%;
+    }
+
+    @media screen and (min-width: 1400px){
+        padding-bottom: 45.25%;
+    }
+
+    @media screen and (min-width: 1700px){
+        padding-bottom: 36.25%;
+    }
+
+    @media screen and (min-width: 1850px){
+        padding-bottom: 34.25%;
+    }
 }
 
 .facebook-responsive iframe {
