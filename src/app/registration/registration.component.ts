@@ -58,6 +58,27 @@ export class RegistrationComponent {
     });
   }
 
+  loginWithTwitter() {
+    const windowRef: Window = window.open(
+                                '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+                                'twitter-window',
+                                'menubar=false,toolbar=false');
+
+    const that = this;
+    const popupTick = setInterval(function() {
+      if (windowRef.closed) {
+        clearInterval(popupTick);
+
+        that.authService.getToken().subscribe((key: any) => {
+          that.authService.loginSuccessCallback({ 'key': key });
+          that.handleloginSuccess();
+        }, (error: any) => {
+          that.handleError(error);
+        });
+      }
+    }, 500);
+  }
+
   handleloginSuccess(){
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(this.profile);

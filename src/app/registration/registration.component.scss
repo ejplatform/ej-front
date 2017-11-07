@@ -27,7 +27,19 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
             padding: 10px;
             margin-right: 10px;
         }
-        
+    }
+
+    #twitter-button{
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-block;
+        text-align: left;
+        i{
+            border-right: 1px solid rgba(0,0,0,0.2);
+            line-height: 8px;
+            padding: 10px;
+            margin-right: 10px;
+        }
     }
 
 }
