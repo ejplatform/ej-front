@@ -11,39 +11,28 @@
 
     <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
         <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : !ratio(conversation) }">
-
-            <div class="card-header">
-                <div class="card-header-left">
-                    <span class="category">{{conversation.title}} </span>
-                    <span class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </span>
-                </div>
-            </div>
-            <a routerLink="/conversations/participate/{{conversation.id}}">
-                <div class="card-cover">
-                    <div class="card-cover-img">
-                        <img class="card-img" [src]="backgroundImage(conversation)" alt="Card image cap">
+            
+            <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
+                <a routerLink="/conversations/participate/{{conversation.id}}">
+                    <div class="card-numbers">
+                        <span class="category">{{conversation.title}} </span>
+                        <span *ngIf="conversation.approved_comments">
+                            <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments' |
+                            translate}}
+                        </span>
+                        <span *ngIf="conversation.total_votes">
+                            <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}}
+                        </span>
                     </div>
-                    <h5 class="card-title" [ngStyle]="{ 'background-color' : hexToRGBA(conversation.background_color) }">{{conversation.description}}</h5>
-                    <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                </div>
-            </a>
+                </a>
+            </div>
+
+            <div class="card-title">
+                <h5>{{conversation.description}}</h5>
+            </div>
 
             <div class="card-block">
-                <!-- <h4 class="card-title">Card title</h4> -->
-                <p class="card-text">{{'conversations.card.info' | translate}}</p>
-
-                <div class="card-numbers">
-                    <span *ngIf="conversation.approved_comments">
-                        <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments'
-                        | translate}}
-                    </span>
-                    <span *ngIf="conversation.total_votes">
-                        <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}}
-                      </span>
-                </div>
-
-                <div class="participation" *ngIf="ratio(conversation)">
+                <div class="participation mb-20" *ngIf="ratio(conversation)">
                     <div class="title">
                         <h4>{{'conversations.card.participation' | translate}}</h4>
                     </div>
@@ -59,14 +48,11 @@
 
                 <div class="participation" *ngIf="!ratio(conversation)">
                     <div class="title" class='button button-action'>
-                      <a routerLink="/conversations/participate/{{conversation.id}}"
-                         class='btn btn-primary btn-block'>
-                         <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" >
-                         Participe Agora!
-                      </a>
+                        <a routerLink="/conversations/participate/{{conversation.id}}" class='btn btn-primary btn-block'>
+                            <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}"> Participe Agora!
+                        </a>
                     </div>
                 </div>
-
             </div>
 
         </div>

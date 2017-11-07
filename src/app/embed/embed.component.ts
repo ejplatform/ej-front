@@ -54,6 +54,7 @@ export class EmbedComponent implements OnInit {
       if(path == 'inicio' || path == ''){
         path = '';
         this.isHome = true;
+        this.pageTitle = 'Por um Novo Programa para o Brasil';
       } else if (path == 'sobre-nos') {
         this.pageTitle = 'Sobre nós';
       } else if (path == 'perguntas-frequentes') {
