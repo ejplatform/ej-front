@@ -17,6 +17,6 @@
 </div>
 
 <div *ngIf="!isHome">
-  <iframe [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
+  <iframe id="polis-iframe" [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
   <app-conversations></app-conversations>
 </div>
