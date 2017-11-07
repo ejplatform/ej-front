@@ -6,7 +6,6 @@ import * as _ from 'lodash'
 
 
 import { ProfileService } from '../services/profile.service';
-import { TwitterService } from '../services/twitter.service';
 import { LoginComponent  } from '../login/login.component';
 import { RegistrationComponent  } from '../registration/registration.component';
 import { AuthService } from '../services/auth.service';
@@ -24,8 +23,8 @@ export class HeaderComponent implements OnInit {
   bsModalRef: BsModalRef;
   @Input() profile: Profile;
 
-  constructor(private _state: GlobalState, private profileService: ProfileService, private modalService: BsModalService,
-    private router: Router, private twitterService: TwitterService, private authService: AuthService ) {
+  constructor(private _state: GlobalState, private profileService: ProfileService,
+    private modalService: BsModalService, private router: Router, private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -59,16 +58,6 @@ export class HeaderComponent implements OnInit {
       this.profileService.profileChangeEvent.emit(this.profile);
       window.location.reload();
     });
-  }
-
-  loginWithTwitter(){
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    this.twitterService.requestToken().subscribe((resp) => {
-      console.log('HeaderComponent: loginWithTwitter sucesso', resp);
-    }, error => {
-      console.log('HeaderComponent: loginWithTwitter erro ', error);
-    });
-    console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
   }
 
   openRegistration() {

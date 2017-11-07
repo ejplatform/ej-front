@@ -114,6 +114,7 @@
     .site-info {
         display: block;
     }
+
     .main-nav {
         left: 0;
         width: 245px;
@@ -121,11 +122,17 @@
             width: 185px;
         }
     }   
-    .site-logo{
+
+    .logged .site-logo{
         @include media-breakpoint-down(xs) {
             display: none ;
         }
     } 
+
+    .unlogged{
+        .without-profile{ left: 0% !important; }
+    }
+
     header.site-header {
         .user-info {
             width: 245px !important;

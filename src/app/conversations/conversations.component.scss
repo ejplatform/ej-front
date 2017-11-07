@@ -41,10 +41,6 @@ h4{ font-size: 0.8rem; }
     @include media-breakpoint-up(lg) {
         max-width: calc(33.3% - 30px);
     }
-
-    &, .card-header, .card-footer {
-        background-color: white;
-    }
 }
 
 .card-cover{

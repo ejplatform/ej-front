@@ -26,9 +26,12 @@
         </div>  -->
     </div>
     <div class="site-logo">
-        <h1><a routerLink="/"><img [src]="'/assets/images/logo' + ( !isLogged() ? '-unlogged' : '' ) + '.svg'" alt="{{ 'header.site' | translate }}"></a></h1>
+        <h1><a routerLink="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
+        <div class="menu-icon" (click)="toggleMenu()">
+            <img src="/assets/images/icons/menu-icon.png" alt="">
+        </div>
     </div>
-    <div *ngIf="!profile" class='without-profile'>
+    <div *ngIf="!profile" class="without-profile">
         <ul class='access'>
             <li><a (click)="openRegistration()">{{ 'header.registration' | translate }}</a></li>
             <li>
@@ -44,4 +47,5 @@
             <li><a routerLink="/perguntas-frequentes">Perguntas Frequentes</a></li>
         </ul>
     </div>
+    <div *ngIf="!isLogged()" class="fix-height"></div>
 </header>

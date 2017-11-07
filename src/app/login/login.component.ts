@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -67,9 +67,30 @@ export class LoginComponent {
     this.bsRegistrationModalRef = this.modalService.show(RecoverPasswordComponent, { class: 'modal-lg' });
   }
 
+  loginWithTwitter() {
+    const windowRef: Window = window.open(
+                                'http://localhost:8000/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+                                'twitter-window',
+                                'menubar=false,toolbar=false');
+
+    const that = this;
+    const popupTick = setInterval(function() {
+      if (windowRef.closed) {
+        clearInterval(popupTick);
+
+        that.authService.getToken().subscribe((key: any) => {
+          that.authService.loginSuccessCallback({ 'key': key });
+          that.handleloginSuccess();
+        }, (error: any) => {
+          that.authService.loginFailedCallback(error);
+        });
+      }
+    }, 500);
+  }
+
   handleError(error: any){
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-    
+
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password']);
     this.passwordErrors.setErrors(errors['non_field_errors']);
