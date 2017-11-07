@@ -6,9 +6,11 @@ import { ConversationsComponent } from "./conversations/conversations.component"
 import { ConversationComponent } from "./conversation/conversation.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { EmbedComponent } from "./embed/embed.component";
+import { SoonComponent } from "./soon/soon.component";
 
 export const rootRouterConfig: Routes = [
-  { path: '', component: EmbedComponent },
+  { path: '', component: SoonComponent },
+  { path: 'home', component: EmbedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'comments', component: CommentsComponent },
   { path: 'logout', component: LogoutComponent },
