@@ -16,31 +16,31 @@
 
     <div class="form-group name-field" [ngClass]="[ name.touched ? (name.valid ? 'is-valid' : 'is-invalid') : '' ]">
       <i class="inside-icon"></i>
-      <input type="text" class="form-control" 
-        id="name" name="name" placeholder="{{'registration.name' | translate }}" 
+      <input type="text" class="form-control"
+        id="name" name="name" placeholder="{{'registration.name' | translate }}"
         [(ngModel)]="profile.name" #name='ngModel'>
-      <validation-message #nameErrors [field]="name" [prefix]="'registration.name'"></validation-message>            
+      <validation-message #nameErrors [field]="name" [prefix]="'registration.name'"></validation-message>
     </div>
 
     <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
-      <i class="inside-icon"></i>            
-      <input type="email" class="form-control" id="email" name="email" placeholder="{{'registration.email' | translate }}" 
+      <i class="inside-icon"></i>
+      <input type="email" class="form-control" id="email" name="email" placeholder="{{'registration.email' | translate }}"
           [(ngModel)]="profile.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]+$" required #email='ngModel'>
-        <validation-message #emailErrors [field]="email" [prefix]="'registration.email'"></validation-message>            
+        <validation-message #emailErrors [field]="email" [prefix]="'registration.email'"></validation-message>
     </div>
 
     <div class="form-group password-field" [ngClass]="[ password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : '' ]">
       <i class="inside-icon"></i>
-      <input type="password" class="form-control" 
-        id="password" name="password" placeholder="{{'registration.password' | translate }}" 
+      <input type="password" class="form-control"
+        id="password" name="password" placeholder="{{'registration.password' | translate }}"
         [(ngModel)]="profile.password" required #password='ngModel'>
       <validation-message #passwordErrors [field]="password" [prefix]="'registration.password'"></validation-message>
     </div>
 
     <div class="form-group passwordConfirmation-field" [ngClass]="[ passwordConfirmation.touched ? (passwordConfirmation.valid ? 'is-valid' : 'is-invalid') : '' ]">
       <i class="inside-icon"></i>
-      <input type="password" class="form-control" 
-        id="passwordConfirmation" name="passwordConfirmation" placeholder="{{'registration.password.confirm' | translate }}" 
+      <input type="password" class="form-control"
+        id="passwordConfirmation" name="passwordConfirmation" placeholder="{{'registration.password.confirm' | translate }}"
         [(ngModel)]="profile.password_confirmation" required #passwordConfirmation='ngModel'>
       <validation-message #passwordConfirmationErrors [field]="passwordConfirmation" [prefix]="'registration.passwordConfirmation'"></validation-message>
     </div>
@@ -51,9 +51,9 @@
         {{'registration.terms.button' | translate }}
       </a>
     </div>
-      
+
     <div class='button-action'>
-        <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'registration.button.sign_up'}}</button>   
+        <button [disabled]="!signInForm.form.valid" type="submit" class="button" translate>{{'registration.button.sign_up'}}</button>
     </div>
   </form>
 

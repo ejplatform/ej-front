@@ -46,7 +46,7 @@ export class RegistrationComponent {
         // this.bsModalRef.hide();
         // this.router.navigate(['conversations']);
         this.handleloginSuccess();
-        
+
       });
     }, error => this.handleError(error));
   }
@@ -70,7 +70,7 @@ export class RegistrationComponent {
 
   handleError(error: any){
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-    
+
     console.log(errors);
     this.nameErrors.setErrors(errors['name']);
     this.emailErrors.setErrors(errors['email']);
