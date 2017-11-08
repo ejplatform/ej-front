@@ -9,11 +9,11 @@ stages:
   - test
   - deploy
 
-cache:
-  key: "$CI_BUILD_REF_NAME"
-  untracked: true
-  paths:
-    - node_modules/
+# cache:
+#   key: "$CI_BUILD_REF_NAME"
+#   untracked: true
+#   paths:
+#     - node_modules/
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
