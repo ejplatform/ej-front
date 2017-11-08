@@ -21,8 +21,8 @@ variables:
 test:
   stage: test
   script:
-    - docker run --rm -v $PWD:/app -w /app node:7 npm install
-    - docker run --rm -v $PWD:/app -w /app node:7 ./node_modules/.bin/ng test --code-coverage --single-run
+    - docker run --rm -v $PWD:/app -w /app node:8 npm install
+    - docker run --rm -v $PWD:/app -w /app node:8 ./node_modules/.bin/ng test --code-coverage --single-run
   tags:
     - docker
     - hacklab
@@ -31,8 +31,8 @@ test:
 build to homolog:
   stage: build
   script:
-    - docker run --rm -v $PWD:/app -w /app node:7 npm install
-    - docker run --rm -v $PWD:/app -w /app node:7 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
+    - docker run --rm -v $PWD:/app -w /app node:8 npm install
+    - docker run --rm -v $PWD:/app -w /app node:8 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
@@ -48,8 +48,8 @@ build to homolog:
 build to production:
   stage: build
   script:
-    - docker run --rm -v $PWD:/app -w /app node:7 npm install
-    - docker run --rm -v $PWD:/app -w /app node:7 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
+    - docker run --rm -v $PWD:/app -w /app node:8 npm install
+    - docker run --rm -v $PWD:/app -w /app node:8 ./node_modules/.bin/ng build --prod --output-path dist/empurrandojuntos --deploy-url /
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
