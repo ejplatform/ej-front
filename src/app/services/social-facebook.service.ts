@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FacebookService, InitParams } from 'ngx-facebook';
 import { LoginResponse } from 'ngx-facebook';
 
+import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class SocialFacebookService {
   constructor(private authService: AuthService, private fb: FacebookService) {
 
     let initParams: InitParams = {
-      appId: '1757744567588794',
+      appId: environment.facebookAppId,
       xfbml: true,
       version: 'v2.10'
     };
