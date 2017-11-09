@@ -55,7 +55,9 @@ export class RegistrationComponent {
     this.socialFacebookService.login();
 
     this.socialFacebookService.loginReturn.subscribe((data) => {
-      this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
+      if (data.error) {
+        this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
+      }
     });
 
     this.authService.loginSuccess.subscribe(profile => {
