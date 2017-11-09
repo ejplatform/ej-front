@@ -29,7 +29,6 @@ export class ConversationsComponent implements OnInit {
 
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
-
       this.conversations = _.sortBy(conversations, ['position']);
     });
     if(_.isUndefined(this.profile.image)){
