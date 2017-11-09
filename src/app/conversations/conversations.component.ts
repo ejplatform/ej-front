@@ -29,7 +29,8 @@ export class ConversationsComponent implements OnInit {
 
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
-      this.conversations = conversations;
+
+      this.conversations = _.sortBy(conversations, ['position']);
     });
     if(_.isUndefined(this.profile.image)){
       this.profile.image = '/assets/images/icons/profile_icon.svg';
