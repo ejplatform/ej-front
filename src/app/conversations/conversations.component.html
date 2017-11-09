@@ -10,7 +10,7 @@
     <h2>{{'conversations.subtitle' | translate}}</h2>
 
     <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
-        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.new }">
+        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }">
             
             <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
                 <a routerLink="/conversations/participate/{{conversation.id}}">

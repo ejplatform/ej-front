@@ -18,6 +18,6 @@ export class Conversation {
     public id: number;
     public author: any;
     public position: number;
-    public new: boolean;
+    public is_new: boolean;
 
 }
