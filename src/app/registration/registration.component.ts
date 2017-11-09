@@ -19,7 +19,7 @@ export class RegistrationComponent {
   profile: Profile;
   bsModalRef: BsModalRef;
   loggedIn = new EventEmitter();
-
+  socialErrors: string;
 
   @ViewChild('nameErrors') nameErrors;
   @ViewChild('emailErrors') emailErrors;
@@ -53,6 +53,11 @@ export class RegistrationComponent {
 
   loginWithFacebook(){
     this.socialFacebookService.login();
+
+    this.socialFacebookService.loginReturn.subscribe((data) => {
+      this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
+    });
+
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
     });
@@ -97,6 +102,10 @@ export class RegistrationComponent {
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password1']);
     this.passwordConfirmationErrors.setErrors(errors['non_field_errors']);
+  }
+
+  handleSocialError(error: any) {
+    this.socialErrors = error;
   }
 
 }

@@ -28,6 +28,7 @@ export class LoginComponent {
 
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('emailErrors') emailErrors;
+  socialErrors: string;
 
   constructor(private authService: AuthService, private profileService: ProfileService,
     private socialFacebookService: SocialFacebookService, private modalService: BsModalService,
@@ -44,8 +45,13 @@ export class LoginComponent {
     }, error => this.handleError(error));
   }
 
-  loginWithFacebook(){
+  loginWithFacebook() {
     this.socialFacebookService.login();
+
+    this.socialFacebookService.loginReturn.subscribe((data) => {
+      this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
+    });
+
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
     });
@@ -82,13 +88,13 @@ export class LoginComponent {
           that.authService.loginSuccessCallback({ 'key': key });
           that.handleloginSuccess();
         }, (error: any) => {
-          that.handleError(error);
+          that.handleError({ 'error': {'non_field_errors': 'Erro ao logar com o Twitter'} });
         });
       }
     }, 500);
   }
 
-  handleError(error: any){
+  handleError(error: any) {
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
 
     this.emailErrors.setErrors(errors['email']);
@@ -96,7 +102,11 @@ export class LoginComponent {
     this.passwordErrors.setErrors(errors['non_field_errors']);
   }
 
-  handleloginSuccess(){
+  handleSocialError(error: any) {
+    this.socialErrors = error;
+  }
+
+  handleloginSuccess() {
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
       this.bsModalRef.hide();

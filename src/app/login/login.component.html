@@ -17,6 +17,10 @@
       {{'login.twitter' | translate }}
     </a>
   </div>
+  <div class="alert alert-danger" *ngIf="socialErrors">
+    {{ socialErrors }}
+  </div>
+
   <form #signInForm="ngForm" (ngSubmit)="login()" class="login_form">
 
     <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
