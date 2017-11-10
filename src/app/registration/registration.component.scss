@@ -1,10 +1,35 @@
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
+@import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.modal-header{
+    border: none;
+    padding-bottom: 0px;
+}
+
+.modal-body{
+    padding-top: 0px;
+}
 
 .social-media{
     @extend .py-3;
     color: white;
-    
+
     #facebook-button{
+        @extend .btn;
+        @extend .btn-block;
+        text-align: left;
+        background-color: #3b5998;
+        border-color: #3b5998;
+        i{
+            border-right: 1px solid rgba(0,0,0,0.2);
+            line-height: 8px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    #twitter-button{
         @extend .btn;
         @extend .btn-primary;
         @extend .btn-block;
@@ -15,7 +40,65 @@
             padding: 10px;
             margin-right: 10px;
         }
-        
     }
 
+}
+.terms-of-use{
+    @extend .d-flex;
+    @extend .justify-content-center;
+    @extend .py-2;
+
+    font-size: small;
+
+    .terms-of-use-button{
+        margin-left: 3px;
+        color: #00AFF0;
+        cursor: pointer;
+    }
+}
+.button-action{
+    @extend .d-flex;
+    @extend .justify-content-center;
+    button{
+        @extend .px-5;
+        @extend .py-2;
+        background-color: #00AFF0;
+        border: none;
+        border-radius: 2px;
+        color: white;
+        font-weight: bold;
+    }
+}
+
+.form-group {
+    position: relative;
+    .inside-icon {
+        @extend .fa;
+        color: #7ED321;
+        top: 10px;
+        right: 25px;
+        position: absolute;
+    }
+}
+
+
+.is-valid {
+    .form-control{
+        @extend .is-valid;
+        border-color: #00AFF0;
+    }
+    .inside-icon {
+        @extend .fa-check-circle;
+        color: #7ED321;
+    }
+}
+
+.is-invalid {
+    .form-control{
+        @extend .is-invalid;
+    }
+    .inside-icon {
+        @extend .fa-times-circle-o;
+        color: #dc3545;
+    }
 }

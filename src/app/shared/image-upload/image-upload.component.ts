@@ -21,9 +21,10 @@ export class ImageUploadComponent {
       reader.onload = (e: any) => {
         this.imageData = { name: file.name, content: e.target.result };
         this.imageDataChange.next(this.imageData);
-        this.onChange.next(this.imageData);
+        this.onChange.next(file);
       };
       reader.readAsDataURL(file);
     }
   }
+
 }

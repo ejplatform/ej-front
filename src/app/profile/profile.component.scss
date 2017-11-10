@@ -6,15 +6,18 @@ $profile-font-color: #6B7479;
 
 .profile-form{
     @extend .row;
-    @extend .d-flex;
-    @extend .justify-content-center;
-    @extend .p-4;
     color: $profile-font-color;
-
+    display: flex;
+    box-shadow: 0 0 10px rgb(233, 233, 233);
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 3px;
+    
     .profile-picture-column{
         @extend .col-md-3; 
-        @extend .mb-3;
-        border: 1px solid theme-color("secondary");
+        border-right: 1px solid rgb(233, 233, 233);
+        padding-top: 30px;
+        padding-bottom: 50px;
+    
         p{
             @extend .p-4;
             @extend .mt-2;
@@ -22,15 +25,14 @@ $profile-font-color: #6B7479;
             text-align: center;
         }
     }
+
     .profile-information-column{
         @extend .col-md-8;
-        @extend .mb-3;
         @extend .border-left-0;
         @extend .px-5;
-        @extend .pt-3;
-        // @extend .pb-5;
-        padding-bottom: 200px;
-        border: 1px solid theme-color("secondary");
+        padding-top: 50px;
+        padding-bottom: 50px;
+        
         h1{
             font-size: x-large;
             font-weight: initial;
@@ -40,11 +42,8 @@ $profile-font-color: #6B7479;
             h1{
                 @extend .py-3;
             }
-            
         }
-        
     }
-
 }
 
 .form-button{

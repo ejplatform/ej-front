@@ -36,6 +36,11 @@ export class AuthService {
 
   }
 
+  reset(profile: Profile) {
+    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/reset/`;
+    return this.http.post(fullEndpointUrl, profile)
+  }
+
   signInFacebook(accessToken: string) {
     console.log('AuthService: signInFacebook', accessToken);
     let fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
@@ -61,17 +66,26 @@ export class AuthService {
     );
   }
 
+  getToken() {
+    let fullEndpointUrl = `${environment.apiUrl}/api/profile/key/`;
+    return this.http.get(fullEndpointUrl).map(
+      (data: any) => {
+        return data.key;
+      }
+    );
+  }
+
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
     this.logoutSuccess.next(profile);
   }
 
-  private loginFailedCallback(response: any): any {
+  public loginFailedCallback(response: any): any {
     this.loginFailed.next(response);
     return null;
   }
 
-  private loginSuccessCallback(response: any) {
+  public loginSuccessCallback(response: any) {
     const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
     return token;

@@ -1,122 +1,121 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
-h1{
-    @extend .m-5;
-    @extend .p-4;
-    font-size: x-large;
-    color: #4A4A4A;
-    //FIXME put a bootstrap variable
-    font-weight: 500;
-}
+h2,h3{ font-weight: 300; }
+h2{ font-size: 32PX; }
+h3{ font-size: 24px; }
+h4{ font-size: 0.8rem; }
+.card a{ color: white; }
 
-h2, h3{
-    text-align: center;
-    font-weight: bold;
-    color: #D30000;
-}
-h2{
-    font-size: 1.75rem;
-}
-h3{
-    font-size: 1.0rem;
-}
-h4{
-    font-size: 0.8rem;
-}
 .card{
-    @extend .mx-4;
     @extend .mt-5;
     
-}
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+    border: none;
+    position: relative;
 
-.card-header{
-    padding-left: 0px;
-    .card-header-left{
-        float: left;
-        @extend .ml-3;
-        .category{
-            display: block;
-            font-weight: bold;
-            margin: 0px;
-            padding: 0px;
-    
-        }
-        .date{
-            margin: 0px;
-            padding: 0px;
+    &.new{
+        box-shadow: 0 0 0 5px #EF4438, 0 0 2px 7px rgba(0,0,0,0.12), 0 2px 2px 6px rgba(0,0,0,0.24);
+
+        &:after{
+            content: '#Novidade';
+            background-image: url('/assets/images/bg-card-new.png');
+            right: 16px;
+            top: -14px;
+            z-index: 100;
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 3px 30px;
         }
     }
-    
-    .card-header-right{
-        float: right;
-    
+
+    @include media-breakpoint-up(sm) {
+        max-width: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+        max-width: calc(50% - 30px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        max-width: calc(33.3% - 30px);
     }
 }
-.card-text{
-    font-size: small;
-    @extend .m-4;    
-}
-
 
 .card-cover{
     position: relative;
-    background-color: rgba(208,2,27,0.66);
-    h5{
-        color: white;
+    height: 130px;
+    background-size: cover;
+    background-position: center;
+
+    .card-numbers{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background: linear-gradient(transparent, rgba(33,33,33, 0.7) 75%, rgba(33,33,33, 0.9));
+        width: 100%;
+        height: 70px;
+        left: 0;
+        bottom: 0;
         position: absolute;
-        top: 0px;
-        font-weight: bold;
-        text-align: center;
+        align-items: flex-end;
+        padding: 10px 20px;
+        overflow: hidden;
 
-    }
+        span{ 
+            font-weight: 300; 
+            font-size: 14px;
+        }
 
-    .card-cover-img{
-        position: relative;
-    }
-    .card-cover-img:after {
-        content:'';
-        position:absolute;
-        left:0px;
-        top:0px;
-        width:100%;
-        height:100%;
-        background-color: rgba(208,2,27,0.66);
+        .category{ 
+            flex: 1 1 100%;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
     }
 }
 
-.card-footer{
-    padding-left: 0px;
-    .amount{
-        font-weight: bold;
-        @extend .mx-1;
-        
+.card-title{ 
+    color: black;
+    flex: 1;
+    padding: 20px 20px 0 20px;
+    margin-bottom: 0px;
+ }
+
+.card-block{
+    padding: 10px 20px 20px 20px;
+    color: rgba(0,0,0,0.54);
+    font-size: 14px;
+
+    .card-text{
+        color: rgba(0,0,0,0.87);
     }
-    .card-footer-left{
-        float: left;
-    }
-    
-    .card-footer-right{
-        float: right;
-    
-    }
+
     .participation{
-        @extend .pl-4;
-        @extend .pt-5;
-        
         clear: both;
-        .content{
-            display: inline-block;
-            .teste{
-                display: inline-block;
-            }
+
+        &.mb-20{ margin-bottom: 20px; }
+        
+        .content{ display: inline-block; }
+
+        .profile img{ width: 30px; }
+        
+        .btn-primary{
+            text-transform: uppercase;
+            background-color: #EF4438;
+            border-color: #EF4438;
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            img{ height: 22px; }
         }
-        .profile{
-            img{
-                width: 50px;
-                // height: 40px;
-            }
-        }
+
         progressbar{
+            display: flex;
+            align-items: center;
+
             @extend .pl-3;
         }
     }

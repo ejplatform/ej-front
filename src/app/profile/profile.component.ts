@@ -19,6 +19,20 @@ export class ProfileComponent {
   @ViewChild('password') password;
   @ViewChild('passwordConfirmation') passwordConfirmation;
 
+  
+  @ViewChild('passwordErrors') passwordErrors;
+  @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
+  @ViewChild('politicalMovementErrors') politicalMovementErrors;
+  @ViewChild('biographyErrors') biographyErrors;
+  @ViewChild('occupationErrors') occupationErrors;
+  @ViewChild('raceErrors') raceErrors;
+  @ViewChild('genderErrors') genderErrors;
+  @ViewChild('countryErrors') countryErrors;
+  @ViewChild('stateErrors') stateErrors;
+  @ViewChild('cityErrors') cityErrors;
+  @ViewChild('emailErrors') emailErrors;
+  @ViewChild('nameErrors') nameErrors;
+
   genderOptions = [
     {id: 'FEMALE', name: "Mulher"},
     {id: 'MALE', name: "Homem"},
@@ -60,21 +74,32 @@ export class ProfileComponent {
       this.profile = profile;
     });
     this.initializeFields(this.profile);
-    console.log('constructor', this.profile);
-    
   }
 
   save() {
+
     this.profileService.save(this.profile).subscribe( profile => {
         this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
-        this.profileService.setProfile(this.profile);
+        this.profileService.setProfile(profile);
         this.router.navigate(['profile']);
 
       }, error => {
-        console.log('Something wrong happened...');
+        this.handleError(error);
+        console.log(error);
       });
   }
 
+  saveImage(file){
+    this.profile.imageFile = file;
+    this.profileService.saveImage(this.profile).subscribe( profile => {
+      this.notificationService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
+      this.profileService.setProfile(this.profile);
+      this.router.navigate(['profile']);
+
+    }, error => {
+      console.log(error);
+    });
+  }
   cancel(){
     let profile  = <Profile>{};
     this.initializeFields(profile);
@@ -89,7 +114,8 @@ export class ProfileComponent {
         this.passwordConfirmation.reset();
 
       }, error => {
-        console.log('Something wrong happened...');
+        this.handleError(error);
+        console.log(error);
       });
   }
 
@@ -101,6 +127,26 @@ export class ProfileComponent {
       profile.race = '';  
     }
     return profile;
+  }
+
+  handleError(error: any){
+    const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
+    
+    this.passwordErrors.setErrors(errors['password']);
+    this.passwordConfirmationErrors.setErrors(errors['new_password1']);
+    this.passwordConfirmationErrors.setErrors(errors['new_password2']);
+
+    this.politicalMovementErrors.setErrors(errors['political_movement']);
+    this.biographyErrors.setErrors(errors['biography']);
+    this.occupationErrors.setErrors(errors['occupation']);
+    this.raceErrors.setErrors(errors['race']);
+    this.genderErrors.setErrors(errors['gender']);
+    this.countryErrors.setErrors(errors['country']);
+    this.stateErrors.setErrors(errors['state']);
+    this.cityErrors.setErrors(errors['city']);
+    this.emailErrors.setErrors(errors['email']);
+    this.nameErrors.setErrors(errors['name']);
+    this.occupationErrors.setErrors(errors['non_field_errors']);
   }
 
 }

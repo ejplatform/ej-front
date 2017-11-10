@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Angular2TokenService, SignInData } from 'angular2-token';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as _ from 'lodash'
 
@@ -20,13 +19,13 @@ export class RegistrationComponent {
   profile: Profile;
   bsModalRef: BsModalRef;
   loggedIn = new EventEmitter();
+  socialErrors: string;
 
-      
   @ViewChild('nameErrors') nameErrors;
   @ViewChild('emailErrors') emailErrors;
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
-      
+
   constructor(private authService: AuthService, private profileService: ProfileService, private notificationService: NotificationService,
     private socialFacebookService: SocialFacebookService, private modal: BsModalRef, private router: Router) {
     this.bsModalRef = modal;
@@ -37,43 +36,66 @@ export class RegistrationComponent {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
     this.authService.signUp(this.profile).subscribe((response) => {
-      this.profileService.get().subscribe( profile => {
-        profile.id = profile.pk;
-        this.profile = profile;
-        this.profileService.setProfile(this.profile);        
-        this.bsModalRef.hide();
-        this.loggedIn.emit();
-        this.router.navigate(['conversations']);
-      });
+      this.handleloginSuccess();
     }, error => this.handleError(error));
   }
 
   loginWithFacebook(){
     this.socialFacebookService.login();
+
+    this.socialFacebookService.loginReturn.subscribe((data) => {
+      if (data.error) {
+        this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
+      }
+    });
+
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
     });
   }
 
+  loginWithTwitter() {
+    const windowRef: Window = window.open(
+                                '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+                                'twitter-window',
+                                'menubar=false,toolbar=false');
+
+    const that = this;
+    const popupTick = setInterval(function() {
+      if (windowRef.closed) {
+        clearInterval(popupTick);
+
+        that.authService.getToken().subscribe((key: any) => {
+          that.authService.loginSuccessCallback({ 'key': key });
+          that.handleloginSuccess();
+        }, (error: any) => {
+          that.handleError(error);
+        });
+      }
+    }, 500);
+  }
+
   handleloginSuccess(){
-    this.profileService.get().subscribe( profile => {
-      profile.id = profile.pk;
-      this.profileService.setProfile(this.profile);        
+    this.profileService.me().subscribe( profile => {
+      this.profileService.setProfile(profile);
       this.bsModalRef.hide();
       this.loggedIn.emit();
-      this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
-      this.router.navigate(['conversations']);
+      this.notificationService.success({ title: "registration.success.title", message: "registration.success.message" });
     });
   }
 
   handleError(error: any){
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-    
+
     console.log(errors);
     this.nameErrors.setErrors(errors['name']);
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password1']);
     this.passwordConfirmationErrors.setErrors(errors['non_field_errors']);
+  }
+
+  handleSocialError(error: any) {
+    this.socialErrors = error;
   }
 
 }

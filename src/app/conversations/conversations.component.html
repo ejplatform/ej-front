@@ -1,55 +1,60 @@
-<h1>{{'conversations.topic' | translate}}</h1>
-<h2>{{'conversations.title' | translate}}</h2>
-<h3>{{'conversations.subtitle' | translate}}</h3>
+<div class="page-title">
+    <div class="container">
+        <h1>{{'conversations.topic' | translate}}</h1>
+    </div>
+</div>
 
-<div *ngFor="let local_conversations of groupConversations()"class="card-deck">
-  <div  *ngFor="let conversation of local_conversations" class="card">
-    
-    <div class="card-header">
-      <div class="card-header-left">
-        <small class="category">{{conversation.title}} </small>
-        <small class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </small>
-      </div>
-      <div class="card-header-right">
-        <small class="identifier">Conversas #{{conversation.id}} </small>
-      </div>
-    </div>
-    <a routerLink="/conversations/{{conversation.id}}">
-    <div class="card-cover">
-      <div class="card-cover-img">
-        <img class="card-img" [src]="backgroundImage(conversation)" alt="Card image cap">
-      </div>
-      <h5 class="card-title mt-4">{{conversation.description}}</h5>
-        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-    </div>
-    </a>
+<div class="container">
+
+    <h3>{{'conversations.title' | translate}}</h3>
+    <h2>{{'conversations.subtitle' | translate}}</h2>
+
+    <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
+        <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }">
             
-    <div class="card-block">
-        <!-- <h4 class="card-title">Card title</h4> -->
-      <p class="card-text">{{'conversations.card.info' | translate}}</p>
-    </div>
+            <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
+                <a routerLink="/conversations/participate/{{conversation.id}}">
+                    <div class="card-numbers">
+                        <span class="category">{{conversation.title}} </span>
+                        <span *ngIf="conversation.approved_comments">
+                            <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments' |
+                            translate}}
+                        </span>
+                        <span *ngIf="conversation.total_votes">
+                            <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}}
+                        </span>
+                    </div>
+                </a>
+            </div>
 
-    <div class="card-footer">
-      <small class="card-footer-left">
-        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}} 
-      </small>
-      <small class="card-footer-right">
-        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}} 
-      </small>
-      <div class='participation '>
-        <div class='title'>
-          <h4>{{'conversations.card.participation' | translate}}</h4>
+            <div class="card-title">
+                <h5>{{conversation.description}}</h5>
+            </div>
+
+            <div class="card-block">
+                <div class="participation mb-20" *ngIf="ratio(conversation)">
+                    <div class="title">
+                        <h4>{{'conversations.card.participation' | translate}}</h4>
+                    </div>
+                    <div class='content d-flex align-items-stretch bd-highlight '>
+                        <div class="profile">
+                            <img [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+                        </div>
+                        <progressbar class="progress-striped active align-middle" [value]="toPercentage(ratio(conversation))" type="warning">
+                            {{toPercentage(ratio(conversation))}}%
+                        </progressbar>
+                    </div>
+                </div>
+
+                <div class="participation" *ngIf="!ratio(conversation)">
+                    <div class="title" class='button button-action'>
+                        <a routerLink="/conversations/participate/{{conversation.id}}" class='btn btn-primary btn-block'>
+                            <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}"> Participe Agora!
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class='content d-flex align-items-stretch bd-highlight '>
-          <div class='profile'>
-            <img [src]="profile.picture_path" alt="{{'navigation-bar.item.profile' | translate}}">
-          </div>
-          <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
-              {{ratio(conversation)}}%
-          </progressbar>
-        </div>          
-      </div>
     </div>
-  </div>
 </div>

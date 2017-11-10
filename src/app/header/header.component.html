@@ -3,12 +3,12 @@
         <div class="user-info" (click)="toggleMenu()"  >
             <div class="user-icon">
                 <img src="/assets/images/icons/menu_icon.svg" alt="Some user" class="img-circle">
-                <div class="menu-label">menu</div>
-                <div class="hide-menu">ocultar</div>
+                <div class="menu-label">{{ 'header.menu' | translate }}</div>
+                <div class="hide-menu">{{ 'header.hide' | translate }}</div>
             </div>
-            <div class="user-name">{{profile.name}}</div>
+            <div class="user-name">{{profile.name | shorten: 18: '...'}}</div>
         </div>
-        <app-alerts [profile]="profile" ></app-alerts>
+        <!-- <app-alerts [profile]="profile" ></app-alerts> -->
         <!-- <ul id="top-right-menu" class="user-tools">
             <li>
                 <a class="notifications active fa fa-exclamation-circle">
@@ -17,7 +17,7 @@
                 </a>
             </li>
         </ul>
-        
+
         <div id="notification-wrapper">
             <div class="notifications-panel">
                 <h2 class="notifications-title">Notificações</h2>
@@ -26,22 +26,26 @@
         </div>  -->
     </div>
     <div class="site-logo">
-        <h1><a href="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
-    </div> 
-    <div *ngIf="!profile" class='without-profile'>
+        <h1><a routerLink="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
+        <div class="menu-icon" (click)="toggleMenu()">
+            <img src="/assets/images/icons/menu-icon.png" alt="">
+        </div>
+    </div>
+    <div *ngIf="!profile" class="without-profile">
         <ul class='access'>
             <li><a (click)="openRegistration()">{{ 'header.registration' | translate }}</a></li>
             <li>
                 <a (click)="openLogin()">{{ 'header.login' | translate }}</a>
                 <i  class="fa fa-user"></i>
-            </li>            
+            </li>
         </ul>
         <ul class='site-links'>
             <!-- <li><a (click)="loginWithFacebook()"  >Logar com Facebook</a></li> -->
             <!-- <li><a (click)="loginWithTwitter()"  >Logar com Twitter</a></li> -->
-            <li><a routerLink="/inicio">Inicio</a></li>
-            <li><a routerLink="/sobre-nos">Sobre Nos</a></li>
+            <li><a routerLink="/sobre-nos">Sobre Nós</a></li>
+            <li><a routerLink="/conversations">Conversas</a></li>
             <li><a routerLink="/perguntas-frequentes">Perguntas Frequentes</a></li>
         </ul>
     </div>
+    <div *ngIf="!isLogged()" class="fix-height"></div>
 </header>

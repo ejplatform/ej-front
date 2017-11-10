@@ -1,0 +1,120 @@
+<div class="box-intro soft-scroll">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="txt-intro">
+                    <p>Por um <strong>Novo Programa</strong> para o Brasil</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-slider--carousel">
+
+            <div class="row home-slider--carousel_slides" [ngClass]="'active-' + active_slider">
+                
+                <div class="col-md-4 col-xs-12 home-slider--carousel_slide">
+                    <div class="number-intro">
+                        <a href="#topoconversa"><span><i class="fa fa-desktop" aria-hidden="true"></i></span></a>
+                    </div>
+                    <div class="info-intro">
+                        <h2><a href="#topoconversa">Plataforma</a></h2>
+                        <p>
+                            <a href="#topoconversa">Participação ao alcance de todas e todos, onde suas opiniões ganham voz e serão respondidas</a>
+                        </p>
+                        <p class="btn-home-intro"><a href="#" (click)="openModal('plataforms')" data-toggle="modal" data-target="#modal-intro-1">+ Mais detalhes</a></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-xs-12">
+                    <div class="number-intro">
+                        <a href="sobre-nos#estudiosos"><span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span></a>
+                    </div>
+                    <div class="info-intro">
+                        <h2><a href="sobre-nos#estudiosos">Relatores</a></h2>
+                        <p>
+                            <a href="sobre-nos#estudiosos">Especialistas e ativistas vão comentar e debater as principais opiniões dos cidadãos</a>
+                        </p>
+                        <p class="btn-home-intro"><a href="#" (click)="openModal('writers')" data-toggle="modal" data-target="#modal-intro-2">+ Mais detalhes</a></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-xs-12">
+                    <div class="number-intro">
+                        <a href="sobre-nos#cidades"><span><i class="fa fa-building-o" aria-hidden="true"></i></span></a>
+                    </div>
+                    <div class="info-intro">
+                        <h2><a href="sobre-nos#cidades">Cidades</a></h2>
+                        <p>
+                            <a href="sobre-nos#cidades">Reuniões e debates presenciais nos diretórios, setoriais e outras instâncias do PT</a>
+                        </p>
+                        <p class="btn-home-intro"><a href="#" (click)="openModal('cities')" data-toggle="modal" data-target="#modal-intro-3">+ Mais detalhes</a></p>
+                    </div>
+                </div>
+                
+                <!-- Modal 1 -->
+                <div class="modal fade" id="modal-intro-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Plataforma</h4>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <p>Para ampliar a possibilidade de participação, a FPA lançou mão de uma ferramenta que pode ser acessada em qualquer lugar do Brasil. É muito fácil: você só precisa acessar um computador ou smartphone.</p>
+                                <p>Funciona assim: basta se cadastrar na plataforma (pelo Facebook, Twitter ou cadastro simplificado na própria plataforma) e participar das conversas abertas, que falarão de diferentes assuntos selecionados pela Fundação Perseu Abramo. Opinar é bem simples. Seja pelo celular ou pelo computador você só precisa clicar se concorda ou discorda nas opiniões que forem aparecendo ou incluir suas próprias ideias para os outros participantes opinarem.</p>
+                                <p>A partir de outubro será possível sugerir os temas das próximas conversas!</p>
+                            </div> <!-- /.modal-body -->
+                            
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- modal-dialog -->
+                </div> <!-- /.modal 1 -->
+                
+                <!-- Modal 2 -->
+                <div class="modal fade" id="modal-intro-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Relatores</h4>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <p>A FPA está mobilizando acadêmicos e ativistas de movimentos sociais com histórico de atuação nos eixos temáticos propostos para formar grupos de estudo.</p>
+                                <p>Estes grupos estarão atentos ao que será produzido na Plataforma Digital de Participação, proporão debates, e produzirão conteúdo, informação e dados para ajudar na formulação de opiniões dos participantes. Além disso, estarão responsáveis pela sistematização das opiniões ao final do processo.</p>
+                                <p>Todos os encontros deste grupo serão transmitidos ao vivo.</p>
+                            </div> <!-- /.modal-body -->
+                            
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- modal-dialog -->
+                </div> <!-- /.modal 2 -->
+                
+                <!-- Modal 3 -->
+                <div class="modal fade" id="modal-intro-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Cidades</h4>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <p>Todo o PT está mobilizado para ouvir os brasileiros e brasileiras sobre os temas propostos.&nbsp;Os diretórios zonais, municipais, estaduais e nacional organizarão encontros presenciais e virtuais – com transmissão ao vivo.</p>
+                                <p>Ficou interessada/o? Entre em contato com o diretório da sua cidade e pergunte quando será o encontro aí.</p>
+                                <p>Os diretórios e militantes interessados em realizar os encontros receberão uma cartilha com conteúdos sobre cada eixo de debate.</p>
+                            </div> <!-- /.modal-body -->
+                            
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- modal-dialog -->
+                </div> <!-- /.modal 3 -->
+
+            </div>
+            
+            <ul class="home-slider--carousel_pagination">
+                <li *ngFor="let i of [1,2,3]" [ngClass]="{ 'active' : i == active_slider }" (click)="active_slider = i"></li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

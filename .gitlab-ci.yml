@@ -9,17 +9,22 @@ stages:
   - test
   - deploy
 
-cache:
-  key: "$CI_BUILD_REF_NAME"
-  untracked: true
-  paths:
-    - node_modules/
 
 variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
   CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
 
-build to homolog:
+test:
+  stage: test
+  script:
+    - docker run --rm -v $PWD:/app -w /app node:8 npm install
+    - docker run --rm -v $PWD:/app -w /app node:8 ./node_modules/.bin/ng test --code-coverage --single-run
+  tags:
+    - docker
+    - hacklab
+
+
+build:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
@@ -27,30 +32,32 @@ build to homolog:
     - docker tag $CONTAINER_RELEASE_IMAGE $CONTAINER_LATEST_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_LATEST_IMAGE
-  environment: homolog
   tags:
     - docker
     - hacklab
   only:
     - master
-
-test:
-  stage: test
-  script:
-    - docker run --rm -v $PWD:/app -w /app node:7.2.1 npm install
-    - docker run --rm -v $PWD:/app -w /app node:7.2.1 ./node_modules/.bin/ng test --code-coverage --single-run
-  tags:
-    - docker
-    - hacklab
 
 deploy to homolog:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --new-image $CONTAINER_RELEASE_IMAGE --no-finish-upgrade --debug
+    - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --no-finish-upgrade --debug
   environment: homolog
   tags:
     - docker
     - hacklab
   only:
     - master
+
+deploy to production:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment FPAbramo --stack empurrandojuntos-prod --service frontend --no-finish-upgrade --debug
+  environment: production
+  tags:
+    - docker
+    - hacklab
+  only:
+    - tags

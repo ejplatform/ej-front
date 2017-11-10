@@ -1,5 +1,6 @@
 <ng-progress></ng-progress>
-<div class="app-root" [ngClass]="{'logged': isLogged()}">
+<div class="app-root" [ngClass]="{'logged': isLogged()}" >
+   
   <div class="site-wrapper" [ngClass]="{'main-nav-opened': isMenuCollapsed}">
     <app-header [profile]="profile"></app-header>
     <app-navigation-bar *ngIf="profile" [profile]="profile"></app-navigation-bar>
@@ -7,4 +8,5 @@
         <router-outlet></router-outlet>
     </div>
   </div>
+  <app-footer></app-footer>  
 </div>

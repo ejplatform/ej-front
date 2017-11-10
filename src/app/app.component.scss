@@ -36,7 +36,7 @@
             padding-bottom: 110px;            
         }
         @media screen and (min-width: 1025px) {
-            margin-top: 110px;
+            margin-top: 80px;
         }
         @include media-breakpoint-down(sm) {
             left: 0;
@@ -72,8 +72,9 @@
             }
             li{
                 @include media-breakpoint-down(xs) {
-                    min-height: 75px;
-                    padding: 25px;
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    font-size: 16px;
                 }
                 &:before {
                     @include media-breakpoint-down(xs) {
@@ -82,6 +83,9 @@
                 }
             }
             a {
+                display: flex;
+                align-items: center;
+                
                 &:before {
                     display: inline-block;
                     margin-right: 10px;
@@ -110,6 +114,7 @@
     .site-info {
         display: block;
     }
+
     .main-nav {
         left: 0;
         width: 245px;
@@ -117,11 +122,17 @@
             width: 185px;
         }
     }   
-    .site-logo{
+
+    .logged .site-logo{
         @include media-breakpoint-down(xs) {
             display: none ;
         }
     } 
+
+    .unlogged{
+        .without-profile{ left: 0% !important; }
+    }
+
     header.site-header {
         .user-info {
             width: 245px !important;

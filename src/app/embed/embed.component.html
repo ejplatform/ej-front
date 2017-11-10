@@ -1,1 +1,24 @@
-<iframe (load)="checkHeight($event)" [src]="url | safe" height="3000" frameborder="0" scrolling="no"></iframe>
+<div class="page-title" *ngIf="!isHome">
+    <div class="container">
+        <h1> {{ pageTitle }} </h1>
+    </div>
+</div>
+
+<div *ngIf="isHome">
+  <app-conversations></app-conversations>
+  <br>
+  <br>
+
+  <app-home-slider></app-home-slider>
+  <br>
+  <br>
+  <div class="container facebook-responsive">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4GkSOTl-Nvc" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <iframe id="polis-iframe" [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<div *ngIf="!isHome">
+  <iframe id="polis-iframe" [src]="polis_url | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
+  <app-conversations></app-conversations>
+</div>
