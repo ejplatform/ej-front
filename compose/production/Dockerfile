@@ -9,4 +9,3 @@ RUN ./node_modules/.bin/ng build            \
 
 FROM nginx
 COPY --from=builder /app/dist/empurrandojuntos/. /usr/share/nginx/html/
-
