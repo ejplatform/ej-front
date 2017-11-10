@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
     this.bsModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
-      // window.location.reload();
+      window.location.reload();
     });
   }
 
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     this.bsModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
-      // window.location.reload();
+      window.location.reload();
     });
   }
 
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit {
       // FIXME refactor this like there is no tomorrow!!!
       this.bsModalRef.content.loggedIn.subscribe(() => {
         // FIXME see if it's necessary
-        // window.location.reload();
+        window.location.reload();
       });
     }
   }
