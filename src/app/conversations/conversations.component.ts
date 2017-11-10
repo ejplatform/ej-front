@@ -28,7 +28,11 @@ export class ConversationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('ngOnInit', this.conversationService.list());
+    console.log('222222222222', this.conversationService.list().subscribe);
+    // console.log('de novo', this.conversationService.list['leo']);
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
+      console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', conversations);
       this.conversations = _.sortBy(conversations, ['position']);
     });
     if(_.isUndefined(this.profile.image)){
@@ -88,3 +92,4 @@ export class ConversationsComponent implements OnInit {
 
 
 }
+
