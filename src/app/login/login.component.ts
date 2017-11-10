@@ -63,7 +63,6 @@ export class LoginComponent {
     this.bsModalRef.hide();
     this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
     this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
-      console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
       this.profile = this.profileService.getProfile();
       this.loggedIn.emit();
       this.profileService.profileChangeEvent.emit(this.profile);

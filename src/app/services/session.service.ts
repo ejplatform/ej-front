@@ -13,7 +13,6 @@ export class SessionService {
   };
 
   setProfile(profile: Profile): Profile {
-      console.log('SessionService', profile);
       this.localStorageService.store('currentProfile', profile);
       return this.localStorageService.retrieve('currentProfile');
   };
