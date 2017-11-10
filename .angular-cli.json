@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -31,6 +31,35 @@
         "homolog": "environments/environment.homolog.ts",
         "dev": "environments/environment.dev.ts"
       }
+    },
+    {
+      "root": "src",
+      "outDir": "dist/server",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.server.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/ngx-toastr/toastr.css",
+        "../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss",
+         "styles.scss"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "prod": "environments/environment.prod.ts",
+        "homolog": "environments/environment.homolog.ts",
+        "dev": "environments/environment.dev.ts"
+      },
+      "platform": "server"
     }
   ],
   "e2e": {

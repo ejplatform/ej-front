@@ -88,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidateOnBlurDirective
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'frontend'}),
     FormsModule,
     HttpClientModule,
     InlineEditorModule,
