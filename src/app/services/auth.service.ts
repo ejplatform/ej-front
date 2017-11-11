@@ -42,15 +42,12 @@ export class AuthService {
   }
 
   signInFacebook(accessToken: string) {
-    console.log('AuthService: signInFacebook', accessToken);
     let fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
     return this.http.post(fullEndpointUrl, {access_token: accessToken}).map(
         data => {
-          console.log('AuthService: signInFacebook - sucesso',data);
           return this.loginSuccessCallback(data);
         },
         resp => {
-          console.log('AuthService: signInFacebook - erro',resp);
           this.loginFailedCallback(resp);
         }
       );

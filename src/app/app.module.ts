@@ -17,16 +17,12 @@ import { LOCALE_ID } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 
 // Bootstrap
+import { ModalModule, BsDropdownModule, CollapseModule, ProgressbarModule } from 'ngx-bootstrap';
 
-// import { Ng2BootstrapModule } from 'ngx-bootstrap';
-import { ModalModule } from 'ngx-bootstrap';
-import { BsDropdownModule } from 'ngx-bootstrap';
-import { CollapseModule } from 'ngx-bootstrap';
-import { ProgressbarModule } from 'ngx-bootstrap';
-
+// ngx-facebook
+import { FacebookModule } from 'ngx-facebook';
 
 // Application imports
-
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
@@ -54,9 +50,6 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
-
-import { FacebookModule } from 'ngx-facebook';
-import { FacebookService } from 'ngx-facebook';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -118,14 +111,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     SessionService,
     ProfileService,
     SocialFacebookService,
-    FacebookService,
     NotificationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
 
   ],
-  entryComponents: [LoginComponent, RegistrationComponent, NudgeComponent, SliderModalComponent, RecoverPasswordComponent],
+  entryComponents: [LoginComponent,
+                    RegistrationComponent,
+                    NudgeComponent,
+                    SliderModalComponent,
+                    RecoverPasswordComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SliderModalComponent } from './slider-modal/slider-modal.component';
@@ -22,24 +21,20 @@ export class HomeSliderComponent implements OnInit {
   profile: Profile;
   active_slider = 1;
   bsModalRef: BsModalRef;
-  
-  constructor(private route: ActivatedRoute, private profileService: ProfileService, private router: Router, private modalService: BsModalService) {
-    this.baseUrl = "https://brasilqueopovoquer.hacklab.com.br/";
-    this.url = "https://brasilqueopovoquer.hacklab.com.br/";
+
+  constructor(private profileService: ProfileService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit() {
 
     setInterval(() =>{
-      console.log('Interval', this.active_slider);
       this.active_slider = this.active_slider < 3 ? this.active_slider + 1 : 1;
     }, 7000);
- 
   }
 
   openModal(content) {
     this.bsModalRef = this.modalService.show(SliderModalComponent, { class: 'modal-lg' });
     this.bsModalRef.content.content = content;
   }
-
 }
