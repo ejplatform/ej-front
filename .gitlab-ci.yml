@@ -18,6 +18,8 @@ test:
   script:
     - docker run --rm -v $PWD:/app -w /app node:8 npm install
     - docker run --rm -v $PWD:/app -w /app node:8 ./node_modules/.bin/ng test --code-coverage --single-run
+  tags:
+    - docker
 
 
 build to homolog:
@@ -31,6 +33,8 @@ build to homolog:
     - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
     - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
   environment: homolog
+  tags:
+    - docker
   only:
     - master
 
@@ -47,6 +51,8 @@ build to production:
     - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
     - docker push $CI_REGISTRY_IMAGE:latest
   environment: production
+  tags:
+    - docker
   only:
     - tags
 
@@ -57,6 +63,8 @@ deploy to homolog:
   script:
     - upgrade --environment FPAbramo --stack brasilqueopovoquer-empurrandojuntos-dev --service frontend --no-finish-upgrade --debug
   environment: homolog
+  tags:
+    - docker
   only:
     - master
 
@@ -66,5 +74,7 @@ deploy to production:
   script:
     - upgrade --environment FPAbramo --stack empurrandojuntos-prod --service frontend --no-finish-upgrade --debug
   environment: production
+  tags:
+    - docker
   only:
     - tags
