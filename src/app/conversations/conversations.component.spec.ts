@@ -38,14 +38,6 @@ fdescribe('ConversationsComponent', () => {
     conversationService = fixture.debugElement.injector.get(ConversationService);    
   });
 
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ConversationsComponent);
-  //   component = fixture.componentInstance;
-  //   conversationService = TestBed.get(ConversationService);
-    
-  //   // fixture.detectChanges();
-  // });
-
   it('display all comments in list', () => {
     component.conversations = [<Conversation>{title: 'comment 1', description: 'comment body 1'}, <Conversation>{title: 'comment 2', description: 'comment body 2' }];
     fixture.detectChanges();
@@ -64,15 +56,7 @@ fdescribe('ConversationsComponent', () => {
     spyOn(conversationService, 'list').and.returnValue(Observable.of(conversations));
     fixture.detectChanges();
     tick();   
-    // fixture.detectChanges();
     expect(component.conversations).toEqual([<Conversation>{title: 'conversation 3', position: 1}, <Conversation>{title: 'conversation 1', position: 2}, <Conversation>{title: 'conversation 2', position: 3}]);
   }));
-  
 
-  
-  // it('should call conversation service list', () => {
-  //   fixture = TestBed.createComponent(ConversationsComponent);
-  //   component = fixture.componentInstance;
-  //   expect(mocks.conversationService.list).toHaveBeenCalled();
-  // });
 });
