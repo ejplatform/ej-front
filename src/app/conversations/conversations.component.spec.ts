@@ -16,28 +16,10 @@ import * as helpers from '../../spec/helpers';
 fdescribe('ConversationsComponent', () => {
   let component: ConversationsComponent;
   let fixture: ComponentFixture<ConversationsComponent>;
-  const mocks = helpers.getMocks();
-  let conversations = [<Conversation>{title: 'conversation 1', position: 2}, <Conversation>{title: 'conversation 2', position: 3}, <Conversation>{title: 'conversation 3', position: 1}];
-  // fixture.detectChanges();
-  // mocks.conversationService.list
-  // let conversationService = null;
+  let conversationService = null;
+  let mocks = helpers.getMocks();;
   
-
-  beforeEach(async(() => {
-    // conversationService = spyOn(mocks.conversationService, "list");
-    // conversationService.and.callThrough();
-    
-    // TestBed.configureTestingModule({
-    //   imports: [FormsModule, HttpModule],
-    //   declarations: [LoginComponent],
-    // }).overrideComponent(LoginComponent, {
-    //   set: {
-    //     providers: [
-    //       {provide: AuthenticationService, useValue: authServiceMock},
-    //       {provide: Router, useValue: routerStub}
-    //     ]
-    //   }}
-    //   ).compileComponents();
+  beforeEach(() => {
     
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
@@ -45,56 +27,47 @@ fdescribe('ConversationsComponent', () => {
       schemas: [
         NO_ERRORS_SCHEMA
       ],
-      providers: [{provide: ConversationService, useValue: mocks.conversationService},
-        {provide: ProfileService, useValue: mocks.profileService} ],
-        
+      providers: [
+        { provide: ConversationService, useValue: mocks.conversationService },
+        { provide: ProfileService, useValue: mocks.profileService }
+      ],  
     });
-    // .compileComponents();
+
     fixture = TestBed.createComponent(ConversationsComponent);
     component = fixture.componentInstance;
-    
-  }));
+    conversationService = fixture.debugElement.injector.get(ConversationService);    
+  });
 
   // beforeEach(() => {
   //   fixture = TestBed.createComponent(ConversationsComponent);
   //   component = fixture.componentInstance;
+  //   conversationService = TestBed.get(ConversationService);
+    
   //   // fixture.detectChanges();
   // });
 
-  // it('display all comments in list', () => {
-  //   component.conversations = [<Conversation>{title: 'comment 1', description: 'comment body 1'}, <Conversation>{title: 'comment 2', description: 'comment body 2' }, <Conversation>{title: 'comment 3', description: 'comment body 3'}];
-  //   fixture.detectChanges();
-  //   expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(3);
-  // });
-
-  fit('should sort conversations by position', async(() => {
-    console.log('iniciando testessssssssssssssssssssssssssssssssssssssssssssssss', mocks.conversationService.list());
-    // const fixture = TestBed.createComponent(ConversationsComponent);
+  it('display all comments in list', () => {
+    component.conversations = [<Conversation>{title: 'comment 1', description: 'comment body 1'}, <Conversation>{title: 'comment 2', description: 'comment body 2' }];
     fixture.detectChanges();
-    
-    let conversations = [<Conversation>{title: 'conversation 1', position: 2}, <Conversation>{title: 'conversation 2', position: 3}, <Conversation>{title: 'conversation 3', position: 1}];
-    // fixture.detectChanges();
-    // mocks.conversationService.list
-    // spyOn(mocks.conversationService, "list").and.returnValue(conversations);
-    let oneReturn = {list: () => {return Observable.of(conversations)}};
-    // let service = fixture.debugElement.injector.get(ConversationService);
-    spyOn(mocks.conversationService, 'list').and.returnValue(oneReturn);
-    // fixture.detectChanges();
-    // TestBed.overrideProvider(ConversationService, { useValue: expected });
-    
-    // tick();
-    // fixture.componentInstance.ngOnInit();
-    // fixture.detectChanges();
-    // done();
-    
+    expect(fixture.debugElement.queryAll(By.css('.card')).length).toBe(2);
+  });
+
+  it('should conversationService list be called', () => {
+    spyOn(conversationService, 'list').and.callThrough();
     component.ngOnInit();
-    // tick();
-    console.log('fffffffffffffffffffffffffffffffffffffffffffff')
-    // expect(service.list).toHaveBeenCalled();
-    
+    expect(conversationService.list).toHaveBeenCalled();
+  });
+
+
+  it('should sort conversations by position',  fakeAsync(() => {
+    let conversations = [<Conversation>{title: 'conversation 1', position: 2}, <Conversation>{title: 'conversation 2', position: 3}, <Conversation>{title: 'conversation 3', position: 1}];
+    spyOn(conversationService, 'list').and.returnValue(Observable.of(conversations));
+    fixture.detectChanges();
+    tick();   
+    // fixture.detectChanges();
     expect(component.conversations).toEqual([<Conversation>{title: 'conversation 3', position: 1}, <Conversation>{title: 'conversation 1', position: 2}, <Conversation>{title: 'conversation 2', position: 3}]);
   }));
-
+  
 
   
   // it('should call conversation service list', () => {

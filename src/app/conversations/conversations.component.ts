@@ -28,16 +28,9 @@ export class ConversationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ngOnInit', this.conversationService.list());
-    console.log('222222222222', this.conversationService.list().subscribe);
-    // console.log('de novo', this.conversationService.list['leo']);
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
-      console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', conversations);
       this.conversations = _.sortBy(conversations, ['position']);
     });
-    if(_.isUndefined(this.profile.image)){
-      this.profile.image = '/assets/images/icons/profile_icon.svg';
-    }
   }
 
   groupConversations(){
@@ -80,15 +73,13 @@ export class ConversationsComponent implements OnInit {
 
   hexToRGBA(hex){
     var c;
-    // if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
     c= hex.substring(1).split('');
     if(c.length== 3){
         c= [c[0], c[0], c[1], c[1], c[2], c[2]];
     }
     c= '0x'+c.join('');
     return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', 0.66)';
-    // }
-}
+  }
 
 
 }
