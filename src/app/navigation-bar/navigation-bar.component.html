@@ -21,6 +21,12 @@
                 <span class="">{{'navigation-bar.item.my-votes' | translate}}</span>
             </a>
         </li> -->
+        <li routerLinkActive="active">
+            <a [routerLink]="['/comments']"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.comments' | translate}}" />
+                <span class="">{{'navigation-bar.item.comments' | translate}}</span>
+            </a>
+        </li>
         <!-- <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li> -->
         <!-- <li><a href="/cards" class="cards">Assim se faz</a></li> -->
 
