@@ -9,7 +9,7 @@ export function getMocks() {
         },
         conversationService: {
             list: () => {
-                return {};
+                return Observable.of([]);
             },
         },
         authService: {
