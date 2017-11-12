@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
-import { Comment } from '../models/comment';
+import { environment } from '../../../environments/environment';
+import { Comment } from './comment.model';
 
 @Injectable()
 export class CommentService {
@@ -12,6 +12,11 @@ export class CommentService {
 
   public list(): Observable<Comment[]> {
     let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
+    return this.http.get<Comment[]>(fullEndpointUrl);
+  }
+
+  public reports(): Observable<Comment[]> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments_report/`;
     return this.http.get<Comment[]>(fullEndpointUrl);
   }
 

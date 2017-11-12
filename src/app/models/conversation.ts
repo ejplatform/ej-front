@@ -1,4 +1,4 @@
-import { Comment } from './comment';
+import { Comment } from '../comments/shared/comment.model';
 
 export class Conversation {
 

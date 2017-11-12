@@ -42,6 +42,7 @@
     "conversations.card.comments":"comentários",
     "conversations.card.votes":"votos",
     "conversations.card.participation":"Sua participação",
+    "comments.topic":"Comentarios",
     "login.label.email": "Email",
     "login.success.title": "",
     "login.success.message": "Voce realizou o login com sucesso",

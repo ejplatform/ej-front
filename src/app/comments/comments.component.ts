@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CommentService } from '../services/comment.service';
-import { Comment } from '../models/comment';
+import { CommentService } from './shared/comment.service';
+import { Comment } from './shared/comment.model';
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 
@@ -13,21 +13,21 @@ import { Profile } from '../models/profile';
 })
 export class CommentsComponent implements OnInit {
 
-  profile: Profile;
+  // profile: Profile;
   comments: Comment[];
 
   constructor(private commentService: CommentService, private profileService: ProfileService) {
-    this.profile = this.profileService.getProfile();
+    // this.profile = this.profileService.getProfile();
     
   
-    this.profileService.profileChangeEvent.subscribe(profile => {
-      this.profile = profile;
-    });
+    // this.profileService.profileChangeEvent.subscribe(profile => {
+    //   this.profile = profile;
+    // });
   }
 
   ngOnInit() {
       // FIXME get the comment of user
-      this.commentService.list().subscribe((comments: Comment[]) => {
+      this.commentService.reports().subscribe((comments: Comment[]) => {
         this.comments = comments;
       });
   }

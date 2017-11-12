@@ -10,7 +10,7 @@ import { EmbedComponent } from "./embed/embed.component";
 export const rootRouterConfig: Routes = [
   { path: '', component: EmbedComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'comments', component: CommentsComponent },
+  // { path: 'comments', component: CommentsComponent },
   { path: 'logout', component: LogoutComponent },
   {
     path: 'conversations',
