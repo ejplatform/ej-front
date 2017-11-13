@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TabsModule } from 'ngx-bootstrap';
 
 import { CommentsComponent } from './comments.component';
 import { Comment } from './shared/comment.model';
@@ -18,7 +19,7 @@ fdescribe('CommentsComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), HttpClientTestingModule],
+      imports: [ TranslateModule.forRoot(), TabsModule.forRoot(), HttpClientTestingModule],
       declarations: [ CommentsComponent ],
       providers: [
         { provide: CommentService, useValue: mocks.commentService },

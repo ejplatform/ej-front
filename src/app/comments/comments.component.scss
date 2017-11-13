@@ -1,0 +1,26 @@
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+:host /deep/ tabset{
+
+    .nav {
+        border: none;
+        @extend .p-5;
+        .nav-item {
+            .nav-link{
+                @extend .p-4;
+                text-transform: uppercase;
+                border-left: 6px solid #ECECEC;
+
+                &.active {
+    
+                    background-color: #7ED321;
+                    color: white;
+                }
+            }
+        }
+    }
+    .tab-content{
+        @extend .mx-5;
+    }
+}
