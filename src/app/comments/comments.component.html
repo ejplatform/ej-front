@@ -5,9 +5,27 @@
 </div>
 
 <tabset>
-    <tab heading="Rejeitados" customClass="tab-comments">comentarios rejeitados</tab>
-    <tab heading="Aguardando Moderacao" customClass="tab-comments">comentarios sendo moderados</tab>
-    <tab heading="Aprovados" customClass="tab-comments">comentarios aprovados</tab>
+    <tab heading="Rejeitados" (select)="loadRejectedComments()">
+      <ul *ngFor="let comment of comments">
+        <li>
+          <app-comment [comment]="comment"></app-comment>
+        </li>
+      </ul>
+    </tab>
+    <tab heading="Aguardando Moderacao" (select)="loadModeratedComments()">
+      <ul *ngFor="let comment of comments">
+        <li>
+          <app-comment [comment]="comment"></app-comment>
+        </li>
+      </ul>
+    </tab>
+    <tab heading="Aprovados" (select)="loadApprovedComments()">
+      <ul *ngFor="let comment of comments">
+        <li>
+          <app-comment [comment]="comment"></app-comment>
+        </li>
+      </ul>
+    </tab>
  
   </tabset>
    <!-- <tab *ngFor="let tabz of tabs"
@@ -21,10 +39,3 @@
          [customClass]="tabz.customClass">
       {{tabz?.content}}
     </tab> -->
-<ul *ngFor="let comment of comments">
-  <li>
-    <app-comment [comment]="comment"></app-comment>
-    <!-- <h2>{{comment.id}}</h2>
-    {{comment.content}} -->
-  </li>
-</ul>

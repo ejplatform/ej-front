@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommentService } from './shared/comment.service';
 import { Comment } from './shared/comment.model';
-import { ProfileService } from '../services/profile.service';
-import { Profile } from '../models/profile';
+import { CommentList } from './shared/comment-list.model';
 
 @Component({
   selector: 'app-comments',
@@ -13,23 +12,35 @@ import { Profile } from '../models/profile';
 })
 export class CommentsComponent implements OnInit {
 
-  // profile: Profile;
   comments: Comment[];
-
-  constructor(private commentService: CommentService, private profileService: ProfileService) {
-    // this.profile = this.profileService.getProfile();
-    
   
-    // this.profileService.profileChangeEvent.subscribe(profile => {
-    //   this.profile = profile;
-    // });
+  constructor(private commentService: CommentService) {
   }
 
   ngOnInit() {
-      // FIXME get the comment of user
-      this.commentService.reports().subscribe((comments: Comment[]) => {
-        this.comments = comments;
-      });
+    this.loadRejectedComments();
+  }
+  
+  loadRejectedComments(){
+    const params = { 'approval': 'REJECTED' };
+    this.loadComments(params)
+  }
+
+  loadModeratedComments(){
+    const params = { 'approval': 'UNMODERATED' };
+    this.loadComments(params)
+  }
+
+  loadApprovedComments(){
+    const params = { 'approval': 'APPROVED' };
+    this.loadComments(params)
+  }
+
+  private loadComments(params = <any>{}){
+    this.commentService.reports(params).subscribe((commentList: CommentList) => {
+      this.comments = <Comment[]>commentList.results;
+    });
   }
 
 }
+
