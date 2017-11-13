@@ -13,7 +13,7 @@ import { ProfileService } from '../services/profile.service';
 import { Conversation } from '../models/conversation';
 import * as helpers from '../../spec/helpers';
 
-fdescribe('ConversationsComponent', () => {
+describe('ConversationsComponent', () => {
   let component: ConversationsComponent;
   let fixture: ComponentFixture<ConversationsComponent>;
   let conversationService = null;
@@ -24,9 +24,7 @@ fdescribe('ConversationsComponent', () => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
       declarations: [ ConversationsComponent ] ,
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ConversationService, useValue: mocks.conversationService },
         { provide: ProfileService, useValue: mocks.profileService }

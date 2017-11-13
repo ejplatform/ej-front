@@ -11,6 +11,7 @@ describe('SessionService', () => {
     
     beforeEach(() => {
         TestBed.configureTestingModule({
+            providers: [SessionService]            
         });
     });
 

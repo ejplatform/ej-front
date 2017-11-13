@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CommentService } from './comment.service';
-import * as helpers from "../../spec/helpers";
+import * as helpers from "../../../spec/helpers";
 
 describe('CommentService', () => {
 

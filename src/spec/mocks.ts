@@ -6,12 +6,30 @@ export function getMocks() {
             list: () => {
                 return {};
             },
+            reports: () => {
+                return {};
+            },
         },
         conversationService: {
             list: () => {
                 return Observable.of([]);
             },
         },
+        notificationService: {
+            success: () => {
+                return "";
+            },
+        },
+        bsModalService: {
+            show: () => {
+                return "";
+            },
+        },
+        bsModalRef: {
+            hide: () => {
+                return "";
+            },
+        },        
         authService: {
             signIn: () => {
                 return {};
