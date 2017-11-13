@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Comment } from '../shared/comment.model';
 
 @Component({
   selector: 'app-comment',

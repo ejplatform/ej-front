@@ -9,7 +9,7 @@ import { FooterComponent } from './footer.component';
 import * as helpers from "../../spec/helpers";
 
 
-describe('FooterComponent', () => {
+fdescribe('FooterComponent', () => {
 
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
@@ -31,7 +31,7 @@ describe('FooterComponent', () => {
   });
 
   it('display component', () => {
-      expect(fixture.debugElement.queryAll(By.css('sponsors')).length).toBe(1);
+      expect(fixture.debugElement.queryAll(By.css('.sponsors')).length).toBe(1);
   });
 
 });

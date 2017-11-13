@@ -10,7 +10,7 @@ import * as helpers from "../../spec/helpers";
 
 
 
-describe('NudgeComponent', () => {
+fdescribe('NudgeComponent', () => {
 
   let component: NudgeComponent;
   let fixture: ComponentFixture<NudgeComponent>;

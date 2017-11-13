@@ -13,7 +13,7 @@ import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
 
-describe('RecoverPasswordComponent', () => {
+fdescribe('RecoverPasswordComponent', () => {
   let component: RecoverPasswordComponent;
   let fixture: ComponentFixture<RecoverPasswordComponent>;
   const mocks = helpers.getMocks();
