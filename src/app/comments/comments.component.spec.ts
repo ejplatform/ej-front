@@ -11,7 +11,7 @@ import { CommentService } from './shared/comment.service';
 import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
 
-fdescribe('CommentsComponent', () => {
+describe('CommentsComponent', () => {
   let component: CommentsComponent;
   let fixture: ComponentFixture<CommentsComponent>;
   const mocks = helpers.getMocks();
@@ -42,9 +42,15 @@ fdescribe('CommentsComponent', () => {
   });
 
   it('should conversationService list be called', () => {
-    spyOn(commentService, 'reports').and.callThrough();
     component.ngOnInit();
-    expect(commentService.reports).toHaveBeenCalled();
+    
+    expect(component.currentStatus).toEqual(Comment.UNMODERATED);
   });
+
+  // it('should conversationService list be called on loadRejectedComments', () => {
+  //   spyOn(commentService, 'loadRejectedComments').and.callThrough();
+  //   component.ngOnInit();
+  //   expect(commentService.loadRejectedComments).toHaveBeenCalled();
+  // });
 
 });

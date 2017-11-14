@@ -72,10 +72,10 @@
       </div>
 
       <div class="buttons">
-        <button type="button" class="button approve" (click)="aproveComment()">
+        <button *ngIf="!isApproved()" type="button" class="button approve" (click)="approveComment()">
           {{'comment.button.approve'| translate}}
         </button>
-        <button type="button" class="button reject" (click)="rejectComment()">
+        <button *ngIf="!isRejected()" type="button" class="button reject" (click)="rejectComment()">
           {{'comment.button.reject'| translate}}
         </button>
       </div>

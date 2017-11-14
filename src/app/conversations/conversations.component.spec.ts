@@ -13,7 +13,7 @@ import { ProfileService } from '../services/profile.service';
 import { Conversation } from '../models/conversation';
 import * as helpers from '../../spec/helpers';
 
-fdescribe('ConversationsComponent', () => {
+describe('ConversationsComponent', () => {
   let component: ConversationsComponent;
   let fixture: ComponentFixture<ConversationsComponent>;
   let conversationService = null;

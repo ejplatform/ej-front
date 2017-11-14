@@ -8,8 +8,7 @@ import { By } from '@angular/platform-browser';
 import { FooterComponent } from './footer.component';
 import * as helpers from "../../spec/helpers";
 
-
-fdescribe('FooterComponent', () => {
+describe('FooterComponent', () => {
 
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;

@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CommentService } from './comment.service';
 import * as helpers from "../../../spec/helpers";
 
-fdescribe('CommentService', () => {
+describe('CommentService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({

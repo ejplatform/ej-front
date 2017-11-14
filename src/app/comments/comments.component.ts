@@ -14,27 +14,53 @@ import { CommentList } from './shared/comment-list.model';
 export class CommentsComponent implements OnInit {
 
   comments: CommentReport[];
+  currentStatus: string; 
   
-  constructor(private commentService: CommentService) {
-  }
+  constructor(private commentService: CommentService) {  }
 
   ngOnInit() {
-    this.loadRejectedComments();
+    // FIXME check if the user has admin powers to decide the default behavior
+    // At this momment the default behavior is the admin one
+    this.currentStatus = Comment.UNMODERATED
   }
   
   loadRejectedComments(){
-    const params = { 'approval': 'REJECTED' };
+    const params = { 'approval': Comment.REJECTED };
     this.loadComments(params)
   }
 
   loadModeratedComments(){
-    const params = { 'approval': 'UNMODERATED' };
+    const params = { 'approval': Comment.UNMODERATED };
     this.loadComments(params)
   }
 
   loadApprovedComments(){
-    const params = { 'approval': 'APPROVED' };
+    const params = { 'approval': Comment.APPROVED };
     this.loadComments(params)
+  }
+
+  checkActiveTab(tabStatus: string){
+    let isActive = false;
+
+    switch (this.currentStatus) { 
+      case Comment.APPROVED:
+        if(this.currentStatus == tabStatus)
+          isActive = true;
+        break; 
+      case Comment.UNMODERATED: 
+        if(this.currentStatus == tabStatus)
+          isActive = true;
+        break; 
+      case Comment.REJECTED: 
+        if(this.currentStatus == tabStatus)
+          isActive = true;
+        break; 
+    }
+    return isActive;
+  }
+
+  updateCommentsList(commentReport){
+    this.comments.splice(this.comments.indexOf(commentReport), 1);
   }
 
   private loadComments(params = <any>{}){

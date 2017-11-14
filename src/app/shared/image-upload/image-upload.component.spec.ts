@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ImageUploadComponent } from './image-upload.component';
 
-fdescribe('ImageUploadComponent', () => {
+describe('ImageUploadComponent', () => {
   let component: ImageUploadComponent;
   let fixture: ComponentFixture<ImageUploadComponent>;
 
