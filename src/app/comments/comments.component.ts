@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommentService } from './shared/comment.service';
 import { Comment } from './shared/comment.model';
+import { CommentReport } from './shared/comment-report.model';
 import { CommentList } from './shared/comment-list.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { CommentList } from './shared/comment-list.model';
 })
 export class CommentsComponent implements OnInit {
 
-  comments: Comment[];
+  comments: CommentReport[];
   
   constructor(private commentService: CommentService) {
   }
@@ -38,7 +39,7 @@ export class CommentsComponent implements OnInit {
 
   private loadComments(params = <any>{}){
     this.commentService.reports(params).subscribe((commentList: CommentList) => {
-      this.comments = <Comment[]>commentList.results;
+      this.comments = <CommentReport[]>commentList.results;
     });
   }
 

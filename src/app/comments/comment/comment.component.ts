@@ -15,4 +15,8 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onImageError(){
+    console.log('ERRO NA IMAGE');
+  }
+
 }

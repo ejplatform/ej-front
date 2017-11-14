@@ -1,4 +1,48 @@
-<p>
-  comment works!
-  {{comment.content}}
-</p>
+<div class="comment-card row">
+  <div class="comment-card-content col-md-8">
+  <div class="comment-card-header">
+    <div class='profile'>
+      <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="comment.author.image_url ? comment.author.image_url : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+    </div>
+    <div class='author'>
+      {{comment.author.username}}
+    </div>
+  </div>
+  <div class="comment-card-block">
+    <p class="comment-card-text">{{comment.content}}</p>
+  </div>
+  <div class="comment-card-footer">
+      <div class="conversation-title">{{comment.conversation.title}}</div>
+      <div class="conversation-description">{{comment.conversation.description}}</div>
+  </div>
+  </div>
+  <div class="comment-card-actions col-md-4">
+      <img src="/assets/images/icons/votos_icon.svg" alt="{{'alerts.off' | translate}}" >
+      <small><em>votos</em></small>      
+      <progressbar class="progress progress-success" [value]="comment.total_votes" [max]="comment.conversation.total_votes" type="info">&nbsp;</progressbar>
+      <p>{{ comment.total_votes | percentage: comment.conversation.total_votes | round: 2 }} %</p>
+
+      <img src="/assets/images/icons/votos_icon.svg" alt="{{'alerts.off' | translate}}" >
+      <small><em>concordo</em></small>
+      <progressbar class="progress progress-success" [value]="comment.agree_votes" [max]="comment.total_votes" type="success">&nbsp;</progressbar>
+      <p>{{ comment.agree_votes | percentage: comment.total_votes | round: 2 }} %</p>
+
+      <img src="/assets/images/icons/votos_icon.svg" alt="{{'alerts.off' | translate}}" >
+      <small><em>discordo</em></small>
+      <progressbar class="progress progress-success" [value]="comment.disagree_votes" [max]="comment.total_votes" type="danger">&nbsp;</progressbar>
+      <p>{{ comment.disagree_votes | percentage: comment.total_votes | round: 2 }} %</p>
+
+      <img src="/assets/images/icons/votos_icon.svg" alt="{{'alerts.off' | translate}}" >
+      <small><em>passo</em></small>
+      <progressbar class="progress progress-success" [value]="comment.pass_votes" [max]="comment.total_votes" type="warning">&nbsp;</progressbar>
+      <p>{{ comment.pass_votes | percentage: comment.total_votes | round: 2 }} %</p>
+      
+      
+      <button type="button" class="close pull-right" aria-label="Aprovar" (click)="aproveComment()">
+          Aprovar
+      </button>
+      <button type="button" class="close pull-right" aria-label="Rejeitar" (click)="rejectComment()">
+          Rejeitar
+      </button>
+  </div>
+</div>

@@ -69,7 +69,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     AlertsComponent,
-    // CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
     HomeSliderComponent,
@@ -96,21 +95,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
-    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
-    // For load all bootstrap modules
-    // Ng2BootstrapModule.forRoot(),
+    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,    
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
-    // TabsModule.forRoot(),
     CollapseModule.forRoot(),
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: HttpLoaderFactory,
-    //     deps: [HttpClient]
-    //   }
-    // }),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
   ],
   providers: [GlobalState,
