@@ -2,8 +2,8 @@
 
     <ul class="user-nav">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/profile" (click)="toggleMenu()" >
-                <img src="/assets/images/icons/profile_icon.svg" alt="{{'navigation-bar.item.profile' | translate}}" width="25"/>
+            <a routerLink="/profile" (click)="toggleMenu()" class="profile"  >
+                <img onError="this.src='/assets/images/icons/profile_icon.svg'"[src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
                 {{'navigation-bar.item.profile' | translate}}
             </a>
         </li>
@@ -22,8 +22,8 @@
             </a>
         </li> -->
         <li routerLinkActive="active">
-            <a [routerLink]="['/comments']"  (click)="toggleMenu()">
-                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.comments' | translate}}" />
+            <a [routerLink]="['/comments']" class="comments"  (click)="toggleMenu()">
+                <img src="/assets/images/icons/comentarios_icon.svg" alt="{{'navigation-bar.item.comments' | translate}}" />
                 <span class="">{{'navigation-bar.item.comments' | translate}}</span>
             </a>
         </li>

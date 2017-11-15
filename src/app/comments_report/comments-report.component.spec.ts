@@ -5,24 +5,24 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap';
 
-import { CommentsComponent } from './comments.component';
-import { Comment } from './shared/comment.model';
-import { CommentService } from './shared/comment.service';
+import { CommentsReportComponent } from './comments-report.component';
+import { CommentReport } from './shared/comment-report.model';
+import { CommentReportService } from './shared/comment-report.service';
 import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
 
-describe('CommentsComponent', () => {
-  let component: CommentsComponent;
-  let fixture: ComponentFixture<CommentsComponent>;
+describe('CommentsReportComponent', () => {
+  let component: CommentsReportComponent;
+  let fixture: ComponentFixture<CommentsReportComponent>;
   const mocks = helpers.getMocks();
-  let commentService = null;
+  let commentReportService = null;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), TabsModule.forRoot(), HttpClientTestingModule],
-      declarations: [ CommentsComponent ],
+      declarations: [ CommentsReportComponent ],
       providers: [
-        { provide: CommentService, useValue: mocks.commentService },
+        { provide: CommentReportService, useValue: mocks.commentReportService },
         { provide: ProfileService, useValue: mocks.profileService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,9 +31,9 @@ describe('CommentsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommentsComponent);
+    fixture = TestBed.createComponent(CommentsReportComponent);
     component = fixture.componentInstance;
-    commentService = fixture.debugElement.injector.get(CommentService);    
+    commentReportService = fixture.debugElement.injector.get(CommentReportService);    
     
   });
 
@@ -44,13 +44,13 @@ describe('CommentsComponent', () => {
   it('should conversationService list be called', () => {
     component.ngOnInit();
     
-    expect(component.currentStatus).toEqual(Comment.UNMODERATED);
+    expect(component.currentStatus).toEqual(CommentReport.UNMODERATED);
   });
 
   // it('should conversationService list be called on loadRejectedComments', () => {
-  //   spyOn(commentService, 'loadRejectedComments').and.callThrough();
+  //   spyOn(commentReportService, 'loadRejectedComments').and.callThrough();
   //   component.ngOnInit();
-  //   expect(commentService.loadRejectedComments).toHaveBeenCalled();
+  //   expect(commentReportService.loadRejectedComments).toHaveBeenCalled();
   // });
 
 });

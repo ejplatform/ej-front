@@ -1,6 +1,6 @@
 import { CommentReport } from './comment-report.model';
 
-export class CommentList {
+export class CommentReportList {
     public count: number;
     public next: string;
     public previous: string;

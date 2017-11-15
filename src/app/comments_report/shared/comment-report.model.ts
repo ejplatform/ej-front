@@ -2,6 +2,11 @@ import { Author } from '../shared/author-model';
 import { Conversation } from '../../models/conversation';
 
 export class CommentReport {
+
+    static APPROVED = 'APPROVED'
+    static UNMODERATED = 'UNMODERATED'
+    static REJECTED = 'REJECTED'
+    
     public id: number;
     public author: Author;
     public conversation: Conversation;

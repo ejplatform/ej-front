@@ -23,7 +23,7 @@ import { ModalModule, BsDropdownModule, CollapseModule, ProgressbarModule, TabsM
 import { FacebookModule } from 'ngx-facebook';
 
 // Application Modules
-import { CommentsModule } from './comments/comments.module';
+import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
 
 // Application imports
@@ -84,7 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidateOnBlurDirective
   ],
   imports: [
-    CommentsModule,
+    CommentsReportModule,
     SharedModule.forRoot(),
     BrowserModule,
     FormsModule,

@@ -3,23 +3,22 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgPipesModule } from 'ngx-pipes';
 
-import { CommentComponent } from './comment.component';
-import { Comment } from '../shared/comment.model';
-import { CommentService } from '../shared/comment.service';
+import { CommentReportComponent } from './comment-report.component';
+import { CommentReport } from '../shared/comment-report.model';
+import { CommentReportService } from '../shared/comment-report.service';
 import * as helpers from '../../../spec/helpers';
 
-fdescribe('CommentComponent', () => {
-  let component: CommentComponent;
-  let fixture: ComponentFixture<CommentComponent>;
+describe('CommentReportComponent', () => {
+  let component: CommentReportComponent;
+  let fixture: ComponentFixture<CommentReportComponent>;
   const mocks = helpers.getMocks();
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), NgPipesModule],      
-      declarations: [ CommentComponent ],
+      declarations: [ CommentReportComponent ],
       providers: [
-        { provide: CommentService, useValue: mocks.commentService },
-        // { provide: ProfileService, useValue: mocks.profileService },
+        { provide: CommentReportService, useValue: mocks.commentReportService },
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
@@ -27,9 +26,9 @@ fdescribe('CommentComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommentComponent);
+    fixture = TestBed.createComponent(CommentReportComponent);
     component = fixture.componentInstance;
-    component.comment = <Comment>{content: 'some', author: {}}
+    component.commentReport = <CommentReport>{content: 'some', author: {}, conversation: {}}
     fixture.detectChanges();
   });
 

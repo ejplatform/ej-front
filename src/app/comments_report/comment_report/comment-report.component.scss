@@ -53,7 +53,7 @@ $bg-pass: #F5A623;
 
     }
 }
-.comment-card-header{
+.comment-report-card-header{
     @extend .mt-3;
     @extend .ml-4;
     
@@ -76,25 +76,25 @@ $bg-pass: #F5A623;
     }
 }
 
-.comment-card-block{
+.comment-report-card-block{
     @extend .mt-3;
     @extend .ml-5;
     font-size: xx-large;
 }
 
 
-.comment-card-footer{
+.comment-report-card-footer{
     @extend .mt-3;
     @extend .ml-5;
     font-size: x-small;
     
 }
 
-.comment-card{
+.comment-report-card{
     @extend .row;
     @extend .my-5;
     @extend .pb-3;
-    .comment-card-footer{
+    .comment-report-card-footer{
         border-top: 2px solid #C2C2C2;
     }
     box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.24);
