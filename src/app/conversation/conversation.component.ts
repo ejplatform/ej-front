@@ -48,11 +48,15 @@ export class ConversationComponent implements OnInit {
 
   parserDate(strDate: string){
     strDate = this.convertDate(strDate);
+    if(_.isUndefined(strDate))
+      return undefined;
     const newDate = new Date(strDate);
     return newDate;
   }
 
   convertDate(date){
+    if(_.isUndefined(date))
+      return undefined;
     let dateArray = date.split("-");
     let newDate = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
   

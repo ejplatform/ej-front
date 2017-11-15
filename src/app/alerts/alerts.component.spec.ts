@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AlertsComponent } from './alerts.component';
 import * as helpers from "../../spec/helpers";
@@ -21,7 +21,7 @@ describe('AlertsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AlertsComponent ],
-      imports: [RouterTestingModule, TranslateModule.forRoot()],
+      imports: [RouterTestingModule, TranslateModule.forRoot(), HttpClientTestingModule],
       providers: [{ provide: GlobalState, useValue: mocks.globalState },
         { provide: ProfileService, useValue: mocks.profileService },
       ],

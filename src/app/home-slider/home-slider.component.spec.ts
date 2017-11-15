@@ -4,9 +4,11 @@ import { By } from '@angular/platform-browser';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 import * as helpers from '../../spec/helpers';
 import { HomeSliderComponent } from './home-slider.component';
+import { ProfileService } from '../services/profile.service';
 
 
 describe('HomeSliderComponent', () => {
@@ -19,7 +21,10 @@ describe('HomeSliderComponent', () => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), FormsModule, ReactiveFormsModule],
       declarations: [ HomeSliderComponent ],
-      providers: [],
+      providers: [
+        { provide: ProfileService, useValue: mocks.profileService },        
+        { provide: BsModalService, useValue: mocks.bsModalService },        
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
     }).compileComponents();

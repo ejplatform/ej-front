@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import * as _ from 'lodash' 
 
-import { environment } from '../../environments/environment';
-import { Comment } from '../models/comment';
+import { environment } from '../../../environments/environment';
+import { Comment } from './comment.model';
 
 @Injectable()
 export class CommentService {
@@ -24,4 +25,5 @@ export class CommentService {
     let fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
     return this.http.post<Comment>(fullEndpointUrl, comment);
   }
+
 }

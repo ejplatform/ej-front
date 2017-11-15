@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable'; 
 
 import { ConversationsComponent } from './conversations.component';
@@ -13,7 +13,7 @@ import { ProfileService } from '../services/profile.service';
 import { Conversation } from '../models/conversation';
 import * as helpers from '../../spec/helpers';
 
-fdescribe('ConversationsComponent', () => {
+describe('ConversationsComponent', () => {
   let component: ConversationsComponent;
   let fixture: ComponentFixture<ConversationsComponent>;
   let conversationService = null;
@@ -24,9 +24,7 @@ fdescribe('ConversationsComponent', () => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
       declarations: [ ConversationsComponent ] ,
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ConversationService, useValue: mocks.conversationService },
         { provide: ProfileService, useValue: mocks.profileService }

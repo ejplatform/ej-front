@@ -11,7 +11,7 @@ import { GlobalState } from './global.state';
 import { ProfileService } from './services/profile.service';
 import { SessionService } from './services/session.service';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let mocks = helpers.getMocks();

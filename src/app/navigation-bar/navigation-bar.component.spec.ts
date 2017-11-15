@@ -7,6 +7,8 @@ import { By } from '@angular/platform-browser';
 import * as helpers from "../../spec/helpers";
 import { NavigationBarComponent } from './navigation-bar.component';
 import { ProfileService } from '../services/profile.service';
+import { GlobalState } from '../global.state';
+import { Profile } from '../models/profile';
 
 describe('NavigationBarComponent', () => {
 
@@ -21,6 +23,7 @@ describe('NavigationBarComponent', () => {
       imports: [RouterTestingModule, TranslateModule.forRoot()],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: GlobalState, useValue: mocks.globalState },
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
@@ -30,6 +33,7 @@ describe('NavigationBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationBarComponent);
     component = fixture.componentInstance;
+    component.profile = <Profile>{id: 1}
     fixture.detectChanges();
   });
 

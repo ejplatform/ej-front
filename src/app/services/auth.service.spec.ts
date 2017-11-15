@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import * as helpers from '../../spec/helpers';
 import { AuthService } from './auth.service';
@@ -11,7 +11,7 @@ describe('AuthService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpModule],
+            imports: [HttpClientTestingModule],
             providers: [AuthService, 
                 { provide: SessionService, useValue: mocks.sessionService },
             ]
