@@ -6,12 +6,38 @@ export function getMocks() {
             list: () => {
                 return {};
             },
-        },
-        conversationService: {
-            list: () => {
+            reports: () => {
                 return {};
             },
         },
+        commentReportService: {
+            list: () => {
+                return {};
+            },
+            reports: () => {
+                return {};
+            },
+        },
+        conversationService: {
+            list: () => {
+                return Observable.of([]);
+            },
+        },
+        notificationService: {
+            success: () => {
+                return "";
+            },
+        },
+        bsModalService: {
+            show: () => {
+                return "";
+            },
+        },
+        bsModalRef: {
+            hide: () => {
+                return "";
+            },
+        },        
         authService: {
             signIn: () => {
                 return {};
@@ -19,6 +45,17 @@ export function getMocks() {
             signOut: () => {
                 return Observable.of({});
             },
+        },
+        socialFacebookService: {
+            login: () => {
+                return {};
+            },
+        },
+        localStorageService: {
+            storage: {},
+            clear: (key: string) => { delete mocks.localStorageService.storage[key]; },
+            retrieve: (key: string) => mocks.localStorageService.storage[key],
+            store: (key: string, value: any) => { mocks.localStorageService.storage[key] = value; }
         },
         sessionService: {
             currentProfile: () => {
@@ -36,6 +73,9 @@ export function getMocks() {
             },
             getProfile: () => {
                 return { "id": 1, "name": "admin", "email": "admin@localhost.com" };
+            },
+            setProfile: () => {
+                return { };
             },
             list: () => {
                 return Observable.of([{}]);

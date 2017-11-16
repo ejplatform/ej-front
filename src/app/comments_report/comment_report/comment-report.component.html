@@ -1,0 +1,83 @@
+<div class="comment-report-card">
+  <div class="comment-report-card-content col-md-8">
+    <div class="comment-report-card-header clearfix">
+      <div class='profile'>
+        <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="commentReport.author.image_url ? commentReport.author.image_url : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+      </div>
+      <div class='author'>
+        {{commentReport.author.username}}
+      </div>
+    </div>
+    <div class="comment-report-card-block clearfix">
+      <p class="comment-report-card-text">{{commentReport.content}}</p>
+    </div>
+    <div class="comment-report-card-footer">
+      <div class="conversation-title">{{commentReport.conversation.title}}</div>
+      <div class="conversation-description">{{commentReport.conversation.description}}</div>
+    </div>
+  </div>
+  <div class="comment-report-card-actions col-md-4">
+      <div class="statistics" >
+        <div class="statistics-item votes">
+          <div class="icon">
+            <img src="/assets/images/icons/votos_icon.svg" alt="{{'comment.votes' | translate}}" >
+          </div>
+          <div class="progess">
+            <small><em>{{'comment.votes' | translate}}</em></small>      
+            <progressbar class="" [value]="commentReport.total_votes" [max]="commentReport.conversation.total_votes" type="info">&nbsp;</progressbar>
+          </div>
+          <div class="percentage">
+            {{ commentReport.total_votes | percentage: commentReport.conversation.total_votes | round: 2 }} %
+          </div>
+        </div>
+
+        <div class="statistics-item agree">
+          <div class="icon">
+            <img src="/assets/images/icons/concordo_icon.svg" alt="{{'comment.agree' | translate}}" >
+          </div>
+          <div class="progess">
+            <small><em>{{'comment.agree' | translate}}</em></small>
+            <progressbar [value]="commentReport.agree_votes" [max]="commentReport.total_votes" type="success">&nbsp;</progressbar>
+          </div>
+          <div class="percentage">
+            {{ commentReport.agree_votes | percentage: commentReport.total_votes | round: 2 }} %
+          </div>
+        </div>
+
+        <div class="statistics-item disagree">
+          <div class="icon">
+            <img src="/assets/images/icons/discordo_icon.svg" alt="{{'comment.disagree' | translate}}" >
+          </div>
+          <div class="progess">
+            <small><em>{{'comment.disagree' | translate}}</em></small>
+            <progressbar [value]="commentReport.disagree_votes" [max]="commentReport.total_votes" type="danger">&nbsp;</progressbar>
+          </div>
+          <div class="percentage">
+            {{ commentReport.disagree_votes | percentage: commentReport.total_votes | round: 2 }} %
+          </div>
+        </div>
+
+        <div class="statistics-item pass">
+          <div class="icon">
+            <img src="/assets/images/icons/passo_icon.svg" alt="{{'comment.pass' | translate}}" >
+          </div>
+          <div class="progess">
+            <small><em>{{'comment.pass' | translate}}</em></small>
+            <progressbar [value]="commentReport.pass_votes" [max]="commentReport.total_votes" type="warning">&nbsp;</progressbar>
+          </div>
+          <div class="percentage">
+            {{ commentReport.pass_votes | percentage: commentReport.total_votes | round: 2 }} %
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button *ngIf="!isApproved()" type="button" class="button approve" (click)="approveComment()">
+          {{'comment.button.approve'| translate}}
+        </button>
+        <button *ngIf="!isRejected()" type="button" class="button reject" (click)="rejectComment()">
+          {{'comment.button.reject'| translate}}
+        </button>
+      </div>
+  </div>
+</div>

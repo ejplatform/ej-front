@@ -1,0 +1,11 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../globals';
+
+textarea{
+    min-height: 150px;
+}
+
+.button-action .button{
+    @extend .red;
+    
+}

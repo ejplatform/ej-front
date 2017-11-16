@@ -8,8 +8,6 @@ import { By } from '@angular/platform-browser';
 import { NudgeComponent } from './nudge.component';
 import * as helpers from "../../spec/helpers";
 
-
-
 describe('NudgeComponent', () => {
 
   let component: NudgeComponent;

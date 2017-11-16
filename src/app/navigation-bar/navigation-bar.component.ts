@@ -23,11 +23,7 @@ export class NavigationBarComponent implements OnInit {
     });
   }
  
-  ngOnInit() {
-    if(_.isUndefined(this.profile.image)){
-      this.profile.image = '/assets/images/icons/profile_icon.svg';
-    }
-  }
+  ngOnInit() {  }
 
   toggleMenu() {
     if(window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE)

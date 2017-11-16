@@ -5,10 +5,10 @@ import * as _ from 'lodash'
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
 import { Profile } from '../models/profile';
-import { Comment } from '../models/comment';
+import { Comment } from '../comments/shared/comment.model';
 import { Vote } from '../models/vote';
 import { ProfileService } from '../services/profile.service';
-import { CommentService } from '../services/comment.service';
+import { CommentService } from '../comments/shared/comment.service';
 import { VoteService } from '../services/vote.service';
 
 @Component({

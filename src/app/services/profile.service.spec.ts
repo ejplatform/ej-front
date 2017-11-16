@@ -5,7 +5,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProfileService } from './profile.service';
 import { SessionService } from './session.service';
 
-describe('CommentService', () => {
+describe('ProfileService', () => {
     const mocks = helpers.getMocks();
     
     beforeEach(() => {

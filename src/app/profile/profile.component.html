@@ -5,7 +5,7 @@
 </div>
 
 <div *ngIf="profile" class="container profile-container">
-
+    
     <div class="profile-form" >
       <div class="profile-picture-column">
         <image-upload class="col-md-2 col-sm-3 col-xs-4" [image]="profile.image" (onChange)="saveImage($event)" [(imageData)]="profile.imageData"></image-upload>
@@ -15,7 +15,17 @@
       </div>
       <div class="profile-information-column">
           <form   name="profileForm" #profileForm="ngForm">
-
+              <div class="row">
+                  <div class="col-sm-4">
+                    <progressbar class="progress" [value]="55" [max]="100"></progressbar>
+                  </div>
+                  <div class="col-sm-4">
+                    <progressbar class="progress progress-striped" [value]="22" [max]="100" type="warning">22%</progressbar>
+                  </div>
+                  <div class="col-sm-4">
+                    <progressbar class="progress progress-striped active" [max]="200" [value]="166" type="danger"><i>166 / 200</i></progressbar>
+                  </div>
+                </div>              
         <h1>{{'profile-title' | translate}}</h1>
 
         <div class="form-group name-field" [ngClass]="[ name.touched ? (name.valid ? 'is-valid' : 'is-invalid') : '' ]">
