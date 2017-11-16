@@ -27,3 +27,21 @@
         }
     }
 }
+
+
+.button{
+    @extend .btn;
+    @extend .ml-2;
+    width: 100%;
+    max-width: 180px;
+    font-weight: bold;
+    color: white;
+    &.blue{
+        background-color: #00AFF0;
+        color: white;
+    }
+    &.red{
+        background-color: #D0021B;
+        color: white;
+    }
+}

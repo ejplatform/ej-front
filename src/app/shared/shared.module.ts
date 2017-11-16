@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { TranslateService,  } from '@ngx-translate/core';
 import { ProgressbarModule } from 'ngx-bootstrap';
 
@@ -13,6 +14,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ProgressbarModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -22,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
   ],
-  exports: [TranslateModule, ProgressbarModule],
+  exports: [TranslateModule, ProgressbarModule, FormsModule],
 })
 export class SharedModule { 
   static forRoot(): ModuleWithProviders {

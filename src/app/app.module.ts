@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -87,7 +86,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentsReportModule,
     SharedModule.forRoot(),
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     InlineEditorModule,
     NgProgressModule,

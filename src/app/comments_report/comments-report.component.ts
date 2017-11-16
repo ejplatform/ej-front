@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommentReportService } from './shared/comment-report.service';
 import { CommentReport } from './shared/comment-report.model';
+import { Comment } from '../comments/shared/comment.model';
 import { CommentReportList } from './shared/comment-report-list.model';
 
 @Component({
@@ -20,21 +21,21 @@ export class CommentsReportComponent implements OnInit {
   ngOnInit() {
     // FIXME check if the user has admin powers to decide the default behavior
     // At this momment the default behavior is the admin one
-    this.currentStatus = CommentReport.UNMODERATED
+    this.currentStatus = Comment.UNMODERATED
   }
   
   loadRejectedComments(){
-    const params = { 'approval': CommentReport.REJECTED };
+    const params = { 'approval': Comment.REJECTED };
     this.loadComments(params)
   }
 
   loadModeratedComments(){
-    const params = { 'approval': CommentReport.UNMODERATED };
+    const params = { 'approval': Comment.UNMODERATED };
     this.loadComments(params)
   }
 
   loadApprovedComments(){
-    const params = { 'approval': CommentReport.APPROVED };
+    const params = { 'approval': Comment.APPROVED };
     this.loadComments(params)
   }
 
@@ -42,15 +43,15 @@ export class CommentsReportComponent implements OnInit {
     let isActive = false;
 
     switch (this.currentStatus) { 
-      case CommentReport.APPROVED:
+      case Comment.APPROVED:
         if(this.currentStatus == tabStatus)
           isActive = true;
         break; 
-      case CommentReport.UNMODERATED: 
+      case Comment.UNMODERATED: 
         if(this.currentStatus == tabStatus)
           isActive = true;
         break; 
-      case CommentReport.REJECTED: 
+      case Comment.REJECTED: 
         if(this.currentStatus == tabStatus)
           isActive = true;
         break; 

@@ -7,6 +7,7 @@ import { TabsModule } from 'ngx-bootstrap';
 
 import { CommentsReportComponent } from './comments-report.component';
 import { CommentReport } from './shared/comment-report.model';
+import { Comment } from '../comments/shared/comment.model';
 import { CommentReportService } from './shared/comment-report.service';
 import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
@@ -43,14 +44,7 @@ describe('CommentsReportComponent', () => {
 
   it('should conversationService list be called', () => {
     component.ngOnInit();
-    
-    expect(component.currentStatus).toEqual(CommentReport.UNMODERATED);
+    expect(component.currentStatus).toEqual(Comment.UNMODERATED);
   });
-
-  // it('should conversationService list be called on loadRejectedComments', () => {
-  //   spyOn(commentReportService, 'loadRejectedComments').and.callThrough();
-  //   component.ngOnInit();
-  //   expect(commentReportService.loadRejectedComments).toHaveBeenCalled();
-  // });
 
 });
