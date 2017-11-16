@@ -22,13 +22,13 @@ export class CommentReportService {
     Params = Params.append('page', (params['page'] || 1));
     Params = _.isUndefined(params.approval) ? Params : Params.append('approval',params['approval']);
     
-    let fullEndpointUrl = `${environment.apiUrl}/api/comments_report/`;
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments-report/`;
     return this.http.get<CommentReportList>(fullEndpointUrl, { params: Params });
   }
 
-  save(commentReport: CommentReport): Observable<CommentReport> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/comments_report/${commentReport.id}/`;
-    return this.http.put<CommentReport>(fullEndpointUrl, commentReport);
-  }
+  // save(commentReport: CommentReport): Observable<CommentReport> {
+  //   let fullEndpointUrl = `${environment.apiUrl}/api/comments-report/${commentReport.id}/`;
+  //   return this.http.put<CommentReport>(fullEndpointUrl, commentReport);
+  // }
 
 }

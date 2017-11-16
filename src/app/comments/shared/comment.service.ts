@@ -26,4 +26,9 @@ export class CommentService {
     return this.http.post<Comment>(fullEndpointUrl, comment);
   }
 
+  save(comment: Comment): Observable<Comment> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments/${comment.id}/`;
+    return this.http.put<Comment>(fullEndpointUrl, comment);
+  }
+
 }

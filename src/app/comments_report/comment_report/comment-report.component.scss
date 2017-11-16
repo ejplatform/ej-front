@@ -1,8 +1,6 @@
 @import '../../../../node_modules/bootstrap/scss/bootstrap';
-
-$bg-agree: #76C61F;
-$bg-disagree: #D0021B;
-$bg-pass: #F5A623;
+@import '../../../globals';
+@import '../../../variables';
 
 :host /deep/ .statistics-item .bg-success{
     background-color: $bg-agree !important;
@@ -105,19 +103,11 @@ $bg-pass: #F5A623;
 .buttons{
     @extend .mt-4;
 
-    .button{
-        @extend .btn;
-        @extend .ml-2;
-        width: 100%;
-        max-width: 180px;
-        font-weight: bold;
-        &.approve{
-            background-color: #00AFF0;
-            color: white;
-        }
-        &.reject{
-            background-color: #D0021B;
-            color: white;
-        }
+    .button.approve{
+        @extend .blue;
     }
+    .button.reject{
+        @extend .red;
+    }
+
 }
