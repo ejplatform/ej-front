@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash' 
 
 import { CommentReportService } from './shared/comment-report.service';
 import { CommentReport } from './shared/comment-report.model';
@@ -14,29 +15,32 @@ import { CommentReportList } from './shared/comment-report-list.model';
 export class CommentsReportComponent implements OnInit {
 
   commentsReport: CommentReport[];
-  currentStatus: string; 
+  currentStatus: string;
+  currentPage: number;
+  totalItems: number;
   
   constructor(private commentReportService: CommentReportService) {  }
 
   ngOnInit() {
     // FIXME check if the user has admin powers to decide the default behavior
     // At this momment the default behavior is the admin one
+    this.totalItems = 0;
     this.currentStatus = Comment.UNMODERATED
   }
   
   loadRejectedComments(){
-    const params = { 'approval': Comment.REJECTED };
-    this.loadComments(params)
+    this.currentStatus = Comment.REJECTED;
+    this.loadComments()
   }
 
   loadModeratedComments(){
-    const params = { 'approval': Comment.UNMODERATED };
-    this.loadComments(params)
+    this.currentStatus = Comment.UNMODERATED;
+    this.loadComments()
   }
 
   loadApprovedComments(){
-    const params = { 'approval': Comment.APPROVED };
-    this.loadComments(params)
+    this.currentStatus = Comment.APPROVED;
+    this.loadComments()
   }
 
   checkActiveTab(tabStatus: string){
@@ -63,9 +67,16 @@ export class CommentsReportComponent implements OnInit {
     this.commentsReport.splice(this.commentsReport.indexOf(commentReport), 1);
   }
 
-  private loadComments(params = <any>{}){
+  loadComments(params?: any){
+    if(_.isUndefined(params)){
+      params = {};
+    }
+    this.currentPage = params['page'] || 1;
+    params['page'] = this.currentPage;
+    params['approval'] = this.currentStatus;
     this.commentReportService.reports(params).subscribe((commentReportList: CommentReportList) => {
       this.commentsReport = <CommentReport[]>commentReportList.results;
+      this.totalItems = commentReportList.count;
     });
   }
 

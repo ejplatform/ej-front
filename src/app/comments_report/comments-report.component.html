@@ -5,26 +5,32 @@
 </div>
 
 <tabset>
-    <tab heading="{{'comments.rejected' | translate}}" [active]="checkActiveTab('REJECTED')" (select)="loadRejectedComments()">
-      <ul *ngFor="let commentReport of commentsReport">
-        <li>
-          <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
-        </li>
-      </ul>
-    </tab>
-    <tab heading="{{'comments.unmoderated' | translate}}" [active]="checkActiveTab('UNMODERATED')" (select)="loadModeratedComments()">
-      <ul *ngFor="let commentReport of commentsReport">
-        <li>
-          <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
-        </li>
-      </ul>
-    </tab>
-    <tab heading="{{'comments.approved' | translate}}" [active]="checkActiveTab('APPROVED')" (select)="loadApprovedComments()">
-      <ul *ngFor="let commentReport of commentsReport">
-        <li>
-          <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
-        </li>
-      </ul>
-    </tab>
- 
-  </tabset>
+  <tab heading="{{'comments.rejected' | translate}}" [active]="checkActiveTab('REJECTED')" (select)="loadRejectedComments()">
+    <ul *ngFor="let commentReport of commentsReport">
+      <li>
+        <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
+      </li>
+    </ul>
+  </tab>
+  <tab heading="{{'comments.unmoderated' | translate}}" [active]="checkActiveTab('UNMODERATED')" (select)="loadModeratedComments()">
+    <ul *ngFor="let commentReport of commentsReport">
+      <li>
+        <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
+      </li>
+    </ul>
+  </tab>
+  <tab heading="{{'comments.approved' | translate}}" [active]="checkActiveTab('APPROVED')" (select)="loadApprovedComments()">
+    <ul *ngFor="let commentReport of commentsReport">
+      <li>
+        <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
+      </li>
+    </ul>
+  </tab>
+</tabset>
+<div class="row">
+  <div class="col-xs-12 col-12 justify-content-center">
+    <pagination [totalItems]="totalItems" previousText="{{'comments-report.previous' | translate}}" 
+    nextText="{{'comments-report.next' | translate}}"
+    [itemsPerPage]="50" [(ngModel)]="currentPage" (pageChanged)="loadComments($event)"></pagination>
+  </div>
+</div>
