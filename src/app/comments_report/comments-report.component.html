@@ -4,6 +4,15 @@
     </div>
 </div>
 
+<div class="col-md-3 conversation-filter" >
+    <i class="select inside-icon"></i>
+    <select [disabled]="loading" [(ngModel)]="selectedConversation" (ngModelChange)="filterByConversation($event)"  name="conversation" #conversation='ngModel'
+            class="col-md-2 custom-select" id="conversation">
+      <option value="0" selected>{{'comments-report.all' | translate }}</option>
+      <option *ngFor="let conversation of conversations" [value]="conversation.id">{{conversation.title}}</option>
+    </select>
+  </div>
+y
 <tabset>
   <tab heading="{{'comments.rejected' | translate}}" [active]="checkActiveTab('REJECTED')" (select)="loadRejectedComments()">
     <ul *ngFor="let commentReport of commentsReport">
