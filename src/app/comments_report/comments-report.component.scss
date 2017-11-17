@@ -1,6 +1,12 @@
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+:host /deep/ .pagination{
+    @extend .justify-content-center;
+    @extend .mt-4;
+    display: flex;
+}
+
 :host /deep/ tabset{
 
     .nav {
