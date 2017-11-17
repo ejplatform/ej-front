@@ -21,6 +21,7 @@ export class CommentReportService {
     }
     Params = Params.append('page', (params['page'] || 1));
     Params = _.isUndefined(params.approval) ? Params : Params.append('approval',params['approval']);
+    Params = _.isUndefined(params.conversation_id) ? Params : Params.append('conversation__id',params['conversation_id']);
     
     let fullEndpointUrl = `${environment.apiUrl}/api/comments-report/`;
     return this.http.get<CommentReportList>(fullEndpointUrl, { params: Params });
