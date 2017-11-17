@@ -1,6 +1,10 @@
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+.conversation-filter{
+    float: right;
+}
+
 :host /deep/ .pagination{
     @extend .justify-content-center;
     @extend .mt-4;

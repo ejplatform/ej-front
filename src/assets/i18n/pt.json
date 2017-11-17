@@ -58,6 +58,7 @@
     "comments-report-modal.button": "Salvar",
     "comments-report.previous": "Anterior",
     "comments-report.next": "Proxima",
+    "comments-report.all": "Todas",
     "comments-report-modal.rejection.reason": "Escreva aqui o motivo pelo qual o comentario sera rejeitado",
     "login.label.email": "Email",
     "login.success.title": "",
