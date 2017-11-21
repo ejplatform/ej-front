@@ -1,125 +1,95 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
-h1{
-    font-size: x-large;
-    color: #4A4A4A;
-    //FIXME put a bootstrap variable
-    font-weight: 500;
-    @extend .m-5;
+.topic{
+    @extend .d-flex;
+    @extend .justify-content-center;
+    // @extend .my-5;
+    margin-top: 120px;
+    margin-bottom: 70px;
+    h1{
+        @extend .col-md-7;
+        span{
+            color: #D40303;
+        }
+    }
 }
 
-h2, h3{
-    text-align: center;
-    font-weight: bold;
-    color: #D30000;
+.conversation{
+    @extend .d-flex;
+    @extend .justify-content-center;
+
 }
 .card{
-    @extend .mx-4;
-    @extend .mt-5;
+    @extend .col-md-7;
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.24);
     
-    box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
-    border: none;
-
-    &, .card-header, .card-footer {
-        background-color: white;
-    }
 }
 
 .card-header{
-    padding-left: 0px;
+    @extend .row;
+    background-color: white;
     .card-header-left{
-        float: left;
-        @extend .ml-3;
+        @extend .col-md-5;
         .category{
-            display: block;
             font-weight: bold;
-            margin: 0px;
-            padding: 0px;
-    
+            font-size: xx-large;
         }
         .date{
-            margin: 0px;
-            padding: 0px;
+            font-weight: bold;
+            font-size: medium;
         }
-    }
-    
-    .card-header-right{
-        float: right;
-    
-    }
-}
-.card-text{
-    font-size: small;
-    @extend .m-4;    
-}
-
-
-.card-cover{
-    position: relative;
-    background-color: rgba(208,2,27,0.66);
-
-    h5.card-title{
-        color: white;
-        position: absolute;
-        padding: 0 20px;
-        font-weight: normal;
-        text-align: center;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .card-cover-img{
-        position: relative;
-    }
-    .card-cover-img:after {
-        content:'';
-        position:absolute;
-        left:0px;
-        top:0px;
-        width:100%;
-        height:100%;
-        background-color: rgba(208,2,27,0.66);
-    }
-}
-
-.card-footer{
-    padding-left: 0px;
-    .amount{
-        font-weight: bold;
-        @extend .mx-1;
-        
-    }
-    .card-footer-left{
-        float: left;
-    }
-    
-    .card-footer-right{
-        float: right;
-    
-    }
-    .participation{
-        @extend .pl-4;
-        @extend .pt-5;
-        
-        clear: both;
-        .content{
-            display: inline-block;
-            .teste{
-                display: inline-block;
-            }
+        .number{
+            font-weight: bold;
         }
-        .profile{
+        .votes{
+            @extend .my-4;
+            float: left;
             img{
-                width: 50px;
-                // height: 40px;
+                @extend .align-baseline;
+                // margin-top: -9px;
+            }
+        }
+        .comments{
+            @extend .my-4;
+            @extend .ml-5;
+            float: left;
+            img{
+                @extend .align-baseline;
+                // margin-top: -9px;
+            }
+        }
+        
+    }
+    .card-header-right{
+        @extend .col-md-7;
+        .social{
+            text-align: right;
+            img{
+                @extend .ml-3;
+                width: 33px;
             }
         }
 
-        progressbar{
-            display: flex;
-            align-items: center;
+        .participation{
+            @extend .d-flex;
+            @extend .pt-1;
+
+            .profile{
+                img{
+                    width: 50px;
+                }
+            }
+            .title{
+                @extend .pl-3;
+            }
             
-            @extend .pl-3;
+            progressbar{
+                @extend .pl-3;
+                display: flex;
+                align-items: center;
+                
+            }
         }
+        
     }
 }

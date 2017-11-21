@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>facebook_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="paper-radio-group" fill-rule="nonzero">
+            <g id="003-facebook">
+                <circle id="Oval" fill="#3B5998" cx="22.5" cy="22.5" r="22.5"></circle>
+                <path d="M27.4765023,23.4720708 L23.6205701,23.4720708 L23.6205701,38 L17.7785054,38 L17.7785054,23.4720708 L15,23.4720708 L15,18.3663784 L17.7785054,18.3663784 L17.7785054,15.0624155 C17.7785054,12.6997254 18.8697997,9 23.6725732,9 L28,9.01861946 L28,13.9745639 L24.8601695,13.9745639 C24.3451464,13.9745639 23.6209553,14.2391978 23.6209553,15.3662691 L23.6209553,18.3711323 L27.9869029,18.3711323 L27.4765023,23.4720708 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+        <g id="facebook_icon"></g>
+    </g>
+</svg>

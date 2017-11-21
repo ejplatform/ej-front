@@ -1,51 +1,72 @@
-<div *ngIf="conversation" class='conversation'>
-  <h1>{{'conversations.topic' | translate}} > {{conversation.title}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </h1>
+<div class="topic">
+  <h1>{{'conversations.topic' | translate}} > <span>{{conversation.title}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </span></h1>
+</div>
 
+<div *ngIf="conversation" class='conversation'>
   <div class="card">
+
     <div class="card-header">
       <div class="card-header-left">
-        <small class="category">{{conversation.title}} </small>
-        <small class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </small>
+        <div class="category">{{conversation.title}} </div>
+        <div class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </div>
+        <div class="votes">
+          <img src="/assets/images/icons/votos_icon_black.svg" alt="{{'conversation.icon.votes' | translate}}" />
+          <span class="number">
+            {{(conversation.total_votes || 0 ) | number:'1.0'}}
+          </span>
+          {{'conversations.card.votes' | translate}}
+        </div> 
+        <div class="comments">
+            <img src="/assets/images/icons/comentarios_icon_black.svg" alt="{{'conversation.icon.comments' | translate}}" />
+          <span class="number">
+            {{(conversation.total_approved_comments || 0) | number:'1.0'}}
+          </span>
+          {{'conversations.card.comments' | translate}}
+        </div> 
       </div>
+
       <div class="card-header-right">
-        <small class="identifier">Conversas #{{conversation.id}} </small>
+        <div class='social'>
+            <img src="/assets/images/icons/facebook_icon.svg" alt="{{'conversation.social.facebook' | translate}}" />
+            <img src="/assets/images/icons/twitter_icon.svg" alt="{{'conversation.social.facebook' | translate}}" />
+            <img src="/assets/images/icons/google_icon.svg" alt="{{'conversation.social.facebook' | translate}}" />
+        </div>
+        <div class='participation'>
+            <div class='profile'>
+              <img onError="this.src='/assets/images/icons/profile_icon.svg'"[src]="profile.image" alt="{{'conversation.profile.image' | translate}}">                
+            </div>
+            <div class='container'>
+              <div class='title'>
+                {{'conversations.card.participation' | translate}}
+              </div>  
+              <progressbar class="progress-striped" [value]="ratio(conversation)" type="warning">
+                {{ratio(conversation)}}%
+              </progressbar>
+            </div>
+          </div>
       </div>
     </div>
     
-    <div class="card-cover">
+    <!-- <div class="card-cover">
       <div class="card-cover-img">
         <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
-      </div>
+      </div> -->
       <h5 class="card-title mt-4">{{conversation.description}}</h5>
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-    </div>
+    <!-- </div> -->
             
     <div class="card-block">
       <h2>{{'conversations.title' | translate}}</h2>
       <h3>{{'conversations.subtitle' | translate}}</h3>
     </div>
 
-    <div class="card-footer">
+    <!-- <div class="card-footer">
       <small class="card-footer-left">
-        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}} 
       </small>
       <small class="card-footer-right">
-        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}} 
       </small>
-      <div class='participation '>
-        <div class='title'>
-          <h4>{{'conversations.card.participation' | translate}}</h4>
-        </div>
-        <div class='content d-flex align-items-stretch bd-highlight '>
-          <div class='profile'>
-            <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
-          </div>
-          <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
-              {{ratio(conversation)}}%
-          </progressbar>
-        </div>          
-      </div>
-    </div>
+
+    </div> -->
   </div>
 </div>
