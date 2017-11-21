@@ -3,10 +3,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
+import { NotificationService } from '../services/notification.service';
 import { LoginComponent } from './login.component';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
+import { SocialFacebookService } from '../services/social-facebook.service';
 import * as helpers from '../../spec/helpers';
 
 describe('LoginComponent', () => {
@@ -21,8 +26,12 @@ describe('LoginComponent', () => {
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: AuthService, useValue: mocks.authService },
-        
+        { provide: NotificationService, useValue: mocks.notificationService },
+        { provide: SocialFacebookService, useValue: mocks.socialFacebookService },
+        { provide: BsModalService, useValue: mocks.bsModalService },
+        { provide: BsModalRef, useValue: mocks.bsModalRef },
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],      
     })
     .compileComponents();
   }));

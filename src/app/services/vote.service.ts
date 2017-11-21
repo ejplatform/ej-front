@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { Comment } from '../models/comment';
+import { Comment } from '../comments/shared/comment.model';
 import { Vote } from '../models/vote';
 
 @Injectable()

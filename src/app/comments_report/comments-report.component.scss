@@ -1,0 +1,46 @@
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.conversation-filter{
+    float: right;
+}
+
+:host /deep/ .pagination{
+    @extend .justify-content-center;
+    @extend .mt-4;
+    display: flex;
+}
+
+:host /deep/ tabset{
+
+    .nav {
+        border: none;
+        @extend .p-5;
+        .nav-item {
+            .nav-link{
+                @extend .p-4;
+                text-transform: uppercase;
+                border-left: 6px solid #ECECEC;
+                color: #9F9F9F;
+
+                &.active {
+    
+                    background-color: #7ED321;
+                    color: white;
+                }
+            }
+        }
+    }
+    .tab-content{
+        @extend .mx-5;
+        ul{
+            margin: 0px;
+            padding: 0px;
+        }
+        li{
+            // margin: 0px;
+            // padding: 0px;
+            list-style: none;
+        }
+    }
+}

@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
-import { CommentService } from '../services/comment.service';
-import { Comment } from '../models/comment';
+import { CommentService } from '../comments/shared/comment.service';
+import { Comment } from '../comments/shared/comment.model';
 import { Conversation } from '../models/conversation';
 import { ActivatedRoute } from '@angular/router';
 
@@ -26,7 +26,7 @@ export class NudgeComponent implements OnInit {
   ngOnInit() {
     let comment = new Comment();
     comment.content = 'nudge comment body for test';
-    comment.title = 'nudge comment title for test';
+    // comment.title = 'nudge comment title for test';
 
     // FIXME call the correct service to get the nudge information
     const mockResponse = {anxious: true, remaining_comments: 4 };

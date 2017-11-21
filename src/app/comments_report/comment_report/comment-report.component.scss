@@ -1,0 +1,113 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../globals';
+@import '../../../variables';
+
+:host /deep/ .statistics-item .bg-success{
+    background-color: $bg-agree !important;
+}
+
+:host /deep/ .statistics-item .bg-danger{
+    background-color: $bg-disagree !important;
+}
+
+:host /deep/ .statistics-item .bg-warning{
+    background-color: $bg-pass !important;
+}
+
+.statistics-item{
+    @extend .my-2;
+    @extend .row;
+    &.agree .icon{
+        background-color: $bg-agree;
+    }
+    &.disagree .icon{
+        background-color: $bg-disagree;
+    }
+    &.pass .icon{
+        background-color: $bg-pass;
+    }
+    .icon{
+        @extend .col-md-1;
+       
+        margin-top: auto;
+        border-radius: 100%;
+        height: 40px;
+        width: 40px;
+        background-color: #9B9B9B;
+        img {
+            height: 30px;
+            width: 30px;
+            margin-left: -6px;
+            margin-top: 3px;
+        }
+    }
+    .progess{
+        @extend .col-md-9;
+    }
+    .percentage{
+        @extend .col-md-2;
+        margin-top: auto;
+        padding-left: 0px;
+
+    }
+}
+.comment-report-card-header{
+    @extend .mt-3;
+    @extend .ml-4;
+    
+    .profile{
+        img{
+            border-radius: 100%;
+            
+            width: 60px;
+            height: 60px;
+        }
+        float: left;
+    }
+    .author{
+        // margin-top: auto;
+        
+        @extend .ml-3;
+        @extend .mt-3;
+        float: left;
+        
+    }
+}
+
+.comment-report-card-block{
+    @extend .mt-3;
+    @extend .ml-5;
+    font-size: xx-large;
+}
+
+
+.comment-report-card-footer{
+    @extend .mt-3;
+    @extend .ml-5;
+    font-size: x-small;
+    
+}
+
+.comment-report-card{
+    @extend .row;
+    @extend .my-5;
+    @extend .pb-3;
+    .comment-report-card-footer{
+        border-top: 2px solid #C2C2C2;
+    }
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.24);
+    border: none;
+
+}
+
+.buttons{
+    @extend .mt-4;
+
+    .button.approve{
+        @extend .blue;
+    }
+    .button.reject{
+        @extend .red;
+    }
+
+}

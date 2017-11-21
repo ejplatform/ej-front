@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -17,10 +16,14 @@ import { LOCALE_ID } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 
 // Bootstrap
-import { ModalModule, BsDropdownModule, CollapseModule, ProgressbarModule } from 'ngx-bootstrap';
+import { ModalModule, BsDropdownModule, CollapseModule, ProgressbarModule, TabsModule } from 'ngx-bootstrap';
 
 // ngx-facebook
 import { FacebookModule } from 'ngx-facebook';
+
+// Application Modules
+import { CommentsReportModule } from './comments_report/comments-report.module';
+import { SharedModule } from './shared/shared.module';
 
 // Application imports
 import { AppComponent } from './app.component';
@@ -31,7 +34,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AlertsComponent } from './alerts/alerts.component';
-import { CommentsComponent } from './comments/comments.component';
+// import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { LoginComponent } from './login/login.component';
@@ -65,7 +68,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     AlertsComponent,
-    CommentsComponent,
     ConversationsComponent,
     ConversationComponent,
     HomeSliderComponent,
@@ -81,8 +83,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidateOnBlurDirective
   ],
   imports: [
+    CommentsReportModule,
+    SharedModule.forRoot(),
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     InlineEditorModule,
     NgProgressModule,
@@ -90,20 +93,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
-    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
-    // For load all bootstrap modules
-    // Ng2BootstrapModule.forRoot(),
+    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,    
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
     CollapseModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
   ],
   providers: [GlobalState,

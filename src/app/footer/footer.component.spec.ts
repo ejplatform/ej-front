@@ -8,7 +8,6 @@ import { By } from '@angular/platform-browser';
 import { FooterComponent } from './footer.component';
 import * as helpers from "../../spec/helpers";
 
-
 describe('FooterComponent', () => {
 
   let component: FooterComponent;
@@ -31,7 +30,7 @@ describe('FooterComponent', () => {
   });
 
   it('display component', () => {
-      expect(fixture.debugElement.queryAll(By.css('sponsors')).length).toBe(1);
+      expect(fixture.debugElement.queryAll(By.css('.sponsors')).length).toBe(1);
   });
 
 });

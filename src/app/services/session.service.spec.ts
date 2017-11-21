@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import * as helpers from '../../spec/helpers';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProfileService } from './profile.service';
 import { SessionService } from './session.service';
 
@@ -11,6 +11,10 @@ describe('SessionService', () => {
     
     beforeEach(() => {
         TestBed.configureTestingModule({
+            providers: [
+                SessionService,
+                { provide: LocalStorageService, useValue: mocks.localStorageService }
+            ]            
         });
     });
 
