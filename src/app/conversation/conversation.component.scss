@@ -22,12 +22,14 @@
 .card{
     @extend .col-md-7;
     box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.24);
+    padding: 0px;
     
 }
 
 .card-header{
     @extend .row;
     background-color: white;
+    margin: 0px;
     .card-header-left{
         @extend .col-md-5;
         .category{
@@ -63,6 +65,7 @@
     .card-header-right{
         @extend .col-md-7;
         .social{
+            @extend .mr-4;
             text-align: right;
             img{
                 @extend .ml-3;
@@ -92,4 +95,66 @@
         }
         
     }
+}
+
+.card-title{
+    text-align: center;
+    h2{
+        @extend .p-5;
+        background-color: #00AD4B;
+        margin: 0px;
+        color: white;
+        font-weight: bold;
+
+    }
+    h3{
+        @extend .mt-4;
+        font-weight: bold;
+        color: #D30000;
+    }
+    h4{
+        color: #D30000;
+    }
+    
+}
+
+.dialog{
+    .title{
+        @extend .p-3;
+        margin: 0px;
+        color: white;
+        background-color: #F3B100;
+        width: 170px;
+        text-align: center; 
+    }
+    .content{
+        @extend .p-5;
+        margin: 0px;
+        background-color: #EEEEEE;
+    }
+
+}
+
+
+.response{
+    .title{
+
+        margin: 0px;
+        background-color: #EEEEEE;
+        
+        div{
+            margin: 0px;
+            text-align: center; 
+            @extend .p-3;
+            color: white;
+            background-color: #F3B100;
+            width: 170px;
+        }
+    }
+    .content{
+        @extend .p-5;
+        margin: 0px;
+        background-color: #DEDEDE;
+    }
+
 }

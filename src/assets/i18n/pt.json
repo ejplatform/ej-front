@@ -42,6 +42,8 @@
     "conversations.card.comments":"comentários",
     "conversations.card.votes":"votos",
     "conversations.card.participation":"Sua participação",
+    "conversation.dialog":"Dialogo",
+    "conversation.response":"Resposta",
     "comments.topic":"Comentarios",
     "comments.rejected":"Rejeitados",
     "comments.unmoderated":"Aguardando Moderacao",

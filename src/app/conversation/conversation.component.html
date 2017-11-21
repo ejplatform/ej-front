@@ -1,4 +1,4 @@
-<div class="topic">
+<div *ngIf="conversation" class="topic">
   <h1>{{'conversations.topic' | translate}} > <span>{{conversation.title}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </span></h1>
 </div>
 
@@ -51,22 +51,36 @@
       <div class="card-cover-img">
         <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
       </div> -->
-      <h5 class="card-title mt-4">{{conversation.description}}</h5>
+      
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
     <!-- </div> -->
             
     <div class="card-block">
-      <h2>{{'conversations.title' | translate}}</h2>
-      <h3>{{'conversations.subtitle' | translate}}</h3>
+      <div class='card-title'>
+        <h2>{{conversation.description}}</h2>
+      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <h3>{{'conversations.title' | translate}}</h3>
+        <h4>{{'conversations.subtitle' | translate}}</h4>
+      </div>
+      <div class="comments">
+
+      </div>
+      <div class='dialog'>
+        <h3 class='title'>{{'conversation.dialog' | translate }}</h3>
+        <div class='content' [innerHTML]="conversation.dialog | safeHtml">
+        </div>
+      </div>
+      <div class='response'>
+        <h3 class='title'>
+          <div>{{'conversation.response' | translate }}</div>
+        </h3>
+        <div class='content'>
+            {{conversation.response}}
+        </div>
+      </div>
     </div>
 
-    <!-- <div class="card-footer">
-      <small class="card-footer-left">
-      </small>
-      <small class="card-footer-right">
-      </small>
-
-    </div> -->
   </div>
 </div>

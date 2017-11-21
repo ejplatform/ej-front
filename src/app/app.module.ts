@@ -50,6 +50,7 @@ import { SocialFacebookService } from './services/social-facebook.service';
 import { NotificationService } from './services/notification.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
+import { SafeHtmlPipe } from './shared/pipes/safe-html.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
@@ -79,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LogoutComponent,
     ImageUploadComponent,
     SafePipe,
+    SafeHtmlPipe,
     ValidationMessageComponent,
     ValidateOnBlurDirective
   ],
