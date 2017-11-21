@@ -6,6 +6,21 @@ textarea{
 }
 
 .button-action .button{
-    @extend .red;
-    
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #7ED321;
+    float: right;
+    margin-bottom: 20px;
+    border-radius: 2px;
 }
+
+.modal-title{
+    color: #3C494E;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+textarea{ border-radius: 0px !important; }

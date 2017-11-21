@@ -1,12 +1,11 @@
 <div *ngIf="comment" class="reason-modal">
- <div class="modal-header">
+
+<div class="modal-body">
     <h4 class="modal-title pull-left" translate>{{'comments-report-modal.title'}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-</div>
-
-<div class="modal-body">
+    
   <form #rejectReasonForm="ngForm" (ngSubmit)="save()" class="login_form">
 
     <div class="form-group rejection_reason-field" [ngClass]="[ rejection_reason.touched ? (rejection_reason.valid ? 'is-valid' : 'is-invalid') : '' ]">
