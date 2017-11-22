@@ -3,9 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BsModalService } from 'ngx-bootstrap/modal';
 
-import { NotificationService } from '../../services/notification.service';
 import { CommentReportComponent } from './comment-report.component';
 import { CommentReport } from '../shared/comment-report.model';
 import { CommentReportService } from '../shared/comment-report.service';
@@ -24,8 +22,6 @@ describe('CommentReportComponent', () => {
       providers: [
         { provide: CommentReportService, useValue: mocks.commentReportService },
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: NotificationService, useValue: mocks.notificationService },        
-        { provide: BsModalService, useValue: mocks.bsModalService },        
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

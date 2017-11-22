@@ -1,11 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommentReport } from '../shared/comment-report.model';
 import { Comment } from '../../comments/shared/comment.model';
-// import { CommentsReportModalComponent } from '../comments-report-modal/comments-report-modal.component';
 import { CommentReportService } from '../shared/comment-report.service';
 import { CommentService } from '../../comments/shared/comment.service';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../../services/notification.service';
 import { Profile } from '../../models/profile';
 import { ProfileService } from '../../services/profile.service';
@@ -20,13 +17,11 @@ export class CommentReportComponent implements OnInit {
 
   @Input() commentReport: CommentReport;
   @Output() onApprovalChange = new EventEmitter();
-  bsModalRef: BsModalRef;
   profile: Profile;
   comment: Comment;
   isCollapsed = false;
   
-  constructor(private commentReportService: CommentReportService, private modalService: BsModalService,
-    private commentService: CommentService, private notificationService: NotificationService, 
+  constructor(private commentReportService: CommentReportService, private commentService: CommentService, 
     private profileService: ProfileService) { 
       this.profile = <Profile>{};
       this.profile = Object.assign(this.profile, this.profileService.getProfile());
