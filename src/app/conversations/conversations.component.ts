@@ -34,7 +34,7 @@ export class ConversationsComponent implements OnInit {
   }
 
   groupConversations(){
-    return _.chunk(this.conversations, 3)
+    return [this.conversations];
   }
 
   amount(){

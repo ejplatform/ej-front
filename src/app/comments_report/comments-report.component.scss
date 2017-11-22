@@ -5,6 +5,12 @@
     float: right;
 }
 
+:host /deep/ .modal-content{
+    border: 1px solid #979797;	
+    border-radius: 2px;	
+    background-color: #EEEEEE;
+}
+
 :host /deep/ .pagination{
     @extend .justify-content-center;
     @extend .mt-4;
@@ -15,7 +21,8 @@
 
     .nav {
         border: none;
-        @extend .p-5;
+        padding: 0px 30px;
+        
         .nav-item {
             .nav-link{
                 @extend .p-4;

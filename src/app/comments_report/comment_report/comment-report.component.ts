@@ -7,6 +7,8 @@ import { CommentService } from '../../comments/shared/comment.service';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NotificationService } from '../../services/notification.service';
+import { Profile } from '../../models/profile';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-comment-report',
@@ -19,9 +21,17 @@ export class CommentReportComponent implements OnInit {
   @Input() commentReport: CommentReport;
   @Output() onApprovalChange = new EventEmitter();
   bsModalRef: BsModalRef;
+  profile: Profile;
   
   constructor(private commentReportService: CommentReportService, private modalService: BsModalService,
-    private commentService: CommentService, private notificationService: NotificationService) { }
+    private commentService: CommentService, private notificationService: NotificationService, 
+    private profileService: ProfileService) { 
+      this.profile = <Profile>{};
+      this.profile = Object.assign(this.profile, this.profileService.getProfile());
+      this.profileService.profileChangeEvent.subscribe(profile => {
+        this.profile = profile;
+      });
+    }
 
   ngOnInit() {
   }
@@ -51,12 +61,24 @@ export class CommentReportComponent implements OnInit {
     });
   }
 
-  isRejected(){
-    return this.commentReport.approval ===  Comment.REJECTED
+  couldBeRejected(){
+    let couldReject = false;
+    if(this.commentReport.author.id === this.profile.id ){
+      couldReject =  false;
+    } else if(this.commentReport.approval !==  Comment.REJECTED){
+      couldReject =  true;
+    }
+    return couldReject;
   }
 
-  isApproved(){
-    return this.commentReport.approval ===  Comment.APPROVED
+  couldBeApproved(){
+    let couldApprove = false;
+    if(this.commentReport.author.id === this.profile.id ){
+      couldApprove =  false;
+    } else if(this.commentReport.approval !==  Comment.APPROVED){
+      couldApprove =  true;
+    }
+    return couldApprove;
   }
 
   private getRelatedComment(){

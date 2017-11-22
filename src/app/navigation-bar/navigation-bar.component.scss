@@ -148,9 +148,11 @@
         img {
             height: 34px;
             width: 34px;
+            border-radius: 50%;
+
             @include media-breakpoint-up(sm) {
-                height: 30px;
-                width: 30px;
+                height: 40px;
+                width: 40px;
             }
         }
     }

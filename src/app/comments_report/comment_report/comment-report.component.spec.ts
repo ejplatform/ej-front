@@ -9,6 +9,7 @@ import { NotificationService } from '../../services/notification.service';
 import { CommentReportComponent } from './comment-report.component';
 import { CommentReport } from '../shared/comment-report.model';
 import { CommentReportService } from '../shared/comment-report.service';
+import { ProfileService } from '../../services/profile.service';
 import * as helpers from '../../../spec/helpers';
 
 describe('CommentReportComponent', () => {
@@ -22,6 +23,7 @@ describe('CommentReportComponent', () => {
       declarations: [ CommentReportComponent ],
       providers: [
         { provide: CommentReportService, useValue: mocks.commentReportService },
+        { provide: ProfileService, useValue: mocks.profileService },
         { provide: NotificationService, useValue: mocks.notificationService },        
         { provide: BsModalService, useValue: mocks.bsModalService },        
       ],

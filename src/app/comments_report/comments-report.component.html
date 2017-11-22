@@ -12,7 +12,7 @@
       <option *ngFor="let conversation of conversations" [value]="conversation.id">{{conversation.title}}</option>
     </select>
   </div>
-y
+
 <tabset>
   <tab heading="{{'comments.rejected' | translate}}" [active]="checkActiveTab('REJECTED')" (select)="loadRejectedComments()">
     <ul *ngFor="let commentReport of commentsReport">

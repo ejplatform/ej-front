@@ -16,14 +16,14 @@
       <div class="conversation-description">{{commentReport.conversation.description}}</div>
     </div>
   </div>
-  <div class="comment-report-card-actions col-md-4">
+  <div class="comment-report-card-actions col-md-3">
       <div class="statistics" >
         <div class="statistics-item votes">
           <div class="icon">
             <img src="/assets/images/icons/votos_icon.svg" alt="{{'comment.votes' | translate}}" >
           </div>
           <div class="progess">
-            <small><em>{{'comment.votes' | translate}}</em></small>      
+            <span>{{'comment.votes' | translate}}</span>
             <progressbar class="" [value]="commentReport.total_votes" [max]="commentReport.conversation.total_votes" type="info">&nbsp;</progressbar>
           </div>
           <div class="percentage">
@@ -36,7 +36,7 @@
             <img src="/assets/images/icons/concordo_icon.svg" alt="{{'comment.agree' | translate}}" >
           </div>
           <div class="progess">
-            <small><em>{{'comment.agree' | translate}}</em></small>
+            <span>{{'comment.agree' | translate}}</span>
             <progressbar [value]="commentReport.agree_votes" [max]="commentReport.total_votes" type="success">&nbsp;</progressbar>
           </div>
           <div class="percentage">
@@ -49,7 +49,7 @@
             <img src="/assets/images/icons/discordo_icon.svg" alt="{{'comment.disagree' | translate}}" >
           </div>
           <div class="progess">
-            <small><em>{{'comment.disagree' | translate}}</em></small>
+            <span>{{'comment.disagree' | translate}}</span>
             <progressbar [value]="commentReport.disagree_votes" [max]="commentReport.total_votes" type="danger">&nbsp;</progressbar>
           </div>
           <div class="percentage">
@@ -62,7 +62,7 @@
             <img src="/assets/images/icons/passo_icon.svg" alt="{{'comment.pass' | translate}}" >
           </div>
           <div class="progess">
-            <small><em>{{'comment.pass' | translate}}</em></small>
+            <span>{{'comment.pass' | translate}}</span>
             <progressbar [value]="commentReport.pass_votes" [max]="commentReport.total_votes" type="warning">&nbsp;</progressbar>
           </div>
           <div class="percentage">
@@ -72,10 +72,10 @@
       </div>
 
       <div class="buttons">
-        <button *ngIf="!isApproved()" type="button" class="button approve" (click)="approveComment()">
+        <button *ngIf="couldBeApproved()" type="button" class="button approve" (click)="approveComment()">
           {{'comment.button.approve'| translate}}
         </button>
-        <button *ngIf="!isRejected()" type="button" class="button reject" (click)="rejectComment()">
+        <button *ngIf="couldBeRejected()" type="button" class="button reject" (click)="rejectComment()">
           {{'comment.button.reject'| translate}}
         </button>
       </div>
