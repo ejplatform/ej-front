@@ -16,5 +16,6 @@ export class CommentReport {
     public disagreement_consensus: boolean;
     public uncertainty: boolean;
     public created_at: string;
+    public rejection_reason: string;
 
 }

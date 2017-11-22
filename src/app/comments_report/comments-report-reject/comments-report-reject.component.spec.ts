@@ -8,18 +8,18 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Comment } from '../../comments/shared/comment.model';
 
-import { CommentsReportModalComponent } from './comments-report-modal.component';
+import { CommentsReportRejectComponent } from './comments-report-reject.component';
 import * as helpers from '../../../spec/helpers';
 
-describe('CommentsReportModalComponent', () => {
-  let component: CommentsReportModalComponent;
-  let fixture: ComponentFixture<CommentsReportModalComponent>;
+describe('CommentsReportRejectComponent', () => {
+  let component: CommentsReportRejectComponent;
+  let fixture: ComponentFixture<CommentsReportRejectComponent>;
   const mocks = helpers.getMocks();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), FormsModule, RouterTestingModule],
-      declarations: [ CommentsReportModalComponent ],
+      declarations: [ CommentsReportRejectComponent ],
       providers: [
         { provide: BsModalService, useValue: mocks.bsModalService },
         { provide: BsModalRef, useValue: mocks.bsModalRef },
@@ -30,7 +30,7 @@ describe('CommentsReportModalComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommentsReportModalComponent);
+    fixture = TestBed.createComponent(CommentsReportRejectComponent);
     component = fixture.componentInstance;
     component.comment = <Comment>{id: 1}
   });

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap';
 
 import { CommentsReportRoutingModule, routedComponents } from './comments-report.routing';
-import { CommentsReportModalComponent } from './comments-report-modal/comments-report-modal.component';
+import { CommentsReportRejectComponent } from './comments-report-reject/comments-report-reject.component';
 import { CommentReportComponent } from './comment_report/comment-report.component';
 import { CommentsReportComponent } from './comments-report.component';
 
@@ -20,8 +20,7 @@ import { CommentsReportComponent } from './comments-report.component';
     TabsModule.forRoot(),
     PaginationModule.forRoot()
   ],
-  entryComponents: [CommentsReportModalComponent],
 
-  declarations: [routedComponents, CommentsReportModalComponent, CommentReportComponent]
+  declarations: [routedComponents, CommentsReportRejectComponent, CommentReportComponent]
 })
 export class CommentsReportModule { }

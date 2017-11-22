@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommentReport } from '../shared/comment-report.model';
 import { Comment } from '../../comments/shared/comment.model';
-import { CommentsReportModalComponent } from '../comments-report-modal/comments-report-modal.component';
+// import { CommentsReportModalComponent } from '../comments-report-modal/comments-report-modal.component';
 import { CommentReportService } from '../shared/comment-report.service';
 import { CommentService } from '../../comments/shared/comment.service';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -22,6 +22,8 @@ export class CommentReportComponent implements OnInit {
   @Output() onApprovalChange = new EventEmitter();
   bsModalRef: BsModalRef;
   profile: Profile;
+  comment: Comment;
+  isCollapsed = false;
   
   constructor(private commentReportService: CommentReportService, private modalService: BsModalService,
     private commentService: CommentService, private notificationService: NotificationService, 
@@ -34,6 +36,10 @@ export class CommentReportComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.comment = this.getRelatedComment();
+    if(this.comment.approval === Comment.REJECTED){
+      this.isCollapsed = true;
+    }
   }
 
   approveComment(){
@@ -46,19 +52,13 @@ export class CommentReportComponent implements OnInit {
     });
   }
 
-  rejectComment() {
-    this.bsModalRef = this.modalService.show(CommentsReportModalComponent, { class: 'modal-lg' });
-    let comment = this.getRelatedComment();
-    comment.approval = Comment.REJECTED;
-    this.bsModalRef.content.comment = comment;
-    this.bsModalRef.content.reason.subscribe(() => {
-      this.commentService.save(comment).subscribe((comment: Comment) => {
-        this.notificationService.success({ title: "comment-report.save.success.title", message: "comment-report.save.success.message" });
-        this.onApprovalChange.next(this.commentReport);
-      }, (error) =>{ 
-        console.log(error);
-      });
-    });
+  toggleCollapsed(){
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  commentRejected() {
+    this.toggleCollapsed();
+    this.onApprovalChange.next(this.commentReport);
   }
 
   couldBeRejected(){
@@ -85,6 +85,8 @@ export class CommentReportComponent implements OnInit {
     let comment =  new Comment();
     comment.id = this.commentReport.id;
     comment.content = this.commentReport.content;
+    comment.approval = this.commentReport.approval;
+    comment.rejection_reason = this.commentReport.rejection_reason;
     comment.conversation = this.commentReport.conversation.id;
     return comment;    
   }
