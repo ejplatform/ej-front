@@ -1,0 +1,29 @@
+<div *ngIf="comment" class="reject-reason">
+
+  <h4 class="title" translate>{{'comments-report-reject.title'}}</h4>
+ 
+  <div *ngIf="alreadyRejected()" class="content">
+    {{comment.rejection_reason}}
+  </div>
+
+  <form *ngIf="!alreadyRejected()" #rejectReasonForm="ngForm" class="login_form">
+
+    <div class="form-group rejection_reason-field" [ngClass]="[ rejection_reason.touched ? (rejection_reason.valid ? 'is-valid' : 'is-invalid') : '' ]">
+      <textarea class="form-control"
+          id="rejection_reason" name="rejection_reason" placeholder="{{'comments-report-reject.rejection.reason' | translate }}"
+          [(ngModel)]="comment.rejection_reason" required  #rejection_reason='ngModel'>
+      </textarea>
+    </div>
+
+    <div class="buttons">
+      <button [disabled]="!rejectReasonForm.form.valid" type="submit" class="button approve" (click)="rejectComment()">
+        {{'comments-report-reject.button.confirm'| translate}}
+      </button>
+      <button type="button" class="button reject" (click)="cancel()">
+        {{'comments-report-reject.button.cancel'| translate}}
+      </button>
+    </div>
+
+  </form>
+
+</div>
