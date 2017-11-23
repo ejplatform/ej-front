@@ -72,7 +72,7 @@
       </div>
 
       <div class="buttons">
-        <button *ngIf="couldBeApproved()" [disabled]="isCollapsed" type="button" class="button approve" (click)="approveComment()">
+        <button *ngIf="couldBeApproved()" type="button" class="button approve" (click)="approveComment()">
           {{'comment.button.approve'| translate}}
         </button>
         <button *ngIf="couldBeRejected()" type="button" class="button reject" (click)="toggleCollapsed()">
