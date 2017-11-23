@@ -30,8 +30,9 @@ h4{ font-size: 0.8rem; }
         }
     }
 
-    @include media-breakpoint-up(sm) {
+    @media screen and (max-width: 770px) {
         max-width: 100%;
+        min-width: 100%;
     }
 
     @include media-breakpoint-up(md) {
