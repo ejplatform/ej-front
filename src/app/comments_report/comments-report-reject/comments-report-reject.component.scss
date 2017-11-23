@@ -1,0 +1,35 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../globals';
+
+.reject-reason{
+    @extend .px-5;
+    @extend .py-4;
+    width: 100%;
+    background-color: #EEEEEE;
+    border: 1px solid #9B9B9B;
+    box-shadow: inset 0px 4px 19px -6px rgba(0,0,0,0.71);
+    
+}
+
+.title{
+    @extend .mb-4;
+}
+
+textarea{
+    min-height: 150px;
+    @extend .pt-3;
+    @extend .pl-5;
+}
+
+.buttons{
+    @extend .mt-4;
+    text-align: right;
+
+    .button.approve{
+        @extend .button.green;
+    }
+
+    .button.reject{
+        @extend .button.red;
+    }
+}
