@@ -32,6 +32,9 @@ export class CommentReportComponent implements OnInit {
 
   ngOnInit() {
     this.comment = this.getRelatedComment();
+    if(this.comment.approval === Comment.REJECTED){
+      this.isCollapsed = true;
+    }
   }
 
   approveComment(){
