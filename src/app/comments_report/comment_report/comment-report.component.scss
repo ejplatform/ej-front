@@ -20,6 +20,36 @@
     }
 }
 
+.statistics{
+    @media screen and (max-width: 1024px){    
+        display: flex;
+        flex-wrap: wrap;
+
+        .statistics-item{
+            flex: 0 0 50%;
+            max-width: 50%;
+            margin: 0px !important;
+
+            .progess{
+                width: auto;
+                flex: 1;
+            }
+
+            .percentage{
+                width: auto;
+                padding-right: 0px;
+            }
+        }
+    }        
+
+    @media screen and (max-width: 40em){    
+        .statistics-item{
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }        
+}
+
 .statistics-item{   
     @extend .my-2;
     @extend .row;
@@ -66,8 +96,12 @@
     }
 }
 .comment-report-card-header{
-    @extend .mt-3;
-    @extend .ml-4;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    
+    @media screen and (max-width: 1024px){    
+        margin-left: 0px;
+    }        
     
     .profile{
         float: left;
@@ -76,15 +110,25 @@
             border-radius: 100%;
             width: 60px;
             height: 60px;
+
+            @media screen and (max-width: 1024px){
+                height: 30px;
+                width: 30px;
+            }
         }
     }
     .author{
-        @extend .ml-3;
-        @extend .mt-3;
+        margin-top: 16px;
+        margin-left: 16px;
         float: left;
         color: #4A4A4A;	
         font-size: 12px;	
         font-weight: 500;
+
+        @media screen and (max-width: 1024px){
+            margin-top: 6px;
+            margin-left: 10px;
+        }
     }
 }
 
@@ -102,7 +146,9 @@
 }
 
 .comment-report-card-block, .comment-report-card-footer{
-    margin-left: 100px;
+    @media screen and (min-width: 1025px){    
+        margin-left: 100px;
+    }
 }
 
 .comment-report-card-block{
@@ -132,6 +178,10 @@
 
 .buttons{
     @extend .mt-4;
+
+    @media screen and (max-width: 1024px){
+        text-align: right;
+    }
 
     .button{
         font-size: 14px;

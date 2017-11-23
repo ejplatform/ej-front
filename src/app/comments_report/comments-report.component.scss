@@ -23,9 +23,23 @@
         border: none;
         padding: 0px 30px;
         
+        @media screen and (max-width: 1024px){
+            padding: 0 15px;
+
+            .nav-item{
+                width: 100%;
+
+                a{ padding: 1rem !important; }
+            }
+        }    
+
+        @media screen and (max-width: 40em){
+            padding-top: 15px;
+        }            
+        
         .nav-item {
             .nav-link{
-                @extend .p-4;
+                padding: 1.5rem;
                 text-transform: uppercase;
                 border-left: 6px solid #ECECEC;
                 color: #9F9F9F;
@@ -39,14 +53,18 @@
         }
     }
     .tab-content{
-        @extend .mx-5;
+        margin: 0 48px;
+
+        @media screen and (max-width: 1024px){
+            margin: 0 30px;    
+        }
+
         ul{
             margin: 0px;
             padding: 0px;
         }
+
         li{
-            // margin: 0px;
-            // padding: 0px;
             list-style: none;
         }
     }

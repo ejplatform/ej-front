@@ -1,5 +1,5 @@
 <div class="comment-report-card">
-  <div class="comment-report-card-content col-md-8">
+  <div class="comment-report-card-content col-md-12 col-lg-8">
     <div class="comment-report-card-header clearfix">
       <div class='profile'>
         <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="commentReport.author.image_url ? commentReport.author.image_url : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
@@ -16,7 +16,7 @@
       <div class="conversation-description">{{commentReport.conversation.description}}</div>
     </div>
   </div>
-  <div class="comment-report-card-actions col-md-3">
+  <div class="comment-report-card-actions col-md-12 col-lg-3">
       <div class="statistics" >
         <div class="statistics-item votes">
           <div class="icon">
