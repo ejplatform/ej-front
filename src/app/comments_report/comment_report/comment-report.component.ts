@@ -32,9 +32,6 @@ export class CommentReportComponent implements OnInit {
 
   ngOnInit() {
     this.comment = this.getRelatedComment();
-    if(this.comment.approval === Comment.REJECTED){
-      this.isCollapsed = true;
-    }
   }
 
   approveComment(){
@@ -74,6 +71,10 @@ export class CommentReportComponent implements OnInit {
       couldApprove =  true;
     }
     return couldApprove;
+  }
+
+  alreadyRejected(){
+    return this.commentReport.approval === Comment.REJECTED
   }
 
   private getRelatedComment(){
