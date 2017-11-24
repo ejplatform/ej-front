@@ -1,8 +1,8 @@
 ---
-image: docker:git
+image: docker:17.09-git
 
 services:
-  - docker:dind
+  - docker:17.09-dind
 
 stages:
   - build
