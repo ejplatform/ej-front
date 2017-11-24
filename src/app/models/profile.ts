@@ -1,11 +1,12 @@
 export class Profile { 
     
-    [x: string]: string|number;
+    [x: string]: string|number|boolean;
 
     public id: number;
     public pk: number;
     public token: string;
     public name: string;
+    public is_superuser: boolean;
     public image: any;
     public imageFile: any;
     public imageData: any;
@@ -25,5 +26,5 @@ export class Profile {
     public age: string;
     public biography: string;
     public occupation: string;   
-
+    
 }
