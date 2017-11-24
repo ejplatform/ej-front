@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
+import { environment } from '../../environments/environment';
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
@@ -10,6 +11,7 @@ import { Vote } from '../models/vote';
 import { ProfileService } from '../services/profile.service';
 import { CommentService } from '../comments/shared/comment.service';
 import { VoteService } from '../services/vote.service';
+
 
 @Component({
   selector: 'app-embed',
@@ -21,7 +23,7 @@ export class EmbedComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() conversation: Conversation;
-  public polis_url = 'https://wp.brasilqueopovoquer.org.br/';
+  public polisUrl = environment.polisUrl;
   iframeHeight: number = 1500;
   isHome: boolean = false;
   pageTitle: String;
@@ -39,7 +41,7 @@ export class EmbedComponent implements OnInit {
     this.route.params.subscribe( params => {
       if (params.id) {
         conversationService.get(params.id).subscribe(conversation => {
-          this.polis_url = conversation.polis_url;
+          this.polisUrl = conversation.polis_url;
           this.conversation = conversation;
         });
         this.pageTitle = 'Conversas';
@@ -64,7 +66,7 @@ export class EmbedComponent implements OnInit {
       } else if (path == 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
-      this.polis_url = this.polis_url + path;
+      this.polisUrl = this.polisUrl + path;
     }
   }
 

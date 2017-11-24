@@ -6,5 +6,6 @@
 export const environment = {
   facebookAppId: '',
   production: false,
-  apiUrl: ''
+  apiUrl: '',
+  polisUrl: 'https://brasilqueopovoquer.hacklab.com.br/'
 };
