@@ -58,9 +58,7 @@ export class CommentReportComponent implements OnInit {
 
   couldBeRejected(){
     let couldReject = false;
-    if(this.commentReport.author.id === this.profile.id ){
-      couldReject =  false;
-    } else if(this.commentReport.approval !==  Comment.REJECTED){
+    if(this.commentReport.author.is_superuser && (this.commentReport.approval !==  Comment.REJECTED) ){
       couldReject =  true;
     }
     return couldReject;
@@ -68,9 +66,7 @@ export class CommentReportComponent implements OnInit {
 
   couldBeApproved(){
     let couldApprove = false;
-    if(this.commentReport.author.id === this.profile.id ){
-      couldApprove =  false;
-    } else if(this.commentReport.approval !==  Comment.APPROVED){
+    if(this.commentReport.author.is_superuser && (this.commentReport.approval !==  Comment.APPROVED) ){
       couldApprove =  true;
     }
     return couldApprove;
