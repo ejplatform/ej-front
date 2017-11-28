@@ -24,7 +24,7 @@
           </div>
           <div class="progess">
             <span>{{'comment.votes' | translate}}</span>
-            <progressbar class="" [value]="commentReport.total_votes" [max]="commentReport.conversation.total_votes" type="info">&nbsp;</progressbar>
+            <ngb-progressbar [value]="commentReport.total_votes" [max]="commentReport.conversation.total_votes" type="info">&nbsp;</ngb-progressbar>
           </div>
           <div class="percentage">
             {{ commentReport.total_votes | percentage: (commentReport.conversation.total_votes || 1) | round: 2 }} %
@@ -37,7 +37,7 @@
           </div>
           <div class="progess">
             <span>{{'comment.agree' | translate}}</span>
-            <progressbar [value]="commentReport.agree_votes" [max]="commentReport.total_votes" type="success">&nbsp;</progressbar>
+            <ngb-progressbar [value]="commentReport.agree_votes" [max]="commentReport.total_votes" type="success">&nbsp;</ngb-progressbar>
           </div>
           <div class="percentage">
             {{ commentReport.agree_votes | percentage: (commentReport.total_votes || 1) | round: 2 }} %
@@ -50,7 +50,7 @@
           </div>
           <div class="progess">
             <span>{{'comment.disagree' | translate}}</span>
-            <progressbar [value]="commentReport.disagree_votes" [max]="commentReport.total_votes" type="danger">&nbsp;</progressbar>
+            <ngb-progressbar [value]="commentReport.disagree_votes" [max]="commentReport.total_votes" type="danger">&nbsp;</ngb-progressbar>
           </div>
           <div class="percentage">
             {{ commentReport.disagree_votes | percentage: (commentReport.total_votes || 1) | round: 2 }} %
@@ -63,7 +63,7 @@
           </div>
           <div class="progess">
             <span>{{'comment.pass' | translate}}</span>
-            <progressbar [value]="commentReport.pass_votes" [max]="commentReport.total_votes" type="warning">&nbsp;</progressbar>
+            <ngb-progressbar [value]="commentReport.pass_votes" [max]="commentReport.total_votes" type="warning">&nbsp;</ngb-progressbar>
           </div>
           <div class="percentage">
             {{ commentReport.pass_votes | percentage: (commentReport.total_votes || 1) | round: 2 }} %

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabsModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { NgMathPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
-import { PaginationModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommentsReportRoutingModule, routedComponents } from './comments-report.routing';
 import { CommentsReportRejectComponent } from './comments-report-reject/comments-report-reject.component';
@@ -16,9 +15,8 @@ import { CommentsReportComponent } from './comments-report.component';
     CommonModule,
     NgMathPipesModule,
     SharedModule,
-    CommentsReportRoutingModule,    
-    TabsModule.forRoot(),
-    PaginationModule.forRoot()
+    CommentsReportRoutingModule, 
+    NgbModule,   
   ],
 
   declarations: [routedComponents, CommentsReportRejectComponent, CommentReportComponent]

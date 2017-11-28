@@ -41,9 +41,7 @@
           <div class='profile'>
             <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
           </div>
-          <progressbar class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning">
-              {{ratio(conversation)}}%
-          </progressbar>
+          <ngb-progressbar showValue="true" class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning"></ngb-progressbar>
         </div>          
       </div>
     </div>

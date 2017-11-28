@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+// import { BsModalService } from 'ngx-bootstrap/modal';
+// import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import * as _ from 'lodash'
 
@@ -20,11 +21,11 @@ import { GlobalState } from '../global.state';
 export class HeaderComponent implements OnInit {
 
   isMenuCollapsed: boolean = false;
-  bsModalRef: BsModalRef;
+  bsModalRef: any;
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService,
-    private modalService: BsModalService, private router: Router, private authService: AuthService ) {
+    private modalService: NgbModal, private router: Router, private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -52,8 +53,8 @@ export class HeaderComponent implements OnInit {
   }
 
   openLogin() {
-    this.bsModalRef = this.modalService.show(LoginComponent, { class: 'modal-md' });
-    this.bsModalRef.content.loggedIn.subscribe(() => {
+    this.bsModalRef = this.modalService.open(LoginComponent);
+    this.bsModalRef.componentInstance.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
       window.location.reload();
@@ -61,8 +62,8 @@ export class HeaderComponent implements OnInit {
   }
 
   openRegistration() {
-    this.bsModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-md' });
-    this.bsModalRef.content.loggedIn.subscribe(() => {
+    this.bsModalRef = this.modalService.open(RegistrationComponent);
+    this.bsModalRef.componentInstance.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);
       window.location.reload();
@@ -74,7 +75,7 @@ export class HeaderComponent implements OnInit {
     if (event.data === 'askForLogin') {
       this.openLogin();
       // FIXME refactor this like there is no tomorrow!!!
-      this.bsModalRef.content.loggedIn.subscribe(() => {
+      this.bsModalRef.componentInstance.loggedIn.subscribe(() => {
         // FIXME see if it's necessary
         window.location.reload();
       });

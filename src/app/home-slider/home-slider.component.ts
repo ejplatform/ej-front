@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { SliderModalComponent } from './slider-modal/slider-modal.component';
 
 import * as _ from 'lodash'
@@ -20,10 +19,10 @@ export class HomeSliderComponent implements OnInit {
   private baseUrl: string
   profile: Profile;
   active_slider = 1;
-  bsModalRef: BsModalRef;
+  bsModalRef: any;
 
   constructor(private profileService: ProfileService,
-              private modalService: BsModalService) {
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -34,7 +33,7 @@ export class HomeSliderComponent implements OnInit {
   }
 
   openModal(content) {
-    this.bsModalRef = this.modalService.show(SliderModalComponent, { class: 'modal-lg' });
-    this.bsModalRef.content.content = content;
+    this.bsModalRef = this.modalService.open(SliderModalComponent);
+    this.bsModalRef.componentInstance.content = content;
   }
 }

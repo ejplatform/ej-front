@@ -1,6 +1,6 @@
  <div class="modal-header">
     <h4 class="modal-title pull-left" translate>{{'registration.sign_up'}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.close()">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -55,7 +55,7 @@
 
     <div class='terms-of-use'>
       {{'registration.terms.info' | translate }}
-      <a class="terms-of-use-button" (click)="bsModalRef.hide()" routerLink="/termos-de-uso">
+      <a class="terms-of-use-button" (click)="bsModalRef.close()" routerLink="/termos-de-uso">
         {{'registration.terms.button' | translate }}
       </a>
     </div>

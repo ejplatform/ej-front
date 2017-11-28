@@ -18,37 +18,4 @@ body, html {
     font-family: 'Roboto';
 }
 
-.modal {    
-    .modal-lg  {
-        @extend .row;
-        @extend .col-sm-12;
-        @extend .justify-content-md-center;
-        .modal-content{
-            @extend .col-sm-6;
-        }
-    }
-
-    .modal-md  {
-        @extend .row;
-        @extend .col-sm-12;
-        @extend .justify-content-md-center;
-
-        @media screen and (max-width: 40em){
-            margin: 10px 0px !important;
-        }
-
-        .modal-content{
-            @extend .col-sm-4;
-
-            @media screen and (min-width: 40em) and (max-width: 63.9375em) {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-        }
-
-    }
-    
-}
-
-
  

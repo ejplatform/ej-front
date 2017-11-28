@@ -3,8 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TabsModule } from 'ngx-bootstrap';
-import { PaginationModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 import { CommentsReportComponent } from './comments-report.component';
@@ -22,7 +21,7 @@ describe('CommentsReportComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), TabsModule.forRoot(), PaginationModule.forRoot(), HttpClientTestingModule, FormsModule],
+      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
       declarations: [ CommentsReportComponent ],
       providers: [
         { provide: CommentReportService, useValue: mocks.commentReportService },

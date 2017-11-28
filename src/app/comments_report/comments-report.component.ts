@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { NgbTabset, NgbTab, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash' 
 
 import { ConversationService } from '../services/conversation.service';
@@ -23,15 +24,21 @@ export class CommentsReportComponent implements OnInit {
   conversations: Conversation[];
   selectedConversation: number;
   loading = false;
+  @ViewChild('tabset') tabset;
   
-  constructor(private conversationService: ConversationService, private commentReportService: CommentReportService) {  }
-
+  constructor(private conversationService: ConversationService, private commentReportService: CommentReportService,
+    private _changeDetectionRef : ChangeDetectorRef) {  }
+  
+  ngAfterViewInit(){
+    this.tabset.select(this.currentStatus);
+    this._changeDetectionRef.detectChanges();
+  }
+  
   ngOnInit() {
-    // FIXME check if the user has admin powers to decide the default behavior
-    // At this momment the default behavior is the admin one
     this.totalItems = 0;
     this.selectedConversation = 0;
     this.currentStatus = Comment.UNMODERATED;
+    
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = _.sortBy(conversations, ['position']);
     });
@@ -52,43 +59,35 @@ export class CommentsReportComponent implements OnInit {
     this.loadComments()
   }
 
-  checkActiveTab(tabStatus: string){
-    let isActive = false;
-
-    switch (this.currentStatus) { 
+  tabChange($event: NgbTabChangeEvent){
+    switch ($event.nextId) { 
       case Comment.APPROVED:
-        if(this.currentStatus == tabStatus)
-          isActive = true;
+        this.loadApprovedComments()
         break; 
-      case Comment.UNMODERATED: 
-        if(this.currentStatus == tabStatus)
-          isActive = true;
+      case Comment.UNMODERATED:
+      this.loadModeratedComments()
         break; 
       case Comment.REJECTED: 
-        if(this.currentStatus == tabStatus)
-          isActive = true;
+      this.loadRejectedComments()
         break; 
     }
-    return isActive;
   }
 
   filterByConversation(){
-    this.loadComments({'page': 1});
+    this.loadComments(1);
   }
 
   updateCommentsList(commentReport){
     this.commentsReport.splice(this.commentsReport.indexOf(commentReport), 1);
   }
 
-  loadComments(params?: any){
-    if(_.isUndefined(params)){
-      params = {};
-    }
+  loadComments(page?: any){
+    let params = {};
 
     if(this.selectedConversation != 0 ){
       params['conversation_id'] = this.selectedConversation;
     }
-    this.currentPage = params['page'] || 1;
+    this.currentPage = page || 1;
     params['page'] = this.currentPage;
     params['approval'] = this.currentStatus;
     this.loading = true;
