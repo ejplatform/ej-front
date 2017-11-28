@@ -8,6 +8,19 @@
   <!-- Include the Facebook script tag to be user with ngx-facebook -->
   <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10"></script>
 
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "660977f0-30ad-4f69-a9a4-2873b8f5de7e",
+      autoRegister: false,
+      notifyButton: {
+        enable: true /* Set to false to hide */
+      }
+    }]);
+  </script>
+</head>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
