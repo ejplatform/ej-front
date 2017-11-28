@@ -103,13 +103,6 @@ h4{ font-size: 0.8rem; }
     .participation{
         clear: both;
 
-        // &.mb-20{ margin-bottom: 20px; }
-        
-        // .content{ display: inline-block; }
-        .content{
-            // float: left;
-        }
-
         .profile {
             float: left;
             img{ 
@@ -129,13 +122,6 @@ h4{ font-size: 0.8rem; }
         .bar{
             @extend .pt-2;
             @extend .ml-5;
-        }
-
-        .progress{
-            // display: flex;
-            // align-items: center;
-
-            // @extend .pl-5;
         }
     }
 }
