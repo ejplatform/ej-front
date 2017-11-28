@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import * as helpers from '../../../spec/helpers';
 import { SliderModalComponent } from './slider-modal.component';
@@ -16,10 +16,10 @@ describe('SliderModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot()],
+      imports: [ TranslateModule.forRoot(), NgbModule.forRoot()],
       declarations: [ SliderModalComponent ],
       providers: [
-        { provide: BsModalRef, useValue: mocks.bsModalRef },        
+        { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

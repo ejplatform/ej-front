@@ -103,11 +103,19 @@ h4{ font-size: 0.8rem; }
     .participation{
         clear: both;
 
-        &.mb-20{ margin-bottom: 20px; }
+        // &.mb-20{ margin-bottom: 20px; }
         
-        .content{ display: inline-block; }
+        // .content{ display: inline-block; }
+        .content{
+            // float: left;
+        }
 
-        .profile img{ width: 30px; }
+        .profile {
+            float: left;
+            img{ 
+                width: 30px; 
+            }
+        }
         
         .btn-primary{
             text-transform: uppercase;
@@ -118,12 +126,16 @@ h4{ font-size: 0.8rem; }
 
             img{ height: 22px; }
         }
+        .bar{
+            @extend .pt-2;
+            @extend .ml-5;
+        }
 
-        progressbar{
-            display: flex;
-            align-items: center;
+        .progress{
+            // display: flex;
+            // align-items: center;
 
-            @extend .pl-3;
+            // @extend .pl-5;
         }
     }
 }

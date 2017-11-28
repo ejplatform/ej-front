@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import * as _ from 'lodash'
 
@@ -22,8 +21,8 @@ import { RecoverPasswordComponent  } from '../recover-password/recover-password.
 export class LoginComponent {
 
   profile: Profile;
-  bsModalRef: BsModalRef;
-  bsRegistrationModalRef: BsModalRef;
+  bsModalRef: any;
+  bsRegistrationModalRef: any;
   loggedIn = new EventEmitter();
 
   @ViewChild('passwordErrors') passwordErrors;
@@ -31,10 +30,10 @@ export class LoginComponent {
   socialErrors: string;
 
   constructor(private authService: AuthService, private profileService: ProfileService,
-    private socialFacebookService: SocialFacebookService, private modalService: BsModalService,
-    private notificationService: NotificationService, private modal: BsModalRef, private router: Router) {
+    private socialFacebookService: SocialFacebookService, private modalService: NgbModal,
+    public activeModal: NgbActiveModal, private notificationService: NotificationService, private router: Router) {
 
-    this.bsModalRef = modal;
+    this.bsModalRef = activeModal;
     this.profile = new Profile();
 
   }
@@ -60,8 +59,8 @@ export class LoginComponent {
   }
 
   openRegistration() {
-    this.bsModalRef.hide();
-    this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
+    this.bsModalRef.dismiss();
+    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent);
     this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.loggedIn.emit();
@@ -70,8 +69,8 @@ export class LoginComponent {
   }
 
   openRecoverPassword() {
-    this.bsModalRef.hide();
-    this.bsRegistrationModalRef = this.modalService.show(RecoverPasswordComponent, { class: 'modal-lg' });
+    this.bsModalRef.close();
+    this.bsRegistrationModalRef = this.modalService.open(RecoverPasswordComponent);
   }
 
   loginWithTwitter() {
@@ -110,7 +109,7 @@ export class LoginComponent {
   handleloginSuccess() {
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
-      this.bsModalRef.hide();
+      this.bsModalRef.close();
       this.loggedIn.emit();
       this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
     }, error => {

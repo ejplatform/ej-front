@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { NgPipesModule } from 'ngx-pipes';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/auth.service';
 
 
@@ -24,11 +24,10 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      imports: [RouterTestingModule, TranslateModule.forRoot(), NgPipesModule],
+      imports: [RouterTestingModule, TranslateModule.forRoot(), NgbModule.forRoot(), NgPipesModule],
       providers: [{ provide: GlobalState, useValue: mocks.globalState },
         { provide: AuthService, useValue: mocks.authService },        
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: BsModalService, useValue: mocks.bsModalService },        
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as _ from 'lodash'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -17,7 +17,7 @@ import { NotificationService } from '../services/notification.service';
 export class RegistrationComponent {
 
   profile: Profile;
-  bsModalRef: BsModalRef;
+  bsModalRef: any;
   loggedIn = new EventEmitter();
   socialErrors: string;
 
@@ -27,9 +27,9 @@ export class RegistrationComponent {
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService, private notificationService: NotificationService,
-    private socialFacebookService: SocialFacebookService, private modal: BsModalRef, private router: Router) {
-    this.bsModalRef = modal;
+    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, private router: Router) {
     this.profile = new Profile();
+    this.bsModalRef = activeModal;
   }
 
   register() {
@@ -78,7 +78,7 @@ export class RegistrationComponent {
   handleloginSuccess(){
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
-      this.bsModalRef.hide();
+      this.bsModalRef.close();
       this.loggedIn.emit();
       this.notificationService.success({ title: "registration.success.title", message: "registration.success.message" });
     });

@@ -8,7 +8,7 @@
 
     <h3>{{'conversations.title' | translate}}</h3>
     <h2>{{'conversations.subtitle' | translate}}</h2>
-
+   
     <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
         <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }">
             
@@ -36,13 +36,13 @@
                     <div class="title">
                         <h4>{{'conversations.card.participation' | translate}}</h4>
                     </div>
-                    <div class='content d-flex align-items-stretch bd-highlight '>
+                    <div class='content'>
                         <div class="profile">
-                            <img [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
+                            <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
                         </div>
-                        <progressbar class="progress-striped active align-middle" [value]="toPercentage(ratio(conversation))" type="warning">
-                            {{toPercentage(ratio(conversation))}}%
-                        </progressbar>
+                        <p class="bar">
+                            <ngb-progressbar showValue="true" [value]="toPercentage(ratio(conversation))" type="warning"></ngb-progressbar>
+                        </p>
                     </div>
                 </div>
 

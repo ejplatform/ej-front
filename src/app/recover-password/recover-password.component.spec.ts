@@ -4,8 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RecoverPasswordComponent } from './recover-password.component';
 import { NotificationService } from '../services/notification.service';
@@ -20,14 +19,13 @@ describe('RecoverPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), FormsModule, RouterTestingModule],
+      imports: [TranslateModule.forRoot(), NgbModule.forRoot(), FormsModule, RouterTestingModule],
       declarations: [ RecoverPasswordComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: AuthService, useValue: mocks.authService },
         { provide: NotificationService, useValue: mocks.notificationService },
-        { provide: BsModalService, useValue: mocks.bsModalService },
-        { provide: BsModalRef, useValue: mocks.bsModalRef },
+        { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],      
     })
