@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Comment } from '../../comments/shared/comment.model';
 import { CommentService } from '../../comments/shared/comment.service';
-import { NotificationService } from '../../services/notification.service';
+import { ToastService } from '../../services/toast.service';
 
 import { CommentsReportRejectComponent } from './comments-report-reject.component';
 import * as helpers from '../../../spec/helpers';
@@ -22,7 +22,7 @@ describe('CommentsReportRejectComponent', () => {
       declarations: [ CommentsReportRejectComponent ],
       providers: [
         { provide: CommentService, useValue: mocks.commentService },
-        { provide: NotificationService, useValue: mocks.notificationService },                
+        { provide: ToastService, useValue: mocks.toastService },                
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],      
     })

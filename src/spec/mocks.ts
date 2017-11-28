@@ -23,7 +23,7 @@ export function getMocks() {
                 return Observable.of([]);
             },
         },
-        notificationService: {
+        toastService: {
             success: () => {
                 return "";
             },

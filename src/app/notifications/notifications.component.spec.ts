@@ -5,22 +5,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AlertsComponent } from './alerts.component';
+import { NotificationsComponent } from './notifications.component';
 import * as helpers from "../../spec/helpers";
 import { ProfileService } from '../services/profile.service';
 import { GlobalState } from '../global.state';
 
 
-describe('AlertsComponent', () => {
+describe('NotificationsComponent', () => {
 
-  let component: AlertsComponent;
-  let fixture: ComponentFixture<AlertsComponent>;
+  let component: NotificationsComponent;
+  let fixture: ComponentFixture<NotificationsComponent>;
   let mocks = helpers.getMocks();
   
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertsComponent ],
+      declarations: [ NotificationsComponent ],
       imports: [RouterTestingModule, TranslateModule.forRoot(), HttpClientTestingModule],
       providers: [{ provide: GlobalState, useValue: mocks.globalState },
         { provide: ProfileService, useValue: mocks.profileService },
@@ -31,7 +31,7 @@ describe('AlertsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertsComponent);
+    fixture = TestBed.createComponent(NotificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

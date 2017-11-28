@@ -7,7 +7,7 @@ import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-registration',
@@ -26,7 +26,7 @@ export class RegistrationComponent {
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, private notificationService: NotificationService,
+  constructor(private authService: AuthService, private profileService: ProfileService, private toastService: ToastService,
     public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, private router: Router) {
     this.profile = new Profile();
     this.bsModalRef = activeModal;
@@ -80,7 +80,7 @@ export class RegistrationComponent {
       this.profileService.setProfile(profile);
       this.bsModalRef.close();
       this.loggedIn.emit();
-      this.notificationService.success({ title: "registration.success.title", message: "registration.success.message" });
+      this.toastService.success({ title: "registration.success.title", message: "registration.success.message" });
     });
   }
 

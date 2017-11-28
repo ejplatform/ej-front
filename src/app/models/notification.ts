@@ -1,4 +1,4 @@
-export class Alert {
+export class Notification {
     
     public title: string;
     public body: string;

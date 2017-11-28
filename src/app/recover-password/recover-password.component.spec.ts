@@ -7,7 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RecoverPasswordComponent } from './recover-password.component';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
@@ -24,7 +24,7 @@ describe('RecoverPasswordComponent', () => {
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: AuthService, useValue: mocks.authService },
-        { provide: NotificationService, useValue: mocks.notificationService },
+        { provide: ToastService, useValue: mocks.toastService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],      
