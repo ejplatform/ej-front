@@ -110,6 +110,7 @@
     "header.registration": "Cadastre-se",
     "alerts.notifications": "Notificações",
     "alerts.all": "Ver Histórico de Notificações",
-    "alerts.off": "nenhuma notificação",
-    "nudge.title": "Será que voce pode comentar?"
+    "alerts.off": "Nenhuma notificação",
+    "nudge.title": "Será que voce pode comentar?",
+    "alerts.none": "Não há novas mensagens"
 }

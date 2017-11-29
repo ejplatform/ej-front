@@ -57,6 +57,9 @@
         &.active {
             @include link-hover(#9b9b9b,#9b9b9b,transparent,#9b9b9b);
         }
+        &:hover {
+          border-bottom: 0;
+        }
     }
     .notifications {
         .bubble {
@@ -83,6 +86,7 @@
     right: 0;
     top: 61px;
     z-index: 1100;
+    background: #fff;
     @include media-breakpoint-up(sm) {
         right: 19px;
         top: 80px;
@@ -116,6 +120,11 @@
         margin: 0;
         padding: 10px;
     }
+    .notifications-empty {
+      background: #fff;
+      text-align: center;
+      padding: 30px 0 20px 0;
+    }
     .notifications-list {
         background-color: #fff;
         list-style: none;
@@ -125,13 +134,18 @@
         overflow: auto;
         padding: 0;
         .notifications-item {
-            border-bottom: 1px solid rgba(#D9D9D9,0.3);
-            font-size: 11px;
+            border-bottom: 1px solid #D8D8D8;
+            font-size: 14px;
             overflow: hidden;
+            color: rgba(0, 0, 0, 0.54);
             padding: 10px;
             .title{
-                font-weight: bold;
-                font-size: large; 
+              color: #000;
+              font-size: 16px;
+            }
+            .body {
+              width: 60%;
+              min-width: 300px;
             }
             &.not-read {
                 background-color: rgba(theme-color("light"),0.15);
@@ -164,11 +178,11 @@
     .see-more {
         @extend .p-3;
         background-color: white;
+        border-top: 1px solid #D8D8D8;
         box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.3);
         color:  color("gray");
-        display: list-item;
-        font-size: 11px;
-        font-weight: $bold;
+        display: block;
+        font-size: 1rem;
         line-height: 11px;
         padding: 5px;
         text-align: center;
@@ -178,7 +192,13 @@
             @extend .px-2;
             @extend .py-4;
             border: 1px solid #0DB154;
+            max-width: 100%;
+            width: 250px;
+            margin: 0 auto;
         }
-        
+        &:hover {
+          color: #0DB154;
+          cursor: pointer;
+        }
     }
 }

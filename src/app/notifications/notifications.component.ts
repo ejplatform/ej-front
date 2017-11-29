@@ -27,8 +27,20 @@ export class NotificationsComponent implements OnInit {
     // this.alertService.list().subscribe((alerts) => {
     //   this.alerts = alerts;
     // });
-    this.alerts = [{id: 1, body: 'notificacao 1', title: 'titulo 1'}, {id: 2, body: 'notificacao 2', title: 'titulo 1'}, {id: 3, body: 'notificacao 3', title: 'titulo 1'}]
-    
+    this.alerts = [
+      { id: 1, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 2, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 3, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 4, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 5, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 6, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 7, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 8, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 9, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 10, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 11, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' },
+      { id: 12, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item' }
+    ]
   }
 
   ngOnInit() {
