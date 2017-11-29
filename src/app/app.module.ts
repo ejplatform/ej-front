@@ -34,6 +34,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationComponent } from './notification/notification.component';
 // import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     NotificationsComponent,
+    NotificationComponent,
     ConversationsComponent,
     ConversationComponent,
     HomeSliderComponent,

@@ -112,5 +112,6 @@
     "alerts.all": "Ver Histórico de Notificações",
     "alerts.off": "Nenhuma notificação",
     "nudge.title": "Será que voce pode comentar?",
-    "alerts.none": "Não há novas mensagens"
+    "alerts.none": "Não há novas mensagens",
+    "alerts.unread": "Não Lidas"
 }

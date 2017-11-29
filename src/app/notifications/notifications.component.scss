@@ -173,6 +173,13 @@
             .date {
                 color: color("gray");
             }
+            .notifications-link {
+                font-weight: normal;
+                color: inherit;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
         }
     }
     .see-more {
