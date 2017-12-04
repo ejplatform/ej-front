@@ -20,5 +20,18 @@
 
 <div *ngIf="!isHome">
   <iframe id="polis-iframe" [src]="polisUrl | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
+  <div *ngIf="conversationLoaded" class="share-box">
+    <p>{{ 'conversation.share' | translate }}</p>
+    <share-buttons
+      [linkedIn]=false
+      [tumblr]=false
+      [pinterest]=false
+      [stumbleUpOn]=false
+      [reddit]=false
+      [title]="conversation.title"
+      [description]="conversation.description"
+    >
+    </share-buttons>
+  </div>
   <app-conversations></app-conversations>
 </div>
