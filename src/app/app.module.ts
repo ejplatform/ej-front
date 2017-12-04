@@ -14,6 +14,8 @@ import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
+import { ShareButtonsModule } from 'ngx-sharebuttons';
+import { HttpModule } from '@angular/http';
 
 // Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -96,6 +98,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,    
     NgbModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
+    HttpModule,
+    ShareButtonsModule.forRoot(),
   ],
   providers: [GlobalState,
     AuthService,

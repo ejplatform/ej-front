@@ -33,6 +33,7 @@
     "ngx-facebook": "^2.4.0",
     "ngx-pipes": "^1.6.5",
     "ngx-progressbar": "^2.0.8",
+    "ngx-sharebuttons": "3.0.0",
     "ngx-toastr": "^6.4.0",
     "ngx-webstorage": "^1.8.0",
     "roboto-fontface": "^0.8.0",
