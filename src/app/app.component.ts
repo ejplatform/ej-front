@@ -21,7 +21,7 @@ export class AppComponent implements OnInit  {
   isMenuCollapsed: boolean = false;
   alreadeyCollapsed: boolean = false;
 
-  constructor(private _state: GlobalState, private translate: TranslateService, 
+  constructor(private _state: GlobalState, private translate: TranslateService,
     private profileService: ProfileService, private router: Router) {
     translate.setDefaultLang('pt');
     translate.use('pt');
@@ -51,6 +51,41 @@ export class AppComponent implements OnInit  {
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
+
+    // Register the OneSignal app
+    const OneSignal = window['OneSignal'] || [];
+    console.log('Init OneSignal');
+
+    OneSignal.push(['init', {
+      // TODO: this ID should come from an environment
+      appId: '660977f0-30ad-4f69-a9a4-2873b8f5de7e',
+      autoRegister: true,
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: {
+        enable: true
+      }
+    }]);
+
+    console.log('OneSignal Initialized');
+    OneSignal.push(function () {
+      console.log('Register For Push');
+      OneSignal.push(['registerForPushNotifications']);
+      // OneSignal.registerForPushNotifications();
+    });
+
+    OneSignal.push(function () {
+      // Occurs when the user's subscription changes to a new value.
+      OneSignal.on('subscriptionChange', function (isSubscribed) {
+        console.log('The user\'s subscription state is now:', isSubscribed);
+        if (isSubscribed) {
+          OneSignal.getUserId().then(function (userId) {
+            console.log('User ID is', userId);
+          });
+        }
+      });
+
+    });
+
   }
 
   isLogged(){
@@ -59,8 +94,8 @@ export class AppComponent implements OnInit  {
 
   hideNavigationBar(e, isCollapsed){
     if(window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE)
-      return false 
-    
+      return false
+
     if(this.alreadeyCollapsed && isCollapsed){
       this.isMenuCollapsed = !this.isMenuCollapsed;
 
