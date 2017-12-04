@@ -26,6 +26,7 @@ export class EmbedComponent implements OnInit {
   public polisUrl = environment.polisUrl;
   iframeHeight: number = 1500;
   isHome: boolean = false;
+  conversationLoaded: boolean = false;
   pageTitle: String;
 
   constructor(private conversationService: ConversationService,
@@ -43,6 +44,7 @@ export class EmbedComponent implements OnInit {
         conversationService.get(params.id).subscribe(conversation => {
           this.polisUrl = conversation.polis_url;
           this.conversation = conversation;
+          this.conversationLoaded = true;
         });
         this.pageTitle = 'Conversas';
       }

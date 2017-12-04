@@ -111,5 +111,6 @@
     "alerts.notifications": "Notificações",
     "alerts.all": "Ver Histórico de Notificações",
     "alerts.off": "nenhuma notificação",
-    "nudge.title": "Será que voce pode comentar?"
+    "nudge.title": "Será que voce pode comentar?",
+    "conversation.share": "Divulgue!"
 }
