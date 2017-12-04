@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import * as helpers from '../../spec/helpers';
 import { HomeSliderComponent } from './home-slider.component';
@@ -19,11 +19,11 @@ describe('HomeSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), FormsModule, ReactiveFormsModule],
+      imports: [ TranslateModule.forRoot(), FormsModule, NgbModule.forRoot(), ReactiveFormsModule],
       declarations: [ HomeSliderComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },        
-        { provide: BsModalService, useValue: mocks.bsModalService },        
+        // { provide: BsModalService, useValue: mocks.bsModalService },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

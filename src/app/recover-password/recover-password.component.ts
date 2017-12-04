@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import * as _ from 'lodash'
 
@@ -21,19 +20,18 @@ import { RegistrationComponent  } from '../registration/registration.component';
 export class RecoverPasswordComponent {
 
   profile: Profile;
-  bsModalRef: BsModalRef;
-  bsRegistrationModalRef: BsModalRef;
+  bsModalRef: any;
+  bsRegistrationModalRef: any;
   
   constructor(private authService: AuthService, private profileService: ProfileService, 
-    private notificationService: NotificationService, private modalService: BsModalService,
-     private modal: BsModalRef, private router: Router) {
-    this.bsModalRef = modal;
+    public activeModal: NgbActiveModal, private notificationService: NotificationService, private modalService: NgbModal, private router: Router) {
     this.profile = new Profile();
+    this.bsModalRef = activeModal;
   }
 
   recover() {
     this.authService.reset(this.profile).subscribe((response) => {
-        this.bsModalRef.hide();
+        this.bsModalRef.close();
         this.notificationService.success({ title: "recover-password.success.title", message: "recover-password.success.message" });
     }, error =>{
       console.log(error);
@@ -41,8 +39,8 @@ export class RecoverPasswordComponent {
   }
 
   openRegistration() {
-    this.bsModalRef.hide();
-    this.bsRegistrationModalRef = this.modalService.show(RegistrationComponent, { class: 'modal-lg' });
+    this.bsModalRef.close();
+    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent);
     this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
       this.profile = this.profileService.getProfile();
       this.profileService.profileChangeEvent.emit(this.profile);

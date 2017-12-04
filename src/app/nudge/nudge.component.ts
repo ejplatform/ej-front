@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-
 import { CommentService } from '../comments/shared/comment.service';
 import { Comment } from '../comments/shared/comment.model';
 import { Conversation } from '../models/conversation';
@@ -18,7 +16,6 @@ export class NudgeComponent implements OnInit {
 
   @Input() conversation: Conversation;
   message: string
-  bsModalRef: BsModalRef;
 
   constructor(private commentService: CommentService, private route: ActivatedRoute) {
   }

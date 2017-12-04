@@ -13,33 +13,47 @@
     </select>
   </div>
 
-<tabset>
-  <tab heading="{{'comments.rejected' | translate}}" [active]="checkActiveTab('REJECTED')" (select)="loadRejectedComments()">
+<ngb-tabset #tabset="ngbTabset" (tabChange)="tabChange($event)">
+  <ngb-tab title="{{'comments.rejected' | translate}}" id="REJECTED" (select)="loadRejectedComments()">
+      <ng-template ngbTabContent>
     <ul *ngFor="let commentReport of commentsReport">
       <li>
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
-  </tab>
-  <tab heading="{{'comments.unmoderated' | translate}}" [active]="checkActiveTab('UNMODERATED')" (select)="loadModeratedComments()">
+  </ng-template>
+  
+  </ngb-tab>
+  <ngb-tab title="{{'comments.unmoderated' | translate}}" id="UNMODERATED" (select)="loadModeratedComments()">
+      <ng-template ngbTabContent>
     <ul *ngFor="let commentReport of commentsReport">
       <li>
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
-  </tab>
-  <tab heading="{{'comments.approved' | translate}}" [active]="checkActiveTab('APPROVED')" (select)="loadApprovedComments()">
+  </ng-template>
+  
+  </ngb-tab>
+  <ngb-tab title="{{'comments.approved' | translate}}" id="APPROVED" (select)="loadApprovedComments()">
+      <ng-template ngbTabContent>
     <ul *ngFor="let commentReport of commentsReport">
       <li>
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
-  </tab>
-</tabset>
+  </ng-template>
+  
+  </ngb-tab>
+</ngb-tabset>
 <div class="row">
   <div class="col-xs-12 col-12 justify-content-center">
-    <pagination [totalItems]="totalItems" previousText="{{'comments-report.previous' | translate}}" 
-    nextText="{{'comments-report.next' | translate}}"
-    [itemsPerPage]="50" [(ngModel)]="currentPage" (pageChanged)="loadComments($event)"></pagination>
+    <ngb-pagination
+        [collectionSize]="totalItems" 
+        (pageChange)="loadComments($event)" 
+        [pageSize]="50" 
+        [(page)]="currentPage"  
+        [boundaryLinks]="true">
+    </ngb-pagination>
   </div>
+
 </div>

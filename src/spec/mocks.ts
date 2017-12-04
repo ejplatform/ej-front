@@ -33,8 +33,8 @@ export function getMocks() {
                 return "";
             },
         },
-        bsModalRef: {
-            hide: () => {
+        ngbActiveModal: {
+            close: () => {
                 return "";
             },
         },        

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash'
 
 @Component({
@@ -9,15 +9,15 @@ import * as _ from 'lodash'
 })
 export class SliderModalComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
   title: string;
   details: string;
   content: string;
-
-  constructor( private modal: BsModalRef) {
-    this.bsModalRef = modal;
+  bsModalRef: NgbActiveModal;
+  
+  constructor( public activeModal: NgbActiveModal) {
+    this.bsModalRef = activeModal;
   }
-
+    
   ngOnInit() {
     setTimeout(() => {
         if(this.content === 'plataforms'){

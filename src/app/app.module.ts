@@ -16,7 +16,7 @@ import { LOCALE_ID } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 
 // Bootstrap
-import { ModalModule, BsDropdownModule, CollapseModule, ProgressbarModule, TabsModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // ngx-facebook
 import { FacebookModule } from 'ngx-facebook';
@@ -94,10 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,    
-    BsDropdownModule.forRoot(),
-    ModalModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    CollapseModule.forRoot(),
+    NgbModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
   ],
   providers: [GlobalState,
