@@ -6,6 +6,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { ProfileService } from './services/profile.service';
 import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
+import { environment } from '../environments/environment';
 import * as _ from 'lodash';
 
 @Component({
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit  {
 
     OneSignal.push(['init', {
       // TODO: this ID should come from an environment
-      appId: '660977f0-30ad-4f69-a9a4-2873b8f5de7e',
+      appId: environment.onSignalAppId,
       autoRegister: true,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
@@ -70,7 +71,6 @@ export class AppComponent implements OnInit  {
     OneSignal.push(function () {
       console.log('Register For Push');
       OneSignal.push(['registerForPushNotifications']);
-      // OneSignal.registerForPushNotifications();
     });
 
     OneSignal.push(function () {
