@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
 import { Profile } from './models/profile';
@@ -21,8 +22,9 @@ export class AppComponent implements OnInit  {
   isMenuCollapsed: boolean = false;
   alreadeyCollapsed: boolean = false;
 
-  constructor(private _state: GlobalState, private translate: TranslateService, 
-    private profileService: ProfileService, private router: Router) {
+  constructor(private _state: GlobalState, private translate: TranslateService,
+    private profileService: ProfileService, private router: Router,
+    angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 
@@ -59,8 +61,8 @@ export class AppComponent implements OnInit  {
 
   hideNavigationBar(e, isCollapsed){
     if(window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE)
-      return false 
-    
+      return false
+
     if(this.alreadeyCollapsed && isCollapsed){
       this.isMenuCollapsed = !this.isMenuCollapsed;
 

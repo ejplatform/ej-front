@@ -23,6 +23,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // ngx-facebook
 import { FacebookModule } from 'ngx-facebook';
 
+// angulartics2
+import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+
 // Application Modules
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
@@ -95,11 +99,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
-    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,    
+    Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     NgbModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     HttpModule,
     ShareButtonsModule.forRoot(),
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
   ],
   providers: [GlobalState,
     AuthService,
