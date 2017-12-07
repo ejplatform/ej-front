@@ -4,13 +4,13 @@
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
             <a routerLink="/profile" (click)="toggleMenu()" class="profile"  >
                 <img onError="this.src='/assets/images/icons/profile_icon.svg'"[src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
-                {{'navigation-bar.item.profile' | translate}}
+                <span>{{'navigation-bar.item.profile' | translate}}</span>
             </a>
         </li>
         <li routerLinkActive="active">
             <a [routerLink]="['/conversations']"  (click)="toggleMenu()">
                 <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}" />
-                <span class="">{{'navigation-bar.item.conversations' | translate}}</span>
+                <span>{{'navigation-bar.item.conversations' | translate}}</span>
             </a>
         </li>
         <!-- <li><a routerLink="/notes" class="fa fa-pencil-square-o">Notes</a></li> -->
@@ -24,7 +24,7 @@
         <li routerLinkActive="active">
             <a [routerLink]="['/comments']" class="comments"  (click)="toggleMenu()">
                 <img src="/assets/images/icons/comentarios_icon.svg" alt="{{'navigation-bar.item.comments' | translate}}" />
-                <span class="">{{'navigation-bar.item.comments' | translate}}</span>
+                <span>{{'navigation-bar.item.comments' | translate}}</span>
             </a>
         </li>
         <!-- <li><a href="/discussion/forum-home/" class="fa fa-quote-left">Fóruns</a></li> -->
@@ -33,7 +33,7 @@
         <li>
             <a routerLink="/logout">
                 <img src="/assets/images/icons/sair_icon.svg" alt="Some user" class="img-circle"/>
-                {{'navigation-bar.item.logout' | translate }}
+                <span>{{'navigation-bar.item.logout' | translate }}</span>
             </a>
         </li>
     </ul>
