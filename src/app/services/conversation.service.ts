@@ -15,8 +15,8 @@ export class ConversationService {
       return this.http.get<Conversation[]>(fullEndpointUrl);
     }
 
-    get(id: number): Observable<Conversation> {
-      let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + id + '/';
+    get(slug: string): Observable<Conversation> {
+      let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + slug + '/';
       return this.http.get<Conversation>(fullEndpointUrl);
     }
 
