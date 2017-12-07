@@ -13,7 +13,7 @@ import * as _ from 'lodash';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ProfileService],
+  providers: [ProfileService, Angulartics2GoogleAnalytics],
 })
 export class AppComponent implements OnInit  {
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit  {
 
   constructor(private _state: GlobalState, private translate: TranslateService,
     private profileService: ProfileService, private router: Router,
-    angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+    public angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 

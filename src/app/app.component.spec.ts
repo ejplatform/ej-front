@@ -5,6 +5,8 @@ import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import {RouterTestingModule} from "@angular/router/testing";
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { Angulartics2Module } from 'angulartics2';
 
 import * as helpers from "../spec/helpers";
 import { GlobalState } from './global.state';
@@ -15,14 +17,15 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let mocks = helpers.getMocks();
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        imports: [TranslateModule.forRoot(), HttpClientTestingModule, RouterTestingModule],
+        imports: [TranslateModule.forRoot(), HttpClientTestingModule, RouterTestingModule, Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])],
         declarations: [ AppComponent ],
         providers: [{ provide: GlobalState, useValue: mocks.globalState },
             { provide: SessionService, useValue: mocks.sessionService },
             { provide: ProfileService, useValue: mocks.profileService },
+            { provide: Angulartics2GoogleAnalytics, useValue: mocks.analyticsService },
         ],
         schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     });
