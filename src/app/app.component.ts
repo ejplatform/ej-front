@@ -4,6 +4,8 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
+import { NotificationService } from './services/notification.service';
+import { NotificationInfo } from './models/notification-info';
 import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
 import { environment } from '../environments/environment';
@@ -13,7 +15,7 @@ import * as _ from 'lodash';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ProfileService],
+  providers: [ProfileService, NotificationService],
 })
 export class AppComponent implements OnInit  {
 
@@ -23,7 +25,8 @@ export class AppComponent implements OnInit  {
   alreadeyCollapsed: boolean = false;
 
   constructor(private _state: GlobalState, private translate: TranslateService,
-    private profileService: ProfileService, private router: Router) {
+    private profileService: ProfileService, private router: Router,
+    private notificationService: NotificationService) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 
@@ -55,23 +58,19 @@ export class AppComponent implements OnInit  {
 
     // Register the OneSignal app
     const OneSignal = window['OneSignal'] || [];
-    console.log('Init OneSignal');
 
     OneSignal.push(['init', {
-      // TODO: this ID should come from an environment
       appId: environment.onSignalAppId,
-      autoRegister: true,
+      autoRegister: false,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
         enable: true
       }
     }]);
 
-    console.log('OneSignal Initialized');
-    OneSignal.push(function () {
-      console.log('Register For Push');
-      OneSignal.push(['registerForPushNotifications']);
-    });
+    OneSignal.push(['registerForPushNotifications']);
+
+    const that = this;
 
     OneSignal.push(function () {
       // Occurs when the user's subscription changes to a new value.
@@ -80,12 +79,20 @@ export class AppComponent implements OnInit  {
         if (isSubscribed) {
           OneSignal.getUserId().then(function (userId) {
             console.log('User ID is', userId);
+
+            // Save the user ID in local storage for future reference
+            const notificationInfo = new NotificationInfo();
+            notificationInfo.oneSignalAppId = userId;
+            that.notificationService.saveInfo(notificationInfo);
+
+            // Save the user email in OneSignal, if it's available
+            if (that.profile) {
+              that.notificationService.sendHashedEmail(that.profile.email);
+            }
           });
         }
       });
-
     });
-
   }
 
   isLogged(){
