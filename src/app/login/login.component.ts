@@ -107,6 +107,7 @@ export class LoginComponent {
   }
 
   handleloginSuccess() {
+    // Get profile info from the API
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
       this.bsModalRef.close();
