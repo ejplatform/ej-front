@@ -1,5 +1,5 @@
-export class Profile { 
-    
+export class Profile {
+
     [x: string]: string|number|boolean;
 
     public id: number;
@@ -25,6 +25,5 @@ export class Profile {
     public gender: string;
     public age: string;
     public biography: string;
-    public occupation: string;   
-    
+    public occupation: string;
 }
