@@ -16,6 +16,11 @@ export class CommentService {
     return this.http.get<Comment[]>(fullEndpointUrl);
   }
 
+  public getByConversationId(conversationId: number): Observable<Comment[]> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/comments/?conversation__id=${conversationId}`;
+    return this.http.get<Comment[]>(fullEndpointUrl);
+  }
+
   public getByPolisId(polisId: number, conversationId: number): Observable<Comment[]> {
     let fullEndpointUrl = `${environment.apiUrl}/api/comments/?polis_id=${polisId}&conversation__id=${conversationId}`;
     return this.http.get<Comment[]>(fullEndpointUrl);

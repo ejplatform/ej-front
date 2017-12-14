@@ -9,6 +9,7 @@ export class Conversation {
     public total_votes: number;
     public response: string;
     public dialog: string;
+    public opinion: string;
     public created_at: string;
     public updated_at: string;
     public user_participation_ratio: number;

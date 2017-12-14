@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Conversation } from '../models/conversation';
+import { Comment } from '../comments/shared/comment.model';
 
 @Injectable()
 export class ConversationService {
@@ -20,4 +21,8 @@ export class ConversationService {
       return this.http.get<Conversation>(fullEndpointUrl);
     }
 
+    getNextUnvotedComment(id: number): Observable<Comment> {
+      let fullEndpointUrl = environment.apiUrl + '/api/next_comment/' + id + '/';
+      return this.http.get<Comment>(fullEndpointUrl);
+    }
 }

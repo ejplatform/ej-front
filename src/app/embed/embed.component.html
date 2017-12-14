@@ -1,4 +1,4 @@
-<div class="page-title" *ngIf="!isHome">
+<div class="page-title" *ngIf="!isHome && pageTitle">
     <div class="container">
         <h1> {{ pageTitle }} </h1>
     </div>
@@ -15,23 +15,103 @@
   <div class="container facebook-responsive">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/4GkSOTl-Nvc" frameborder="0" allowfullscreen></iframe>
   </div>
-  <iframe id="polis-iframe" [src]="polisUrl | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
 </div>
 
-<div *ngIf="!isHome">
-  <iframe id="polis-iframe" [src]="polisUrl | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
-  <div *ngIf="conversationLoaded" class="share-box">
-    <p>{{ 'conversation.share' | translate }}</p>
-    <share-buttons
-      [linkedIn]=false
-      [tumblr]=false
-      [pinterest]=false
-      [stumbleUpOn]=false
-      [reddit]=false
-      [title]="conversation.title"
-      [description]="conversation.description"
-    >
-    </share-buttons>
+<div class="page-title" *ngIf="!isHome && !pageTitle && conversationLoaded">
+  <div class="container">
+    <h1>{{ 'conversation.title' | translate }} > {{ conversation.title }}</h1>
   </div>
-  <app-conversations></app-conversations>
+</div>
+<div *ngIf="!isHome && conversationLoaded" class="conversation">
+
+  <div *ngIf="!expandedStage">
+    <h2 class="conversation-subtitle">{{ 'conversation.stage.opinion' | translate }}</h2>
+    <div class="conversation-opinion-stage">{{ conversation.description }}</div>
+
+    <div class="conversation-comments">
+      <div class="comment-card" *ngIf="comment">
+        <p class="comment-author">
+          <img src="{{comment.author.image_url}}" alt="" />
+          <span>{{ comment.author.name.length ? comment.author.name : comment.author.username }}</span>
+        </p>
+        <p class="comment-text">{{ comment.content }}</p>
+        <ul class="comment-actions">
+          <li (click)="vote(comment, 'agree')">{{ "conversation.vote.agree" | translate }}</li>
+          <li (click)="vote(comment, 'pass')">{{ "conversation.vote.skip" | translate }}</li>
+          <li (click)="vote(comment, 'disagree')">{{ "conversation.vote.disagree" | translate }}</li>
+        </ul>
+      </div>
+
+      <div class="comment-card" *ngIf="!comment">
+        <p class="comment-text">{{ "conversation.nocomments" | translate }}</p>
+      </div>
+
+      <div class="new-comment">
+        <textarea [(ngModel)]="newCommentText" (click)="clearComment()" id="new-comment" placeholder="{{ 'conversation.newcomment' | translate }}"></textarea>
+        <p class="comment-message">
+          <span *ngIf="newCommentSuccess === null">&nbsp;</span>
+          <span *ngIf="newCommentSuccess === true">{{ "conversation.newcommentsuccess" | translate }}</span>
+          <span *ngIf="newCommentSuccess === false">{{ "conversation.newcommentfail" | translate }}</span>
+        </p>
+        <p><button (click)="sendComment()">{{ "conversation.addcomment" | translate }}</button></p>
+      </div>
+
+      <div class="other-stages" *ngIf="truncatedDialog || truncatedResponse">
+        <h2 class="conversation-subtitle other-stages-title">{{ 'conversation.otherstages' | translate }}</h2>
+
+        <div class="other-stage">
+          <div class="other-stage-stage" *ngIf="truncatedDialog && displayedStage === 'dialog'">
+            <h3 class="stage-dialog-title">{{ 'conversation.stagedialog' | translate }}</h3>
+            <p>{{ truncatedDialog }}</p>
+          </div>
+
+          <div class="other-stage-stage" *ngIf="truncatedResponse && displayedStage === 'response'">
+            <h3 class="stage-response-title">{{ 'conversation.stageresponse' | translate }}</h3>
+            <p>{{ truncatedResponse }}</p>
+          </div>
+
+          <span (click)="expandStage()" class="expand-stage">{{ 'conversation.expandstage' | translate }}</span>
+
+          <ul class="stages-pager" *ngIf="truncatedDialog && truncatedResponse">
+            <li (click)="displayStage('dialog')" [ngClass]="{ 'stages-pager-active': displayedStage === 'dialog' }"><span>1</span></li>
+            <li (click)="displayStage('response')" [ngClass]="{ 'stages-pager-active': displayedStage === 'response' }"><span>2</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="our-opinion">
+        <h3>{{ 'conversation.ouropinion' | translate }}:</h3>
+        <p>{{ conversation.opinion }}</p>
+      </div>
+    </div>
+
+    <div class="share-box">
+      <p>{{ 'conversation.share' | translate }}</p>
+      <share-buttons
+        [linkedIn]=false
+        [tumblr]=false
+        [pinterest]=false
+        [stumbleUpOn]=false
+        [reddit]=false
+        [title]="conversation.title"
+        [description]="conversation.description"
+      >
+      </share-buttons>
+    </div>
+    <app-conversations></app-conversations>
+  </div>
+
+  <div *ngIf="expandedStage">
+    <h2 class="conversation-subtitle">{{ ('conversation.stage' + expandedStage) | translate }}</h2>
+    
+    <div class="other-stage expanded">
+      <span class="collapse-stage" (click)="collapseStage()">{{ 'conversation.collapse' | translate }}</span>
+      <div class="other-stage-stage">
+        <h3 [ngClass]="'stage-' + expandedStage + '-title'">{{ 'conversation.' + expandedStage | translate }}</h3>
+        <p>{{ expandedStage === 'dialog' ? truncatedDialog : truncatedResponse }}</p>
+      </div>
+    </div>
+    
+    <div class="conversation-expanded-stage">{{ conversation[expandedStage] }}</div>
+  </div>
 </div>
