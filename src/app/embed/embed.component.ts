@@ -30,6 +30,10 @@ export class EmbedComponent implements OnInit {
   comment: Comment;
   public newCommentText: string;
   public newCommentSuccess: boolean = null;
+  truncatedDialog: String;
+  truncatedResponse: String;
+  displayedStage: String;
+  expandedStage: String;
 
   constructor(private conversationService: ConversationService,
               private route: ActivatedRoute,
@@ -46,12 +50,38 @@ export class EmbedComponent implements OnInit {
         conversationService.get(params.id).subscribe(conversation => {
           conversationService.getNextUnvotedComment(params.id).subscribe(comment => {
             this.comment = comment;
+          }, error => {
+            this.comment = null;
           });
+          this.truncatedDialog = conversation.dialog ? this.truncate(conversation.dialog) : null;
+          this.truncatedResponse = conversation.response ? this.truncate(conversation.response) : null;
+          this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
           this.conversation = conversation;
           this.conversationLoaded = true;
         });
       }
     });
+  }
+
+  displayStage(stage) {
+    this.displayedStage = stage;
+  }
+
+  expandStage(stage) {
+    this.expandedStage = this.displayedStage;
+    window.scrollTo(0, 0);
+  }
+
+  collapseStage() {
+    this.expandedStage = null;
+  }
+
+  truncate(str) {
+    if (str.length > 100) {
+      return str.substring(0, 97) + '...';
+    } else {
+      return str;
+    }
   }
 
   vote(comment, action) {

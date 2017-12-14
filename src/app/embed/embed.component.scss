@@ -126,6 +126,7 @@
     margin-top: 15px;
     padding-top: 15px;
     display: flex;
+    flex-wrap: wrap;
 
     li {
       list-style: none;
@@ -188,4 +189,135 @@
   opacity: 0.5;
   border-radius: 7.5px;
   outline: none;
+}
+
+.other-stages-title {
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+.other-stage {
+  background: transparent url('/assets/images/bg-green.png') center center repeat;
+  padding: 48px;
+  padding-bottom: 12px;
+  margin-top: -21px;
+  z-index: 1;
+  position: relative;
+
+  &.expanded {
+    background: transparent url('/assets/images/bg-balloon.png') bottom center no-repeat;
+    padding-bottom: 74px;
+  }
+
+  .other-stage-stage {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  h3 {
+    width: 100px;
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 23px;
+    text-align: center;
+    color: #fff;
+    padding-top: 70px;
+    text-transform: uppercase;
+  }
+
+  .stage-dialog-title {
+    background: transparent url('/assets/images/dialog-stage.png') top center no-repeat;
+  }
+
+  .stage-response-title {
+    background: transparent url('/assets/images/response-stage.png') top center no-repeat;
+  }
+  
+  p {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 40px;
+    flex: 1;
+  }
+}
+
+.stages-pager {
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+
+    &.stages-pager-active {
+      opacity: 1;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+.expand-stage {
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  padding: 2px;
+  padding-left: 30px;
+  margin: 0 auto;
+  margin-bottom: 12px;
+  text-align: center;
+  background: #EF4438 url('/assets/images/plus.png') 5px center no-repeat;
+}
+
+.collapse-stage {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-left: 30px;
+  background: transparent url('/assets/images/close.png') left center no-repeat;
+}
+
+.conversation-expanded-stage {
+  background: #ebebeb;
+  padding: 45px;
+  color: #009B39;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-top: -26px;
+}
+
+.our-opinion {
+  font-size: 18px;
+  background: #fff;
+  padding: 45px;
+  margin: 10px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
 }

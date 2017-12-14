@@ -122,5 +122,13 @@
     "conversation.newcomment": "Inclua algo novo, evite opiniões semelhantes. Você pode postar até 6 comentários.",
     "conversation.addcomment": "Incluir Opinião",
     "conversation.newcommentsuccess": "Novo comentário adicionado!",
-    "conversation.newcommentfail": "Erro ao adicionar comentário"
+    "conversation.newcommentfail": "Erro ao adicionar comentário",
+    "conversation.otherstages": "Outras Fases",
+    "conversation.stagedialog": "Fase Diálogo",
+    "conversation.stageresponse": "Fase Resposta",
+    "conversation.expandstage": "Saiba Mais",
+    "conversation.dialog": "Diálogo",
+    "conversation.response": "Resposta",
+    "conversation.collapse": "Fechar",
+    "conversation.ouropinion": "Nossa opinião"
 }
