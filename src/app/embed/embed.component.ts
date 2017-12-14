@@ -40,8 +40,8 @@ export class EmbedComponent implements OnInit {
       this.profile = profile;
     });
     this.route.params.subscribe( params => {
-      if (params.id) {
-        conversationService.get(params.id).subscribe(conversation => {
+      if (params.slug) {
+        conversationService.get(params.slug).subscribe(conversation => {
           this.polisUrl = conversation.polis_url;
           this.conversation = conversation;
           this.conversationLoaded = true;

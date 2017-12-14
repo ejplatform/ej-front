@@ -3,6 +3,7 @@ import { Comment } from '../comments/shared/comment.model';
 export class Conversation {
 
     public title: string;
+    public slug: string;
     public description: string;
     public total_approved_comments: number;
     public total_votes: number;

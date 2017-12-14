@@ -13,7 +13,7 @@
         <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }">
             
             <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
-                <a routerLink="/conversations/participate/{{conversation.id}}">
+                <a routerLink="/conversations/participate/{{conversation.slug}}">
                     <div class="card-numbers">
                         <span class="category">{{conversation.title}} </span>
                         <span *ngIf="conversation.approved_comments">
@@ -48,7 +48,7 @@
 
                 <div class="participation" *ngIf="!ratio(conversation)">
                     <div class="title" class='button button-action'>
-                        <a routerLink="/conversations/participate/{{conversation.id}}" class='btn btn-primary btn-block'>
+                        <a routerLink="/conversations/participate/{{conversation.slug}}" class='btn btn-primary btn-block'>
                             <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}"> Participe Agora!
                         </a>
                     </div>
