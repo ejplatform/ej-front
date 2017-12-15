@@ -88,6 +88,7 @@ export class AppComponent implements OnInit  {
             // Save the user email in OneSignal, if it's available
             if (that.profile) {
               that.notificationService.sendHashedEmail(that.profile.email);
+              that.notificationService.sendOneSignalId(userId);
             }
           });
         }

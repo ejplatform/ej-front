@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'ngx-webstorage';
 
+import { environment } from '../../environments/environment';
 import { Notification } from '../models/notification';
 import { NotificationInfo } from '../models/notification-info';
 import { ProfileService } from './profile.service';
@@ -23,7 +24,8 @@ export class NotificationService {
         console.log('onesignal save stuff');
         this.sendHashedEmail(profile.email);
 
-        const notificationInfo = this.getInfo();
+      // Save the onsesignal userId, if available, in the API backend
+      const notificationInfo = this.getInfo();
         if (notificationInfo) {
           this.sendOneSignalId(notificationInfo.oneSignalAppId);
         }
@@ -53,8 +55,11 @@ export class NotificationService {
     }
 
     sendOneSignalId(notificationId: string) {
-      // TODO: Save the onsesignal userId, if available, in the API backend
+      const fullEndpointUrl = `${environment.apiUrl}/api/onesignal/profile/`;
 
+      return this.http.post<NotificationInfo>(fullEndpointUrl, {
+        onesignal_id: notificationId
+      }).subscribe();
     }
 
 }
