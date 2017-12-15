@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
 import { NotificationService } from './services/notification.service';
@@ -15,7 +16,7 @@ import * as _ from 'lodash';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ProfileService, NotificationService],
+  providers: [ProfileService, Angulartics2GoogleAnalytics, NotificationService],
 })
 export class AppComponent implements OnInit  {
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit  {
 
   constructor(private _state: GlobalState, private translate: TranslateService,
     private profileService: ProfileService, private router: Router,
+    public angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
     private notificationService: NotificationService) {
     translate.setDefaultLang('pt');
     translate.use('pt');

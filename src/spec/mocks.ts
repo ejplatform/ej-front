@@ -37,7 +37,7 @@ export function getMocks() {
             close: () => {
                 return "";
             },
-        },        
+        },
         authService: {
             signIn: () => {
                 return {};
@@ -84,6 +84,12 @@ export function getMocks() {
                 subscribe: (fn: Function) => { },
                 next: (param: any) => { }
             },
+        },
+        analyticsService: {
+            settings: {
+                pageTracking: {}
+              },
+              eventTrack: () => {}
         },
         globalState: {
             subscribe: () => Observable.of({}),
