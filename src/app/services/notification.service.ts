@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'ngx-webstorage';
 
 import { environment } from '../../environments/environment';
-import { Notification } from '../models/notification';
+import { UserNotification } from '../models/user-notification';
 import { NotificationInfo } from '../models/notification-info';
 import { ProfileService } from './profile.service';
 
@@ -33,8 +33,9 @@ export class NotificationService {
     });
   }
 
-    list(): Observable<Notification[]> {
-      return this.http.get<Notification[]>('/api/notifications/');
+    list(): Observable<UserNotification[]> {
+      const fullEndpointUrl = `${environment.apiUrl}/api/user-notifications/`;
+      return this.http.get<UserNotification[]>(fullEndpointUrl);
     }
 
     saveInfo(info: NotificationInfo): void {

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import * as _ from 'lodash' 
+import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { NotificationService } from '../services/notification.service';
 import { Profile } from '../models/profile';
-import { Notification } from '../models/notification';
+import { UserNotification } from '../models/user-notification';
 import { GlobalState } from '../global.state';
-import { NgModel } from '@angular/forms'
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-notification',
@@ -14,15 +14,15 @@ import { NgModel } from '@angular/forms'
   styleUrls: ['./notification.component.scss'],
   providers: [NotificationService],
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit, AfterViewInit {
 
   @Input() profile: Profile;
-  @Input() notification: Notification;
+  @Input() user_notification: UserNotification;
 
   search: string;
   displayOnlyUnread: boolean;
-  
-  alerts = [];
+
+  alerts: UserNotification[];
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private notificationService: NotificationService,
               private route: ActivatedRoute, private _changeDetectionRef : ChangeDetectorRef) {
@@ -31,28 +31,18 @@ export class NotificationComponent implements OnInit {
       this.profile = profile;
     });
 
-    // FIXME Load notifications from the API 
-    this.alerts = [
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 1, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 1' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: true, display: true, id: 2, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 2' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 3, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 3' },
-      { image: null, date: '16/10/2016', read: false, display: true, id: 4, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 4' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 5, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 5' },
-      { image: null, date: '16/10/2016', read: true, display: true, id: 6, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 6' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 7, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 7' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 8, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 8' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 9, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 9' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 10, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 10' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 11, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 11' },
-      { image: 'http://ca.ios.ba/files/others/sea.jpg', date: '16/10/2016', read: false, display: true, id: 12, body: 'Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam.', title: 'Three-line item 12' }
-    ]
+    // get user_notifications now
+    this.notificationService.list().subscribe((user_notifications) => {
+      this.alerts = user_notifications;
 
-    this.route.params.subscribe(params => {
-      this.setActive(params.id);
+      this.route.params.subscribe(params => {
+        this.setActive(params.id);
+      });
     });
+
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this._changeDetectionRef.detectChanges();
   }
 
@@ -64,11 +54,11 @@ export class NotificationComponent implements OnInit {
   setActive(id) {
     let currentNotification = this.alerts[0];
     this.alerts.forEach((notification) => {
-      if (notification.id == id) {
+      if (notification.id === id) {
         currentNotification = notification;
       }
     });
-    this.notification = currentNotification;
+    this.user_notification = currentNotification;
   }
 
   filterByString() {
@@ -80,19 +70,20 @@ export class NotificationComponent implements OnInit {
   }
 
   filter() {
-    let alerts = this.alerts.slice(0);
-    alerts.forEach((notification) => {
-      if (notification.title.indexOf(this.search) > -1 || notification.body.indexOf(this.search) > -1) {
-        notification.display = true;
+    const alerts = this.alerts.slice(0);
+    alerts.forEach((user_notification) => {
+      if (!(user_notification.notification.title.includes(this.search) ||
+          user_notification.notification.short_description.includes(this.search))) {
+        user_notification['hide'] = true;
 
-        if (this.displayOnlyUnread && notification.read) {
-          notification.display = false;
+        if (this.displayOnlyUnread && user_notification.status === 'read') {
+          user_notification['hide'] = true;
         }
-      }
-      else {
-        notification.display = false;
+      } else {
+        user_notification['hide'] = false;
       }
     });
+    console.log(alerts);
     this.alerts = alerts;
   }
 }
