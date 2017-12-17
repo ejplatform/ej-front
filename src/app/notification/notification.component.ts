@@ -39,7 +39,6 @@ export class NotificationComponent implements OnInit, AfterViewInit {
         this.setActive(params.id);
       });
     });
-
   }
 
   ngAfterViewInit() {
@@ -52,6 +51,7 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   }
 
   setActive(id) {
+    id = Number(id);
     let currentNotification = this.alerts[0];
     this.alerts.forEach((notification) => {
       if (notification.id === id) {
