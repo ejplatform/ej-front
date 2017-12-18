@@ -118,7 +118,7 @@
     "conversation.vote.agree": "Concordo",
     "conversation.vote.skip": "Passo",
     "conversation.vote.disagree": "Discordo",
-    "conversation.nocomments": "Nenhum comentário que você ainda não votou",
+    "conversation.nocomments": "Não há comentários em que você ainda não tenha votado",
     "conversation.newcomment": "Inclua algo novo, evite opiniões semelhantes. Você pode postar até 6 comentários.",
     "conversation.addcomment": "Incluir Opinião",
     "conversation.newcommentsuccess": "Novo comentário adicionado!",
