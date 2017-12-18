@@ -1,4 +1,4 @@
-<div class="page-title" *ngIf="!isHome && pageTitle">
+<div class="page-title" *ngIf="!isHome && !!pageTitle">
     <div class="container">
         <h1> {{ pageTitle }} </h1>
     </div>
@@ -56,23 +56,23 @@
         <p><button (click)="sendComment()">{{ "conversation.addcomment" | translate }}</button></p>
       </div>
 
-      <div class="other-stages" *ngIf="truncatedDialog || truncatedResponse">
+      <div class="other-stages" *ngIf="!!truncatedDialog || !!truncatedResponse">
         <h2 class="conversation-subtitle other-stages-title">{{ 'conversation.otherstages' | translate }}</h2>
 
         <div class="other-stage">
-          <div class="other-stage-stage" *ngIf="truncatedDialog && displayedStage === 'dialog'">
+          <div class="other-stage-stage" *ngIf="!!truncatedDialog && displayedStage === 'dialog'">
             <h3 class="stage-dialog-title">{{ 'conversation.stagedialog' | translate }}</h3>
             <p>{{ truncatedDialog }}</p>
           </div>
 
-          <div class="other-stage-stage" *ngIf="truncatedResponse && displayedStage === 'response'">
+          <div class="other-stage-stage" *ngIf="!!truncatedResponse && displayedStage === 'response'">
             <h3 class="stage-response-title">{{ 'conversation.stageresponse' | translate }}</h3>
             <p>{{ truncatedResponse }}</p>
           </div>
 
           <span (click)="expandStage()" class="expand-stage">{{ 'conversation.expandstage' | translate }}</span>
 
-          <ul class="stages-pager" *ngIf="truncatedDialog && truncatedResponse">
+          <ul class="stages-pager" *ngIf="!!truncatedDialog && !!truncatedResponse">
             <li (click)="displayStage('dialog')" [ngClass]="{ 'stages-pager-active': displayedStage === 'dialog' }"><span>1</span></li>
             <li (click)="displayStage('response')" [ngClass]="{ 'stages-pager-active': displayedStage === 'response' }"><span>2</span></li>
           </ul>
@@ -103,7 +103,7 @@
 
   <div *ngIf="expandedStage">
     <h2 class="conversation-subtitle">{{ ('conversation.stage' + expandedStage) | translate }}</h2>
-    
+
     <div class="other-stage expanded">
       <span class="collapse-stage" (click)="collapseStage()">{{ 'conversation.collapse' | translate }}</span>
       <div class="other-stage-stage">
@@ -111,7 +111,7 @@
         <p>{{ expandedStage === 'dialog' ? truncatedDialog : truncatedResponse }}</p>
       </div>
     </div>
-    
+
     <div class="conversation-expanded-stage">{{ conversation[expandedStage] }}</div>
   </div>
 </div>
