@@ -32,7 +32,7 @@
   </div>
 
   <div id="notifications-col-2" class="notifications-item">
-    <div class="image" [ngStyle]="{ 'background-image': 'url(' + user_notification?.notification.image + ')' }" *ngIf="!!alert?.notification.image"></div>
+    <div class="image" [ngStyle]="{ 'background-image': 'url(' + user_notification?.notification.image + ')' }" *ngIf="!!user_notification?.notification.image"></div>
     <div class="title">{{user_notification?.notification.title}}</div>
     <div class="date">{{user_notification?.notification.created | date: 'dd/MM/yyyy'}}</div>
     <div class="body">{{user_notification?.notification.short_description}}</div>
