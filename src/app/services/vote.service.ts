@@ -53,7 +53,7 @@ export class VoteService {
       'pid': 'mypid',
       'conversation_id': conversationId,
       'agid': 1,
-      'xid': profileId,
+      'xid': String(profileId),
    };
 
    return this.http.post(fullEndpointUrl, data);

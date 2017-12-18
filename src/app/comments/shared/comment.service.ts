@@ -40,7 +40,7 @@ export class CommentService {
       'conversation_id': conversationId,
       'vote': -1,
       'agid': 1,
-      'xid': profileId,
+      'xid': String(profileId),
     };
 
     return this.http.post(fullEndpointUrl, data);
