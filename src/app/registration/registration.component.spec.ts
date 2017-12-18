@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 import { RegistrationComponent } from './registration.component';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -24,7 +24,7 @@ describe('RegistrationComponent', () => {
       declarations: [ RegistrationComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: NotificationService, useValue: mocks.notificationService },        
+        { provide: ToastService, useValue: mocks.toastService },        
         { provide: AuthService, useValue: mocks.authService },
         { provide: SocialFacebookService, useValue: mocks.socialFacebookService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },        

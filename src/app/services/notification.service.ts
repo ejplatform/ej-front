@@ -1,72 +1,66 @@
-import { ViewContainerRef, Injectable, Inject } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { TranslateService } from '@ngx-translate/core';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { LocalStorageService } from 'ngx-webstorage';
+
+import { environment } from '../../environments/environment';
+import { UserNotification } from '../models/user-notification';
+import { NotificationInfo } from '../models/notification-info';
+import { ProfileService } from './profile.service';
+
+import 'rxjs/add/observable/empty';
 
 @Injectable()
 export class NotificationService {
 
-  public static DEFAULT_ERROR_TITLE = 'notification.error.default.title';
-  public static DEFAULT_ERROR_MESSAGE = 'notification.error.default.message';
-  public static DEFAULT_SUCCESS_TIMER = 5000;
-  public static DEFAULT_INFO_TITLE = 'notification.info.default.title';
-  public static DEFAULT_INFO_MESSAGE = 'notification.info.default.message';
+  constructor (private http: HttpClient, private localStorageService: LocalStorageService,
+    private profileService: ProfileService) {
 
-  constructor(private translate: TranslateService, private toastr: ToastrService) { }
+    // Listen for profile changes
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      console.log('profileChangeEvent');
+      // Save the email as a hash in the onesignal profile
+      if (profile) {
+        console.log('onesignal save stuff');
+        this.sendHashedEmail(profile.email);
 
-  error({message = NotificationService.DEFAULT_ERROR_MESSAGE, title = NotificationService.DEFAULT_ERROR_TITLE } = {}, options = {}) {
-    this.toastr.error(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
-  }
-
-  httpError(status: number, data: any): boolean {
-      // FIXME check other https status and make a generic message
-      // not-found, unauthorized, forbidden, server error
-      if ([500].indexOf(status) > -1) {
-          this.error({ message: `notification.http_error.${status}.message` });
-          return true; // return true to indicate that the error was already handled
-      } else {
-          return false;
+      // Save the onsesignal userId, if available, in the API backend
+      const notificationInfo = this.getInfo();
+        if (notificationInfo) {
+          this.sendOneSignalId(notificationInfo.oneSignalAppId);
+        }
       }
-
+    });
   }
 
-  success({title = 'toast.title.success', message = ''}, options = {}) {
-    options = Object.assign({ timeOut: NotificationService.DEFAULT_SUCCESS_TIMER });
-    this.toastr.success(this.translate.instant(message), this.translate.instant(title),Object.assign(this.toastrOptions(), options));
-  }
+    list(): Observable<UserNotification[]> {
+      const fullEndpointUrl = `${environment.apiUrl}/api/user-notifications/`;
+      return this.http.get<UserNotification[]>(fullEndpointUrl);
+    }
 
-  confirmation({message = NotificationService.DEFAULT_INFO_MESSAGE, title = NotificationService.DEFAULT_INFO_TITLE} = {}, options = {}) {
-    this.toastr.info(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
-  }
+    saveInfo(info: NotificationInfo): void {
+      this.localStorageService.store('notificationInfo', info);
+    }
 
-  info({message = NotificationService.DEFAULT_INFO_MESSAGE, title = NotificationService.DEFAULT_INFO_TITLE} = {}, options = {}) {
-    this.toastr.info(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
-  }
+    getInfo(): NotificationInfo {
+      return this.localStorageService.retrieve('notificationInfo');
+    }
 
-  private toastrOptions(options = {}) {
-    return {
-      allowHtml: false,
-      closeButton: true,
-      closeHtml: '<button>&times;</button>',
-      extendedTimeOut: 1000,
-      iconClasses: {
-          error: 'toast-error',
-          info: 'toast-info',
-          success: 'toast-success',
-          warning: 'toast-warning'
-      },
-      messageClass: 'toast-message',
-      // onHidden: null,
-      // onShown: null,
-      // onTap: null,
-      progressBar: false,
-      tapToDismiss: true,
-      templates: {
-          toast: 'directives/toast/toast.html',
-          progressbar: 'directives/progressbar/progressbar.html'
-      },
-      timeOut: 5000,
-      titleClass: 'toast-title',
-      toastClass: 'toast'
-    };
-  }
+    sendHashedEmail(email: string) {
+      // get a reference to the OneSignal SDK initialized on the index.html
+      const OneSignal = window['OneSignal'] || [];
+
+      OneSignal.push(function() {
+        OneSignal.syncHashedEmail(email);
+      });
+    }
+
+    sendOneSignalId(notificationId: string) {
+      const fullEndpointUrl = `${environment.apiUrl}/api/onesignal/profile/`;
+
+      return this.http.post<NotificationInfo>(fullEndpointUrl, {
+        onesignal_id: notificationId
+      }).subscribe();
+    }
+
 }

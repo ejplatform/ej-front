@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-profile',
@@ -67,7 +67,7 @@ export class ProfileComponent {
   ];
 
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router, 
-    private notificationService: NotificationService) {
+    private toastService: ToastService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -79,7 +79,7 @@ export class ProfileComponent {
   save() {
 
     this.profileService.save(this.profile).subscribe( profile => {
-        this.notificationService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
+        this.toastService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(profile);
         this.router.navigate(['profile']);
 
@@ -92,7 +92,7 @@ export class ProfileComponent {
   saveImage(file){
     this.profile.imageFile = file;
     this.profileService.saveImage(this.profile).subscribe( profile => {
-      this.notificationService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
+      this.toastService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
       this.profileService.setProfile(this.profile);
       this.router.navigate(['profile']);
 
@@ -109,7 +109,7 @@ export class ProfileComponent {
 
   changePassword() {
     this.profileService.changePassword(this.profile).subscribe( profile => {
-        this.notificationService.success({ title: "profile.password.success.title", message: "profile.password.success.message" });
+        this.toastService.success({ title: "profile.password.success.title", message: "profile.password.success.message" });
         this.password.reset();
         this.passwordConfirmation.reset();
 

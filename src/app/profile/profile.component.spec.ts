@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile.component';
 import { ImageUploadComponent } from '../shared/image-upload/image-upload.component';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 
 
 describe('ProfileComponent', () => {
@@ -28,7 +28,7 @@ describe('ProfileComponent', () => {
       declarations: [ ProfileComponent, ImageUploadComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: NotificationService, useValue: mocks.notificationService },        
+        { provide: ToastService, useValue: mocks.toastService },        
         { provide: AuthService, useValue: mocks.authService },
       ],
       schemas: [NO_ERRORS_SCHEMA]
