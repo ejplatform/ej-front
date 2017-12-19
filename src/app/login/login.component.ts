@@ -5,7 +5,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
@@ -31,7 +31,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private profileService: ProfileService,
     private socialFacebookService: SocialFacebookService, private modalService: NgbModal,
-    public activeModal: NgbActiveModal, private notificationService: NotificationService, private router: Router) {
+    public activeModal: NgbActiveModal, private toastService: ToastService, private router: Router) {
 
     this.bsModalRef = activeModal;
     this.profile = new Profile();
@@ -107,11 +107,12 @@ export class LoginComponent {
   }
 
   handleloginSuccess() {
+    // Get profile info from the API
     this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
       this.bsModalRef.close();
       this.loggedIn.emit();
-      this.notificationService.success({ title: "login.success.title", message: "login.success.message" });
+      this.toastService.success({ title: "login.success.title", message: "login.success.message" });
     }, error => {
       this.handleError(error);
     });

@@ -3,7 +3,6 @@ import { CommentReport } from '../shared/comment-report.model';
 import { Comment } from '../../comments/shared/comment.model';
 import { CommentReportService } from '../shared/comment-report.service';
 import { CommentService } from '../../comments/shared/comment.service';
-import { NotificationService } from '../../services/notification.service';
 import { Profile } from '../../models/profile';
 import { ProfileService } from '../../services/profile.service';
 

@@ -7,6 +7,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import {RouterTestingModule} from "@angular/router/testing";
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { Angulartics2Module } from 'angulartics2';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import * as helpers from "../spec/helpers";
 import { GlobalState } from './global.state';
@@ -26,6 +27,7 @@ describe('AppComponent', () => {
             { provide: SessionService, useValue: mocks.sessionService },
             { provide: ProfileService, useValue: mocks.profileService },
             { provide: Angulartics2GoogleAnalytics, useValue: mocks.analyticsService },
+            { provide: LocalStorageService, useValue: mocks.localStorageService }
         ],
         schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     });

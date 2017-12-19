@@ -8,7 +8,7 @@ import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 import { RegistrationComponent  } from '../registration/registration.component';
 
 
@@ -24,7 +24,7 @@ export class RecoverPasswordComponent {
   bsRegistrationModalRef: any;
   
   constructor(private authService: AuthService, private profileService: ProfileService, 
-    public activeModal: NgbActiveModal, private notificationService: NotificationService, private modalService: NgbModal, private router: Router) {
+    public activeModal: NgbActiveModal, private toastService: ToastService, private modalService: NgbModal, private router: Router) {
     this.profile = new Profile();
     this.bsModalRef = activeModal;
   }
@@ -32,7 +32,7 @@ export class RecoverPasswordComponent {
   recover() {
     this.authService.reset(this.profile).subscribe((response) => {
         this.bsModalRef.close();
-        this.notificationService.success({ title: "recover-password.success.title", message: "recover-password.success.message" });
+        this.toastService.success({ title: "recover-password.success.title", message: "recover-password.success.message" });
     }, error =>{
       console.log(error);
     });

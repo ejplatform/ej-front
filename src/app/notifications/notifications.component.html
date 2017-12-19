@@ -1,0 +1,30 @@
+<ul id="top-right-menu" class="user-tools">
+    <li>
+        <a class="notifications active" (click)="toggleAlerts()">
+            <!-- <span class="notification-bubble">3</span> -->
+            <img src="/assets/images/icons/notification_off_icon.svg" *ngIf="alerts.length === 0" alt="{{'alerts.off' | translate}}" >
+            <img src="/assets/images/icons/notification_on_icon.svg" *ngIf="alerts.length > 0" alt="{{alerts.length}}" >
+            <span class="hidden-xs" translate>{{"alerts.notifications"}}</span>
+        </a>
+    </li>
+</ul>
+
+<div id="notification-wrapper" [ngClass]="{'alerts-opened': isCollapsed}">
+    <div class="notifications-panel">
+        <h2 class="notifications-title">&nbsp;</h2>
+        <p class="notifications-empty" *ngIf="alerts.length === 0">{{"alerts.none" | translate}}</p>
+        <ul class='notifications-list'>
+            <li class="notifications-item" *ngFor="let alert of alerts">
+                <a class="notifications-link" routerLink="/notifications/{{alert.id}}" (click)="toggleAlerts()">
+                    <div class='title'>{{alert.notification.title}}</div>
+                    <div class='body'>{{alert.notification.short_description}}</div>
+                </a>
+            </li>
+        </ul>
+        <a class="see-more" routerLink="/notifications/all" (click)="toggleAlerts()">
+            <div class='text'>
+                {{"alerts.all" | translate}}
+            </div>
+        </a>
+    </div>
+</div>

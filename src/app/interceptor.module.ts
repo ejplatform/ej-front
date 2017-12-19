@@ -14,7 +14,11 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
     // If there is an API key stored, send it in this request
     if (token) {
-      authRequest = request.clone({headers: request.headers.set('Authorization', 'Token ' + token)});
+      // API token should never be sent to the polis backend
+      if (!authRequest.url.includes('polis.brasilqueopovoquer.org.br')) {
+        authRequest = request.clone({headers: request.headers.set('Authorization', 'Token ' + token)});
+      }
+
     } else {
 
       // If there is no key, allow cookies to be sent, but only if this is a request for an API key
@@ -22,6 +26,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
         authRequest = request.clone({withCredentials: true});
       }
     }
+    console.log(authRequest.url);
 
     return next.handle(authRequest);
 

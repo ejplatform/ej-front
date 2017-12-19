@@ -1,21 +1,26 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
-import { ToastrModule } from 'ngx-toastr';
+import { LocalStorageService } from 'ngx-webstorage';
 
+import * as helpers from '../../spec/helpers';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NotificationService } from './notification.service';
-import * as helpers from "../../spec/helpers";
+import { ProfileService } from './profile.service';
 
 describe('NotificationService', () => {
+    const mocks = helpers.getMocks();
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), ToastrModule.forRoot(),],
-      providers: [NotificationService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule],
+                providers: [NotificationService,
+                { provide: ProfileService, useValue: mocks.profileService },
+                { provide: LocalStorageService, useValue: mocks.localStorageService }
+            ]
+        });
     });
-  });
 
-  it('should be created', inject([NotificationService], (service: NotificationService) => {
-    expect(service).toBeTruthy();
-  }));
+    it('should be created', inject([NotificationService], (service: NotificationService) => {
+        expect(service).toBeTruthy();
+    }));
 
 });

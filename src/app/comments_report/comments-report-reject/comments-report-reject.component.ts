@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comment } from '../../comments/shared/comment.model';
 import { CommentService } from '../../comments/shared/comment.service';
-import { NotificationService } from '../../services/notification.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-comments-report-reject',
@@ -14,7 +14,7 @@ export class CommentsReportRejectComponent {
   @Input() comment: Comment;
   @Output() isCollapsed = new EventEmitter();
   
-  constructor(private commentService: CommentService, private notificationService: NotificationService, private router: Router) {  }
+  constructor(private commentService: CommentService, private toastService: ToastService, private router: Router) {  }
 
   cancel() {
     this.isCollapsed.next(false);
@@ -24,7 +24,7 @@ export class CommentsReportRejectComponent {
   rejectComment() {
     this.comment.approval = Comment.REJECTED;
     this.commentService.save(this.comment).subscribe((comment: Comment) => {
-        this.notificationService.success({ title: "comment-report.save.success.title", message: "comment-report.save.success.message" });
+        this.toastService.success({ title: "comment-report.save.success.title", message: "comment-report.save.success.message" });
         this.isCollapsed.next(true);
       }, (error) =>{ 
         console.log(error);

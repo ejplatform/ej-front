@@ -6,6 +6,7 @@ import { ConversationsComponent } from "./conversations/conversations.component"
 import { ConversationComponent } from "./conversation/conversation.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { EmbedComponent } from "./embed/embed.component";
+import { NotificationComponent } from "./notification/notification.component";
 
 export const rootRouterConfig: Routes = [
   { path: '', component: EmbedComponent },
@@ -24,4 +25,5 @@ export const rootRouterConfig: Routes = [
   { path: 'perguntas-frequentes', component: EmbedComponent },
   { path: 'conversas', component: EmbedComponent },
   { path: 'termos-de-uso', component: EmbedComponent },
+  { path: 'notifications/:id', component: NotificationComponent },
 ];

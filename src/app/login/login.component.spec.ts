@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { NotificationService } from '../services/notification.service';
+import { ToastService } from '../services/toast.service';
 import { LoginComponent } from './login.component';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -25,7 +25,7 @@ describe('LoginComponent', () => {
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: AuthService, useValue: mocks.authService },
-        { provide: NotificationService, useValue: mocks.notificationService },
+        { provide: ToastService, useValue: mocks.toastService },
         { provide: SocialFacebookService, useValue: mocks.socialFacebookService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
       ],

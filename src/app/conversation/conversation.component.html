@@ -11,7 +11,7 @@
         <small class="identifier">Conversas #{{conversation.id}} </small>
       </div>
     </div>
-    
+
     <div class="card-cover">
       <div class="card-cover-img">
         <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
@@ -20,7 +20,7 @@
         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
     </div>
-            
+
     <div class="card-block">
       <h2>{{'conversations.title' | translate}}</h2>
       <h3>{{'conversations.subtitle' | translate}}</h3>
@@ -28,10 +28,10 @@
 
     <div class="card-footer">
       <small class="card-footer-left">
-        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}} 
+        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}}
       </small>
       <small class="card-footer-right">
-        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}} 
+        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}}
       </small>
       <div class='participation '>
         <div class='title'>
@@ -42,7 +42,7 @@
             <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
           </div>
           <ngb-progressbar showValue="true" class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning"></ngb-progressbar>
-        </div>          
+        </div>
       </div>
     </div>
   </div>

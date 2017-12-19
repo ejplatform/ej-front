@@ -1,0 +1,40 @@
+<div id="notifications-wrapper">
+
+  <div id="notifications-col-1">
+
+    <div id="notifications-header">
+      <h2>{{"alerts.notifications" | translate}}</h2>
+
+      <!-- <label class="switch">
+        <input type="checkbox" [(ngModel)]="displayOnlyUnread" (ngModelChange)="toggleUnread()" />
+        <span class="slider round"></span>
+      </label> -->
+      <!-- <h2>{{"alerts.unread" | translate}}</h2> -->
+
+      <input id="notifications-search" type="text" [(ngModel)]="search" (ngModelChange)="filterByString()" />
+    </div>
+
+    <div class="notifications-panel">
+      <p class="notifications-empty" *ngIf="alerts?.length === 0">{{"alerts.none" | translate}}</p>
+      <ul class="notifications-list">
+        <li class="notifications-item" *ngFor="let alert of alerts">
+            <a class="notifications-link" (click)="setActive(alert.id)" *ngIf="!alert.hide">
+            <div class="image" [ngStyle]="{ 'background-image': 'url(' + alert?.notification.image + ')' }" *ngIf="!!alert?.notification.image"></div>
+            <div class="content">
+              <div class="title">{{alert?.notification.title}}</div>
+              <div class="body">{{alert?.notification.short_description}}</div>
+              <div class="date">{{alert?.notification.created | date: 'dd/MM/yyyy'}}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="notifications-col-2" class="notifications-item">
+    <div class="image" [ngStyle]="{ 'background-image': 'url(' + user_notification?.notification.image + ')' }" *ngIf="!!user_notification?.notification.image"></div>
+    <div class="title">{{user_notification?.notification.title}}</div>
+    <div class="date">{{user_notification?.notification.created | date: 'dd/MM/yyyy'}}</div>
+    <div class="body">{{user_notification?.notification.short_description}}</div>
+  </div>
+</div>

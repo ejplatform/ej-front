@@ -39,7 +39,8 @@ import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { AlertsComponent } from './alerts/alerts.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationComponent } from './notification/notification.component';
 // import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
@@ -53,7 +54,7 @@ import { ImageUploadComponent } from './shared/image-upload/image-upload.compone
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { SocialFacebookService } from './services/social-facebook.service';
-import { NotificationService } from './services/notification.service';
+import { ToastService } from './services/toast.service';
 import { SessionService } from './services/session.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
@@ -73,7 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavigationBarComponent,
     HeaderComponent,
     FooterComponent,
-    AlertsComponent,
+    NotificationsComponent,
+    NotificationComponent,
     ConversationsComponent,
     ConversationComponent,
     HomeSliderComponent,
@@ -111,7 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SessionService,
     ProfileService,
     SocialFacebookService,
-    NotificationService,
+    ToastService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
