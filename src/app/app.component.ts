@@ -63,10 +63,10 @@ export class AppComponent implements OnInit  {
 
     OneSignal.push(['init', {
       appId: environment.onSignalAppId,
-      autoRegister: false,
+      autoRegister: true,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
-        enable: true
+        enable: false
       }
     }]);
 
