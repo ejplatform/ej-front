@@ -48,7 +48,7 @@ export class EmbedComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params.slug) {
         conversationService.get(params.slug).subscribe(conversation => {
-          conversationService.getNextUnvotedComment(params.id).subscribe(comment => {
+          conversationService.getNextUnvotedComment(conversation.id).subscribe(comment => {
             this.comment = comment;
           }, error => {
             this.comment = null;
