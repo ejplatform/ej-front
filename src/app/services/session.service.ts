@@ -1,10 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Output, EventEmitter } from '@angular/core';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Profile } from '../models/profile';
 
 @Injectable()
 export class SessionService {
-
+    @Output() sessionChangeEvent: EventEmitter<any> = new EventEmitter(true);
+    
   constructor(private localStorageService: LocalStorageService) { }
 
   destroy() {
@@ -14,6 +15,7 @@ export class SessionService {
 
   setProfile(profile: Profile): Profile {
       this.localStorageService.store('currentProfile', profile);
+      this.sessionChangeEvent.emit();
       return this.localStorageService.retrieve('currentProfile');
   };
 

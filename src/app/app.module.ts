@@ -30,6 +30,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 // Application Modules
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
+import { TourModule } from './tour/tour.module';
 
 // Application imports
 import { AppComponent } from './app.component';
@@ -61,6 +62,7 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 
+import { TourInterceptor } from './tour/interceptor.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -92,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommentsReportModule,
+    TourModule,
     SharedModule.forRoot(),
     BrowserModule,
     HttpClientModule,
@@ -117,10 +120,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TourInterceptor, multi: true },    
 
   ],
   entryComponents: [LoginComponent,
-                    RegistrationComponent,
+                    // RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
                     RecoverPasswordComponent],

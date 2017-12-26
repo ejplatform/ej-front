@@ -26,4 +26,5 @@ export class Profile {
     public age: string;
     public biography: string;
     public occupation: string;
+    public tour_step: string;
 }
