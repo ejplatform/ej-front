@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-// import { BsModalService } from 'ngx-bootstrap/modal';
-// import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import * as _ from 'lodash'

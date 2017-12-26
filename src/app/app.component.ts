@@ -16,7 +16,7 @@ import * as _ from 'lodash';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ProfileService, Angulartics2GoogleAnalytics, NotificationService],
+  providers: [Angulartics2GoogleAnalytics, NotificationService],
 })
 export class AppComponent implements OnInit  {
 
@@ -26,7 +26,8 @@ export class AppComponent implements OnInit  {
   alreadeyCollapsed: boolean = false;
 
   constructor(private _state: GlobalState, private translate: TranslateService,
-    private profileService: ProfileService, private router: Router,
+    private profileService: ProfileService, 
+    private router: Router,
     public angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
     private notificationService: NotificationService) {
     translate.setDefaultLang('pt');
