@@ -34,13 +34,16 @@ export class TourComponent implements OnInit {
 
   ngOnInit() {
     let componentType: any;
-
     switch (this.profile.tour_step) {
       case Tour.STEP_ONE: {
         componentType = BadgeComponent;
         break;
       }
       case Tour.STEP_TWO: {
+        componentType = BadgeComponent;
+        break;
+      }
+      case Tour.STEP_THREE: {
         componentType = StepComponent;
         break;
       }

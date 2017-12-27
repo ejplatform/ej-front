@@ -1,9 +1,12 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left" translate>{{'registration.sign_up'}}</h4>
+    <h4 class="modal-title pull-left">{{title}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<p>
-  badge works!
-</p>
+<div class='subtitle'>{{subtitle}}</div>
+<div class='points'>{{points}}</div>
+<div class='detail'>{{detail}}</div>
+<button class="btn btn-default" (click)="saveProfile()">
+  <p>{{buttonText}}</p>
+</button>
