@@ -124,7 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
   ],
   entryComponents: [LoginComponent,
-                    // RegistrationComponent,
+                    RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
                     RecoverPasswordComponent],
