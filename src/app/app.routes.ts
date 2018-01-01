@@ -17,8 +17,7 @@ export const rootRouterConfig: Routes = [
     path: 'conversations',
     children: [
       { path: '', component: ConversationsComponent },
-      { path: ':id', component: ConversationComponent },
-      { path: 'participate/:slug', component: ParticipateComponent },
+      { path: ':slug', component: ParticipateComponent },
     ],
   },
   { path: 'inicio', component: EmbedComponent },
