@@ -81,6 +81,14 @@
   z-index: 1;
   position: relative;
 }
+  
+@include media-breakpoint-down(md) {
+  .conversation-opinion-stage {
+    padding: 24px;
+    padding-bottom: 50px;
+    font-size: 24px;
+  }
+}
 
 .conversation-comments {
   padding: 50px 0;
@@ -151,6 +159,19 @@
       background: transparent url('/assets/images/vote-disagree.png') top center no-repeat;
       color: #D74D42;
     }
+
+    @include media-breakpoint-down(md) {
+      li {
+        margin: 0 5px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .comment-card {
+    padding: 10px 20px;
   }
 }
 
@@ -227,6 +248,16 @@
     text-transform: uppercase;
   }
 
+  @include media-breakpoint-down(md) {
+    h3 {
+      padding: 0;
+      font-size: 16px;
+      text-align: left;
+      width: 100%;
+      background: transparent !important;
+    }
+  }
+
   .stage-dialog-title {
     background: transparent url('/assets/images/dialog-stage.png') top center no-repeat;
   }
@@ -241,6 +272,18 @@
     font-weight: bold;
     line-height: 40px;
     flex: 1;
+  }
+
+  @include media-breakpoint-down(md) {
+    p {
+      font-size: 22px;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .other-stage {
+    padding: 24px;
   }
 }
 
@@ -319,5 +362,13 @@
   h3 {
     font-size: 18px;
     font-weight: bold;
+  }
+}
+
+h1#conversation-title {
+  font-size: 28px;
+
+  @include media-breakpoint-down(md) {
+    font-size: 22px !important;
   }
 }

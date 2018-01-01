@@ -19,7 +19,7 @@
 
 <div class="page-title" *ngIf="!isHome && !pageTitle && conversationLoaded">
   <div class="container">
-    <h1>{{ 'conversation.title' | translate }} > {{ conversation.title }}</h1>
+    <h1 id="conversation-title">{{ 'conversation.title' | translate }} > {{ conversation.title }}</h1>
   </div>
 </div>
 <div *ngIf="!isHome && conversationLoaded" class="conversation">
