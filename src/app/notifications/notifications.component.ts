@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import * as _ from 'lodash'
 import { ProfileService } from '../services/profile.service';
 import { NotificationService } from '../services/notification.service';
@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
 
   @Input() profile: Profile;
   alerts = [];
-  isCollapsed = false;
+  isCollapsed = true;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private notificationService: NotificationService) {
 
@@ -33,10 +33,14 @@ export class NotificationsComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  toggleAlerts() {
+  toggleAlerts($event: any) {
     this.isCollapsed = !this.isCollapsed;
+    $event.preventDefault();
+    $event.stopPropagation();
     return false;
   }
 
+  @HostListener('document:click', ['$event']) onClick(event): void {
+    this.isCollapsed = true;
+  }
 }
