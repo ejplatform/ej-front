@@ -46,7 +46,7 @@ export class PointComponent implements OnInit {
     
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
-      window.location.reload();
+      // window.location.reload();
     }, error => {
       console.log(error);
     });
