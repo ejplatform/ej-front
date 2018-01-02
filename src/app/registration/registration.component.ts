@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
-import { Tour } from '../tour/shared/tour-model';
+import { Tour } from '../gamification/shared/tour-model';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
 

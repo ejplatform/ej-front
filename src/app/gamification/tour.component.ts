@@ -6,7 +6,7 @@ import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 import { RegistrationComponent } from '../registration/registration.component';
 import { StepComponent } from './step/step.component';
-import { Tour } from '../tour/shared/tour-model';
+import { Tour } from './shared/tour-model';
 import { DynamicService } from './shared/dynamic.service';
 import { BadgeComponent } from './badge/badge.component';
 

@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileService } from '../../services/profile.service';
 import { Profile } from '../../models/profile';
-import { Tour } from '../../tour/shared/tour-model';
+import { Tour } from '../shared/tour-model';
 import { TourService } from '../shared/tour.service';
 
 @Component({

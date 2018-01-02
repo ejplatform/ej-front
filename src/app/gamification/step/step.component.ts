@@ -7,7 +7,7 @@ import { ConversationService } from '../../services/conversation.service';
 import { VoteService } from '../../services/vote.service';
 import { TourService } from '../shared/tour.service';
 import { Profile } from '../../models/profile';
-import { Tour } from '../../tour/shared/tour-model';
+import { Tour } from '../shared/tour-model';
 import { Conversation } from '../../models/conversation';
 import { Comment } from '../../comments/shared/comment.model';
 
