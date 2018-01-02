@@ -12,35 +12,15 @@ export class VoteService {
   constructor(private http: HttpClient) { }
 
   agree(comment: Comment): Observable<Vote> {
-    let vote = new Vote();
-    vote.comment=comment.id
-    vote.value=Vote.AGREE;
-
-    // Send the vote to the pushTogether backend
-    return this.save(vote);
+    return this.vote(comment, Vote.AGREE);
   }
 
   disagree(comment: Comment): Observable<Vote> {
-    let vote = new Vote();
-    vote.comment=comment.id
-    vote.value=Vote.DISAGREE;
-
-    // Send the vote to the pushTogether backend
-    return this.save(vote);
+    return this.vote(comment, Vote.DISAGREE);
   }
 
   pass(comment: Comment): Observable<Vote> {
-    let vote = new Vote();
-    vote.comment=comment.id
-    vote.value=Vote.PASS;
-
-    // Send the vote to the pushTogether backend
-    return this.save(vote);
-  }
-
-  save(vote: Vote): Observable<Vote> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/votes/`;
-    return this.http.post<Vote>(fullEndpointUrl, vote);
+    return this.vote(comment, Vote.PASS); 
   }
 
   // Send data to the polis URL
@@ -58,4 +38,19 @@ export class VoteService {
 
    return this.http.post(fullEndpointUrl, data);
   }
+
+  private vote(comment: Comment, action: number): Observable<Vote> {
+    let vote = new Vote();
+    vote.comment=comment.id
+    vote.value=action;
+    
+    // Send the vote to the pushTogether backend
+    return this.save(vote);
+  }
+
+  private save(vote: Vote): Observable<Vote> {
+    let fullEndpointUrl = `${environment.apiUrl}/api/votes/`;
+    return this.http.post<Vote>(fullEndpointUrl, vote);
+  }
+
 }

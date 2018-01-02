@@ -93,6 +93,7 @@ export class EmbedComponent implements OnInit {
       });
     });
 
+    // FIXME encapsulate this call to polis for every vote computed
     // Send this vote to the polis backend also
     let votePolisValue;
     switch (action) {
