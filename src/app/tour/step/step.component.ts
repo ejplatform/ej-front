@@ -30,7 +30,6 @@ export class StepComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('StepComponent: ngOnInit', this.conversation);
     if(!this.conversation){
       this.conversationService.random().subscribe((conversation: Conversation) => {
         //FIXME Uncoment this line after make random endpoint
@@ -52,7 +51,6 @@ export class StepComponent implements OnInit {
   saveNextStepOnProfile(){
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
     this.profileService.save(this.profile).subscribe( profile => {
-      console.log('salvando perfil')
       this.profileService.setProfile(profile);
       window.location.reload();
     }, error => {
@@ -61,10 +59,8 @@ export class StepComponent implements OnInit {
   }
 
   vote(comment, action) {
-    console.log('StepComponent: vote', action)
     this.voteService[action](comment).subscribe(vote => {
       this.amountVotes += 1;
-      console.log('salvando proximo passo')
       if(this.profile.tour_step == Tour.STEP_FIVE && (this.amountVotes == 2)){
         this.saveNextStepOnProfile();
       }else if(this.profile.tour_step != Tour.STEP_FIVE){

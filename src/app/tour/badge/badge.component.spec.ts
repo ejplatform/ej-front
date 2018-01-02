@@ -8,6 +8,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BadgeComponent } from './badge.component';
 import { ProfileService } from '../../services/profile.service';
+import { TourService } from '../shared/tour.service';
 import * as helpers from '../../../spec/helpers';
 
 describe('BadgeComponent', () => {
@@ -23,6 +24,7 @@ describe('BadgeComponent', () => {
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
+        { provide: TourService, useValue: mocks.tourService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

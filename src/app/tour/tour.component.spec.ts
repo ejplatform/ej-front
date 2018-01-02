@@ -12,6 +12,7 @@ import { Tour } from '../tour/shared/tour-model';
 import { StepComponent } from './step/step.component';
 import { BadgeComponent } from './badge/badge.component';
 import { TourComponent } from './tour.component';
+import { TourService } from './shared/tour.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
@@ -27,9 +28,9 @@ describe('TourComponent', () => {
       imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
       declarations: [ TourComponent, RegistrationComponent, StepComponent, BadgeComponent ],
       providers: [
-        { provide: AuthService, useValue: mocks.authService },      
-        { provide: ToastService, useValue: mocks.toastService },        
-        
+        { provide: AuthService, useValue: mocks.authService },
+        { provide: ToastService, useValue: mocks.toastService },
+        { provide: TourService, useValue: mocks.tourService },
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
       ],

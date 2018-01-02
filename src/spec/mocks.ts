@@ -28,6 +28,11 @@ export function getMocks() {
                 return "";
             },
         },
+        tourService: {
+            success: () => {
+                return "";
+            },
+        },
         bsModalService: {
             show: () => {
                 return "";
