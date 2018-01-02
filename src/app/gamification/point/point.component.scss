@@ -20,6 +20,7 @@
 
 .subtitle{
     @extend .m-5;
+    @extend .pb-5;
     text-align: center;
     font-size: x-large;
     font-weight: $bold;
@@ -36,4 +37,21 @@
     text-align: center;
     font-weight: $extra-bold;
     color: white;
+}
+
+.detail{
+    @extend .mx-5;
+    @extend .mt-5;
+    @extend .pt-4;    
+    @extend .px-5;
+    text-align: center;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+}
+
+.action{
+    @extend .mt-3;
+    @extend .mb-5;
+    text-align: center;
 }
