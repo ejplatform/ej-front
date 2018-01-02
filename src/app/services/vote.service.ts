@@ -39,6 +39,7 @@ export class VoteService {
    return this.http.post(fullEndpointUrl, data);
   }
 
+
   private vote(comment: Comment, action: number): Observable<Vote> {
     let vote = new Vote();
     vote.comment=comment.id
@@ -48,7 +49,7 @@ export class VoteService {
     return this.save(vote);
   }
 
-  private save(vote: Vote): Observable<Vote> {
+  save(vote: Vote): Observable<Vote> {
     let fullEndpointUrl = `${environment.apiUrl}/api/votes/`;
     return this.http.post<Vote>(fullEndpointUrl, vote);
   }
