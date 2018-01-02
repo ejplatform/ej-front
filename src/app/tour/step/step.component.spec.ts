@@ -1,30 +1,3 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { StepComponent } from './step.component';
-
-// describe('StepComponent', () => {
-//   let component: StepComponent;
-//   let fixture: ComponentFixture<StepComponent>;
-
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ StepComponent ]
-//     })
-//     .compileComponents();
-//   }));
-
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(StepComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
-
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
@@ -35,6 +8,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { StepComponent } from './step.component';
 import { ProfileService } from '../../services/profile.service';
+import { TourService } from '../shared/tour.service';
 import * as helpers from '../../../spec/helpers';
 
 describe('StepComponent', () => {
@@ -50,6 +24,7 @@ describe('StepComponent', () => {
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
+        { provide: TourService, useValue: mocks.tourService },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
