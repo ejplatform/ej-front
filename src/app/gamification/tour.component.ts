@@ -20,7 +20,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class TourComponent implements OnInit {
   profile: Profile;
-  bsModalRef: any;  
   
   constructor( private profileService: ProfileService, private modalService: NgbModal, 
     private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, 
@@ -40,6 +39,7 @@ export class TourComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('TourComponent: ngOnInit')
     this.initializeProfile();
     let componentType: any;
     switch (_.toString(this.profile.tour_step)) {

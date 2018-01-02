@@ -28,14 +28,16 @@ export class GamificationInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     let authRequest = request;
-    console.log('GamificationInterceptor: intercept', this.profile)
     if (!this.profile || (this.profile && (this.profile.tour_step != Tour.STEP_FINISH))) {
       Promise.resolve().then(() => {
         if(_.isNil(this.modal)){
           this.modal = this.modalService.open(TourComponent, { backdrop  : 'static', keyboard  : false });
           this.modal.result.then((data) => {
             this.modal = null;
+          }, (reason) => {
+            this.modal = null;
           });
+          this.modal.result.d
         }
       });
     }
