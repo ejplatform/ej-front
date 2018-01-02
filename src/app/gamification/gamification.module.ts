@@ -7,7 +7,7 @@ import { BadgeComponent } from './badge/badge.component';
 import { PointComponent } from './point/point.component';
 import { TipComponent } from './tip/tip.component';
 import { GamificationRoutingModule, routedComponents } from './gamification.routing';
-import { TourInterceptor } from './interceptor.module';
+import { GamificationInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from '../registration/registration.component';

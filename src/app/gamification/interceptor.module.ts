@@ -11,7 +11,7 @@ import { TourComponent } from './tour.component';
 import * as _ from 'lodash';
 
 @Injectable()
-export class TourInterceptor implements HttpInterceptor {
+export class GamificationInterceptor implements HttpInterceptor {
 
   profile: Profile;
   modal: any;
@@ -28,7 +28,7 @@ export class TourInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     let authRequest = request;
-    
+    console.log('GamificationInterceptor: intercept', this.profile)
     if (!this.profile || (this.profile && (this.profile.tour_step != Tour.STEP_FINISH))) {
       Promise.resolve().then(() => {
         if(_.isNil(this.modal)){

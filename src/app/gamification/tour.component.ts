@@ -7,7 +7,7 @@ import { Profile } from '../models/profile';
 import { RegistrationComponent } from '../registration/registration.component';
 import { StepComponent } from './step/step.component';
 import { Tour } from './shared/tour-model';
-import { DynamicService } from './shared/dynamic.service';
+import { TourService } from './shared/tour.service';
 import { BadgeComponent } from './badge/badge.component';
 import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
@@ -24,22 +24,26 @@ export class TourComponent implements OnInit {
   
   constructor( private profileService: ProfileService, private modalService: NgbModal, 
     private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, 
-    public activeModal: NgbActiveModal) { 
+    public activeModal: NgbActiveModal, private tourService: TourService) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
-    this.profileService.profileChangeEvent.subscribe(profile => {
-      this.profile = profile;
-    });
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
       this.ngOnInit();
     });
   }
 
+  private initializeProfile(){
+    if(!_.isNil(this.profile.id) && (this.profile.tour_step == '')){
+      this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
+    }    
+  }
+
   ngOnInit() {
+    this.initializeProfile();
     let componentType: any;
-    switch (this.profile.tour_step) {
-      case undefined: {
+    switch (_.toString(this.profile.tour_step)) {
+      case '': {
         componentType = RegistrationComponent;
         break;
       }
