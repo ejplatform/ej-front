@@ -30,7 +30,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 // Application Modules
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
-import { TourModule } from './gamification/tour.module';
+import { GamificationModule } from './gamification/gamification.module';
 
 // Application imports
 import { AppComponent } from './app.component';
@@ -94,7 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommentsReportModule,
-    TourModule,
+    GamificationModule,
     SharedModule.forRoot(),
     BrowserModule,
     HttpClientModule,
