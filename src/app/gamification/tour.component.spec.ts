@@ -11,6 +11,8 @@ import { ToastService } from '../services/toast.service';
 import { Tour } from './shared/tour-model';
 import { StepComponent } from './step/step.component';
 import { BadgeComponent } from './badge/badge.component';
+import { PointComponent } from './point/point.component';
+import { TipComponent } from './tip/tip.component';
 import { TourComponent } from './tour.component';
 import { TourService } from './shared/tour.service';
 import { ProfileService } from '../services/profile.service';
@@ -26,7 +28,7 @@ describe('TourComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [ TourComponent, RegistrationComponent, StepComponent, BadgeComponent ],
+      declarations: [ TourComponent, RegistrationComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ],
       providers: [
         { provide: AuthService, useValue: mocks.authService },
         { provide: ToastService, useValue: mocks.toastService },

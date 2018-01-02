@@ -4,7 +4,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TourComponent } from './tour.component';
 import { StepComponent } from './step/step.component';
 import { BadgeComponent } from './badge/badge.component';
-import { TourRoutingModule, routedComponents } from './tour.routing';
+import { PointComponent } from './point/point.component';
+import { TipComponent } from './tip/tip.component';
+import { GamificationRoutingModule, routedComponents } from './gamification.routing';
 import { TourInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,13 +17,13 @@ import { TourService } from './shared/tour.service';
   imports: [
     CommonModule,
     SharedModule,    
-    TourRoutingModule,
+    GamificationRoutingModule,
   ],
   providers: [
     NgbActiveModal,
     TourService
   ],
-  declarations: [ routedComponents, TourComponent, StepComponent, BadgeComponent ],
+  declarations: [ routedComponents, TourComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ],
   entryComponents: [ TourComponent ],
 })
 export class GamificationModule {
