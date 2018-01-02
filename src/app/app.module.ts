@@ -62,7 +62,7 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 
-import { TourInterceptor } from './gamification/interceptor.module';
+import { GamificationInterceptor } from './gamification/interceptor.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -120,7 +120,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TourInterceptor, multi: true },    
+    { provide: HTTP_INTERCEPTORS, useClass: GamificationInterceptor, multi: true },    
 
   ],
   entryComponents: [LoginComponent,

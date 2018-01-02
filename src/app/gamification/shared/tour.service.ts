@@ -6,6 +6,9 @@ export class TourService {
 
   nextStep(step: string){
     switch (step) {  
+      case '': {
+        return Tour.STEP_TWO
+      }
       case Tour.STEP_TWO: {
         return Tour.STEP_THREE
       }
