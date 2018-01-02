@@ -24,10 +24,10 @@ import { TourService } from './shared/tour.service';
   declarations: [ routedComponents, TourComponent, StepComponent, BadgeComponent ],
   entryComponents: [ TourComponent ],
 })
-export class TourModule {
+export class GamificationModule {
   static withComponents(components: any[]) {
     return {
-        ngModule: TourModule,
+        ngModule: GamificationModule,
         providers: [
             {provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: components, multi: true}
         ]
