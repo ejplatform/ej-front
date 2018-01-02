@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash'
 
@@ -14,17 +14,13 @@ import { BadgeComponent } from './badge/badge.component';
   selector: 'app-tour',
   template: "",
   entryComponents:[ RegistrationComponent, StepComponent, BadgeComponent ]
-  
-  // styleUrls: ['./tour.component.scss']
 })
 export class TourComponent implements OnInit {
   profile: Profile;
   bsModalRef: any;  
   
   constructor( private profileService: ProfileService, private modalService: NgbModal, 
-    private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver,
-  ) { 
+    private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -47,12 +43,24 @@ export class TourComponent implements OnInit {
         componentType = StepComponent;
         break;
       }
+      case Tour.STEP_FOUR: {
+        componentType = BadgeComponent;
+        break;
+      }
+      case Tour.STEP_FIVE: {
+        componentType = StepComponent;
+        break;
+      }
+      case Tour.STEP_SIX: {
+        componentType = BadgeComponent;
+        break;
+      }
       default: {
         componentType = RegistrationComponent;
         break;
       }
    }
-   let compFactory = this.cfr.resolveComponentFactory(componentType);
+   let compFactory = this.factory.resolveComponentFactory(componentType);
    this.viewContainerRef.createComponent(compFactory);
    
   }

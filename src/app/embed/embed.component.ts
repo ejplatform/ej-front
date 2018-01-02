@@ -49,6 +49,75 @@ export class EmbedComponent implements OnInit {
     });
   }
 
+  displayStage(stage) {
+    this.displayedStage = stage;
+  }
+
+  expandStage(stage) {
+    this.expandedStage = this.displayedStage;
+    window.scrollTo(0, 0);
+  }
+
+  collapseStage() {
+    this.expandedStage = null;
+  }
+
+  truncate(str) {
+    if (str.length > 100) {
+      return str.substring(0, 97) + '...';
+    } else {
+      return str;
+    }
+  }
+
+  vote(comment, action) {
+    this.voteService[action](comment).subscribe(vote => {
+      this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(anothercomment => {
+        this.comment = anothercomment;
+      }, error => {
+        this.comment = null;
+      });
+    });
+
+    // FIXME encapsulate this call to polis for every vote computed
+    // Send this vote to the polis backend also
+    let votePolisValue;
+    switch (action) {
+      case 'agree': {
+        votePolisValue = -1;
+        break;
+      }
+      case 'disagree': {
+        votePolisValue = 1;
+        break;
+      }
+      default: {
+        votePolisValue = 0;
+        break;
+      }
+   }
+   this.voteService.polisSave(votePolisValue, comment.polis_id, this.conversation.polis_slug, this.profile.id).subscribe();
+  }
+
+  clearComment() {
+    this.newCommentSuccess = null;
+    this.newCommentText = "";
+  }
+
+  sendComment() {
+    let newcomment = new Comment();
+    newcomment.content = this.newCommentText;
+    newcomment.conversation = this.conversation.id;
+    this.commentService.create(newcomment).subscribe(response => {
+      this.newCommentText = "";
+      this.newCommentSuccess = true;
+    }, error => {
+      this.newCommentSuccess = false;
+    });
+
+    this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe();
+  }
+
   ngOnInit() {
     // this.profile = this.profileService.getProfile();
     if (this.conversation === undefined) {

@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileService } from '../../services/profile.service';
 import { Profile } from '../../models/profile';
 import { Tour } from '../../tour/shared/tour-model';
+import { TourService } from '../shared/tour.service';
 
 @Component({
   selector: 'app-badge',
@@ -17,7 +18,7 @@ export class BadgeComponent implements OnInit {
   detail = ''
   buttonText = ''
   
-  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService) {
+  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
    }
@@ -26,50 +27,52 @@ export class BadgeComponent implements OnInit {
     
     switch (this.profile.tour_step) {  
       case Tour.STEP_TWO: {
-        this.stepTwoFields()
+        this.stepTwoContent()
         break;
       }
-      case Tour.STEP_THREE: {
+      case Tour.STEP_FOUR: {
+        this.stepFourContent()
         break;
       }
-      default: {
-
+      case Tour.STEP_SIX: {
+        this.stepSixContent()
         break;
       }
     }    
     
   }
 
-  nextStep(){
-    switch (this.profile.tour_step) {  
-      case Tour.STEP_TWO: {
-        return Tour.STEP_THREE
-      }
-      case Tour.STEP_THREE: {
-        return Tour.STEP_FOUR
-      }
-    }  
-  }
   saveProfile(){
-    this.profile.tour_step = this.nextStep()
+    this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
+    
     this.profileService.save(this.profile).subscribe( profile => {
-      // this.toastService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
       this.profileService.setProfile(profile);
       window.location.reload();
-      // this.router.navigate(['profile']);
-
     }, error => {
-      // this.handleError(error);
       console.log(error);
     });
   }
 
-  stepTwoFields(){
+  stepTwoContent(){
     this.title = 'Obrigado por se Cadastrar'
     this.subtitle = 'VOCÊ GANHOU'
     this.points = 100
     this.detail = 'Descubra de um jeito simples de participar'
     this.buttonText = 'COMECE O JOGO'
+  }
+  stepFourContent(){
+    this.title = 'Parabéns'
+    this.subtitle = 'VOCÊ GANHOU'
+    this.points = 10
+    this.detail = 'Vote em mais 2 comentários e ganhe sua primeira Medalha!'
+    this.buttonText = 'VOTAR'
+  }
+  stepSixContent(){
+    this.title = 'Parabéns'
+    this.subtitle = 'VOCÊ GANHOU SUA 1 MEDALHA'
+    this.points = 10
+    this.detail = 'Continue na ativa e acumule novos pontos'
+    this.buttonText = 'CONTINUAR'
   }
 
 }
