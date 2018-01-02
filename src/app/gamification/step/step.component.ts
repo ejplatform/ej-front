@@ -50,7 +50,7 @@ export class StepComponent implements OnInit {
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
       this.amountVotes = 0;
-      window.location.reload();
+      // window.location.reload();
     }, error => {
       console.log(error);
     });

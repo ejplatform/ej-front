@@ -11,6 +11,7 @@ import { DynamicService } from './shared/dynamic.service';
 import { BadgeComponent } from './badge/badge.component';
 import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tour',
@@ -22,17 +23,26 @@ export class TourComponent implements OnInit {
   bsModalRef: any;  
   
   constructor( private profileService: ProfileService, private modalService: NgbModal, 
-    private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver) { 
+    private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, 
+    public activeModal: NgbActiveModal) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+    });
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      this.profile = profile;
+      this.ngOnInit();
     });
   }
 
   ngOnInit() {
     let componentType: any;
     switch (this.profile.tour_step) {
+      case undefined: {
+        componentType = RegistrationComponent;
+        break;
+      }
       case Tour.STEP_ONE: {
         componentType = PointComponent;
         break;
@@ -86,12 +96,15 @@ export class TourComponent implements OnInit {
         break;
       }
       default: {
-        // componentType = RegistrationComponent;
+        this.activeModal.close()
         break;
       }
    }
-   let compFactory = this.factory.resolveComponentFactory(componentType);
-   this.viewContainerRef.createComponent(compFactory);
+   if(!_.isNil(componentType)){
+    let compFactory = this.factory.resolveComponentFactory(componentType);
+    this.viewContainerRef.clear()
+    this.viewContainerRef.createComponent(compFactory);
+   }
    
   }
 

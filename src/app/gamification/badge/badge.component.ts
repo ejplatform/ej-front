@@ -41,7 +41,7 @@ export class BadgeComponent implements OnInit {
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
-      window.location.reload();
+      // window.location.reload();
     }, error => {
       console.log(error);
     });
