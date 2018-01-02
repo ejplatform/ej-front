@@ -6,14 +6,15 @@ import { Tour } from '../shared/tour-model';
 import { TourService } from '../shared/tour.service';
 
 @Component({
-  selector: 'app-badge',
-  templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss']
+  selector: 'app-tip',
+  templateUrl: './tip.component.html',
+  styleUrls: ['./tip.component.scss']
 })
-export class BadgeComponent implements OnInit {
+export class TipComponent implements OnInit {
   profile: Profile;  
   title = ''
   subtitle = ''
+  points: Number
   detail = ''
   buttonText = ''
   
@@ -24,13 +25,13 @@ export class BadgeComponent implements OnInit {
 
   ngOnInit() {
     
-    switch (this.profile.tour_step) {
-      case Tour.STEP_SIX: {
-        this.stepSixContent()
+    switch (this.profile.tour_step) {  
+      case Tour.STEP_SEVEN: {
+        this.stepSevenContent()
         break;
       }
-      case Tour.STEP_TWELVE: {
-        this.stepTwelveContent()
+      case Tour.STEP_TEN: {
+        this.stepTenContent()
         break;
       }
     }    
@@ -39,6 +40,7 @@ export class BadgeComponent implements OnInit {
 
   saveProfile(){
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
+    
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
       window.location.reload();
@@ -47,18 +49,16 @@ export class BadgeComponent implements OnInit {
     });
   }
 
-  stepSixContent(){
-    this.title = 'Parabéns'
-    this.subtitle = 'VOCÊ GANHOU SUA 1 MEDALHA'
-    this.detail = 'Continue na ativa e acumule novos pontos'
-    this.buttonText = 'CONTINUAR'
+  stepSevenContent(){
+    this.title = 'Mostre Que Sabe Tudo'
+    this.subtitle = 'Opine em uma conversa de outro assunto e ganhe novos poderes.'
+    this.buttonText = 'OPINAR EM OUTRA CONVERSA'
   }
 
-  stepTwelveContent(){
-    this.title = 'Parabéns'
-    this.subtitle = 'VOCÊ GANHOU SUA 2 MEDALHA'
-    this.detail = 'Vote mais duas vezes para desbloquear o modo mundo aberto'
+  stepTenContent(){
+    this.title = 'Opine nessa nova conversa para ganhar'
+    this.subtitle = '50 pontos'
     this.buttonText = 'VOTAR'
   }
-
+  
 }

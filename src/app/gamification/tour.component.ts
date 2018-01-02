@@ -9,11 +9,13 @@ import { StepComponent } from './step/step.component';
 import { Tour } from './shared/tour-model';
 import { DynamicService } from './shared/dynamic.service';
 import { BadgeComponent } from './badge/badge.component';
+import { TipComponent } from './tip/tip.component';
+import { PointComponent } from './point/point.component';
 
 @Component({
   selector: 'app-tour',
   template: "",
-  entryComponents:[ RegistrationComponent, StepComponent, BadgeComponent ]
+  entryComponents:[ RegistrationComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ]
 })
 export class TourComponent implements OnInit {
   profile: Profile;
@@ -32,11 +34,11 @@ export class TourComponent implements OnInit {
     let componentType: any;
     switch (this.profile.tour_step) {
       case Tour.STEP_ONE: {
-        componentType = BadgeComponent;
+        componentType = PointComponent;
         break;
       }
       case Tour.STEP_TWO: {
-        componentType = BadgeComponent;
+        componentType = PointComponent;
         break;
       }
       case Tour.STEP_THREE: {
@@ -44,7 +46,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_FOUR: {
-        componentType = BadgeComponent;
+        componentType = PointComponent;
         break;
       }
       case Tour.STEP_FIVE: {
@@ -55,8 +57,36 @@ export class TourComponent implements OnInit {
         componentType = BadgeComponent;
         break;
       }
+      case Tour.STEP_SEVEN: {
+        componentType = TipComponent;
+        break;
+      }
+      case Tour.STEP_EIGHT: {
+        componentType = StepComponent;
+        break;
+      }
+      case Tour.STEP_NINE: {
+        componentType = PointComponent;
+        break;
+      }
+      case Tour.STEP_TEN: {
+        componentType = TipComponent;
+        break;
+      }
+      case Tour.STEP_ELEVEN: {
+        componentType = StepComponent;
+        break;
+      }
+      case Tour.STEP_TWELVE: {
+        componentType = BadgeComponent;
+        break;
+      }
+      case Tour.STEP_THIRTEEN: {
+        componentType = StepComponent;
+        break;
+      }
       default: {
-        componentType = RegistrationComponent;
+        // componentType = RegistrationComponent;
         break;
       }
    }

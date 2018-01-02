@@ -29,7 +29,7 @@ export class TourInterceptor implements HttpInterceptor {
 
     let authRequest = request;
     
-    if (!this.profile || (this.profile && (this.profile.tour != Tour.STEP_FINISH))) {
+    if (!this.profile || (this.profile && (this.profile.tour_step != Tour.STEP_FINISH))) {
       Promise.resolve().then(() => {
         if(_.isNil(this.modal)){
           this.modal = this.modalService.open(TourComponent, { backdrop  : 'static', keyboard  : false });

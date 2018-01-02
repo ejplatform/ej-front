@@ -21,7 +21,7 @@ export class StepComponent implements OnInit {
   profile: Profile;
   conversation: Conversation;
   comment: Comment;
-  amountVotes: number;
+  amountVotes = 0;
   
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, 
     private conversationService: ConversationService, private voteService: VoteService, private tourService: TourService) { 
@@ -41,17 +41,15 @@ export class StepComponent implements OnInit {
           this.comment = null;
         });
       });
-    }
-    if(this.profile.tour_step == Tour.STEP_FIVE){
-      this.amountVotes = 0;
-    }
-    
+    }    
   }
 
   saveNextStepOnProfile(){
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
+    console.log('StepComponent: saveNextStepOnProfile', this.profile)
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
+      this.amountVotes = 0;
       window.location.reload();
     }, error => {
       console.log(error);
@@ -59,12 +57,15 @@ export class StepComponent implements OnInit {
   }
 
   vote(comment, action) {
+    console.log('StepComponent: vote', this.profile.tour_step,  this.amountVotes)
     this.voteService[action](comment).subscribe(vote => {
       this.amountVotes += 1;
       if(this.profile.tour_step == Tour.STEP_FIVE && (this.amountVotes == 2)){
         this.saveNextStepOnProfile();
-      }else if(this.profile.tour_step != Tour.STEP_FIVE){
+      }else if((this.profile.tour_step != Tour.STEP_FIVE) && (this.profile.tour_step != Tour.STEP_THIRTEEN)){
         this.saveNextStepOnProfile();
+      }else if(this.profile.tour_step == Tour.STEP_THIRTEEN && (this.amountVotes == 2)){
+          this.saveNextStepOnProfile();
       }else{
         this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
           this.comment = comment;

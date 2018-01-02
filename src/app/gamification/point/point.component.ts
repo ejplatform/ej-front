@@ -6,14 +6,15 @@ import { Tour } from '../shared/tour-model';
 import { TourService } from '../shared/tour.service';
 
 @Component({
-  selector: 'app-badge',
-  templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss']
+  selector: 'app-point',
+  templateUrl: './point.component.html',
+  styleUrls: ['./point.component.scss']
 })
-export class BadgeComponent implements OnInit {
+export class PointComponent implements OnInit {
   profile: Profile;  
   title = ''
   subtitle = ''
+  points: Number
   detail = ''
   buttonText = ''
   
@@ -24,21 +25,25 @@ export class BadgeComponent implements OnInit {
 
   ngOnInit() {
     
-    switch (this.profile.tour_step) {
-      case Tour.STEP_SIX: {
-        this.stepSixContent()
+    switch (this.profile.tour_step) {  
+      case Tour.STEP_TWO: {
+        this.stepTwoContent()
         break;
       }
-      case Tour.STEP_TWELVE: {
-        this.stepTwelveContent()
+      case Tour.STEP_FOUR: {
+        this.stepFourContent()
         break;
       }
-    }    
-    
+      case Tour.STEP_NINE: {
+        this.stepNineContent()
+        break;
+      }
+    }
   }
 
   saveProfile(){
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
+    
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
       window.location.reload();
@@ -47,18 +52,28 @@ export class BadgeComponent implements OnInit {
     });
   }
 
-  stepSixContent(){
-    this.title = 'Parabéns'
-    this.subtitle = 'VOCÊ GANHOU SUA 1 MEDALHA'
-    this.detail = 'Continue na ativa e acumule novos pontos'
-    this.buttonText = 'CONTINUAR'
+  stepTwoContent(){
+    this.title = 'Obrigado por se Cadastrar'
+    this.subtitle = 'VOCÊ GANHOU'
+    this.points = 100
+    this.detail = 'Descubra de um jeito simples de participar'
+    this.buttonText = 'COMECE O JOGO'
   }
 
-  stepTwelveContent(){
+  stepFourContent(){
     this.title = 'Parabéns'
-    this.subtitle = 'VOCÊ GANHOU SUA 2 MEDALHA'
-    this.detail = 'Vote mais duas vezes para desbloquear o modo mundo aberto'
+    this.subtitle = 'VOCÊ GANHOU'
+    this.points = 10
+    this.detail = 'Vote em mais 2 comentários e ganhe sua primeira Medalha!'
     this.buttonText = 'VOTAR'
+  }
+
+  stepNineContent(){
+    this.title = 'Muito bem! mudou de conversa pela primeira vez e'
+    this.subtitle = 'VOCÊ GANHOU'
+    this.points = 100
+    this.detail = 'Continue na ativa e acumule novos pontos'
+    this.buttonText = 'CONTINUAR'
   }
 
 }
