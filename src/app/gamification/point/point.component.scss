@@ -1,0 +1,39 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../variables';
+
+.gamification-point{
+    margin: 0px;
+    padding: 0px;
+    background-image: url('/assets/images/marca_dagua_modal_gamification.svg');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-position-y: top;   
+}
+
+.title{
+    @extend .m-4;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+    
+}
+
+.subtitle{
+    @extend .m-5;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+    color: #CD0416;
+}
+
+.points{
+    @extend .m-5;
+    @extend .p-4;
+    background-image: url('/assets/images/bg_pontos.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    text-align: center;
+    font-weight: $extra-bold;
+    color: white;
+}
