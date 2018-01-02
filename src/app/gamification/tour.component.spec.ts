@@ -8,7 +8,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ToastService } from '../services/toast.service';
 
-import { Tour } from '../tour/shared/tour-model';
+import { Tour } from './shared/tour-model';
 import { StepComponent } from './step/step.component';
 import { BadgeComponent } from './badge/badge.component';
 import { TourComponent } from './tour.component';
