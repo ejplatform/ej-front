@@ -36,6 +36,7 @@ import { GamificationModule } from './gamification/gamification.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    ParticipateComponent,
     NavigationBarComponent,
     HeaderComponent,
     FooterComponent,
