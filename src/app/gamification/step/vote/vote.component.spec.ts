@@ -4,28 +4,24 @@ import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { StepComponent } from './step.component';
-import { CommentComponent } from './comment/comment.component';
-import { VoteComponent } from './vote/vote.component';
-import { ProfileService } from '../../services/profile.service';
-import { TourService } from '../shared/tour.service';
-import * as helpers from '../../../spec/helpers';
+import { VoteComponent } from './vote.component';
+import { ProfileService } from '../../../services/profile.service';
+import { TourService } from '../../shared/tour.service';
+import * as helpers from '../../../../spec/helpers';
 
-describe('StepComponent', () => {
-  let component: StepComponent;
-  let fixture: ComponentFixture<StepComponent>;
+describe('VoteComponent', () => {
+  let component: VoteComponent;
+  let fixture: ComponentFixture<VoteComponent>;
   const mocks = helpers.getMocks();
   let commentReportService = null;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [ StepComponent, VoteComponent, CommentComponent ],
+      imports: [ TranslateModule.forRoot(), HttpClientTestingModule, FormsModule],
+      declarations: [ VoteComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
         { provide: TourService, useValue: mocks.tourService },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -34,7 +30,7 @@ describe('StepComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StepComponent);
+    fixture = TestBed.createComponent(VoteComponent);
     component = fixture.componentInstance;
   });
 

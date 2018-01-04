@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { TourComponent } from './tour.component';
 import { StepComponent } from './step/step.component';
+import { CommentComponent } from './step/comment/comment.component';
+import { VoteComponent } from './step/vote/vote.component';
 import { BadgeComponent } from './badge/badge.component';
 import { PointComponent } from './point/point.component';
 import { TipComponent } from './tip/tip.component';
@@ -23,7 +25,7 @@ import { TourService } from './shared/tour.service';
     NgbActiveModal,
     TourService
   ],
-  declarations: [ routedComponents, TourComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ],
+  declarations: [ routedComponents, TourComponent, StepComponent, CommentComponent, VoteComponent, BadgeComponent, PointComponent, TipComponent ],
   entryComponents: [ TourComponent ],
 })
 export class GamificationModule {
