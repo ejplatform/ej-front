@@ -59,6 +59,8 @@ export class BadgeComponent implements OnInit {
 
   stepTwelveContent(){
     this.title = 'Parabéns'
+    this.name = 'SABE TUDO NÍVEL 1'
+    this.imagePath = '/assets/images/badges/medalha_sabetudo.svg'
     this.subtitle = 'VOCÊ GANHOU SUA 2 MEDALHA'
     this.detail = 'Vote mais duas vezes para desbloquear o modo mundo aberto'
     this.buttonText = 'VOTAR'
