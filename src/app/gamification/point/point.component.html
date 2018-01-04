@@ -9,6 +9,9 @@
     <div class='text'>{{ 'gamification.point.points' | translate}}</div>
   </div>
   <div class='detail'>{{ 'gamification.point.' + currentStep + '.detail' | translate }}</div>
+  <div class='image'>
+    <img [src]="getImagePath()"/>  
+  </div>
   <div class='action'>
     <button class="button green" (click)="saveProfile()">
         {{ 'gamification.point.' + currentStep + '.button' | translate }}
