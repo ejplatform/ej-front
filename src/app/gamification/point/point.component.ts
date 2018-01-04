@@ -12,12 +12,7 @@ import { TourService } from '../shared/tour.service';
 })
 export class PointComponent implements OnInit {
   profile: Profile;  
-  title = ''
-  subtitle = ''
-  points: Number
-  detail = ''
-  buttonText = ''
-  imagePath = ''
+  currentStep = '';
   
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
@@ -25,21 +20,7 @@ export class PointComponent implements OnInit {
    }
 
   ngOnInit() {
-    
-    switch (this.profile.tour_step) {  
-      case Tour.STEP_TWO: {
-        this.stepTwoContent()
-        break;
-      }
-      case Tour.STEP_FOUR: {
-        this.stepFourContent()
-        break;
-      }
-      case Tour.STEP_NINE: {
-        this.stepNineContent()
-        break;
-      }
-    }
+    this.currentStep = this.profile.tour_step;
   }
 
   saveProfile(){
@@ -52,29 +33,12 @@ export class PointComponent implements OnInit {
     });
   }
 
-  stepTwoContent(){
-    this.title = 'Obrigado por se Cadastrar'
-    this.subtitle = 'VOCÊ GANHOU'
-    this.points = 100
-    this.detail = 'Descubra de um jeito simples de participar'
-    this.buttonText = 'COMECE O JOGO'
-  }
-
-  stepFourContent(){
-    this.title = 'Parabéns'
-    this.subtitle = 'VOCÊ GANHOU'
-    this.points = 10
-    this.detail = 'Vote em mais 2 comentários e ganhe sua primeira Medalha!'
-    this.imagePath = '/assets/images/menu_medalhas_icon.svg'    
-    this.buttonText = 'VOTAR'
-  }
-
-  stepNineContent(){
-    this.title = 'Muito bem! mudou de conversa pela primeira vez e'
-    this.subtitle = 'VOCÊ GANHOU'
-    this.points = 100
-    this.detail = 'Continue na ativa e acumule novos pontos'
-    this.buttonText = 'CONTINUAR'
+  getImagePath(){
+    let path = ''
+    if(this.currentStep == Tour.STEP_FOUR){
+      path = '/assets/images/menu_medalhas_icon.svg'
+    }
+    return path
   }
 
 }

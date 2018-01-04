@@ -12,29 +12,15 @@ import { TourService } from '../shared/tour.service';
 })
 export class TipComponent implements OnInit {
   profile: Profile;  
-  title = ''
-  subtitle = ''
-  buttonText = ''
-  imagePath = ''
-  
+  currentStep = '';
+
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
    }
 
   ngOnInit() {
-    
-    switch (this.profile.tour_step) {  
-      case Tour.STEP_SEVEN: {
-        this.stepSevenContent()
-        break;
-      }
-      case Tour.STEP_TEN: {
-        this.stepTenContent()
-        break;
-      }
-    }    
-    
+    this.currentStep = this.profile.tour_step;   
   }
 
   saveProfile(){
@@ -46,18 +32,12 @@ export class TipComponent implements OnInit {
       console.log(error);
     });
   }
-
-  stepSevenContent(){
-    this.title = 'Mostre Que Sabe Tudo'
-    this.subtitle = 'Opine em uma conversa de outro assunto e ganhe novos poderes.'
-    this.buttonText = 'OPINAR EM OUTRA CONVERSA'
-    this.imagePath = '/assets/images/tips/novos_poderes.svg'    
-  }
-
-  stepTenContent(){
-    this.title = 'Opine nessa nova conversa para ganhar'
-    this.subtitle = '50 pontos'
-    this.buttonText = 'VOTAR'
-  }
   
+  getImagePath(){
+    let path = ''
+    if(this.currentStep == Tour.STEP_SEVEN){
+      path = '/assets/images/tips/novos_poderes.svg'
+    } 
+    return path
+  }
 }
