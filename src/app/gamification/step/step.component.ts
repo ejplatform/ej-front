@@ -27,21 +27,18 @@ export class StepComponent implements OnInit {
     private conversationService: ConversationService, private voteService: VoteService, private tourService: TourService) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    //FIXME Replace by random() when we have a random conversation endpoint
+    conversationService.list().subscribe(conversations => {
+      this.conversation = conversations[0];
+      conversationService.getNextUnvotedComment(conversations[0].id).subscribe(comment => {
+        this.comment = comment;
+      }, error => {
+        this.comment = null;
+      });
+    });
   }
 
   ngOnInit() {
-    if(!this.conversation){
-      this.conversationService.random().subscribe((conversation: Conversation) => {
-        //FIXME Uncoment this line after make random endpoint
-        // this.conversation = conversation;
-        this.conversation = _.head(conversation);
-        this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
-          this.comment = comment;
-        }, error => {
-          this.comment = null;
-        });
-      });
-    }    
   }
 
   saveNextStepOnProfile(){

@@ -34,8 +34,6 @@ describe('StepComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StepComponent);
     component = fixture.componentInstance;
-
-    
   });
 
   it('should create', () => {
