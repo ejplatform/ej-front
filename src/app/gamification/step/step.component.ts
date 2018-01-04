@@ -38,7 +38,7 @@ export class StepComponent implements OnInit {
     conversationService.list().subscribe(conversations => {
       this.conversation = conversations[0];
 
-      if (this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE') {
+      if (this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE' || this.currentStep === 'STEP_THIRTEEN') {
         conversationService.getNextUnvotedComment(conversations[0].id).subscribe(comment => {
           this.comment = comment;
         }, error => {

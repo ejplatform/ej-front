@@ -1,6 +1,6 @@
 <div class="modal-container">
   <div class="modal-header">
-    <h4 *ngIf="currentStep === 'STEP_THREE' || currentStep === 'STEP_FIVE'" class="modal-title pull-left" [innerHTML]="'step.three.title' | translate"></h4>
+    <h4 *ngIf="currentStep === 'STEP_THREE' || currentStep === 'STEP_FIVE' || currentStep === 'STEP_THIRTEEN'" class="modal-title pull-left" [innerHTML]="'step.three.title' | translate"></h4>
     <h4 *ngIf="currentStep === 'STEP_EIGHT' || currentStep === 'STEP_ELEVEN'" class="modal-title pull-left" [innerHTML]="'step.eight.title' | translate"></h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
     <div class="conversation-opinion-stage">{{ conversation.description }}</div>
       
     <div class="conversation-comments">
-      <div *ngIf="currentStep === 'STEP_THREE' || currentStep === 'STEP_FIVE'">
+      <div *ngIf="currentStep === 'STEP_THREE' || currentStep === 'STEP_FIVE' || currentStep === 'STEP_THIRTEEN'">
         <div class="comment-card" *ngIf="comment">
           <p class="comment-author">
             <img src="{{comment.author.image_url}}" alt="" />
