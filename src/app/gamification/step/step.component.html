@@ -2,9 +2,6 @@
   <div class="modal-header">
     <h4 *ngIf="currentStep === 'STEP_THREE' || currentStep === 'STEP_FIVE' || currentStep === 'STEP_THIRTEEN'" class="modal-title pull-left" [innerHTML]="'step.three.title' | translate"></h4>
     <h4 *ngIf="currentStep === 'STEP_EIGHT' || currentStep === 'STEP_ELEVEN'" class="modal-title pull-left" [innerHTML]="'step.eight.title' | translate"></h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
     
   <h4 class="subject" *ngIf="conversation">{{ 'step.three.subject' | translate }} : {{ conversation.title }}</h4>

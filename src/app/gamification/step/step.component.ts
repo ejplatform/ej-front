@@ -32,8 +32,7 @@ export class StepComponent implements OnInit {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.currentStep = this.profile.tour_step;
-    // Uncomment below to debug current step
-    // console.log(this.currentStep);
+
     //FIXME Replace by random() when we have a random conversation endpoint
     conversationService.list().subscribe(conversations => {
       this.conversation = conversations[0];
@@ -79,7 +78,6 @@ export class StepComponent implements OnInit {
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
       this.amountVotes = 0;
-      // window.location.reload();
     }, error => {
       console.log(error);
     });

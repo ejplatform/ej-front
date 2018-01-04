@@ -39,7 +39,6 @@ export class TourComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('TourComponent: ngOnInit')
     this.initializeProfile();
     let componentType: any;
     switch (_.toString(this.profile.tour_step)) {

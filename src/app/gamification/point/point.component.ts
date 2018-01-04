@@ -17,6 +17,7 @@ export class PointComponent implements OnInit {
   points: Number
   detail = ''
   buttonText = ''
+  imagePath = ''
   
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
@@ -46,7 +47,6 @@ export class PointComponent implements OnInit {
     
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
-      // window.location.reload();
     }, error => {
       console.log(error);
     });
@@ -65,6 +65,7 @@ export class PointComponent implements OnInit {
     this.subtitle = 'VOCÊ GANHOU'
     this.points = 10
     this.detail = 'Vote em mais 2 comentários e ganhe sua primeira Medalha!'
+    this.imagePath = '/assets/images/menu_medalhas_icon.svg'    
     this.buttonText = 'VOTAR'
   }
 

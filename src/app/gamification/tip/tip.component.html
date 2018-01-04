@@ -1,12 +1,14 @@
-<div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div class="modal-container">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class='subtitle'>{{subtitle}}</div>
+    <div class='image'>
+      <img [src]="imagePath"/>  
+    </div>
+    <div class='action'>
+      <button class="button green" (click)="saveProfile()">
+      {{buttonText}}
+      </button>
+    </div>
 </div>
-<div class='subtitle'>{{subtitle}}</div>
-<div class='points'>{{points}}</div>
-<div class='detail'>{{detail}}</div>
-<button class="btn btn-default" (click)="saveProfile()">
-  <p>{{buttonText}}</p>
-</button>

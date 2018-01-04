@@ -14,9 +14,8 @@ export class TipComponent implements OnInit {
   profile: Profile;  
   title = ''
   subtitle = ''
-  points: Number
-  detail = ''
   buttonText = ''
+  imagePath = ''
   
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
@@ -43,7 +42,6 @@ export class TipComponent implements OnInit {
     
     this.profileService.save(this.profile).subscribe( profile => {
       this.profileService.setProfile(profile);
-      // window.location.reload();
     }, error => {
       console.log(error);
     });
@@ -53,6 +51,7 @@ export class TipComponent implements OnInit {
     this.title = 'Mostre Que Sabe Tudo'
     this.subtitle = 'Opine em uma conversa de outro assunto e ganhe novos poderes.'
     this.buttonText = 'OPINAR EM OUTRA CONVERSA'
+    this.imagePath = '/assets/images/tips/novos_poderes.svg'    
   }
 
   stepTenContent(){
