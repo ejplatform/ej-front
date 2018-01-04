@@ -36,7 +36,7 @@ export class TipComponent implements OnInit {
   getImagePath(){
     let path = ''
     if(this.currentStep == Tour.STEP_SEVEN){
-      path = '/assets/images/tips/novos_poderes.svg'
+      path = '/assets/images/tips/silhueta_medalha.svg'
     } 
     return path
   }

@@ -36,7 +36,7 @@ export class PointComponent implements OnInit {
   getImagePath(){
     let path = ''
     if(this.currentStep == Tour.STEP_FOUR){
-      path = '/assets/images/menu_medalhas_icon.svg'
+      path = '/assets/images/medalha_simples.svg'
     }
     return path
   }
