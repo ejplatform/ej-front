@@ -4,6 +4,7 @@ import * as _ from 'lodash'
 
 import { ProfileService } from '../../services/profile.service';
 import { ConversationService } from '../../services/conversation.service';
+import { CommentService } from '../../comments/shared/comment.service';
 import { VoteService } from '../../services/vote.service';
 import { TourService } from '../shared/tour.service';
 import { Profile } from '../../models/profile';
@@ -15,30 +16,61 @@ import { Comment } from '../../comments/shared/comment.model';
   selector: 'app-step',
   templateUrl: './step.component.html',
   styleUrls: ['./step.component.scss'],
-  providers: [ ConversationService, VoteService],  
+  providers: [ ConversationService, VoteService, CommentService ],
 })
 export class StepComponent implements OnInit {
   profile: Profile;
   conversation: Conversation;
   comment: Comment;
   amountVotes = 0;
+  currentStep = '';
+  public newCommentText: string;
+  public newCommentSuccess: boolean = null;
   
-  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, 
+  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private commentService: CommentService,
     private conversationService: ConversationService, private voteService: VoteService, private tourService: TourService) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    this.currentStep = this.profile.tour_step;
+    // Uncomment below to debug current step
+    // console.log(this.currentStep);
     //FIXME Replace by random() when we have a random conversation endpoint
     conversationService.list().subscribe(conversations => {
       this.conversation = conversations[0];
-      conversationService.getNextUnvotedComment(conversations[0].id).subscribe(comment => {
-        this.comment = comment;
-      }, error => {
-        this.comment = null;
-      });
+
+      if (this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE') {
+        conversationService.getNextUnvotedComment(conversations[0].id).subscribe(comment => {
+          this.comment = comment;
+        }, error => {
+          this.comment = null;
+        });
+      }
     });
   }
 
   ngOnInit() {
+  }
+
+  clearComment() {
+    this.newCommentSuccess = null;
+    this.newCommentText = "";
+  }
+
+  sendComment() {
+    let newcomment = new Comment();
+    newcomment.content = this.newCommentText;
+    newcomment.conversation = this.conversation.id;
+    this.commentService.create(newcomment).subscribe(response => {
+      this.newCommentText = "";
+      this.newCommentSuccess = true;
+      if (this.profile.tour_step === Tour.STEP_EIGHT || this.profile.tour_step === Tour.STEP_ELEVEN) {
+        this.saveNextStepOnProfile();
+      }
+    }, error => {
+      this.newCommentSuccess = false;
+    });
+
+    this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe();
   }
 
   saveNextStepOnProfile(){
