@@ -1,0 +1,16 @@
+<div class="modal-container">
+    <div class="modal-header">
+      <h4 class="modal-title">{{ 'gamification.badge.' + currentStep + '.title' | translate }}</h4>
+    </div>
+    <div class='subtitle'>{{ 'gamification.badge.' + currentStep + '.subtitle' | translate }}</div>
+    <div class='image'>
+      <img [src]="getImagePath()"/>  
+    </div>
+    <div class='name'>{{ 'gamification.badge.' + currentStep + '.name' | translate }}</div>
+    <div class='detail'>{{ 'gamification.badge.' + currentStep + '.detail' | translate }}</div>
+    <div class='action'>
+      <button class="button green" (click)="saveProfile()">
+          {{ 'gamification.badge.' + currentStep + '.button' | translate }}
+      </button>
+    </div>
+</div>

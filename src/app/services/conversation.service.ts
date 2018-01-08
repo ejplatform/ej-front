@@ -16,6 +16,12 @@ export class ConversationService {
       return this.http.get<Conversation[]>(fullEndpointUrl);
     }
 
+    //FIXME make random endpoint
+    random(): Observable<Conversation> {
+      let fullEndpointUrl = environment.apiUrl + '/api/conversations/';
+      return this.http.get<Conversation>(fullEndpointUrl);
+    }
+
     get(slug: string): Observable<Conversation> {
       let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + slug + '/';
       return this.http.get<Conversation>(fullEndpointUrl);

@@ -60,17 +60,12 @@ export class LoginComponent {
 
   openRegistration() {
     this.bsModalRef.dismiss();
-    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent);
-    this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
-      this.profile = this.profileService.getProfile();
-      this.loggedIn.emit();
-      this.profileService.profileChangeEvent.emit(this.profile);
-    });
+    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent, { backdrop  : 'static', keyboard  : false });
   }
 
   openRecoverPassword() {
     this.bsModalRef.close();
-    this.bsRegistrationModalRef = this.modalService.open(RecoverPasswordComponent);
+    this.bsRegistrationModalRef = this.modalService.open(RecoverPasswordComponent, { backdrop  : 'static', keyboard  : false });
   }
 
   loginWithTwitter() {

@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { ProfileComponent } from "./profile/profile.component";
-// import { CommentsReportComponent } from "./comments_report/comments-report.component";
 import { ConversationsComponent } from "./conversations/conversations.component";
 import { ConversationComponent } from "./conversation/conversation.component";
 import { LogoutComponent } from "./logout/logout.component";

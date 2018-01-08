@@ -1,13 +1,15 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash'
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
+import { Tour } from '../gamification/shared/tour-model';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
+import { LoginComponent  } from '../login/login.component';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +19,7 @@ import { ToastService } from '../services/toast.service';
 export class RegistrationComponent {
 
   profile: Profile;
-  bsModalRef: any;
+  loginModalRef: any;  
   loggedIn = new EventEmitter();
   socialErrors: string;
 
@@ -27,14 +29,15 @@ export class RegistrationComponent {
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService, private toastService: ToastService,
-    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, private router: Router) {
+    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, private router: Router,
+    private modalService: NgbModal) {
     this.profile = new Profile();
-    this.bsModalRef = activeModal;
   }
 
   register() {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
+    this.profile.tour_step = Tour.STEP_TWO;
     this.authService.signUp(this.profile).subscribe((response) => {
       this.handleloginSuccess();
     }, error => this.handleError(error));
@@ -75,13 +78,15 @@ export class RegistrationComponent {
     }, 500);
   }
 
+  openLogin() {
+    this.activeModal.dismiss();
+    this.loginModalRef = this.modalService.open(LoginComponent, { backdrop  : 'static', keyboard  : false });
+  }
+
   handleloginSuccess(){
-    this.profileService.me().subscribe( profile => {
-      this.profileService.setProfile(profile);
-      this.bsModalRef.close();
       this.loggedIn.emit();
+      this.activeModal.close();
       this.toastService.success({ title: "registration.success.title", message: "registration.success.message" });
-    });
   }
 
   handleError(error: any){

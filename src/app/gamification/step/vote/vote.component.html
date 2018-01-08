@@ -1,0 +1,30 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" [innerHTML]="'gamification.step.three.title' | translate"></h4>
+  </div>
+    
+  <h4 class="subject" *ngIf="conversation">{{ 'gamification.step.three.subject' | translate }} : {{ conversation.title }}</h4>
+  
+  <div class="conversation" *ngIf="conversation">
+    <div class="conversation-opinion-stage">{{ conversation.description }}</div>
+      
+    <div class="conversation-comments">
+        <div class="comment-card" *ngIf="comment">
+          <p class="comment-author">
+            <img src="{{comment.author.image_url}}" alt="" />
+            <span>{{ comment.author.name.length ? comment.author.name : comment.author.username }}</span>
+          </p>
+          <p class="comment-text">{{ comment.content }}</p>
+          <ul class="comment-actions">
+            <li (click)="vote(comment, 'agree')">{{ "conversation.vote.agree" | translate }}</li>
+            <li (click)="vote(comment, 'pass')">{{ "conversation.vote.skip" | translate }}</li>
+            <li (click)="vote(comment, 'disagree')">{{ "conversation.vote.disagree" | translate }}</li>
+          </ul>
+        </div>
+    
+        <div class="comment-card" *ngIf="!comment">
+          <p class="comment-text">{{ "conversation.nocomments" | translate }}</p>
+        </div>
+    </div>
+  </div>
+</div>

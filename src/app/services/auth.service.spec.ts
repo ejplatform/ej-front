@@ -2,8 +2,10 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import * as helpers from '../../spec/helpers';
+
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
+import { ProfileService } from './profile.service';
 
 describe('AuthService', () => {
 
@@ -14,6 +16,7 @@ describe('AuthService', () => {
             imports: [HttpClientTestingModule],
             providers: [AuthService, 
                 { provide: SessionService, useValue: mocks.sessionService },
+                { provide: ProfileService, useValue: mocks.profileService },                
             ]
         });
     });
