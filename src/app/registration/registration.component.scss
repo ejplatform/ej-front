@@ -102,3 +102,35 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
         color: #dc3545;
     }
 }
+
+.options{
+    @extend .d-flex;
+    @extend .justify-content-between;
+    @extend .py-2;
+    font-size: small;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    & > div{
+        min-width: 50%;
+        text-align: right;
+    }
+
+    .button-action {
+        min-width: 100%;
+    }
+
+    .login {
+        text-align: left;
+        margin-bottom: 10px;
+
+        .login-button{
+            color: #00AFF0;
+            cursor: pointer;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .button-action{ min-width: 50%; }
+    }
+}

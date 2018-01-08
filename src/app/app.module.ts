@@ -30,11 +30,13 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 // Application Modules
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
+import { GamificationModule } from './gamification/gamification.module';
 
 // Application imports
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HeaderComponent } from './header/header.component';
@@ -61,6 +63,7 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 
+import { GamificationInterceptor } from './gamification/interceptor.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -71,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    ParticipateComponent,
     NavigationBarComponent,
     HeaderComponent,
     FooterComponent,
@@ -92,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommentsReportModule,
+    GamificationModule,
     SharedModule.forRoot(),
     BrowserModule,
     HttpClientModule,
@@ -117,6 +122,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: GamificationInterceptor, multi: true },    
 
   ],
   entryComponents: [LoginComponent,

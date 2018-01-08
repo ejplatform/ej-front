@@ -1,0 +1,20 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ 'gamification.point.' + currentStep + '.title' | translate }}</h4>
+  </div>
+
+  <div class='subtitle'>{{ 'gamification.point.' + currentStep + '.subtitle' | translate }}</div>
+  <div class='points'>
+    <div class='number'>{{ 'gamification.point.' + currentStep + '.points' | translate }}</div> 
+    <div class='text'>{{ 'gamification.point.points' | translate}}</div>
+  </div>
+  <div class='detail'>{{ 'gamification.point.' + currentStep + '.detail' | translate }}</div>
+  <div class='image'>
+    <img [src]="getImagePath()"/>  
+  </div>
+  <div class='action'>
+    <button class="button green" (click)="saveProfile()">
+        {{ 'gamification.point.' + currentStep + '.button' | translate }}
+    </button>
+  </div>
+</div>

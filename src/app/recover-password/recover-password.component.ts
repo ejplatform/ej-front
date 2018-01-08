@@ -20,18 +20,16 @@ import { RegistrationComponent  } from '../registration/registration.component';
 export class RecoverPasswordComponent {
 
   profile: Profile;
-  bsModalRef: any;
-  bsRegistrationModalRef: any;
+  registrationModalRef: any;
   
   constructor(private authService: AuthService, private profileService: ProfileService, 
     public activeModal: NgbActiveModal, private toastService: ToastService, private modalService: NgbModal, private router: Router) {
     this.profile = new Profile();
-    this.bsModalRef = activeModal;
   }
 
   recover() {
     this.authService.reset(this.profile).subscribe((response) => {
-        this.bsModalRef.close();
+        this.activeModal.close();
         this.toastService.success({ title: "recover-password.success.title", message: "recover-password.success.message" });
     }, error =>{
       console.log(error);
@@ -39,11 +37,7 @@ export class RecoverPasswordComponent {
   }
 
   openRegistration() {
-    this.bsModalRef.close();
-    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent);
-    this.bsRegistrationModalRef.content.loggedIn.subscribe(() => {
-      this.profile = this.profileService.getProfile();
-      this.profileService.profileChangeEvent.emit(this.profile);
-    });
+    this.activeModal.close();
+    this.registrationModalRef = this.modalService.open(RegistrationComponent, { backdrop  : 'static', keyboard  : false });
   }
 }

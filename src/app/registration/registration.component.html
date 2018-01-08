@@ -1,6 +1,6 @@
  <div class="modal-header">
     <h4 class="modal-title pull-left" translate>{{'registration.sign_up'}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.close()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -52,10 +52,17 @@
         [(ngModel)]="profile.password_confirmation" required #passwordConfirmation='ngModel'>
       <validation-message #passwordConfirmationErrors [field]="passwordConfirmation" [prefix]="'registration.passwordConfirmation'"></validation-message>
     </div>
-
+    <div class='options'>
+        <div class='login'>
+          {{'login.info' | translate }}
+          <a class="login-button" (click)="openLogin()">
+            {{'login.button.sign_in' | translate }}
+          </a>
+        </div>
+      </div>
     <div class='terms-of-use'>
       {{'registration.terms.info' | translate }}
-      <a class="terms-of-use-button" (click)="bsModalRef.close()" routerLink="/termos-de-uso">
+      <a class="terms-of-use-button" (click)="activeModal.close()" routerLink="/termos-de-uso">
         {{'registration.terms.button' | translate }}
       </a>
     </div>

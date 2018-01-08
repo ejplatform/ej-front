@@ -20,7 +20,7 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), FormsModule, RouterTestingModule],
+      imports: [TranslateModule.forRoot(),  NgbModule.forRoot(), FormsModule, RouterTestingModule],
       declarations: [ RegistrationComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },

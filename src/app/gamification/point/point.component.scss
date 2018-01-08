@@ -1,0 +1,63 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../variables';
+
+.modal-container {
+    background: #fff url('/assets/images/bg-modal.png') right top no-repeat;
+  }
+  
+.modal-header { 
+    border-bottom: 0;
+}
+  
+.modal-title {  
+    text-align: center;
+    width: 100%;
+    @extend .mt-4;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+}
+
+.subtitle{
+    @extend .pb-3;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+    color: #CD0416;
+}
+
+.points{
+    @extend .m-5;
+    @extend .p-4;
+    background-image: url('/assets/images/bg_pontos.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    text-align: center;
+    font-weight: $extra-bold;
+    color: white;
+}
+
+.image{
+    @extend .m-3;
+    text-align: center;
+    img{
+        width: 12%;
+    }
+}
+.detail{
+    @extend .mx-5;
+    @extend .mt-4;
+    @extend .pt-4;    
+    @extend .px-5;
+    text-align: center;
+    text-align: center;
+    font-size: x-large;
+    font-weight: $bold;
+}
+
+.action{
+    @extend .mt-3;
+    @extend .mb-5;
+    text-align: center;
+}

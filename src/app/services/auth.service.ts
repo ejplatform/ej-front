@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Profile } from '../models/profile';
 import { SessionService } from './session.service';
+import { ProfileService } from './profile.service';
+
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -12,8 +14,9 @@ export class AuthService {
   public loginSuccess: EventEmitter<any> = new EventEmitter<any>();
   public loginFailed: EventEmitter<any> = new EventEmitter<any>();
   public logoutSuccess: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(private http: HttpClient, private sessionService: SessionService) {}
+  public profile: Profile;
+  
+  constructor(private http: HttpClient, private sessionService: SessionService, private profileService: ProfileService) {}
 
   signOut() {
     const profile: Profile = this.sessionService.currentProfile();
@@ -85,6 +88,11 @@ export class AuthService {
   public loginSuccessCallback(response: any) {
     const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
+    this.profileService.me().subscribe( profile => {   
+      this.profileService.setProfile(profile);
+      this.profile = profile;
+    });
+    
     return token;
   }
 }
