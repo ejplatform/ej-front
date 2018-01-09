@@ -32,16 +32,34 @@ export class TourComponent implements OnInit {
     });
   }
 
-  private initializeProfile(){
-    if(!_.isNil(this.profile.id) && (this.profile.tour_step == '')){
-      this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
-    }    
+  ngOnInit() {
+    if(!_.isNil(this.profile.id) && (this.profile.tour_step == '' || _.isNil(this.profile.tour_step))){
+      this.profileService.me().subscribe( profile => {
+        this.profile = profile;
+        this.profileService.setProfile(profile);
+        this.resolveComponent()
+      });
+      
+    }else{
+      this.resolveComponent()
+    }
   }
 
-  ngOnInit() {
-    this.initializeProfile();
+  resolveComponent(){
     let componentType: any;
-    switch (_.toString(this.profile.tour_step)) {
+    componentType = this.componentByStep(_.toString(this.profile.tour_step));
+    if(_.isNil(componentType)){
+      this.activeModal.close()
+    } else{
+      let compFactory = this.factory.resolveComponentFactory(componentType);
+      this.viewContainerRef.clear()
+      this.viewContainerRef.createComponent(compFactory);
+    }
+  }
+
+  componentByStep(step: string){
+    let componentType: any;
+    switch (step) {
       case '': {
         componentType = RegistrationComponent;
         break;
@@ -97,18 +115,9 @@ export class TourComponent implements OnInit {
       case Tour.STEP_THIRTEEN: {
         componentType = StepComponent;
         break;
-      }
-      default: {
-        this.activeModal.close()
-        break;
-      }
-   }
-   if(!_.isNil(componentType)){
-    let compFactory = this.factory.resolveComponentFactory(componentType);
-    this.viewContainerRef.clear()
-    this.viewContainerRef.createComponent(compFactory);
-   }
-   
+      } 
+    }
+    return componentType;
   }
 
 }
