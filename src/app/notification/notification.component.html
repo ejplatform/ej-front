@@ -1,8 +1,13 @@
-<div id="notifications-wrapper">
+<div class="page-title">
+  <div class="container">
+    <h1 id="notifications-title">{{"alerts.notifications" | translate}} <span id="notifications-count" *ngIf="unreadCount >= 0">{{unreadCount}}</span></h1>
+  </div>
+</div>
 
+<div id="notifications-wrapper" *ngIf="alertsLoaded">
   <div id="notifications-col-1">
 
-    <div id="notifications-header">
+    <div class="notifications-header">
       <h2>{{"alerts.notifications" | translate}}</h2>
 
       <!-- <label class="switch">
@@ -18,12 +23,12 @@
       <p class="notifications-empty" *ngIf="alerts?.length === 0">{{"alerts.none" | translate}}</p>
       <ul class="notifications-list">
         <li class="notifications-item" *ngFor="let alert of alerts">
-            <a class="notifications-link" (click)="setActive(alert.id)" *ngIf="!alert.hide">
+          <a class="notifications-link" (click)="setActive(alert.id)" *ngIf="!alert.hide" [ngClass]="{ 'current-notification': alert?.id === user_notification?.id }">
             <div class="image" [ngStyle]="{ 'background-image': 'url(' + alert?.notification.image + ')' }" *ngIf="!!alert?.notification.image"></div>
             <div class="content">
               <div class="title">{{alert?.notification.title}}</div>
-              <div class="body">{{alert?.notification.short_description}}</div>
               <div class="date">{{alert?.notification.created | date: 'dd/MM/yyyy'}}</div>
+              <div class="body">{{alert?.notification.shorter_description}}</div>
             </div>
           </a>
         </li>
@@ -32,6 +37,7 @@
   </div>
 
   <div id="notifications-col-2" class="notifications-item">
+    <div class="notifications-header"><h2>&nbsp;</h2></div>
     <div class="image" [ngStyle]="{ 'background-image': 'url(' + user_notification?.notification.image + ')' }" *ngIf="!!user_notification?.notification.image"></div>
     <div class="title">{{user_notification?.notification.title}}</div>
     <div class="date">{{user_notification?.notification.created | date: 'dd/MM/yyyy'}}</div>

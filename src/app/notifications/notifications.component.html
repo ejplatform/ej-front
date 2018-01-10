@@ -2,8 +2,8 @@
     <li>
         <a class="notifications active" (click)="toggleAlerts($event)">
             <!-- <span class="notification-bubble">3</span> -->
-            <img src="/assets/images/icons/notification_off_icon.svg" *ngIf="alerts.length === 0" alt="{{'alerts.off' | translate}}" >
-            <img src="/assets/images/icons/notification_on_icon.svg" *ngIf="alerts.length > 0" alt="{{alerts.length}}" >
+            <img src="/assets/images/icons/notification_off_icon.svg" *ngIf="alertsLoaded && alerts.length === 0" alt="{{'alerts.off' | translate}}" >
+            <img src="/assets/images/icons/notification_on_icon.svg" *ngIf="alertsLoaded && alerts.length > 0" alt="{{alerts.length}}" >
             <span class="hidden-xs" translate>{{"alerts.notifications"}}</span>
         </a>
     </li>
