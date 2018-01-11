@@ -7,7 +7,7 @@
     "gamification.point.STEP_FOUR.title": "Parabéns",
     "gamification.point.STEP_FOUR.subtitle": "VOCÊ GANHOU",
     "gamification.point.STEP_FOUR.points": "10",
-    "gamification.point.STEP_FOUR.detail": "Vote em mais 2 comentários e ganhe sua primeira Medalha!",
+    "gamification.point.STEP_FOUR.detail": "<span class='red'>Vote</span> em mais <span class='red'>2 comentários</span> e ganhe sua primeira <span class='red'>Medalha</span>!",
     "gamification.point.STEP_FOUR.button": "VOTAR",
     "gamification.point.STEP_NINE.title": "Muito bem! mudou de conversa pela primeira vez e",
     "gamification.point.STEP_NINE.subtitle": "VOCÊ GANHOU",

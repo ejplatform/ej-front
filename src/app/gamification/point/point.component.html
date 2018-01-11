@@ -8,7 +8,7 @@
     <div class='number'>{{ 'gamification.point.' + currentStep + '.points' | translate }}</div> 
     <div class='text'>{{ 'gamification.point.points' | translate}}</div>
   </div>
-  <div class='detail'>{{ 'gamification.point.' + currentStep + '.detail' | translate }}</div>
+  <div class='detail' [innerHTML]="'gamification.point.' + currentStep + '.detail' | translate"></div>
   <div class='image'>
     <img [src]="getImagePath()"/>  
   </div>
