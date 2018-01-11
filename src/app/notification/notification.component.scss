@@ -3,11 +3,11 @@
 @import '../../mixins';
 
 #notifications-wrapper {
-  border: 1px solid #979797;
   width: 80%;
   margin: 0 auto;
   margin-top: 135px;
   display: flex;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 
   h2 {
     font-size: 24px;
@@ -35,18 +35,36 @@
 
   #notifications-search {
     clear: both;
-    display: block;
+    display: inline-block;
     height: 48px;
-    border: 1px solid #979797;
-    max-width: 358px;
+    max-width: 250px;
     width: 100%;
-    background: transparent url(/assets/images/icons/search.png) 20px center no-repeat;
-    padding-left: 58px;
+    background: transparent url(/assets/images/icons/search.png) right center no-repeat;
+    padding-right: 24px;
+    text-align: right;
+    color: #fff;
+    border: 0;
+    outline: none;
   }
 
-  #notifications-header {
-    padding-bottom: 40px;
-    border-bottom: 1px solid #D8D8D8;
+  #notifications-col-1 .notifications-header {
+    border-right: 1px solid #fff;
+  }
+
+  .notifications-header {
+    border-bottom: 1px solid #fff;
+    margin: 0;
+    background: #00A84C;
+    padding: 16px 0;
+
+    h2 {
+      margin: 0;
+      padding: 20px 40px;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+    }
   }
 
   .switch input {display:none;}
@@ -106,7 +124,12 @@
      display: flex;
      cursor: pointer;
      padding: 20px;
-     border-bottom: 1px solid #D8D8D8;
+     border-bottom: 2px solid #D8D8D8;
+     background: #F9F7FA;
+
+     &:hover, &.current-notification {
+       background-color: #62E820;
+     }
    }
 
    .image {
@@ -134,20 +157,23 @@
      color: rgba(0, 0, 0, 0.87);
      font-size: 14px;
      padding-left: 20px;
+     float: left;
+     font-weight: bold;
    }
 
    .body {
      color: rgba(0, 0, 0, 0.54);
      font-size: 14px;
      padding-left: 20px;
+     clear: both;
+     padding-top: 16px;
    }
 
    .date {
      color: rgba(0, 0, 0, 0.87);
      font-size: 14px;
      text-align: right;
-     margin-top: 10px;
-     margin-right: 20px;
+     float: right;
    }
  }
 
@@ -159,13 +185,12 @@
   #notifications-col-1 {
     order: 1;
     flex-basis: 100%;
-    padding: 0 10px;
+    padding: 0;
   }
   
   #notifications-col-2.notifications-item {
     order: 2;
     flex-basis: 100%;
-    padding: 20px;
     border-left: 1px solid #979797;
   
     .image {
@@ -176,16 +201,20 @@
     .title {
       float: left;
       line-height: 50px;
+      padding-left: 40px;
     }
 
     .date {
       float: right;
+      line-height: 50px;
+      padding-right: 40px;
     }
 
     .body {
       clear: both;
       padding-left: 0;
-      margin-top: 90px;
+      margin-top: 40px;
+      padding: 40px;
     }
   }
 }
@@ -199,4 +228,17 @@
     width: 100%;
     border: 0;
   }
+}
+
+#notifications-count {
+  border-radius: 50%;
+  border-color: transparent;
+  background: #e23100;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 16px;
 }

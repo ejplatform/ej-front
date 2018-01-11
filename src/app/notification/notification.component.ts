@@ -23,6 +23,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   displayOnlyUnread: boolean;
 
   alerts: UserNotification[];
+  alertsLoaded = false;
+  unreadCount = -1;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private notificationService: NotificationService,
               private route: ActivatedRoute, private _changeDetectionRef : ChangeDetectorRef) {
@@ -34,6 +36,16 @@ export class NotificationComponent implements OnInit, AfterViewInit {
     // get user_notifications now
     this.notificationService.list().subscribe((user_notifications) => {
       this.alerts = user_notifications;
+      this.alertsLoaded = true;
+    
+      let count = 0;
+      this.alerts.forEach((notification) => {
+        notification.notification.shorter_description = this.truncate(notification.notification.short_description);
+        if (notification.status != 'read') {
+          count++;
+        }
+      });
+      this.unreadCount = count;
 
       this.route.params.subscribe(params => {
         this.setActive(params.id);
@@ -85,5 +97,13 @@ export class NotificationComponent implements OnInit, AfterViewInit {
     });
     console.log(alerts);
     this.alerts = alerts;
+  }
+
+  truncate(str) {
+    if (str.length > 100) {
+      return str.substring(0, 97) + '...';
+    } else {
+      return str;
+    }
   }
 }

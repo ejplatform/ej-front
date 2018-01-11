@@ -34,15 +34,6 @@ export class TourService {
         return Tour.STEP_TEN
       }
       case Tour.STEP_TEN: {
-        return Tour.STEP_ELEVEN
-      }
-      case Tour.STEP_ELEVEN: {
-        return Tour.STEP_TWELVE
-      }
-      case Tour.STEP_TWELVE: {
-        return Tour.STEP_THIRTEEN
-      }
-      case Tour.STEP_THIRTEEN: {
         return Tour.STEP_FINISH
       }
     }

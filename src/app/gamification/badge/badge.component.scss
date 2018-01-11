@@ -35,11 +35,12 @@
 .name{
     @extend .mx-5;
     text-align: center;
-    font-size: small;
-    font-weight: $bold;
+    font-size: large;
+    font-weight: 600;
+}
+:host ::ng-deep .red{
     color: #CD0416;
 }
-
 .detail{
     @extend .mx-5;
     @extend .mt-5;

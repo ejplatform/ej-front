@@ -24,6 +24,11 @@
     font-size: x-large;
     font-weight: $bold;
     color: #CD0416;
+    color: green;
+}
+
+:host ::ng-deep .red {
+    color: #CD0416;
 }
 
 .points{

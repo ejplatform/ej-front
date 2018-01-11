@@ -17,6 +17,7 @@ export class NotificationsComponent implements OnInit {
   @Input() profile: Profile;
   alerts = [];
   isCollapsed = true;
+  alertsLoaded = false;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private notificationService: NotificationService) {
 
@@ -26,7 +27,8 @@ export class NotificationsComponent implements OnInit {
 
     // get user-notifications now
     this.notificationService.list().subscribe((user_notifications) => {
-      this.alerts = user_notifications;
+    this.alerts = user_notifications;
+    this.alertsLoaded = true;
     });
   }
 

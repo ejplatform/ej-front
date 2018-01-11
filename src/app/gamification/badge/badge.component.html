@@ -6,7 +6,7 @@
     <div class='image'>
       <img [src]="getImagePath()"/>  
     </div>
-    <div class='name'>{{ 'gamification.badge.' + currentStep + '.name' | translate }}</div>
+    <div class='name' [innerHTML]="'gamification.badge.' + currentStep + '.name' | translate"></div>
     <div class='detail'>{{ 'gamification.badge.' + currentStep + '.detail' | translate }}</div>
     <div class='action'>
       <button class="button green" (click)="saveProfile()">
