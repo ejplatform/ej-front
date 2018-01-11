@@ -36,7 +36,7 @@ export class BadgeComponent implements OnInit {
     let path = ''
     if(this.currentStep == Tour.STEP_SIX){
       path = '/assets/images/badges/medalha_opinador.svg'
-    } else if(this.currentStep == Tour.STEP_TWELVE){
+    } else if(this.currentStep == Tour.STEP_NINE){
       path = '/assets/images/badges/medalha_sabetudo.svg'
     }
     return path

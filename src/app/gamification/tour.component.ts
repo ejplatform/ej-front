@@ -97,25 +97,13 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_NINE: {
-        componentType = PointComponent;
-        break;
-      }
-      case Tour.STEP_TEN: {
-        componentType = TipComponent;
-        break;
-      }
-      case Tour.STEP_ELEVEN: {
-        componentType = StepComponent;
-        break;
-      }
-      case Tour.STEP_TWELVE: {
         componentType = BadgeComponent;
         break;
       }
-      case Tour.STEP_THIRTEEN: {
+      case Tour.STEP_TEN: {
         componentType = StepComponent;
         break;
-      } 
+      }
     }
     return componentType;
   }

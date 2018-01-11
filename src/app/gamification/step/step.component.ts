@@ -40,11 +40,7 @@ export class StepComponent implements OnInit {
         componentType = CommentComponent;
         break;
       }
-      case Tour.STEP_ELEVEN: {
-        componentType = CommentComponent;
-        break;
-      }
-      case Tour.STEP_THIRTEEN: {
+      case Tour.STEP_TEN: {
         componentType = VoteComponent;
         break;
       }

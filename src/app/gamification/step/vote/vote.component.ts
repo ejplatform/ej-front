@@ -56,9 +56,9 @@ export class VoteComponent implements OnInit {
       this.amountVotes += 1;
       if(this.profile.tour_step == Tour.STEP_FIVE && (this.amountVotes == 2)){
         this.saveNextStepOnProfile();
-      }else if((this.profile.tour_step != Tour.STEP_FIVE) && (this.profile.tour_step != Tour.STEP_THIRTEEN)){
+      }else if((this.profile.tour_step != Tour.STEP_FIVE) && (this.profile.tour_step != Tour.STEP_TEN)){
         this.saveNextStepOnProfile();
-      }else if(this.profile.tour_step == Tour.STEP_THIRTEEN && (this.amountVotes == 2)){
+      }else if(this.profile.tour_step == Tour.STEP_TEN && (this.amountVotes == 2)){
           this.saveNextStepOnProfile();
       }else{
         this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
