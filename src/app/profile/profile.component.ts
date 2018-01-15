@@ -66,6 +66,15 @@ export class ProfileComponent {
     {id: 'UNDECLARED', name: "Não declarada"},
   ];
 
+  // FIXME: Replace by real data from the backend
+  badges = {
+    opinionator_badge: { levels: [ { description: '', level: 0, user_has: true }, { description: '', level: 1, user_has: true } ]},
+    user_created_badge: { levels: [ { description: '', level: 0 } ]},
+    know_it_all_badge: { levels: [ { description: '', level: 0, user_has: true } ]}
+  };
+
+  userBadges = [];
+
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router, 
     private toastService: ToastService) {
     this.profile = <Profile>{};
@@ -74,6 +83,24 @@ export class ProfileComponent {
       this.profile = profile;
     });
     this.initializeFields(this.profile);
+    this.selectBadges();
+  }
+
+  selectBadges() {
+    let userBadges = [];
+    for (var key in this.badges) {
+      const badge = this.badges[key];
+      let userBadgeLevel = -1;
+      badge.levels.forEach((level) => {
+        if (level.user_has && level.level > userBadgeLevel) {
+          userBadgeLevel = level.level;
+        }
+      });
+      if (userBadgeLevel >= 0) {
+        userBadges.push({ id: key, level: userBadgeLevel + 1 });
+      }
+    }
+    this.userBadges = userBadges;
   }
 
   save() {
