@@ -50,6 +50,7 @@ export class ParticipateComponent implements OnInit {
         conversationService.get(params.slug).subscribe(conversation => {
           conversationService.getNextUnvotedComment(conversation.id).subscribe(comment => {
             this.comment = comment;
+            this.comment.conversationObj = this.conversation;
           }, error => {
             this.comment = null;
           });
@@ -88,28 +89,11 @@ export class ParticipateComponent implements OnInit {
     this.voteService[action](comment).subscribe(vote => {
       this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(anothercomment => {
         this.comment = anothercomment;
+        this.comment.conversationObj = this.conversation;
       }, error => {
         this.comment = null;
       });
     });
-
-    // Send this vote to the polis backend also
-    let votePolisValue;
-    switch (action) {
-      case 'agree': {
-        votePolisValue = -1;
-        break;
-      }
-      case 'disagree': {
-        votePolisValue = 1;
-        break;
-      }
-      default: {
-        votePolisValue = 0;
-        break;
-      }
-   }
-   this.voteService.polisSave(votePolisValue, comment.polis_id, this.conversation.polis_slug, this.profile.id).subscribe();
   }
 
   clearComment() {
