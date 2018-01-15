@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
-import { SessionService } from '../services/session.service';
-import { ProfileService } from '../services/profile.service';
-import { Profile } from '../models/profile';
-import { Tour } from './shared/tour-model';
+import { SessionService } from '../../services/session.service';
+import { ProfileService } from '../../services/profile.service';
+import { Profile } from '../../models/profile';
+import { Tour } from './tour-model';
 import { Router } from '@angular/router';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TourComponent } from './tour.component';
+import { TourComponent } from '../tour.component';
 import * as _ from 'lodash';
 
 @Injectable()
-export class GamificationInterceptor implements HttpInterceptor {
+export class TourInterceptor implements HttpInterceptor {
 
   profile: Profile;
   modal: any;

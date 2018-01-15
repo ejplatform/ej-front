@@ -1,16 +1,16 @@
 <div class="modal-container">
     <div class="modal-header">
-      <h4 class="modal-title">{{ 'gamification.badge.' + currentStep + '.title' | translate }}</h4>
+      <h4 class="modal-title">{{ badge.title | translate }}</h4>
     </div>
-    <div class='subtitle'>{{ 'gamification.badge.' + currentStep + '.subtitle' | translate }}</div>
+    <div class='subtitle'>{{ badge.subtitle | translate }}</div>
     <div class='image'>
-      <img [src]="getImagePath()"/>  
+      <img onError="this.src='/assets/images/badges/default.svg'" [src]="badge.imagePath">
     </div>
-    <div class='name' [innerHTML]="'gamification.badge.' + currentStep + '.name' | translate"></div>
-    <div class='detail'>{{ 'gamification.badge.' + currentStep + '.detail' | translate }}</div>
+    <div class='name' [innerHTML]="badge.name | translate:{level: badge.currentLevel}"></div>
+    <div class='detail' >{{badge.detail | translate }}</div>
     <div class='action'>
       <button class="button green" (click)="saveProfile()">
-          {{ 'gamification.badge.' + currentStep + '.button' | translate }}
+          {{ badge.buttonName | translate }}
       </button>
     </div>
 </div>
