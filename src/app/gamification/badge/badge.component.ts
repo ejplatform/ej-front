@@ -7,6 +7,7 @@ import { Profile } from '../../models/profile';
 import { Tour } from '../shared/tour-model';
 import { Badge } from '../shared/badge-model';
 import { TourService } from '../shared/tour.service';
+import { BadgeService } from '../shared/badge.service';
 
 @Component({
   selector: 'app-badge',
@@ -18,7 +19,8 @@ export class BadgeComponent implements OnInit {
   currentStep = '';
   badge: Badge;
   
-  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
+  constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, 
+    private tourService: TourService,  private badgService: BadgeService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
    }
@@ -30,6 +32,11 @@ export class BadgeComponent implements OnInit {
       this.badge.slug = this.profile.tour_step
     }
     this.fillBadge();
+    
+    //FIXME remove this check after save the information on endpoint
+    if(this.badgService.wasSeen(this.badge)){
+      this.activeModal.close()
+    }      
   }
 
   fillBadge(){
@@ -40,6 +47,21 @@ export class BadgeComponent implements OnInit {
     this.badge.buttonName = 'gamification.badge.' + this.badge.slug + '.button'
     this.badge.name = 'gamification.badge.' + this.badge.slug + '.name'
     this.badge.currentLevel = 3
+  }
+
+  save(){
+    if(this.profile.tour_step != Tour.STEP_FINISH ){
+      this.saveProfile();
+    } else{
+      this.seeBadge();
+    }
+  }
+
+  seeBadge(){
+    this.badgService.seen(this.badge).subscribe(badge => {
+      console.log('COLOCANDO BAGDE COMO LIDO', this.badge)
+      this.activeModal.close()
+    })
   }
 
   saveProfile(){

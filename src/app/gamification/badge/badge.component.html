@@ -9,7 +9,7 @@
     <div class='name' [innerHTML]="badge.name | translate:{level: badge.currentLevel}"></div>
     <div class='detail' >{{badge.detail | translate }}</div>
     <div class='action'>
-      <button class="button green" (click)="saveProfile()">
+      <button class="button green" (click)="save()">
           {{ badge.buttonName | translate }}
       </button>
     </div>
