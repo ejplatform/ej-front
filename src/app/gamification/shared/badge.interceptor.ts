@@ -42,9 +42,9 @@ export class BadgeInterceptor implements HttpInterceptor {
         if(_.isNil(badges)){
           badges = []
         }
-        
+
         if(_.isNil(this.modal)){
-          this.modal = this.modalService.open(BadgeComponent);
+          this.modal = this.modalService.open(BadgeComponent, { backdrop  : 'static', keyboard  : false });
           this.modal.componentInstance.badge = badges[0];
           this.modal.result.then((data) => {
             this.modal = null;
