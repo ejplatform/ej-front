@@ -59,7 +59,6 @@ export class BadgeComponent implements OnInit {
 
   seeBadge(){
     this.badgService.seen(this.badge).subscribe(badge => {
-      console.log('COLOCANDO BAGDE COMO LIDO', this.badge)
       this.activeModal.close()
     })
   }

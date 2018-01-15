@@ -33,6 +33,15 @@ export function getMocks() {
                 return "";
             },
         },
+        badgeService: {
+            success: () => {
+                return "";
+            },
+            //FIXME this code will not be necessary after backend works properly
+            wasSeen: () => {
+                return true;
+            }
+        },
         bsModalService: {
             show: () => {
                 return "";

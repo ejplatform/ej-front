@@ -22,10 +22,7 @@ export class BadgeInterceptor implements HttpInterceptor {
 
 
   constructor(private sessionService: SessionService, private router: Router, 
-    private modalService: NgbModal, public activeModal: NgbActiveModal
-    ,private injector: Injector
-    // , private badgeService: BadgeService
-  ) {
+    private modalService: NgbModal, public activeModal: NgbActiveModal, private injector: Injector ) {
     this.profile = this.sessionService.currentProfile();
     
     this.sessionService.sessionChangeEvent.subscribe(data => {
@@ -35,17 +32,17 @@ export class BadgeInterceptor implements HttpInterceptor {
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // let authRequest = request;
-   
     if (this.profile && (this.profile.tour_step == Tour.STEP_FINISH) && _.isNil(this.badgeService)) {
-      // Promise.resolve().then(() => {
-console.log('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW', this.modal)
       this.badgeService = this.injector.get(BadgeService);
-      //FIXME Get only one not seen badge
-      this.badgeService.list().subscribe(badges => {
-      
-        console.log('DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', badges);
+
+      //FIXME Get only the badge was not seen
+      this.badgeService.list().subscribe( badges => {
         this.badgeService = null;
+        //FIXME this code will not be necessary after backend works properly
+        if(_.isNil(badges)){
+          badges = []
+        }
+        
         if(_.isNil(this.modal)){
           this.modal = this.modalService.open(BadgeComponent);
           this.modal.componentInstance.badge = badges[0];
@@ -57,7 +54,6 @@ console.log('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
           this.modal.result.d
         }
       });
-      // });
 
     }
 
