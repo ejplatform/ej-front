@@ -110,19 +110,24 @@ export class ParticipateComponent implements OnInit {
     this.commentService.create(newcomment).subscribe(response => {
       this.newCommentText = "";
       this.newCommentSuccess = true;
+      if(!_.isNil(response.nudge) && (response.nudge.state == Nudge.EAGER) ){
+        this.openNudge(response.nudge.state);
+      }
     }, response => {
-
       if(!_.isNil(response.error['nudge'])){
-        let nudge = new Nudge();
-        nudge.state = response.error['nudge']['state']
-        let modal =  this.modalService.open(NudgeComponent, { backdrop  : 'static', keyboard  : false });
-        modal.componentInstance.nudge = nudge;
-        
-      }      
+        this.openNudge(response.error['nudge']['state']);
+      }
       this.newCommentSuccess = false;
     });
 
     this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe();
+  }
+
+  openNudge(state){
+    let nudge = new Nudge();
+    nudge.state = state;
+    let modal =  this.modalService.open(NudgeComponent, { backdrop  : 'static', keyboard  : false });
+    modal.componentInstance.nudge = nudge;
   }
 
   ngOnInit() {
