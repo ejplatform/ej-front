@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
-import { environment } from '../../environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { environment } from '../../environments/environment';
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
 import { Profile } from '../models/profile';
@@ -11,6 +12,8 @@ import { Vote } from '../models/vote';
 import { ProfileService } from '../services/profile.service';
 import { CommentService } from '../comments/shared/comment.service';
 import { VoteService } from '../services/vote.service';
+import { NudgeComponent } from '../nudge/nudge.component';
+import { Nudge } from '../nudge/shared/nudge-model';
 
 
 @Component({
@@ -36,9 +39,8 @@ export class ParticipateComponent implements OnInit {
   expandedStage: String;
 
   constructor(private conversationService: ConversationService,
-              private route: ActivatedRoute,
-              private profileService: ProfileService,
-              private commentService: CommentService,
+              private route: ActivatedRoute, private profileService: ProfileService,
+              private commentService: CommentService, private modalService: NgbModal,
               private voteService: VoteService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
@@ -50,6 +52,7 @@ export class ParticipateComponent implements OnInit {
         conversationService.get(params.slug).subscribe(conversation => {
           conversationService.getNextUnvotedComment(conversation.id).subscribe(comment => {
             this.comment = comment;
+            this.comment.conversationObj = this.conversation;
           }, error => {
             this.comment = null;
           });
@@ -88,28 +91,11 @@ export class ParticipateComponent implements OnInit {
     this.voteService[action](comment).subscribe(vote => {
       this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(anothercomment => {
         this.comment = anothercomment;
+        this.comment.conversationObj = this.conversation;
       }, error => {
         this.comment = null;
       });
     });
-
-    // Send this vote to the polis backend also
-    let votePolisValue;
-    switch (action) {
-      case 'agree': {
-        votePolisValue = -1;
-        break;
-      }
-      case 'disagree': {
-        votePolisValue = 1;
-        break;
-      }
-      default: {
-        votePolisValue = 0;
-        break;
-      }
-   }
-   this.voteService.polisSave(votePolisValue, comment.polis_id, this.conversation.polis_slug, this.profile.id).subscribe();
   }
 
   clearComment() {
@@ -124,7 +110,15 @@ export class ParticipateComponent implements OnInit {
     this.commentService.create(newcomment).subscribe(response => {
       this.newCommentText = "";
       this.newCommentSuccess = true;
-    }, error => {
+    }, response => {
+
+      if(!_.isNil(response.error['nudge'])){
+        let nudge = new Nudge();
+        nudge.state = response.error['nudge']['state']
+        let modal =  this.modalService.open(NudgeComponent, { backdrop  : 'static', keyboard  : false });
+        modal.componentInstance.nudge = nudge;
+        
+      }      
       this.newCommentSuccess = false;
     });
 

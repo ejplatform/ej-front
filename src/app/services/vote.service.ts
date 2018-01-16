@@ -5,11 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Comment } from '../comments/shared/comment.model';
 import { Vote } from '../models/vote';
+import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
 
 @Injectable()
 export class VoteService {
-
-  constructor(private http: HttpClient) { }
+  public profile: Profile;
+  
+  constructor(private http: HttpClient, private profileService: ProfileService) { 
+    this.profile = <Profile>{};
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      this.profile = profile;
+    });
+  }
 
   agree(comment: Comment): Observable<Vote> {
     return this.vote(comment, Vote.AGREE);
@@ -45,6 +54,23 @@ export class VoteService {
     vote.comment=comment.id
     vote.value=action;
     
+    let votePolisValue;
+    switch (action) {
+      case Vote.AGREE: {
+        votePolisValue = -1;
+        break;
+      }
+      case Vote.DISAGREE: {
+        votePolisValue = 1;
+        break;
+      }
+      default: {
+        votePolisValue = 0;
+        break;
+      }
+    }
+    this.polisSave(votePolisValue, comment.polis_id, comment.conversationObj.polis_slug, this.profile.id).subscribe();
+   
     // Send the vote to the pushTogether backend
     return this.save(vote);
   }

@@ -8,13 +8,14 @@
   <div id="notifications-col-1">
 
     <div class="notifications-header">
-      <h2>{{"alerts.notifications" | translate}}</h2>
-
-      <!-- <label class="switch">
-        <input type="checkbox" [(ngModel)]="displayOnlyUnread" (ngModelChange)="toggleUnread()" />
-        <span class="slider round"></span>
-      </label> -->
-      <!-- <h2>{{"alerts.unread" | translate}}</h2> -->
+      <h2>
+        <div id="notifications-select">
+          <select [(ngModel)]="showNotifications" (ngModelChange)="toggleUnread()">
+            <option value="all">{{"alerts.allnotifications" | translate}}</option>
+            <option value="unread">{{"alerts.unread" | translate}}</option>
+          </select>
+        </div>
+      </h2>
 
       <input id="notifications-search" type="text" [(ngModel)]="search" (ngModelChange)="filterByString()" />
     </div>
@@ -29,6 +30,7 @@
               <div class="title">{{alert?.notification.title}}</div>
               <div class="date">{{alert?.notification.created | date: 'dd/MM/yyyy'}}</div>
               <div class="body">{{alert?.notification.shorter_description}}</div>
+              <div class="fullbody">{{alert?.notification.short_description}}</div>
             </div>
           </a>
         </li>
@@ -37,7 +39,7 @@
   </div>
 
   <div id="notifications-col-2" class="notifications-item">
-    <div class="notifications-header"><h2>&nbsp;</h2></div>
+    <div class="notifications-header"></div>
     <div class="image" [ngStyle]="{ 'background-image': 'url(' + user_notification?.notification.image + ')' }" *ngIf="!!user_notification?.notification.image"></div>
     <div class="title">{{user_notification?.notification.title}}</div>
     <div class="date">{{user_notification?.notification.created | date: 'dd/MM/yyyy'}}</div>

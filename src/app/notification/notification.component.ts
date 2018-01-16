@@ -20,7 +20,7 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   @Input() user_notification: UserNotification;
 
   search: string;
-  displayOnlyUnread: boolean;
+  showNotifications: string;
 
   alerts: UserNotification[];
   alertsLoaded = false;
@@ -59,7 +59,7 @@ export class NotificationComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.search = '';
-    this.displayOnlyUnread = false;
+    this.showNotifications = 'all';
   }
 
   setActive(id) {
@@ -84,18 +84,17 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   filter() {
     const alerts = this.alerts.slice(0);
     alerts.forEach((user_notification) => {
-      if (!(user_notification.notification.title.includes(this.search) ||
-          user_notification.notification.short_description.includes(this.search))) {
+      user_notification['hide'] = false;
+      
+      if (!user_notification.notification.title.includes(this.search) &&
+          !user_notification.notification.short_description.includes(this.search)) {
         user_notification['hide'] = true;
+      }
 
-        if (this.displayOnlyUnread && user_notification.status === 'read') {
-          user_notification['hide'] = true;
-        }
-      } else {
-        user_notification['hide'] = false;
+      if (this.showNotifications === 'unread' && user_notification.status === 'read') {
+        user_notification['hide'] = true;
       }
     });
-    console.log(alerts);
     this.alerts = alerts;
   }
 
