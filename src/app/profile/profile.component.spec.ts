@@ -12,6 +12,7 @@ import { ImageUploadComponent } from '../shared/image-upload/image-upload.compon
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { ToastService } from '../services/toast.service';
+import { BadgeService } from '../gamification/shared/badge.service';
 
 
 describe('ProfileComponent', () => {
@@ -30,6 +31,7 @@ describe('ProfileComponent', () => {
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: ToastService, useValue: mocks.toastService },        
         { provide: AuthService, useValue: mocks.authService },
+        { provide: BadgeService, useValue: mocks.badgeService },
       ],
       schemas: [NO_ERRORS_SCHEMA]
 
