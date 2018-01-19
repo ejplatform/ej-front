@@ -5,6 +5,11 @@
   border: none;
 }
 
+#polis-embed {
+  margin-left: 40%;
+  transform: translateX(-35%);
+}
+
 .facebook-responsive {
   overflow:hidden;
   padding-bottom:56.25%;
@@ -81,7 +86,7 @@
   z-index: 1;
   position: relative;
 }
-  
+
 @include media-breakpoint-down(md) {
   .conversation-opinion-stage {
     padding: 24px;
@@ -265,7 +270,7 @@
   .stage-response-title {
     background: transparent url('/assets/images/response-stage.png') top center no-repeat;
   }
-  
+
   p {
     color: #fff;
     font-size: 28px;
