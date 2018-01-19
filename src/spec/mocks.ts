@@ -34,6 +34,9 @@ export function getMocks() {
             },
         },
         badgeService: {
+            list: () => {
+                return Observable.of([]);
+            },
             success: () => {
                 return "";
             },
