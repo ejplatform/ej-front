@@ -4,9 +4,11 @@ import { By } from '@angular/platform-browser';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SafePipe } from '../shared/pipes/safe.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { SafePipe } from '../shared/pipes/safe.pipe';
 import { ProfileService } from '../services/profile.service';
 
 import * as helpers from '../../spec/helpers';
@@ -21,7 +23,7 @@ describe('ParticipateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(),FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
       declarations: [ ParticipateComponent, SafePipe ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },        

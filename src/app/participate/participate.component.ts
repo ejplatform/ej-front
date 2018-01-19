@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
-import { environment } from '../../environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { environment } from '../../environments/environment';
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
 import { Profile } from '../models/profile';
@@ -11,6 +12,8 @@ import { Vote } from '../models/vote';
 import { ProfileService } from '../services/profile.service';
 import { CommentService } from '../comments/shared/comment.service';
 import { VoteService } from '../services/vote.service';
+import { NudgeComponent } from '../nudge/nudge.component';
+import { Nudge } from '../nudge/shared/nudge-model';
 
 
 @Component({
@@ -36,9 +39,8 @@ export class ParticipateComponent implements OnInit {
   expandedStage: String;
 
   constructor(private conversationService: ConversationService,
-              private route: ActivatedRoute,
-              private profileService: ProfileService,
-              private commentService: CommentService,
+              private route: ActivatedRoute, private profileService: ProfileService,
+              private commentService: CommentService, private modalService: NgbModal,
               private voteService: VoteService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
@@ -59,6 +61,13 @@ export class ParticipateComponent implements OnInit {
           this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
           this.conversation = conversation;
           this.conversationLoaded = true;
+
+          // This call will load any polis embed on the page
+          // It will be removed as soon as polis graphs are no longer needed
+          setTimeout(() => {
+            const loadIframes = window['loadIframes'];
+            loadIframes();
+          }, 3000);
         });
       }
     });
@@ -108,11 +117,24 @@ export class ParticipateComponent implements OnInit {
     this.commentService.create(newcomment).subscribe(response => {
       this.newCommentText = "";
       this.newCommentSuccess = true;
-    }, error => {
+      if(!_.isNil(response.nudge) && (response.nudge.state == Nudge.EAGER) ){
+        this.openNudge(response.nudge.state);
+      }
+    }, response => {
+      if(!_.isNil(response.error['nudge'])){
+        this.openNudge(response.error['nudge']['state']);
+      }
       this.newCommentSuccess = false;
     });
 
     this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe();
+  }
+
+  openNudge(state){
+    let nudge = new Nudge();
+    nudge.state = state;
+    let modal =  this.modalService.open(NudgeComponent, { backdrop  : 'static', keyboard  : false });
+    modal.componentInstance.nudge = nudge;
   }
 
   ngOnInit() {

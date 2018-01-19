@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from '../registration/registration.component';
+import { LoginComponent } from '../login/login.component';
 import { ToastService } from '../services/toast.service';
 
 import { Tour } from './shared/tour-model';
@@ -30,7 +31,7 @@ describe('TourComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [ TourComponent, RegistrationComponent, StepComponent, CommentComponent, 
+      declarations: [ TourComponent, RegistrationComponent, LoginComponent, StepComponent, CommentComponent, 
         VoteComponent, BadgeComponent, PointComponent, TipComponent ],
       providers: [
         { provide: AuthService, useValue: mocks.authService },
@@ -58,4 +59,5 @@ describe('TourComponent', () => {
   });
 
 });
+
 

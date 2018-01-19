@@ -5,6 +5,7 @@ import * as _ from 'lodash'
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 import { RegistrationComponent } from '../registration/registration.component';
+import { LoginComponent } from '../login/login.component';
 import { StepComponent } from './step/step.component';
 import { Tour } from './shared/tour-model';
 import { TourService } from './shared/tour.service';
@@ -16,7 +17,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-tour',
   template: "",
-  entryComponents:[ RegistrationComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ]
+  entryComponents:[ RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ]
 })
 export class TourComponent implements OnInit {
   profile: Profile;
@@ -61,7 +62,7 @@ export class TourComponent implements OnInit {
     let componentType: any;
     switch (step) {
       case '': {
-        componentType = RegistrationComponent;
+        componentType = LoginComponent;
         break;
       }
       case Tour.STEP_ONE: {

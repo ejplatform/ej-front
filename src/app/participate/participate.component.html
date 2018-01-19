@@ -79,6 +79,11 @@
         </div>
       </div>
 
+      <div id="polis-embed" class="polis" [attr.data-conversation_id]="conversation.polis_slug" data-border="none"
+           data-border_radius="0px" data-padding="0px" data-ucv="false" data-ucw="false"
+           data-ucsh="false" data-ucst="false" data-ucsd="false" data-ucsf="false">
+      </div>
+
       <div class="our-opinion">
         <h3>{{ 'conversation.ouropinion' | translate }}:</h3>
         <p>{{ conversation.opinion }}</p>
