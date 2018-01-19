@@ -20,7 +20,6 @@ export class BadgeInterceptor implements HttpInterceptor {
   modal: any;
   badgeService: any;
 
-
   constructor(private sessionService: SessionService, private router: Router, 
     private modalService: NgbModal, public activeModal: NgbActiveModal, private injector: Injector ) {
     this.profile = this.sessionService.currentProfile();
@@ -51,7 +50,6 @@ export class BadgeInterceptor implements HttpInterceptor {
           }, (reason) => {
             this.modal = null;
           });
-          this.modal.result.d
         }
       });
 

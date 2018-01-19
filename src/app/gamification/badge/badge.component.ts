@@ -16,7 +16,6 @@ import { BadgeService } from '../shared/badge.service';
 })
 export class BadgeComponent implements OnInit {
   profile: Profile;  
-  currentStep = '';
   badge: Badge;
   
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, 
@@ -26,13 +25,11 @@ export class BadgeComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.currentStep = this.profile.tour_step;
     if(_.isNil(this.badge)){
       this.badge = new Badge();
       this.badge.slug = this.profile.tour_step
     }
     this.fillBadge();
-    
     //FIXME remove this check after save the information on endpoint
     if(this.badgService.wasSeen(this.badge)){
       this.activeModal.close()

@@ -127,7 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TourInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: BadgeInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: BadgeInterceptor, multi: true },
 
   ],
   entryComponents: [LoginComponent,
