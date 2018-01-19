@@ -11,6 +11,7 @@ import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { RegistrationComponent  } from '../registration/registration.component';
 import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
+import { SessionService } from '../services/session.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private profileService: ProfileService,
     private socialFacebookService: SocialFacebookService, private modalService: NgbModal,
-    public activeModal: NgbActiveModal, private toastService: ToastService, private router: Router) {
+    public activeModal: NgbActiveModal, private toastService: ToastService, 
+    private sessionService: SessionService, private router: Router) {
 
     this.bsModalRef = activeModal;
     this.profile = new Profile();
@@ -59,13 +61,11 @@ export class LoginComponent {
   }
 
   openRegistration() {
-    this.bsModalRef.dismiss();
-    this.bsRegistrationModalRef = this.modalService.open(RegistrationComponent, { backdrop  : 'static', keyboard  : false });
+    this.sessionService.setTourStep('Registration');
   }
 
   openRecoverPassword() {
-    this.bsModalRef.close();
-    this.bsRegistrationModalRef = this.modalService.open(RecoverPasswordComponent, { backdrop  : 'static', keyboard  : false });
+    this.sessionService.setTourStep('RecoverPassword');
   }
 
   loginWithTwitter() {

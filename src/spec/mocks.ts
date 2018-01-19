@@ -1,4 +1,6 @@
 import { Observable } from 'rxjs/Observable';
+import { Injectable, Inject, Output, EventEmitter } from '@angular/core';
+
 
 export function getMocks() {
     const mocks = {
@@ -82,6 +84,9 @@ export function getMocks() {
             },
             setToken: (token: string) => {
                 return '';
+            },
+            sessionChangeEvent: {
+                subscribe: (fn: Function) => { },
             },
         },
         profileService: {

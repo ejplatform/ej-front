@@ -10,6 +10,7 @@ import { Tour } from '../gamification/shared/tour-model';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
 import { LoginComponent  } from '../login/login.component';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-registration',
@@ -29,8 +30,8 @@ export class RegistrationComponent {
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService, private toastService: ToastService,
-    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, private router: Router,
-    private modalService: NgbModal) {
+    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, 
+    private sessionService: SessionService, private router: Router, private modalService: NgbModal) {
     this.profile = new Profile();
   }
 
@@ -79,8 +80,7 @@ export class RegistrationComponent {
   }
 
   openLogin() {
-    this.activeModal.dismiss();
-    this.loginModalRef = this.modalService.open(LoginComponent, { backdrop  : 'static', keyboard  : false });
+    this.sessionService.setTourStep('Login');
   }
 
   handleloginSuccess(){

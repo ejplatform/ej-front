@@ -18,6 +18,7 @@ import { PointComponent } from './point/point.component';
 import { TipComponent } from './tip/tip.component';
 import { TourComponent } from './tour.component';
 import { TourService } from './shared/tour.service';
+import { SessionService } from '../services/session.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
@@ -38,6 +39,7 @@ describe('TourComponent', () => {
         { provide: ToastService, useValue: mocks.toastService },
         { provide: TourService, useValue: mocks.tourService },
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: SessionService, useValue: mocks.sessionService },                
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
