@@ -27,10 +27,9 @@ export class VoteComponent implements OnInit {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
 
-    //FIXME Replace by random() when we have a random conversation endpoint
-    conversationService.list().subscribe(conversations => {
-      this.conversation = conversations[0];
-      conversationService.getNextUnvotedComment(conversations[0].id).subscribe(comment => {
+    conversationService.random().subscribe(conversation => {
+      this.conversation = conversation;
+      conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
         this.comment = comment;
         this.comment.conversationObj = this.conversation;
       }, error => {
