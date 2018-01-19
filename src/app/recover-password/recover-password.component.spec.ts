@@ -9,6 +9,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecoverPasswordComponent } from './recover-password.component';
 import { ToastService } from '../services/toast.service';
 import { ProfileService } from '../services/profile.service';
+import { SessionService } from '../services/session.service';
 import { AuthService } from '../services/auth.service';
 import * as helpers from '../../spec/helpers';
 
@@ -23,6 +24,7 @@ describe('RecoverPasswordComponent', () => {
       declarations: [ RecoverPasswordComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: SessionService, useValue: mocks.sessionService },        
         { provide: AuthService, useValue: mocks.authService },
         { provide: ToastService, useValue: mocks.toastService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },        

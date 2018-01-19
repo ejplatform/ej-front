@@ -10,6 +10,7 @@ import { Profile } from '../models/profile';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
 import { RegistrationComponent  } from '../registration/registration.component';
+import { SessionService } from '../services/session.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class RecoverPasswordComponent {
   profile: Profile;
   registrationModalRef: any;
   
-  constructor(private authService: AuthService, private profileService: ProfileService, 
+  constructor(private authService: AuthService, private profileService: ProfileService, private sessionService: SessionService,
     public activeModal: NgbActiveModal, private toastService: ToastService, private modalService: NgbModal, private router: Router) {
     this.profile = new Profile();
   }
@@ -37,7 +38,6 @@ export class RecoverPasswordComponent {
   }
 
   openRegistration() {
-    this.activeModal.close();
-    this.registrationModalRef = this.modalService.open(RegistrationComponent, { backdrop  : 'static', keyboard  : false });
+    this.sessionService.setTourStep('Registration');
   }
 }

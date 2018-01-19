@@ -9,6 +9,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../services/toast.service';
 import { RegistrationComponent } from './registration.component';
 import { ProfileService } from '../services/profile.service';
+import { SessionService } from '../services/session.service';
 import { AuthService } from '../services/auth.service';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import * as helpers from '../../spec/helpers';
@@ -24,6 +25,7 @@ describe('RegistrationComponent', () => {
       declarations: [ RegistrationComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: SessionService, useValue: mocks.sessionService },
         { provide: ToastService, useValue: mocks.toastService },        
         { provide: AuthService, useValue: mocks.authService },
         { provide: SocialFacebookService, useValue: mocks.socialFacebookService },

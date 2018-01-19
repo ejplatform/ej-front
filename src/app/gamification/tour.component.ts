@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { concat } from 'rxjs/observable/concat';
 import * as _ from 'lodash'
 
 import { ProfileService } from '../services/profile.service';
@@ -12,7 +14,8 @@ import { TourService } from './shared/tour.service';
 import { BadgeComponent } from './badge/badge.component';
 import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SessionService } from '../services/session.service';
+import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
 
 @Component({
   selector: 'app-tour',
@@ -24,11 +27,15 @@ export class TourComponent implements OnInit {
   
   constructor( private profileService: ProfileService, private modalService: NgbModal, 
     private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, 
-    public activeModal: NgbActiveModal, private tourService: TourService) { 
+    public activeModal: NgbActiveModal, private tourService: TourService, private sessionService: SessionService) { 
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+      this.ngOnInit();
+    });
+
+    this.sessionService.sessionChangeEvent.subscribe(data => {
       this.ngOnInit();
     });
   }
@@ -62,7 +69,23 @@ export class TourComponent implements OnInit {
     let componentType: any;
     switch (step) {
       case '': {
-        componentType = LoginComponent;
+        switch (this.sessionService.getTourStep()) {
+          case 'Registration': {
+            componentType = RegistrationComponent;
+            break;
+          }
+          case 'Login': {
+            componentType = LoginComponent;
+            break;
+          }
+          case 'RecoverPassword': {
+            componentType = RecoverPasswordComponent;
+            break;
+          }
+          default:
+            componentType = LoginComponent;
+          
+        }
         break;
       }
       case Tour.STEP_ONE: {
@@ -106,6 +129,7 @@ export class TourComponent implements OnInit {
         break;
       }
     }
+    
     return componentType;
   }
 

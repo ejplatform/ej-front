@@ -25,10 +25,21 @@ export class SessionService {
 
   setToken(token: string): string {
       this.localStorageService.store('token', token);
-      return this.localStorageService.retrieve('token');
+      return this.getToken();
   };
 
   getToken(): string {
       return this.localStorageService.retrieve('token');
   };
+
+  setTourStep(step: string): string {
+    this.localStorageService.store('step', step);
+    this.sessionChangeEvent.emit(step);    
+    return this.getTourStep();
+  };
+
+  getTourStep(): string {
+    return this.localStorageService.retrieve('step');
+  };
+
 }
