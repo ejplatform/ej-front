@@ -61,6 +61,13 @@ export class ParticipateComponent implements OnInit {
           this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
           this.conversation = conversation;
           this.conversationLoaded = true;
+
+          // This call will load any polis embed on the page
+          // It will be removed as soon as polis graphs are no longer needed
+          setTimeout(() => {
+            const loadIframes = window['loadIframes'];
+            loadIframes();
+          }, 3000);
         });
       }
     });
