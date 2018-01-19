@@ -90,7 +90,6 @@ export class LoginComponent {
   }
 
   handleError(error: any) {
-    this.bsModalRef.close();
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
 
     this.emailErrors.setErrors(errors['email']);
