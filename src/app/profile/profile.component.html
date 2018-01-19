@@ -11,6 +11,17 @@
       <p>
         {{'profile-change-picture-detail' | translate}}
       </p>
+
+      <div class="profile-badges">
+        <h2>{{ 'profile.badges' | translate }}</h2>
+
+        <ul>
+          <li *ngFor="let badge of userBadges">
+            <h3>{{ 'profile.badge.' + badge.id | translate }} {{ 'profile.badge.level' | translate }} {{ badge.level }}</h3>
+            <img src="/assets/images/badges/{{badge.id}}.svg" alt="" />
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="profile-information-column">
       <form   name="profileForm" #profileForm="ngForm">

@@ -15,6 +15,7 @@ $profile-font-color: #6B7479;
     .profile-picture-column{
         @extend .col-md-3; 
         border-right: 1px solid rgb(233, 233, 233);
+        padding: 0;
         padding-top: 30px;
         padding-bottom: 50px;
     
@@ -122,4 +123,35 @@ $profile-font-color: #6B7479;
         @extend .fa-times-circle-o;
         color: #dc3545;
     }
+}
+
+.profile-badges {
+  h2 {
+    height: 77px;
+    line-height: 77px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #3C494E;
+    background-color: #F4F6F9;
+  }
+
+  h3 {
+    color: #D0021B;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    text-align: center;
+    background-color: #F4F6F9;
+    padding: 20px 0;
+    margin-top: 20px;
+  }
 }

@@ -6,6 +6,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { ToastService } from '../services/toast.service';
+import { BadgeService } from '../gamification/shared/badge.service';
 
 @Component({
   selector: 'app-profile',
@@ -66,18 +67,38 @@ export class ProfileComponent {
     {id: 'UNDECLARED', name: "Não declarada"},
   ];
 
+  userBadges = [];
+
   constructor(private profileService: ProfileService, private authService: AuthService, private router: Router, 
-    private toastService: ToastService) {
+    private toastService: ToastService, private badgeService: BadgeService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
     this.initializeFields(this.profile);
+    this.selectBadges();
+  }
+
+  selectBadges() {
+    this.badgeService.list().subscribe(badges => {
+      let userBadges = [];
+      badges.forEach(function(badge) {
+        let userBadgeLevel = -1;
+        badge.levels.forEach((level) => {
+          if (level.user_has && level.level > userBadgeLevel) {
+            userBadgeLevel = level.level;
+          }
+        });
+        if (userBadgeLevel >= 0) {
+          userBadges.push({ id: badge.slug, level: userBadgeLevel + 1 });
+        }
+      });
+      this.userBadges = userBadges;
+    });
   }
 
   save() {
-
     this.profileService.save(this.profile).subscribe( profile => {
         this.toastService.success({ title: "profile.save.success.title", message: "profile.save.success.message" });
         this.profileService.setProfile(profile);
