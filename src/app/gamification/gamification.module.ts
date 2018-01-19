@@ -9,11 +9,11 @@ import { BadgeComponent } from './badge/badge.component';
 import { PointComponent } from './point/point.component';
 import { TipComponent } from './tip/tip.component';
 import { GamificationRoutingModule, routedComponents } from './gamification.routing';
-import { GamificationInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from '../registration/registration.component';
 import { TourService } from './shared/tour.service';
+import { BadgeService } from './shared/badge.service';
 
 @NgModule({
   imports: [
@@ -23,10 +23,11 @@ import { TourService } from './shared/tour.service';
   ],
   providers: [
     NgbActiveModal,
-    TourService
+    TourService,
+    // BadgeService
   ],
   declarations: [ routedComponents, TourComponent, StepComponent, CommentComponent, VoteComponent, BadgeComponent, PointComponent, TipComponent ],
-  entryComponents: [ TourComponent ],
+  entryComponents: [ TourComponent, BadgeComponent ],
 })
 export class GamificationModule {
   static withComponents(components: any[]) {

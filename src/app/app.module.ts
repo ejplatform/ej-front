@@ -58,12 +58,15 @@ import { ProfileService } from './services/profile.service';
 import { SocialFacebookService } from './services/social-facebook.service';
 import { ToastService } from './services/toast.service';
 import { SessionService } from './services/session.service';
+import { BadgeService } from './gamification/shared/badge.service';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 
-import { GamificationInterceptor } from './gamification/interceptor.module';
+import { TourInterceptor } from './gamification/shared/tour.interceptor';
+import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
+import { BadgeComponent } from './gamification/badge/badge.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -116,13 +119,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [GlobalState,
     AuthService,
     SessionService,
+    BadgeService,
     ProfileService,
     SocialFacebookService,
     ToastService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: GamificationInterceptor, multi: true },    
+    { provide: HTTP_INTERCEPTORS, useClass: TourInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: BadgeInterceptor, multi: true },
 
   ],
   entryComponents: [LoginComponent,
