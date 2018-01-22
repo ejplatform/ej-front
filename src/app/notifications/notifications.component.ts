@@ -18,6 +18,7 @@ export class NotificationsComponent implements OnInit {
   alerts = [];
   isCollapsed = true;
   alertsLoaded = false;
+  unreadCount = -1;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private notificationService: NotificationService) {
 
@@ -27,8 +28,16 @@ export class NotificationsComponent implements OnInit {
 
     // get user-notifications now
     this.notificationService.list().subscribe((user_notifications) => {
-    this.alerts = user_notifications;
-    this.alertsLoaded = true;
+      this.alerts = user_notifications;
+      this.alertsLoaded = true;
+      
+      let count = 0;
+      this.alerts.forEach((notification) => {
+        if (notification.status != 'read') {
+          count++;
+        }
+      });
+      this.unreadCount = count;
     });
   }
 
