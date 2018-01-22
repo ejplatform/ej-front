@@ -117,7 +117,7 @@ export class ParticipateComponent implements OnInit {
     this.commentService.create(newcomment).subscribe(response => {
       this.newCommentText = "";
       this.newCommentSuccess = true;
-      if(!_.isNil(response.nudge) && (response.nudge.state == Nudge.EAGER) ){
+      if(!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)){
         this.openNudge(response.nudge.state);
       }
     }, response => {
