@@ -47,7 +47,7 @@
       </div>
 
       <div class="new-comment">
-        <textarea [(ngModel)]="newCommentText" (click)="clearComment()" id="new-comment" placeholder="{{ 'conversation.newcomment' | translate }}"></textarea>
+        <textarea [(ngModel)]="newCommentText" id="new-comment" placeholder="{{ 'conversation.newcomment' | translate }}"></textarea>
         <p class="comment-message">
           <span *ngIf="newCommentSuccess === null">&nbsp;</span>
           <span *ngIf="newCommentSuccess === true">{{ "conversation.newcommentsuccess" | translate }}</span>
