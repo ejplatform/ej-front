@@ -105,11 +105,6 @@ export class ParticipateComponent implements OnInit {
     });
   }
 
-  clearComment() {
-    this.newCommentSuccess = null;
-    this.newCommentText = "";
-  }
-
   sendComment() {
     const newcomment = new Comment();
     newcomment.content = this.newCommentText;
@@ -126,7 +121,7 @@ export class ParticipateComponent implements OnInit {
       this.commentService.create(newcomment).subscribe(response => {
         this.newCommentText = '';
         this.newCommentSuccess = true;
-        if (!_.isNil(response.nudge) && (response.nudge.state === Nudge.EAGER)) {
+        if (!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)) {
           this.openNudge(response.nudge.state);
         }
       }, response => {
