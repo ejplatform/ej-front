@@ -4,7 +4,9 @@
   </div>
 </div>
 
-<div id="notifications-wrapper" *ngIf="alertsLoaded">
+<p class="notifications-empty" *ngIf="alertsLoaded && alerts?.length === 0">{{"alerts.none" | translate}}</p>
+
+<div id="notifications-wrapper" *ngIf="alertsLoaded && alerts?.length > 0">
   <div id="notifications-col-1">
 
     <div class="notifications-header">
@@ -21,7 +23,6 @@
     </div>
 
     <div class="notifications-panel">
-      <p class="notifications-empty" *ngIf="alerts?.length === 0">{{"alerts.none" | translate}}</p>
       <ul class="notifications-list">
         <li class="notifications-item" *ngFor="let alert of alerts">
           <a class="notifications-link" (click)="setActive(alert.id)" *ngIf="!alert.hide" [ngClass]="{ 'current-notification': alert?.id === user_notification?.id }">
