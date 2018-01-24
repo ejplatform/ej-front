@@ -1,7 +1,7 @@
 <ul id="top-right-menu" class="user-tools">
     <li>
         <a class="notifications active" (click)="toggleAlerts($event)">
-            <span class="notification-bubble" *ngIf="unreadCount >= 0">{{unreadCount}}</span>
+            <span class="notification-bubble" *ngIf="unreadCount > 0">{{unreadCount}}</span>
             <img src="/assets/images/icons/notification_off_icon.svg" *ngIf="alertsLoaded && alerts.length === 0" alt="{{'alerts.off' | translate}}" >
             <img src="/assets/images/icons/notification_on_icon.svg" *ngIf="alertsLoaded && alerts.length > 0" alt="{{alerts.length}}" >
             <span class="hidden-xs" translate>{{"alerts.notifications"}}</span>

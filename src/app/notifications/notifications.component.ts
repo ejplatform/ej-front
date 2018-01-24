@@ -45,6 +45,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   toggleAlerts($event: any) {
+    this.unreadCount = 0;
     this.isCollapsed = !this.isCollapsed;
     $event.preventDefault();
     $event.stopPropagation();
