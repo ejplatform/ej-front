@@ -95,6 +95,7 @@
     "conversations.card.comments":"comentários",
     "conversations.card.votes":"votos",
     "conversations.card.participation":"Sua participação",
+    "comments.none": "Nenhum comentário",
     "comments.topic":"Comentarios",
     "comments.rejected":"Rejeitados",
     "comments.unmoderated":"Aguardando Moderacao",
