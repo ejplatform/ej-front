@@ -70,6 +70,14 @@ export class NotificationComponent implements OnInit, AfterViewInit {
         currentNotification = notification;
       }
     });
+    if (currentNotification.status != 'read') {
+      this.notificationService.markAsRead(currentNotification.id).subscribe((response) => {
+        if (this.unreadCount > 0) {
+          this.unreadCount--;
+        }
+        currentNotification.status = 'read';
+      });
+    }
     this.user_notification = currentNotification;
   }
 

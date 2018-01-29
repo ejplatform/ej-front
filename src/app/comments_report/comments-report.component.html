@@ -21,6 +21,7 @@
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
+    <p class="no-comments" *ngIf="totalItems === 0">{{ 'comments.none' | translate }}</p>
   </ng-template>
   
   </ngb-tab>
@@ -31,6 +32,7 @@
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
+    <p class="no-comments" *ngIf="totalItems === 0">{{ 'comments.none' | translate }}</p>
   </ng-template>
   
   </ngb-tab>
@@ -41,11 +43,12 @@
         <app-comment-report [commentReport]="commentReport" (onApprovalChange)="updateCommentsList($event)"></app-comment-report>
       </li>
     </ul>
+    <p class="no-comments" *ngIf="totalItems === 0">{{ 'comments.none' | translate }}</p>
   </ng-template>
   
   </ngb-tab>
 </ngb-tabset>
-<div class="row">
+<div class="row" *ngIf="totalItems > 50">
   <div class="col-xs-12 col-12 justify-content-center">
     <ngb-pagination
         [collectionSize]="totalItems" 

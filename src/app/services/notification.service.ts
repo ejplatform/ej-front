@@ -36,6 +36,11 @@ export class NotificationService {
       return this.http.get<UserNotification[]>(fullEndpointUrl);
     }
 
+    markAsRead(id: number): Observable<any> {
+      const fullEndpointUrl = `${environment.apiUrl}/api/user-notifications/${id}/read/`;
+      return this.http.post(fullEndpointUrl, {}, { responseType: 'text' });
+    }
+
     saveInfo(info: NotificationInfo): void {
       this.localStorageService.store('notificationInfo', info);
     }

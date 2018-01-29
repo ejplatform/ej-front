@@ -35,7 +35,7 @@ export class CommentsReportComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.totalItems = 0;
+    this.totalItems = -1;
     this.selectedConversation = 0;
     this.currentStatus = Comment.UNMODERATED;
     
