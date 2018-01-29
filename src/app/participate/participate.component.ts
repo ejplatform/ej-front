@@ -17,7 +17,7 @@ import { Nudge } from '../nudge/shared/nudge-model';
 
 
 @Component({
-  selector: 'app-embed',
+  selector: 'app-participate',
   templateUrl: './participate.component.html',
   styleUrls: ['./participate.component.scss'],
   providers: [ConversationService, CommentService, VoteService],
