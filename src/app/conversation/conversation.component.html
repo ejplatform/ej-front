@@ -1,49 +1,24 @@
-<div *ngIf="conversation" class='conversation'>
-  <h1>{{'conversations.topic' | translate}} > {{conversation.title}} - {{parserDate(conversation.created_at) | date:'MMMM/y'}} </h1>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <small class="category">{{conversation.title}} </small>
-        <small class="date">{{parserDate(conversation.created_at) | date:'MMMM/y'}} </small>
-      </div>
-      <div class="card-header-right">
-        <small class="identifier">Conversas #{{conversation.id}} </small>
-      </div>
-    </div>
-
-    <div class="card-cover">
-      <div class="card-cover-img">
-        <img class="card-img" src="/assets/images/card-bg.jpg" alt="Card image cap">
-      </div>
-      <h5 class="card-title mt-4">{{conversation.description}}</h5>
-        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-    </div>
-
-    <div class="card-block">
-      <h2>{{'conversations.title' | translate}}</h2>
-      <h3>{{'conversations.subtitle' | translate}}</h3>
-    </div>
-
-    <div class="card-footer">
-      <small class="card-footer-left">
-        <small class="amount">{{conversation.total_approved_comments | number:'1.0'}}</small>{{'conversations.card.comments' | translate}}
-      </small>
-      <small class="card-footer-right">
-        <small class="amount">{{conversation.total_votes | number:'1.0'}}</small>{{'conversations.card.votes' | translate}}
-      </small>
-      <div class='participation '>
-        <div class='title'>
-          <h4>{{'conversations.card.participation' | translate}}</h4>
-        </div>
-        <div class='content d-flex align-items-stretch bd-highlight '>
-          <div class='profile'>
-            <img [src]="profile.image" alt="{{'navigation-bar.item.profile' | translate}}">
-          </div>
-          <ngb-progressbar showValue="true" class="progress-striped active align-middle" [value]="ratio(conversation)" type="warning"></ngb-progressbar>
-        </div>
-      </div>
-    </div>
+<div class="page-title" *ngIf="!isHome && !!pageTitle">
+  <div class="container">
+    <h1> {{ pageTitle }} </h1>
   </div>
+</div>
+
+<div *ngIf="isHome">
+  <app-conversations></app-conversations>
+  <br>
+  <br>
+  
+  <app-home-slider></app-home-slider>
+  <br>
+  <br>
+  <div class="container facebook-responsive">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4GkSOTl-Nvc" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+
+<app-participate></app-participate>
+
+<div class="container container-conversations">
+  <app-conversations></app-conversations>
 </div>
