@@ -38,7 +38,7 @@ describe('ConversationComponent', () => {
   it('display all comments in list', () => {
     component.conversation = <Conversation>{title: 'comment 1', description: 'comment body 1'};
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('.card')).length).toBe(1);
+    expect(fixture.debugElement.queryAll(By.css('app-participate')).length).toBe(1);
   });
 
 });
