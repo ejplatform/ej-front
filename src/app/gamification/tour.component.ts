@@ -93,6 +93,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_TWO: {
+        this.sessionService.destroyTourStep();
         componentType = PointComponent;
         break;
       }

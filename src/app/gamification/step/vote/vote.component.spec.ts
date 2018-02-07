@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { VoteComponent } from './vote.component';
 import { ProfileService } from '../../../services/profile.service';
+import { SessionService } from '../../../services/session.service';
 import { TourService } from '../../shared/tour.service';
 import * as helpers from '../../../../spec/helpers';
 
@@ -22,6 +23,7 @@ describe('VoteComponent', () => {
       declarations: [ VoteComponent ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
+        { provide: SessionService, useValue: mocks.sessionService },
         { provide: TourService, useValue: mocks.tourService },        
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
