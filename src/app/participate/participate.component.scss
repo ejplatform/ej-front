@@ -377,3 +377,10 @@ h1#conversation-title {
     font-size: 22px !important;
   }
 }
+
+
+@media screen and (max-width: 40em){
+  .polis {
+    display: none;
+  }
+}

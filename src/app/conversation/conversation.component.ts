@@ -6,6 +6,7 @@ import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-conversation',
@@ -17,7 +18,10 @@ export class ConversationComponent implements OnInit {
 
   @Input() conversation: Conversation;
   @Input() profile: Profile;
-  
+  isHome: boolean = false;
+  pageTitle: String;
+  public polisUrl = environment.polisUrl;
+
   constructor(private conversationService: ConversationService, private route: ActivatedRoute, private profileService: ProfileService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
@@ -32,7 +36,23 @@ export class ConversationComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if (this.conversation === undefined) {
+      let path = this.route.snapshot.url.map(p => p.path).join("/");
+      if(path == 'inicio' || path == ''){
+        path = '';
+        this.isHome = true;
+        this.pageTitle = 'Por um Novo Programa para o Brasil';
+      } else if (path == 'sobre-nos') {
+        this.pageTitle = 'Sobre nós';
+      } else if (path == 'perguntas-frequentes') {
+        this.pageTitle = 'Perguntas frequentes';
+      } else if (path == 'conversas') {
+        this.pageTitle = 'Conversas';
+      } else if (path == 'termos-de-uso') {
+        this.pageTitle = 'Termos de uso';
+      }
+      this.polisUrl = this.polisUrl + path;
+    }
   }
 
   ratio(conversation: Conversation){

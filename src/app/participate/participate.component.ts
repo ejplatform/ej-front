@@ -141,6 +141,13 @@ export class ParticipateComponent implements OnInit {
     modal.componentInstance.nudge = nudge;
   }
 
+  commentCharCounter(str){
+    this.newCommentText = str;
+    
+    if(str.length > 140)
+      this.newCommentText = this.newCommentText.substr(0, 140);
+  }
+
   ngOnInit() {
     // this.profile = this.profileService.getProfile();
     if (this.conversation === undefined) {

@@ -52,4 +52,8 @@ export class StepComponent implements OnInit {
    
   }
 
+  isEqualStepThree(){
+    // return this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE' || this.currentStep === 'STEP_THIRTEEN'
+  }
+
 }

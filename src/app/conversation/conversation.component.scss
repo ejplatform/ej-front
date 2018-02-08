@@ -123,3 +123,13 @@ h2, h3{
         }
     }
 }
+
+.container-conversations{
+    padding: 0;
+}
+
+@media screen and (min-width: 1025px){
+    .container-conversations{
+        padding: 0 5px;
+    }
+}

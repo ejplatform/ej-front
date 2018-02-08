@@ -5,7 +5,6 @@ import { ConversationsComponent } from "./conversations/conversations.component"
 import { ConversationComponent } from "./conversation/conversation.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { EmbedComponent } from "./embed/embed.component";
-import { ParticipateComponent } from "./participate/participate.component";
 import { NotificationComponent } from "./notification/notification.component";
 
 export const rootRouterConfig: Routes = [
@@ -16,7 +15,7 @@ export const rootRouterConfig: Routes = [
     path: 'conversations',
     children: [
       { path: '', component: ConversationsComponent },
-      { path: ':slug', component: ParticipateComponent },
+      { path: ':slug', component: ConversationComponent },
     ],
   },
   { path: 'inicio', component: EmbedComponent },

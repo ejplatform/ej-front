@@ -80,6 +80,10 @@ export function getMocks() {
             currentProfile: () => {
                 return { "id": 1, "name": "admin", "email": "admin@localhost.com" };
             },
+            getTourConversation: () => {
+                return {};
+            },
+            destroyTourStep: () => {},
             destroy: () => {
             },
             setToken: (token: string) => {

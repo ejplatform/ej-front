@@ -114,9 +114,8 @@ export class ProfileComponent {
     this.profile.imageFile = file;
     this.profileService.saveImage(this.profile).subscribe( profile => {
       this.toastService.success({ title: "profile.save.image.success.title", message: "profile.save.image.success.message" });
-      this.profileService.setProfile(this.profile);
+      this.profileService.setProfile(profile);
       this.router.navigate(['profile']);
-
     }, error => {
       console.log(error);
     });
