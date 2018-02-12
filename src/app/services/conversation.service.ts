@@ -26,6 +26,11 @@ export class ConversationService {
       return this.http.get<Conversation[]>(fullEndpointUrl);
     }
 
+    categorized(id: number): Observable<Conversation[]> {
+      let fullEndpointUrl = environment.apiUrl + '/api/conversations/?category_id=' + id;
+      return this.http.get<Conversation[]>(fullEndpointUrl);
+    }
+
     get(slug: string): Observable<Conversation> {
       let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + slug + '/';
       return this.http.get<Conversation>(fullEndpointUrl);

@@ -8,6 +8,8 @@
 
     <h3>{{'conversations.title' | translate}}</h3>
     <h2>{{'conversations.subtitle' | translate}}</h2>
+
+    <div class="no-conversations" *ngIf="conversationsLoaded && conversations.length === 0">{{'conversations.none' | translate}}</div>
    
     <div *ngFor="let local_conversations of groupConversations(); let i = index" class="card-deck">
         <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }">
