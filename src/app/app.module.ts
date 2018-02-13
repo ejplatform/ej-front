@@ -78,7 +78,8 @@ if (environment.sentryDSN) {
 
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
-    Raven.captureException(err);
+    console.log(err);
+    Raven.captureException(err.originalError || err);
   }
 }
 
