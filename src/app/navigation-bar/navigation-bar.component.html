@@ -1,4 +1,4 @@
-<nav class="main-nav">
+<nav class="main-nav" [ngStyle]="styles ? { 'background-color': styles.color } : {}">
 
     <ul class="user-nav">
         <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">

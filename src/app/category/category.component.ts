@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
 
@@ -8,6 +8,7 @@ import { Conversation } from '../models/conversation';
 import { Category } from '../models/category';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
+import { GlobalState } from '../global.state';
 
 @Component({
   selector: 'app-category',
@@ -15,7 +16,7 @@ import { ProfileService } from '../services/profile.service';
   styleUrls: ['./category.component.scss'],
   providers: [ConversationService, CategoryService],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnDestroy {
 
   category: Category;
   conversations: Conversation[];
@@ -25,6 +26,7 @@ export class CategoryComponent implements OnInit {
   constructor(private conversationService: ConversationService,
               private categoryService: CategoryService,
               private route: ActivatedRoute,
+              private _state: GlobalState,
               private profileService: ProfileService) {
 
     this.profile = <Profile>{};
@@ -35,6 +37,7 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe(params => {
       categoryService.get(params.slug).subscribe(category => {
         this.category = category;
+        this._state.notifyDataChanged('category.data', category);
         conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
           this.conversationsLoaded = true;
           this.conversations = _.sortBy(conversations, ['position']);
@@ -46,7 +49,8 @@ export class CategoryComponent implements OnInit {
     });
   }
   
-  ngOnInit() {
+  ngOnDestroy() {
+    this._state.notifyDataChanged('category.data', null);
   }
 
   groupConversations(){

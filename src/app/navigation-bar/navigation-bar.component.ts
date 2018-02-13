@@ -15,11 +15,15 @@ export class NavigationBarComponent implements OnInit {
 
   @Input() profile: Profile;
   isMenuCollapsed: boolean = false;
-  static MAX_SIZE_FOR_AUTOMATIC_TOGGLE = 640
+  static MAX_SIZE_FOR_AUTOMATIC_TOGGLE = 640;
+  styles: any = null;
   
   constructor(private _state: GlobalState,  private profileService: ProfileService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
+    });
+    this._state.subscribe('category.data', (category) => {
+      this.styles = category ? category.styles : null;
     });
   }
  

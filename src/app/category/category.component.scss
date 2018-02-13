@@ -1,2 +1,7 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 @import '../conversations/conversations.component';
+
+.page-title{
+  background-image: url('/assets/images/bg-title-dark.png');
+  margin-bottom: 90px;
+}
