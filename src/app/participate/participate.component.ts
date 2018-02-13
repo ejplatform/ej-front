@@ -26,6 +26,7 @@ export class ParticipateComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() conversation: Conversation;
+  @Input() promoted: String;
   public polisUrl = environment.polisUrl;
   isHome: boolean = false;
   conversationLoaded: boolean = false;
@@ -50,27 +51,31 @@ export class ParticipateComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params.slug) {
         conversationService.get(params.slug).subscribe(conversation => {
-          conversationService.getNextUnvotedComment(conversation.id).subscribe(comment => {
-            this.comment = comment;
-            this.comment.conversationObj = this.conversation;
-          }, error => {
-            this.comment = null;
-          });
-          this.truncatedDialog = conversation.dialog ? this.truncate(conversation.dialog) : null;
-          this.truncatedResponse = conversation.response ? this.truncate(conversation.response) : null;
-          this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
-          this.conversation = conversation;
-          this.conversationLoaded = true;
-
-          // This call will load any polis embed on the page
-          // It will be removed as soon as polis graphs are no longer needed
-          setTimeout(() => {
-            const loadIframes = window['loadIframes'];
-            loadIframes();
-          }, 3000);
+          this.conversationCallback(conversation);
         });
       }
     });
+  }
+
+  conversationCallback(conversation) {
+    this.conversationService.getNextUnvotedComment(conversation.id).subscribe(comment => {
+      this.comment = comment;
+      this.comment.conversationObj = this.conversation;
+    }, error => {
+      this.comment = null;
+    });
+    this.truncatedDialog = conversation.dialog ? this.truncate(conversation.dialog) : null;
+    this.truncatedResponse = conversation.response ? this.truncate(conversation.response) : null;
+    this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
+    this.conversation = conversation;
+    this.conversationLoaded = true;
+
+    // This call will load any polis embed on the page
+    // It will be removed as soon as polis graphs are no longer needed
+    setTimeout(() => {
+      const loadIframes = window['loadIframes'];
+      loadIframes();
+    }, 3000);
   }
 
   displayStage(stage) {
@@ -149,8 +154,14 @@ export class ParticipateComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.promoted) {
+      this.conversationService.promoted().subscribe((conversations: Conversation[]) => {
+        this.conversationCallback(conversations[0]);
+      });
+    }
+
     // this.profile = this.profileService.getProfile();
-    if (this.conversation === undefined) {
+    else if (this.conversation === undefined) {
       let path = this.route.snapshot.url.map(p => p.path).join("/");
       if(path == 'inicio' || path == ''){
         path = '';

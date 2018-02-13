@@ -21,6 +21,11 @@ export class ConversationService {
       return this.http.get<Conversation>(fullEndpointUrl);
     }
 
+    promoted(): Observable<Conversation[]> {
+      let fullEndpointUrl = environment.apiUrl + '/api/conversations/?promoted=true';
+      return this.http.get<Conversation[]>(fullEndpointUrl);
+    }
+
     get(slug: string): Observable<Conversation> {
       let fullEndpointUrl = environment.apiUrl + '/api/conversations/'  + slug + '/';
       return this.http.get<Conversation>(fullEndpointUrl);
