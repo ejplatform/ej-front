@@ -28,6 +28,7 @@
     "angulartics2": "^4.2.0",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
+    "raven-js": "~3.22.1",
     "font-awesome": "^4.7.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "lodash": "^4.17.4",

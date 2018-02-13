@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -67,6 +67,20 @@ import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
 import { BadgeComponent } from './gamification/badge/badge.component';
+import { environment } from '../environments/environment';
+
+import * as Raven from 'raven-js';
+
+if (environment.sentryDSN) {
+  Raven.config(environment.sentryDSN)
+       .install();
+}
+
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    Raven.captureException(err);
+  }
+}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -123,6 +137,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileService,
     SocialFacebookService,
     ToastService,
+    { provide: ErrorHandler, useClass: RavenErrorHandler },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },

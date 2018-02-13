@@ -3,5 +3,6 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000',
   polisUrl: 'https://brasilqueopovoquer.hacklab.com.br/',
-  onSignalAppId: '660977f0-30ad-4f69-a9a4-2873b8f5de7e'
+  onSignalAppId: '660977f0-30ad-4f69-a9a4-2873b8f5de7e',
+  sentryDSN: ''
 };
