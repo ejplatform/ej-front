@@ -1,6 +1,19 @@
-version: '2'
+version: '3.5'
+
+networks:
+  empurrando-juntos:
+    name: empurrando-juntos
 
 services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/local/nginx/Dockerfile
+    ports:
+      - '80:80'
+    networks:
+      - empurrando-juntos
+
   angular:
     build:
       context: .
@@ -8,5 +21,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "4200:4200"
+      - '4200:4200'
     command: /start.sh
+    networks:
+      - empurrando-juntos
