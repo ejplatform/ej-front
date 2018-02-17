@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,17 +12,19 @@ import { Vote } from '../models/vote';
 import { ProfileService } from '../services/profile.service';
 import { CommentService } from '../comments/shared/comment.service';
 import { VoteService } from '../services/vote.service';
+import { CategoryService } from '../services/category.service';
 import { NudgeComponent } from '../nudge/nudge.component';
 import { Nudge } from '../nudge/shared/nudge-model';
+import { GlobalState } from '../global.state';
 
 
 @Component({
   selector: 'app-participate',
   templateUrl: './participate.component.html',
   styleUrls: ['./participate.component.scss'],
-  providers: [ConversationService, CommentService, VoteService],
+  providers: [ConversationService, CommentService, VoteService, CategoryService],
 })
-export class ParticipateComponent implements OnInit {
+export class ParticipateComponent implements OnInit, OnDestroy {
 
   @Input() profile: Profile;
   @Input() conversation: Conversation;
@@ -41,7 +43,9 @@ export class ParticipateComponent implements OnInit {
 
   constructor(private conversationService: ConversationService,
               private route: ActivatedRoute, private profileService: ProfileService,
+              private _state: GlobalState,
               private commentService: CommentService, private modalService: NgbModal,
+              private categoryService: CategoryService,
               private voteService: VoteService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
@@ -51,10 +55,22 @@ export class ParticipateComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params.slug) {
         conversationService.get(params.slug).subscribe(conversation => {
+          if (conversation.category_id) {
+            categoryService.get(conversation.category_id.toString()).subscribe(category => {
+              this._state.notifyDataChanged('category.data', category);
+            });
+          }
+          else {
+            this._state.notifyDataChanged('category.data', null);
+          }
           this.conversationCallback(conversation);
         });
       }
     });
+  }
+
+  ngOnDestroy() {
+    this._state.notifyDataChanged('category.data', null);
   }
 
   conversationCallback(conversation) {

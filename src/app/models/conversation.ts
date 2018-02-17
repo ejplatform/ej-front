@@ -21,5 +21,6 @@ export class Conversation {
     public author: any;
     public position: number;
     public is_new: boolean;
+    public category_id: number;
 
 }
