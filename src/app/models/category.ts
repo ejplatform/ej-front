@@ -5,5 +5,6 @@ export class Category {
     public image: string;
     public image_caption: string;
     public styles: any;
+    public slug: string;
 
 }

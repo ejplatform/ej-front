@@ -22,6 +22,7 @@ export class CategoryComponent implements OnDestroy {
   conversations: Conversation[];
   conversationsLoaded = false;
   @Input() profile: Profile;
+  styles: any = null;
 
   constructor(private conversationService: ConversationService,
               private categoryService: CategoryService,
@@ -37,6 +38,7 @@ export class CategoryComponent implements OnDestroy {
     this.route.params.subscribe(params => {
       categoryService.get(params.slug).subscribe(category => {
         this.category = category;
+        this.styles = category ? category.styles : null;
         this._state.notifyDataChanged('category.data', category);
         conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
           this.conversationsLoaded = true;
@@ -45,6 +47,8 @@ export class CategoryComponent implements OnDestroy {
       }, error => {
         this.conversations = [];
         this.conversationsLoaded = true;
+        this.styles = null;
+        this._state.notifyDataChanged('category.data', null);
       });
     });
   }

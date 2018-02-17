@@ -28,7 +28,7 @@
     <div class="site-logo" [ngClass]="{ 'category-page': !!styles }">
         <h1><a routerLink="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
 
-        <span *ngIf="category" class="header-category">
+        <span *ngIf="category" class="header-category" routerLink="/category/{{category.slug}}">
           <img [src]="category.image" />
           <h2>{{category.name}}</h2>
         </span>
