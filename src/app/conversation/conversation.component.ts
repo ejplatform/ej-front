@@ -29,7 +29,7 @@ export class ConversationComponent implements OnInit {
       this.profile = profile;
     });
     this.route.params.subscribe( params => {
-      conversationService.get(params.id).subscribe(conversation => {
+      conversationService.get(params.slug).subscribe(conversation => {
         this.conversation = conversation;
       });
     });
