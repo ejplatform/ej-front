@@ -1,7 +1,7 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
 h2,h3{ font-weight: 300; }
-h2{ font-size: 32PX; }
+h2{ font-size: 32px; }
 h3{ font-size: 24px; }
 h4{ font-size: 0.8rem; }
 .card a{ color: white; }
@@ -124,4 +124,8 @@ h4{ font-size: 0.8rem; }
             @extend .ml-5;
         }
     }
+}
+
+h2.category-title {
+  margin-top: 55px;
 }

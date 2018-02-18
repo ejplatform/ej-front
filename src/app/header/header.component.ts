@@ -20,12 +20,18 @@ export class HeaderComponent implements OnInit {
 
   isMenuCollapsed: boolean = false;
   bsModalRef: any;
+  styles: any = null;
+  category: any = null;
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService,
     private modalService: NgbModal, private router: Router, private authService: AuthService ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
+    });
+    this._state.subscribe('category.data', (category) => {
+      this.styles = category ? category.styles : null;
+      this.category = category;
     });
 
     this.profileService.profileChangeEvent.subscribe(profile => {

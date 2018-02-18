@@ -4,7 +4,7 @@
     <li><a target="_blank" href="http://www.institutolula.org/" ><img src="/assets/images/footer/logo-instituto-lula.png" class="logo"></a></li>
     <li><a target="_blank" href="http://www.pt.org.br/" ><img src="/assets/images/footer/logo-partido-dos-trabalhadores.png" class="logo"></a></li>
 </ul>
-<div class="footer-content">
+<div class="footer-content" [ngStyle]="styles ? { 'background-color': '#4a4a4a' } : {}">
     <ul class='footer-menu'>
         <li><a routerLink="/sobre-nos">Sobre Nos</a></li>
         <li><a routerLink="/conversations">Conversas</a></li>

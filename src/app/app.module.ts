@@ -63,6 +63,7 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
+import { CategoryComponent } from './category/category.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
@@ -110,7 +111,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImageUploadComponent,
     SafePipe,
     ValidationMessageComponent,
-    ValidateOnBlurDirective
+    ValidateOnBlurDirective,
+    CategoryComponent
   ],
   imports: [
     CommentsReportModule,

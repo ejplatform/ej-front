@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { GlobalState } from '../global.state';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
+  
+  styles: any = null;
 
-  constructor() {}
+  constructor(private _state: GlobalState) {
+    this._state.subscribe('category.data', (category) => {
+      this.styles = category ? category.styles : null;
+    });
+  }
 
 }

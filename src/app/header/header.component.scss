@@ -258,3 +258,49 @@
         }
     }
 }
+
+.logged.site-header .category-page.site-logo a,
+.unlogged.site-header .category-page.site-logo a {
+  justify-content: left;
+
+  img {
+    width: 120px;
+    margin: 10px;
+  }
+}
+
+.header-category {
+  position: absolute;
+  top: 50%;
+  margin-top: -24px;
+  left: 0;
+  width: 100%; 
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+  h2 {
+    color: #4a4a4a;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 48px;
+    margin: 0;
+    margin-left: 16px;
+    padding: 0;
+    display: inline;
+  }
+
+  img {
+    height: 48px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+            
+@include media-breakpoint-down(sm) {
+  .header-category {
+    top: 160px;
+    margin-top: 0;
+  }
+}
