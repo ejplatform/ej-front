@@ -90,7 +90,9 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     // It will be removed as soon as polis graphs are no longer needed
     setTimeout(() => {
       const loadIframes = window['loadIframes'];
-      loadIframes();
+      if (loadIframes && {}.toString.call(loadIframes) === '[object Function]') {
+        loadIframes();
+      }
     }, 3000);
   }
 

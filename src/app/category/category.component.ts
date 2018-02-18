@@ -19,6 +19,7 @@ import { GlobalState } from '../global.state';
 export class CategoryComponent implements OnDestroy {
 
   category: Category;
+  categories: string[] = [''];
   conversations: Conversation[];
   conversationsLoaded = false;
   @Input() profile: Profile;

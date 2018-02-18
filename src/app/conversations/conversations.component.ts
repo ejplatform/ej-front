@@ -15,6 +15,9 @@ import { ProfileService } from '../services/profile.service';
 export class ConversationsComponent implements OnInit {
 
   conversations: Conversation[];
+  categorizedConversations: any = {};
+  categories: string[];
+  conversationsLoaded: boolean = false;
   @Input() profile: Profile;
 
   constructor(private conversationService: ConversationService,
@@ -29,12 +32,37 @@ export class ConversationsComponent implements OnInit {
 
   ngOnInit() {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
-      this.conversations = _.sortBy(conversations, ['position']);
+      let uncategorizedConversations = [];
+      let categorizedConversations = [];
+      let categories = [''];
+      conversations.forEach((conversation) => {
+        if (conversation.category_name) {
+          if (categories.indexOf(conversation.category_name) === -1) {
+            categories.push(conversation.category_name);
+          }
+          if (!categorizedConversations[conversation.category_name]) {
+            categorizedConversations[conversation.category_name] = [];
+          }
+          categorizedConversations[conversation.category_name].push(conversation);
+        }
+        else {
+          uncategorizedConversations.push(conversation);
+        }
+      });
+      this.conversations = _.sortBy(uncategorizedConversations, ['position']);
+      this.categorizedConversations = categorizedConversations;
+      this.categories = categories;
+      this.conversationsLoaded = true;
     });
   }
 
-  groupConversations(){
-    return [this.conversations];
+  groupConversations(category) {
+    if (!category || category === '') {
+      return [this.conversations];
+    }
+    else {
+      return [this.categorizedConversations[category]];
+    }
   }
 
   amount(){
