@@ -1,26 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
+import { CategoryService } from '../services/category.service';
 import { Conversation } from '../models/conversation';
+import { Category } from '../models/category';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
+import { GlobalState } from '../global.state';
 
 @Component({
-  selector: 'app-conversations',
-  templateUrl: './conversations.component.html',
-  styleUrls: ['./conversations.component.scss'],
-  providers: [ConversationService],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
+  providers: [ConversationService, CategoryService],
 })
-export class ConversationsComponent implements OnInit {
+export class CategoryComponent implements OnDestroy {
 
+  category: Category;
+  categories: string[] = [''];
   conversations: Conversation[];
-  categorizedConversations: any = {};
-  categories: string[];
-  conversationsLoaded: boolean = false;
+  conversationsLoaded = false;
   @Input() profile: Profile;
+  styles: any = null;
 
   constructor(private conversationService: ConversationService,
+              private categoryService: CategoryService,
+              private route: ActivatedRoute,
+              private _state: GlobalState,
               private profileService: ProfileService) {
 
     this.profile = <Profile>{};
@@ -28,41 +36,30 @@ export class ConversationsComponent implements OnInit {
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
     });
-  }
-
-  ngOnInit() {
-    this.conversationService.list().subscribe((conversations: Conversation[]) => {
-      let uncategorizedConversations = [];
-      let categorizedConversations = [];
-      let categories = [''];
-      conversations.forEach((conversation) => {
-        if (conversation.category_name) {
-          if (categories.indexOf(conversation.category_name) === -1) {
-            categories.push(conversation.category_name);
-          }
-          if (!categorizedConversations[conversation.category_name]) {
-            categorizedConversations[conversation.category_name] = [];
-          }
-          categorizedConversations[conversation.category_name].push(conversation);
-        }
-        else {
-          uncategorizedConversations.push(conversation);
-        }
+    this.route.params.subscribe(params => {
+      categoryService.get(params.slug).subscribe(category => {
+        this.category = category;
+        this.styles = category ? category.styles : null;
+        this._state.notifyDataChanged('category.data', category);
+        conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
+          this.conversationsLoaded = true;
+          this.conversations = _.sortBy(conversations, ['position']);
+        });
+      }, error => {
+        this.conversations = [];
+        this.conversationsLoaded = true;
+        this.styles = null;
+        this._state.notifyDataChanged('category.data', null);
       });
-      this.conversations = _.sortBy(uncategorizedConversations, ['position']);
-      this.categorizedConversations = categorizedConversations;
-      this.categories = categories;
-      this.conversationsLoaded = true;
     });
   }
+  
+  ngOnDestroy() {
+    this._state.notifyDataChanged('category.data', null);
+  }
 
-  groupConversations(category) {
-    if (!category || category === '') {
-      return [this.conversations];
-    }
-    else {
-      return [this.categorizedConversations[category]];
-    }
+  groupConversations(){
+    return [this.conversations];
   }
 
   amount(){
@@ -108,7 +105,4 @@ export class ConversationsComponent implements OnInit {
     c= '0x'+c.join('');
     return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', 0.66)';
   }
-
-
 }
-

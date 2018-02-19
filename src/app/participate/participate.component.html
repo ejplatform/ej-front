@@ -13,7 +13,7 @@
       <div class="comment-card" *ngIf="comment">
         <p class="comment-author">
           <img src="{{comment.author.image_url}}" alt="" />
-          <span>{{ comment.author.name.length ? comment.author.name : comment.author.username }}</span>
+          <span>{{ comment.author.name && comment.author.name.length ? comment.author.name : comment.author.username }}</span>
         </p>
         <p class="comment-text">{{ comment.content }}</p>
         <ul class="comment-actions">

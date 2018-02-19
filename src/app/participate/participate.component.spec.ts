@@ -13,6 +13,7 @@ import { ProfileService } from '../services/profile.service';
 
 import * as helpers from '../../spec/helpers';
 import { ParticipateComponent } from './participate.component';
+import { GlobalState } from '../global.state';
 
 
 describe('ParticipateComponent', () => {
@@ -26,7 +27,8 @@ describe('ParticipateComponent', () => {
       imports: [ TranslateModule.forRoot(), NgbModule.forRoot(),FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
       declarations: [ ParticipateComponent, SafePipe ],
       providers: [
-        { provide: ProfileService, useValue: mocks.profileService },        
+        { provide: ProfileService, useValue: mocks.profileService },
+        { provide: GlobalState, useValue: mocks.globalState }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

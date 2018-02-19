@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 
 import { FooterComponent } from './footer.component';
 import * as helpers from "../../spec/helpers";
+import { GlobalState } from '../global.state';
 
 describe('FooterComponent', () => {
 
@@ -18,6 +19,7 @@ describe('FooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FooterComponent ],
+      providers: [{ provide: GlobalState, useValue: mocks.globalState }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
