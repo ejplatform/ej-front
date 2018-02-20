@@ -3,7 +3,12 @@
 
 .page-title {
   background-image: url('/assets/images/bg-title-dark.png');
-  margin-bottom: 90px;
+}
+
+@include media-breakpoint-down(sm) {
+  .page-title {
+    margin-top: 120px;
+  }
 }
 
 .see-all-conversations {

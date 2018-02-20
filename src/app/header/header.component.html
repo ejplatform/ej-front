@@ -1,4 +1,4 @@
-<header class="site-header" [ngClass]="{'logged': isLogged(),'unlogged': !isLogged() }">
+<header class="site-header" [ngClass]="{ 'logged': isLogged(), 'unlogged': !isLogged(), 'category-page': !!styles }">
     <div *ngIf="profile" class='with-profile'>
         <div class="user-info" (click)="toggleMenu()"  >
             <div class="user-icon">

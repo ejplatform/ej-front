@@ -40,6 +40,7 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   truncatedResponse: String;
   displayedStage: String;
   expandedStage: String;
+  categoryId: number = 0;
 
   constructor(private conversationService: ConversationService,
               private route: ActivatedRoute, private profileService: ProfileService,
@@ -56,11 +57,13 @@ export class ParticipateComponent implements OnInit, OnDestroy {
       if (params.slug) {
         conversationService.get(params.slug).subscribe(conversation => {
           if (conversation.category_id) {
+            this.categoryId = conversation.category_id;
             categoryService.get(conversation.category_id.toString()).subscribe(category => {
               this._state.notifyDataChanged('category.data', category);
             });
           }
           else {
+            this.categoryId = 0;
             this._state.notifyDataChanged('category.data', null);
           }
           this.conversationCallback(conversation);

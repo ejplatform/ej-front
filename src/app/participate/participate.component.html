@@ -1,4 +1,4 @@
-<div class="page-title" *ngIf="!isHome && !pageTitle && conversationLoaded">
+<div class="page-title" *ngIf="!isHome && !pageTitle && conversationLoaded" [ngClass]="{ 'category-page': categoryId > 0 }">
   <div class="container">
     <h1 id="conversation-title">{{ 'conversation.title' | translate }} > {{ conversation.title }}</h1>
   </div>
