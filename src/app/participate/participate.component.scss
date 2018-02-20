@@ -384,3 +384,9 @@ h1#conversation-title {
     display: none;
   }
 }
+
+@include media-breakpoint-down(sm) {
+  .category-page.page-title {
+    margin-top: 120px;
+  }
+}

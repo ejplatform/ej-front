@@ -299,8 +299,18 @@
 }
             
 @include media-breakpoint-down(sm) {
+  .site-header.category-page {
+    height: 120px !important;
+  }
+
   .header-category {
-    top: 160px;
+    top: 63px;
     margin-top: 0;
+    padding-left: 95px;
+    white-space: nowrap;
+  }
+
+  .category-page .user-info {
+    height: 120px !important;
   }
 }

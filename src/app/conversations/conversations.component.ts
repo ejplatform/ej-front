@@ -14,6 +14,7 @@ import { ProfileService } from '../services/profile.service';
 })
 export class ConversationsComponent implements OnInit {
 
+  category: any = null;
   conversations: Conversation[];
   categorizedConversations: any = {};
   categories: string[];
