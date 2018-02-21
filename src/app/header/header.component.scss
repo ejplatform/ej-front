@@ -269,6 +269,13 @@
   }
 }
 
+.logged.site-header .category-page.site-logo,
+.unlogged.site-header .category-page.site-logo,
+.logged.site-header .category-page.site-logo h1,
+.unlogged.site-header .category-page.site-logo h1 {
+  width: 120px;
+}
+
 .header-category {
   position: absolute;
   top: 50%;
@@ -279,6 +286,7 @@
   text-align: center;
   cursor: pointer;
   outline: none;
+  z-index: -1;
 
   h2 {
     color: #4a4a4a;
