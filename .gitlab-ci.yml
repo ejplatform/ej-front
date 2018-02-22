@@ -30,6 +30,7 @@ build to homolog:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
+    - docker cp compose/production/nginx/default.conf frontend:/etc/nginx/conf.d/default.conf
     - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
     - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
   environment: homolog
@@ -46,6 +47,7 @@ build to production:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker create --name frontend nginx
     - docker cp dist/empurrandojuntos/. frontend:/usr/share/nginx/html/
+    - docker cp compose/production/nginx/default.conf frontend:/etc/nginx/conf.d/default.conf
     - docker commit frontend $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
     - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
