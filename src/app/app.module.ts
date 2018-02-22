@@ -128,7 +128,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
     NgbModule.forRoot(),
-    RouterModule.forRoot(rootRouterConfig, { useHash: true }),
+    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     HttpModule,
     ShareButtonsModule.forRoot(),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
