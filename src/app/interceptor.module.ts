@@ -3,10 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import { SessionService } from './services/session.service';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @Injectable()
 export class HttpsRequestInterceptor implements HttpInterceptor {
 
-  constructor(private session: SessionService) {}
+  constructor(private session: SessionService, private cookieService: CookieService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authRequest = request;
@@ -25,6 +27,14 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
       if (authRequest.url.includes('/profile/key')) {
         authRequest = request.clone({withCredentials: true});
       }
+
+    }
+
+    // Send a csrftoken header, if it's the data is available as a cookie
+    // However, don't do it when sending requests to Polis
+    const csrftoken = this.cookieService.get('csrftoken');
+    if (csrftoken && !authRequest.url.includes('polis.brasilqueopovoquer.org.br')) {
+      authRequest = request.clone({headers: request.headers.set('X-CSRFToken', csrftoken)});
     }
 
     return next.handle(authRequest);

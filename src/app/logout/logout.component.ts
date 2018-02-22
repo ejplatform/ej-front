@@ -20,7 +20,8 @@ export class LogoutComponent {
         this.profile = null;
         this.router.navigate(['']);
       }, error => {
-        console.log(error);
+        this.profileService.setProfile(null);
+        this.profile = null;
         this.router.navigate(['']);
       },
     );

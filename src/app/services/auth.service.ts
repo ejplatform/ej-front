@@ -7,6 +7,7 @@ import { SessionService } from './session.service';
 import { ProfileService } from './profile.service';
 
 import { environment } from '../../environments/environment';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
   public loginFailed: EventEmitter<any> = new EventEmitter<any>();
   public logoutSuccess: EventEmitter<any> = new EventEmitter<any>();
   public profile: Profile;
-  
+
   constructor(private http: HttpClient, private sessionService: SessionService, private profileService: ProfileService) {}
 
   signOut() {
@@ -24,6 +25,10 @@ export class AuthService {
     return this.http.post(fullEndpointUrl, profile).map(
       data => {
         return this.logoutSuccessCallback(profile);
+      })
+      .catch(error => {
+        // Even if the logout endpoint returned an error, local profile and token data must be destroyed
+        return Observable.throw(this.logoutSuccessCallback(profile));
       });
   }
 
@@ -88,11 +93,11 @@ export class AuthService {
   public loginSuccessCallback(response: any) {
     const token: string = this.sessionService.setToken(response['key']);
     this.loginSuccess.emit(token);
-    this.profileService.me().subscribe( profile => {   
+    this.profileService.me().subscribe( profile => {
       this.profileService.setProfile(profile);
       this.profile = profile;
     });
-    
+
     return token;
   }
 }
