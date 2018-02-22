@@ -23,6 +23,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // ngx-facebook
 import { FacebookModule } from 'ngx-facebook';
 
+// ngx-cookie-service
+import { CookieService } from 'ngx-cookie-service';
+
 // angulartics2
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
@@ -140,6 +143,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileService,
     SocialFacebookService,
     ToastService,
+    CookieService,
     { provide: ErrorHandler, useClass: RavenErrorHandler },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },

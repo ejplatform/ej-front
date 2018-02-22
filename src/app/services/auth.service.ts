@@ -28,7 +28,6 @@ export class AuthService {
       })
       .catch(error => {
         // Even if the logout endpoint returned an error, local profile and token data must be destroyed
-        // TODO: should cookie data also be explicitly destroyed here?
         return Observable.throw(this.logoutSuccessCallback(profile));
       });
   }
