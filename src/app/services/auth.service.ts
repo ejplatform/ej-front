@@ -7,7 +7,9 @@ import { SessionService } from './session.service';
 import { ProfileService } from './profile.service';
 
 import { environment } from '../../environments/environment';
+
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
