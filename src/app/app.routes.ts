@@ -25,5 +25,5 @@ export const rootRouterConfig: Routes = [
   { path: 'conversas', component: EmbedComponent },
   { path: 'termos-de-uso', component: EmbedComponent },
   { path: 'notifications/:id', component: NotificationComponent },
-  { path: 'category/:slug', component: CategoryComponent },
+  { path: ':slug', component: CategoryComponent },
 ];

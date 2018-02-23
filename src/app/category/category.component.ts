@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash'
 
 import { ConversationService } from '../services/conversation.service';
@@ -29,6 +29,7 @@ export class CategoryComponent implements OnDestroy {
               private categoryService: CategoryService,
               private route: ActivatedRoute,
               private _state: GlobalState,
+              private router: Router,
               private profileService: ProfileService) {
 
     this.profile = <Profile>{};
@@ -50,6 +51,7 @@ export class CategoryComponent implements OnDestroy {
         this.conversationsLoaded = true;
         this.styles = null;
         this._state.notifyDataChanged('category.data', null);
+        this.router.navigate(['conversations']);
       });
     });
   }
