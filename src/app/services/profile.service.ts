@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, Output  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { environment } from '../../environments/environment';
 import { Profile } from '../models/profile';
@@ -19,17 +19,17 @@ export class ProfileService {
 
   get(profile?: Profile): Observable<Profile> {
     const contextProfile = _.isObject(profile) ? profile : this.profile;
-    if(_.isObject(contextProfile) && contextProfile.id){
-      let fullEndpointUrl = `${environment.apiUrl}/api/profile/${contextProfile.id}/`;
+    if (_.isObject(contextProfile) && contextProfile.id) {
+      const fullEndpointUrl = `${environment.apiUrl}/api/profile/${contextProfile.id}/`;
       return this.http.get<Profile>(fullEndpointUrl);
-    }else if(!_.isObject(contextProfile)){
-      let fullEndpointUrl = `${environment.apiUrl}/rest-auth/user/`;
+    }else if (!_.isObject(contextProfile)) {
+      const fullEndpointUrl = `${environment.apiUrl}/rest-auth/user/`;
       return this.http.get<Profile>(fullEndpointUrl);
     }
   }
 
   me(): Observable<Profile> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/me/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/profile/me/`;
     return this.http.get<Profile>(fullEndpointUrl);
   }
 
@@ -39,15 +39,15 @@ export class ProfileService {
     localProfile = Object.assign(localProfile, profile);
     localProfile.image = undefined;
 
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${localProfile.id}/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/profile/${localProfile.id}/`;
     return this.http.put<Profile>(fullEndpointUrl, localProfile);
   }
 
   saveImage(profile: Profile): Observable<Profile> {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('image', profile.imageFile);
 
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/profile/${profile.id}/image/`;
 
     return this.http.post<Profile>(fullEndpointUrl, formData);
   }
@@ -56,7 +56,7 @@ export class ProfileService {
   changePassword(profile: Profile): Observable<Profile> {
     profile.new_password1 = profile.password;
     profile.new_password2 = profile.passwordConfirmation;
-    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/change/`;
+    const fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/change/`;
     return this.http.post<Profile>(fullEndpointUrl, profile);
   }
 
@@ -66,7 +66,7 @@ export class ProfileService {
     this.profileChangeEvent.emit(profile);
   }
 
-  getProfile():Profile {
+  getProfile(): Profile {
     this.profile = this.sessionService.currentProfile();
     return this.profile;
   }
