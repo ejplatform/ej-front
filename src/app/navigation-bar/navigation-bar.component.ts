@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';

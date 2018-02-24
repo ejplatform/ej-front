@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ProfileService } from '../../../services/profile.service';
 import { ConversationService } from '../../../services/conversation.service';
@@ -16,38 +16,38 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-step-vote',
   templateUrl: './vote.component.html',
   styleUrls: ['./vote.component.scss'],
-  providers: [ ConversationService, VoteService ],
+  providers: [ConversationService, VoteService],
 })
 export class VoteComponent implements OnInit {
   profile: Profile;
   conversation: Conversation;
   comment: Comment;
   amountVotes = 0;
-  
-  constructor( private profileService: ProfileService, private conversationService: ConversationService, 
-    private voteService: VoteService, private tourService: TourService, private sessionService: SessionService) { 
+
+  constructor(private profileService: ProfileService, private conversationService: ConversationService,
+    private voteService: VoteService, private tourService: TourService, private sessionService: SessionService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
 
     this.conversation = sessionService.getTourConversation();
-    
-    if(_.isNil(this.conversation)){
+
+    if (_.isNil(this.conversation)) {
       this.setRandomConversation();
-    } else{
+    } else {
       this.getCommentToVote();
     }
-    
+
   }
 
   setRandomConversation() {
     this.conversationService.random().subscribe(conversation => {
       this.conversation = conversation;
       this.sessionService.setTourConversation(this.conversation);
-      this.getCommentToVote();         
+      this.getCommentToVote();
     });
   }
 
-  getCommentToVote(){
+  getCommentToVote() {
     this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
       this.comment = comment;
       this.comment.conversationObj = this.conversation;
@@ -59,9 +59,9 @@ export class VoteComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveNextStepOnProfile(){
-    this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
-    this.profileService.save(this.profile).subscribe( profile => {
+  saveNextStepOnProfile() {
+    this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step);
+    this.profileService.save(this.profile).subscribe(profile => {
       this.profileService.setProfile(profile);
       this.amountVotes = 0;
     }, error => {
@@ -72,17 +72,17 @@ export class VoteComponent implements OnInit {
   vote(comment, action) {
     this.voteService[action](comment).subscribe(vote => {
       this.amountVotes += 1;
-      if(this.profile.tour_step == Tour.STEP_FIVE && (this.amountVotes == 2)){
+      if (this.profile.tour_step === Tour.STEP_FIVE && (this.amountVotes === 2)) {
         this.saveNextStepOnProfile();
         this.setRandomConversation();
-      }else if((this.profile.tour_step != Tour.STEP_FIVE) && (this.profile.tour_step != Tour.STEP_TEN)){
+      } else if ((this.profile.tour_step !== Tour.STEP_FIVE) && (this.profile.tour_step !== Tour.STEP_TEN)) {
         this.saveNextStepOnProfile();
-      }else if(this.profile.tour_step == Tour.STEP_TEN && (this.amountVotes == 2)){
-          this.saveNextStepOnProfile();
-          this.sessionService.destroyTourConversation();
-      }else{
-        this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(comment => {
-          this.comment = comment;
+      } else if (this.profile.tour_step === Tour.STEP_TEN && (this.amountVotes === 2)) {
+        this.saveNextStepOnProfile();
+        this.sessionService.destroyTourConversation();
+      } else {
+        this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(remoteComment => {
+          this.comment = remoteComment;
           this.comment.conversationObj = this.conversation;
         }, error => {
           this.comment = null;
