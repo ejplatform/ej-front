@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { SliderModalComponent } from './slider-modal/slider-modal.component';
 
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
@@ -16,7 +16,7 @@ export class HomeSliderComponent implements OnInit {
 
   url: string;
   el: HTMLFrameElement;
-  private baseUrl: string
+  private baseUrl: string;
   profile: Profile;
   active_slider = 1;
   bsModalRef: any;
@@ -27,7 +27,7 @@ export class HomeSliderComponent implements OnInit {
 
   ngOnInit() {
 
-    setInterval(() =>{
+    setInterval(() => {
       this.active_slider = this.active_slider < 3 ? this.active_slider + 1 : 1;
     }, 7000);
   }

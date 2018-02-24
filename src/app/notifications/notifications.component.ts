@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 import { ProfileService } from '../services/profile.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -30,10 +30,10 @@ export class NotificationsComponent implements OnInit {
     this.notificationService.list().subscribe((user_notifications) => {
       this.alerts = user_notifications;
       this.alertsLoaded = true;
-      
+
       let count = 0;
       this.alerts.forEach((notification) => {
-        if (notification.status != 'read') {
+        if (notification.status !== 'read') {
           count++;
         }
       });

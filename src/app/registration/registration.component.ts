@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfileService } from '../services/profile.service';
@@ -9,7 +9,7 @@ import { Profile } from '../models/profile';
 import { Tour } from '../gamification/shared/tour-model';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
-import { LoginComponent  } from '../login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { SessionService } from '../services/session.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { SessionService } from '../services/session.service';
 export class RegistrationComponent {
 
   profile: Profile;
-  loginModalRef: any;  
+  loginModalRef: any;
   loggedIn = new EventEmitter();
   socialErrors: string;
 
@@ -30,7 +30,7 @@ export class RegistrationComponent {
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
   constructor(private authService: AuthService, private profileService: ProfileService, private toastService: ToastService,
-    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService, 
+    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService,
     private sessionService: SessionService, private router: Router, private modalService: NgbModal) {
     this.profile = new Profile();
   }
@@ -44,7 +44,7 @@ export class RegistrationComponent {
     }, error => this.handleError(error));
   }
 
-  loginWithFacebook(){
+  loginWithFacebook() {
     this.socialFacebookService.login();
 
     this.socialFacebookService.loginReturn.subscribe((data) => {
@@ -60,12 +60,12 @@ export class RegistrationComponent {
 
   loginWithTwitter() {
     const windowRef: Window = window.open(
-                                '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
-                                'twitter-window',
-                                'menubar=false,toolbar=false');
+      '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
+      'twitter-window',
+      'menubar=false,toolbar=false');
 
     const that = this;
-    const popupTick = setInterval(function() {
+    const popupTick = setInterval(function () {
       if (windowRef.closed) {
         clearInterval(popupTick);
 
@@ -83,14 +83,14 @@ export class RegistrationComponent {
     this.sessionService.setTourStep('Login');
   }
 
-  handleloginSuccess(){
-      this.loggedIn.emit();
-      this.activeModal.close();
-      this.toastService.success({ title: "registration.success.title", message: "registration.success.message" });
+  handleloginSuccess() {
+    this.loggedIn.emit();
+    this.activeModal.close();
+    this.toastService.success({ title: 'registration.success.title', message: 'registration.success.message' });
   }
 
-  handleError(error: any){
-    const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
+  handleError(error: any) {
+    const errors = _.isObject(error.error) ? error.error : JSON.parse(error.error);
 
     console.log(errors);
     this.nameErrors.setErrors(errors['name']);

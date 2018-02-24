@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { NgbTabset, NgbTab, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import * as _ from 'lodash' 
+import * as _ from 'lodash';
 
 import { ConversationService } from '../services/conversation.service';
 import { Conversation } from '../models/conversation';
