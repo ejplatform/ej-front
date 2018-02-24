@@ -8,13 +8,13 @@ import { SessionService } from './session.service';
 describe('SessionService', () => {
 
     const mocks = helpers.getMocks();
-    
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 SessionService,
                 { provide: LocalStorageService, useValue: mocks.localStorageService }
-            ]            
+            ]
         });
     });
 
