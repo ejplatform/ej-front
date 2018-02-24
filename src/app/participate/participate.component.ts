@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../../environments/environment';
@@ -169,7 +169,7 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   commentCharCounter(str) {
     this.newCommentText = str;
 
-    if (str.length > 140){
+    if (str.length > 140) {
       this.newCommentText = this.newCommentText.substr(0, 140);
     }
 
@@ -178,7 +178,9 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.promoted) {
       this.conversationService.promoted().subscribe((conversations: Conversation[]) => {
-        this.conversationCallback(conversations[0]);
+        if (!_.isNil(conversations[0])) {
+          this.conversationCallback(conversations[0]);
+        }
       });
     } else if (this.conversation === undefined) {
       let path = this.route.snapshot.url.map(p => p.path).join('/');
