@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { TourComponent } from './tour.component';
 
-const routes: Routes = [  
-  // { path: 'tour', component: TourComponent },
+const routes: Routes = [
 ];
 
 @NgModule({
@@ -14,5 +13,4 @@ const routes: Routes = [
 })
 export class GamificationRoutingModule { }
 
-// export const routedComponents = [TourComponent];  
-export const routedComponents = [];  
+export const routedComponents = [];

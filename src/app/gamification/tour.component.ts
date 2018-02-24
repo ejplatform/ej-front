@@ -41,7 +41,7 @@ export class TourComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!_.isNil(this.profile.id) && (this.profile.tour_step === '' || _.isNil(this.profile.tour_step))) {
+    if (!_.isNil(this.profile) && !_.isNil(this.profile.id) && (this.profile.tour_step === '' || _.isNil(this.profile.tour_step))) {
       this.profileService.me().subscribe(profile => {
         this.profile = profile;
         this.profileService.setProfile(profile);
@@ -55,7 +55,8 @@ export class TourComponent implements OnInit {
 
   resolveComponent() {
     let componentType: any;
-    componentType = this.componentByStep(_.toString(this.profile.tour_step));
+    const step = !_.isNil(this.profile) ? this.profile.tour_step : '';
+    componentType = this.componentByStep(_.toString(step));
     if (_.isNil(componentType)) {
       this.activeModal.close();
     } else {
@@ -111,22 +112,6 @@ export class TourComponent implements OnInit {
       }
       case Tour.STEP_SIX: {
         componentType = BadgeComponent;
-        break;
-      }
-      case Tour.STEP_SEVEN: {
-        componentType = TipComponent;
-        break;
-      }
-      case Tour.STEP_EIGHT: {
-        componentType = StepComponent;
-        break;
-      }
-      case Tour.STEP_NINE: {
-        componentType = BadgeComponent;
-        break;
-      }
-      case Tour.STEP_TEN: {
-        componentType = StepComponent;
         break;
       }
     }
