@@ -17,20 +17,20 @@ describe('StepComponent', () => {
   let component: StepComponent;
   let fixture: ComponentFixture<StepComponent>;
   const mocks = helpers.getMocks();
-  let commentReportService = null;
-  
+  const commentReportService = null;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [ StepComponent, VoteComponent, CommentComponent ],
+      imports: [TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
+      declarations: [StepComponent, VoteComponent, CommentComponent],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
-        { provide: TourService, useValue: mocks.tourService },        
+        { provide: TourService, useValue: mocks.tourService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

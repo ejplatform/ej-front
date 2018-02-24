@@ -1,5 +1,5 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ProfileService } from '../../services/profile.service';
 import { Profile } from '../../models/profile';
@@ -9,14 +9,14 @@ import { CommentComponent } from './comment/comment.component';
 
 @Component({
   selector: 'app-tour-step',
-  template: "",
-  entryComponents:[ CommentComponent, VoteComponent ]
+  template: '',
+  entryComponents: [CommentComponent, VoteComponent]
 })
 export class StepComponent implements OnInit {
   profile: Profile;
-  
-  constructor( private profileService: ProfileService, private viewContainerRef: ViewContainerRef, 
-    private factory: ComponentFactoryResolver) { 
+
+  constructor(private profileService: ProfileService, private viewContainerRef: ViewContainerRef,
+    private factory: ComponentFactoryResolver) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -44,15 +44,15 @@ export class StepComponent implements OnInit {
         componentType = VoteComponent;
         break;
       }
-   }
-   if(!_.isNil(componentType)){
-    let compFactory = this.factory.resolveComponentFactory(componentType);
-    this.viewContainerRef.createComponent(compFactory);
-   }
-   
+    }
+    if (!_.isNil(componentType)) {
+      const compFactory = this.factory.resolveComponentFactory(componentType);
+      this.viewContainerRef.createComponent(compFactory);
+    }
+
   }
 
-  isEqualStepThree(){
+  isEqualStepThree() {
     // return this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE' || this.currentStep === 'STEP_THIRTEEN'
   }
 
