@@ -11,6 +11,8 @@ import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
 import { LoginComponent } from '../login/login.component';
 import { SessionService } from '../services/session.service';
+import { GlobalState } from '../global.state';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-registration',
@@ -23,22 +25,26 @@ export class RegistrationComponent {
   loginModalRef: any;
   loggedIn = new EventEmitter();
   socialErrors: string;
+  category: Category;
 
   @ViewChild('nameErrors') nameErrors;
   @ViewChild('emailErrors') emailErrors;
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, private toastService: ToastService,
-    public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService,
+  constructor(private _state: GlobalState, private authService: AuthService, private profileService: ProfileService,
+    private toastService: ToastService, public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService,
     private sessionService: SessionService, private router: Router, private modalService: NgbModal) {
     this.profile = new Profile();
+    this._state.subscribe('category.data', (category) => {
+      this.category = category ? category : null;
+    });
   }
 
   register() {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
-    this.profile.tour_step = Tour.STEP_TWO;
+    this.profile.tour_step = (this.category && this.category.has_tour) ? Tour.STEP_TWO : Tour.STEP_FINISH;
     this.authService.signUp(this.profile).subscribe((response) => {
       this.handleloginSuccess();
     }, error => this.handleError(error));
