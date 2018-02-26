@@ -22,31 +22,30 @@ export class AppComponent implements OnInit  {
 
   title = 'app';
   profile: Profile;
-  isMenuCollapsed: boolean = false;
-  alreadeyCollapsed: boolean = false;
+  isMenuCollapsed = false;
+  alreadeyCollapsed = false;
 
   constructor(private _state: GlobalState, private translate: TranslateService,
-    private profileService: ProfileService, 
-    private router: Router,
+    private profileService: ProfileService, private router: Router,
     public angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
     private notificationService: NotificationService) {
     translate.setDefaultLang('pt');
     translate.use('pt');
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
-      if(!this.isMenuCollapsed && isCollapsed){
+      if (!this.isMenuCollapsed && isCollapsed) {
         this.alreadeyCollapsed = false;
 
-      }else{
+      } else {
         this.alreadeyCollapsed = true;
       }
       this.isMenuCollapsed = isCollapsed;
     });
 
     this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd){
+      if (val instanceof NavigationEnd) {
         // FIXME use this: https://github.com/zefoy/ngx-perfect-scrollbar
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
       }
     });
 
@@ -99,15 +98,17 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  isLogged(){
+  isLogged() {
     return _.isObject(this.profile);
   }
 
-  hideNavigationBar(e, isCollapsed){
-    if(window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE)
-      return false
+  hideNavigationBar(e, isCollapsed) {
+    if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE ) {
+      return false;
+    }
 
-    if(this.alreadeyCollapsed && isCollapsed){
+
+    if (this.alreadeyCollapsed && isCollapsed) {
       this.isMenuCollapsed = !this.isMenuCollapsed;
 
       this.alreadeyCollapsed = true;

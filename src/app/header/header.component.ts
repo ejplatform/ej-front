@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 
 import { ProfileService } from '../services/profile.service';
-import { LoginComponent  } from '../login/login.component';
-import { RegistrationComponent  } from '../registration/registration.component';
+import { LoginComponent } from '../login/login.component';
+import { RegistrationComponent } from '../registration/registration.component';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
@@ -18,14 +18,14 @@ import { GlobalState } from '../global.state';
 })
 export class HeaderComponent implements OnInit {
 
-  isMenuCollapsed: boolean = false;
+  isMenuCollapsed = false;
   bsModalRef: any;
   styles: any = null;
   category: any = null;
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService,
-    private modalService: NgbModal, private router: Router, private authService: AuthService ) {
+    private modalService: NgbModal, private router: Router, private authService: AuthService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -44,15 +44,16 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu(keepOpen = false) {
-      if(keepOpen && window.innerWidth > 640)
-        return false;
-
-      this.isMenuCollapsed = !this.isMenuCollapsed;
-      this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
+    if (keepOpen && window.innerWidth > 640) {
       return false;
+    }
+
+    this.isMenuCollapsed = !this.isMenuCollapsed;
+    this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
+    return false;
   }
 
-  isLogged(){
+  isLogged() {
     return _.isObject(this.profile);
   }
 

@@ -14,9 +14,9 @@ describe('AuthService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [AuthService, 
+            providers: [AuthService,
                 { provide: SessionService, useValue: mocks.sessionService },
-                { provide: ProfileService, useValue: mocks.profileService },                
+                { provide: ProfileService, useValue: mocks.profileService },
             ]
         });
     });
@@ -24,5 +24,5 @@ describe('AuthService', () => {
     it('should be created', inject([AuthService], (service: AuthService) => {
         expect(service).toBeTruthy();
     }));
-    
+
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../../environments/environment';
@@ -30,8 +30,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   @Input() conversation: Conversation;
   @Input() promoted: String;
   public polisUrl = environment.polisUrl;
-  isHome: boolean = false;
-  conversationLoaded: boolean = false;
+  isHome = false;
+  conversationLoaded = false;
   pageTitle: String;
   comment: Comment;
   public newCommentText: string;
@@ -40,14 +40,14 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   truncatedResponse: String;
   displayedStage: String;
   expandedStage: String;
-  categoryId: number = 0;
+  categoryId = 0;
 
   constructor(private conversationService: ConversationService,
-              private route: ActivatedRoute, private profileService: ProfileService,
-              private _state: GlobalState,
-              private commentService: CommentService, private modalService: NgbModal,
-              private categoryService: CategoryService,
-              private voteService: VoteService) {
+    private route: ActivatedRoute, private profileService: ProfileService,
+    private _state: GlobalState,
+    private commentService: CommentService, private modalService: NgbModal,
+    private categoryService: CategoryService,
+    private voteService: VoteService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -61,8 +61,7 @@ export class ParticipateComponent implements OnInit, OnDestroy {
             categoryService.get(conversation.category_id.toString()).subscribe(category => {
               this._state.notifyDataChanged('category.data', category);
             });
-          }
-          else {
+          } else {
             this.categoryId = 0;
             this._state.notifyDataChanged('category.data', null);
           }
@@ -137,64 +136,65 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     newcomment.conversation = this.conversation.id;
 
     this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe(
-    (commentPolisData: any) => {
-      // 'commentPolisData' should contain two properties:
-      // - currentPid: number, participant id for the current conversation in polis
-      // - tid: number, comment id in polis
-      // Note: tid is only unique in its own conversation
-      newcomment.polis_id = commentPolisData.tid;
+      (commentPolisData: any) => {
+        // 'commentPolisData' should contain two properties:
+        // - currentPid: number, participant id for the current conversation in polis
+        // - tid: number, comment id in polis
+        // Note: tid is only unique in its own conversation
+        newcomment.polis_id = commentPolisData.tid;
 
-      this.commentService.create(newcomment).subscribe(response => {
-        this.newCommentText = '';
-        this.newCommentSuccess = true;
-        if (!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)) {
-          this.openNudge(response.nudge.state);
-        }
-      }, response => {
-        if (!_.isNil(response.error['nudge'])) {
-          this.openNudge(response.error['nudge']['state']);
-        }
-        this.newCommentSuccess = false;
+        this.commentService.create(newcomment).subscribe(response => {
+          this.newCommentText = '';
+          this.newCommentSuccess = true;
+          if (!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)) {
+            this.openNudge(response.nudge.state);
+          }
+        }, response => {
+          if (!_.isNil(response.error['nudge'])) {
+            this.openNudge(response.error['nudge']['state']);
+          }
+          this.newCommentSuccess = false;
+        });
+
       });
-
-    });
   }
 
-  openNudge(state){
-    let nudge = new Nudge();
+  openNudge(state) {
+    const nudge = new Nudge();
     nudge.state = state;
-    let modal =  this.modalService.open(NudgeComponent, { backdrop  : 'static', keyboard  : false });
+    const modal = this.modalService.open(NudgeComponent, { backdrop: 'static', keyboard: false });
     modal.componentInstance.nudge = nudge;
   }
 
-  commentCharCounter(str){
+  commentCharCounter(str) {
     this.newCommentText = str;
-    
-    if(str.length > 140)
+
+    if (str.length > 140) {
       this.newCommentText = this.newCommentText.substr(0, 140);
+    }
+
   }
 
   ngOnInit() {
     if (this.promoted) {
       this.conversationService.promoted().subscribe((conversations: Conversation[]) => {
-        this.conversationCallback(conversations[0]);
+        if (!_.isNil(conversations[0])) {
+          this.conversationCallback(conversations[0]);
+        }
       });
-    }
-
-    // this.profile = this.profileService.getProfile();
-    else if (this.conversation === undefined) {
-      let path = this.route.snapshot.url.map(p => p.path).join("/");
-      if(path == 'inicio' || path == ''){
+    } else if (this.conversation === undefined) {
+      let path = this.route.snapshot.url.map(p => p.path).join('/');
+      if (path === 'inicio' || path === '') {
         path = '';
         this.isHome = true;
         this.pageTitle = 'Por um Novo Programa para o Brasil';
-      } else if (path == 'sobre-nos') {
+      } else if (path === 'sobre-nos') {
         this.pageTitle = 'Sobre nós';
-      } else if (path == 'perguntas-frequentes') {
+      } else if (path === 'perguntas-frequentes') {
         this.pageTitle = 'Perguntas frequentes';
-      } else if (path == 'conversas') {
+      } else if (path === 'conversas') {
         this.pageTitle = 'Conversas';
-      } else if (path == 'termos-de-uso') {
+      } else if (path === 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
       this.polisUrl = this.polisUrl + path;

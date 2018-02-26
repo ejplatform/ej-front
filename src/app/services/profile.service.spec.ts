@@ -7,11 +7,11 @@ import { SessionService } from './session.service';
 
 describe('ProfileService', () => {
     const mocks = helpers.getMocks();
-    
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-                providers: [ProfileService,
+            providers: [ProfileService,
                 { provide: SessionService, useValue: mocks.sessionService },
             ]
         });

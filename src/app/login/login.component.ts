@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, ViewChild, HostListener } from '@angul
 import { Router } from '@angular/router';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ProfileService } from '../services/profile.service';
 import { ToastService } from '../services/toast.service';
@@ -32,7 +32,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private profileService: ProfileService,
     private socialFacebookService: SocialFacebookService, private modalService: NgbModal,
-    public activeModal: NgbActiveModal, private toastService: ToastService, 
+    public activeModal: NgbActiveModal, private toastService: ToastService,
     private sessionService: SessionService, private router: Router) {
 
     this.bsModalRef = activeModal;
@@ -107,7 +107,7 @@ export class LoginComponent {
       this.profileService.setProfile(profile);
       this.bsModalRef.close();
       this.loggedIn.emit();
-      this.toastService.success({ title: "login.success.title", message: "login.success.message" });
+      this.toastService.success({ title: 'login.success.title', message: 'login.success.message' });
     }, error => {
       this.handleError(error);
     });

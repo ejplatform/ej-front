@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ConversationService } from '../services/conversation.service';
 import { CategoryService } from '../services/category.service';

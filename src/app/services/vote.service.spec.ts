@@ -7,13 +7,13 @@ import * as helpers from '../../spec/helpers';
 
 describe('VoteService', () => {
   const mocks = helpers.getMocks();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule],      
+      imports: [HttpClientTestingModule],
       providers: [VoteService,
         { provide: ProfileService, useValue: mocks.profileService },
-    ]
+      ]
     });
   });
 

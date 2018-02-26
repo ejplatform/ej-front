@@ -13,32 +13,32 @@ export class ToastService {
 
   constructor(private translate: TranslateService, private toastr: ToastrService) { }
 
-  error({message = ToastService.DEFAULT_ERROR_MESSAGE, title = ToastService.DEFAULT_ERROR_TITLE } = {}, options = {}) {
+  error({ message = ToastService.DEFAULT_ERROR_MESSAGE, title = ToastService.DEFAULT_ERROR_TITLE } = {}, options = {}) {
     this.toastr.error(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
   }
 
   httpError(status: number, data: any): boolean {
-      // FIXME check other https status and make a generic message
-      // not-found, unauthorized, forbidden, server error
-      if ([500].indexOf(status) > -1) {
-          this.error({ message: `notification.http_error.${status}.message` });
-          return true; // return true to indicate that the error was already handled
-      } else {
-          return false;
-      }
+    // FIXME check other https status and make a generic message
+    // not-found, unauthorized, forbidden, server error
+    if ([500].indexOf(status) > -1) {
+      this.error({ message: `notification.http_error.${status}.message` });
+      return true; // return true to indicate that the error was already handled
+    } else {
+      return false;
+    }
 
   }
 
-  success({title = 'toast.title.success', message = ''}, options = {}) {
+  success({ title = 'toast.title.success', message = '' }, options = {}) {
     options = Object.assign({ timeOut: ToastService.DEFAULT_SUCCESS_TIMER });
-    this.toastr.success(this.translate.instant(message), this.translate.instant(title),Object.assign(this.toastrOptions(), options));
+    this.toastr.success(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
   }
 
-  confirmation({message = ToastService.DEFAULT_INFO_MESSAGE, title = ToastService.DEFAULT_INFO_TITLE} = {}, options = {}) {
+  confirmation({ message = ToastService.DEFAULT_INFO_MESSAGE, title = ToastService.DEFAULT_INFO_TITLE } = {}, options = {}) {
     this.toastr.info(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
   }
 
-  info({message = ToastService.DEFAULT_INFO_MESSAGE, title = ToastService.DEFAULT_INFO_TITLE} = {}, options = {}) {
+  info({ message = ToastService.DEFAULT_INFO_MESSAGE, title = ToastService.DEFAULT_INFO_TITLE } = {}, options = {}) {
     this.toastr.info(this.translate.instant(message), this.translate.instant(title), Object.assign(this.toastrOptions(), options));
   }
 
@@ -49,10 +49,10 @@ export class ToastService {
       closeHtml: '<button>&times;</button>',
       extendedTimeOut: 1000,
       iconClasses: {
-          error: 'toast-error',
-          info: 'toast-info',
-          success: 'toast-success',
-          warning: 'toast-warning'
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning'
       },
       messageClass: 'toast-message',
       // onHidden: null,
@@ -61,8 +61,8 @@ export class ToastService {
       progressBar: false,
       tapToDismiss: true,
       templates: {
-          toast: 'directives/toast/toast.html',
-          progressbar: 'directives/progressbar/progressbar.html'
+        toast: 'directives/toast/toast.html',
+        progressbar: 'directives/progressbar/progressbar.html'
       },
       timeOut: 5000,
       titleClass: 'toast-title',

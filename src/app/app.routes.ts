@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 
-import { ProfileComponent } from "./profile/profile.component";
-import { ConversationsComponent } from "./conversations/conversations.component";
-import { ConversationComponent } from "./conversation/conversation.component";
-import { LogoutComponent } from "./logout/logout.component";
-import { EmbedComponent } from "./embed/embed.component";
-import { NotificationComponent } from "./notification/notification.component";
-import { CategoryComponent } from "./category/category.component";
+import { ProfileComponent } from './profile/profile.component';
+import { ConversationsComponent } from './conversations/conversations.component';
+import { ConversationComponent } from './conversation/conversation.component';
+import { LogoutComponent } from './logout/logout.component';
+import { EmbedComponent } from './embed/embed.component';
+import { NotificationComponent } from './notification/notification.component';
+import { CategoryComponent } from './category/category.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', component: EmbedComponent },

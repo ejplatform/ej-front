@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, V
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { concat } from 'rxjs/observable/concat';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
@@ -15,19 +15,19 @@ import { BadgeComponent } from './badge/badge.component';
 import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
 import { SessionService } from '../services/session.service';
-import { RecoverPasswordComponent  } from '../recover-password/recover-password.component';
+import { RecoverPasswordComponent } from '../recover-password/recover-password.component';
 
 @Component({
   selector: 'app-tour',
-  template: "",
-  entryComponents:[ RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent, TipComponent ]
+  template: '',
+  entryComponents: [RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent, TipComponent]
 })
 export class TourComponent implements OnInit {
   profile: Profile;
-  
-  constructor( private profileService: ProfileService, private modalService: NgbModal, 
-    private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, 
-    public activeModal: NgbActiveModal, private tourService: TourService, private sessionService: SessionService) { 
+
+  constructor(private profileService: ProfileService, private modalService: NgbModal,
+    private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver,
+    public activeModal: NgbActiveModal, private tourService: TourService, private sessionService: SessionService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -41,31 +41,32 @@ export class TourComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!_.isNil(this.profile.id) && (this.profile.tour_step == '' || _.isNil(this.profile.tour_step))){
-      this.profileService.me().subscribe( profile => {
+    if (!_.isNil(this.profile) && !_.isNil(this.profile.id) && (this.profile.tour_step === '' || _.isNil(this.profile.tour_step))) {
+      this.profileService.me().subscribe(profile => {
         this.profile = profile;
         this.profileService.setProfile(profile);
-        this.resolveComponent()
+        this.resolveComponent();
       });
-      
-    }else{
-      this.resolveComponent()
+
+    } else {
+      this.resolveComponent();
     }
   }
 
-  resolveComponent(){
+  resolveComponent() {
     let componentType: any;
-    componentType = this.componentByStep(_.toString(this.profile.tour_step));
-    if(_.isNil(componentType)){
-      this.activeModal.close()
-    } else{
-      let compFactory = this.factory.resolveComponentFactory(componentType);
-      this.viewContainerRef.clear()
+    const step = _.isNil(this.profile) ? '' : this.profile.tour_step;
+    componentType = this.componentByStep(_.toString(step));
+    if (_.isNil(componentType)) {
+      this.activeModal.close();
+    } else {
+      const compFactory = this.factory.resolveComponentFactory(componentType);
+      this.viewContainerRef.clear();
       this.viewContainerRef.createComponent(compFactory);
     }
   }
 
-  componentByStep(step: string){
+  componentByStep(step: string) {
     let componentType: any;
     switch (step) {
       case '': {
@@ -84,7 +85,7 @@ export class TourComponent implements OnInit {
           }
           default:
             componentType = LoginComponent;
-          
+
         }
         break;
       }
@@ -113,24 +114,8 @@ export class TourComponent implements OnInit {
         componentType = BadgeComponent;
         break;
       }
-      case Tour.STEP_SEVEN: {
-        componentType = TipComponent;
-        break;
-      }
-      case Tour.STEP_EIGHT: {
-        componentType = StepComponent;
-        break;
-      }
-      case Tour.STEP_NINE: {
-        componentType = BadgeComponent;
-        break;
-      }
-      case Tour.STEP_TEN: {
-        componentType = StepComponent;
-        break;
-      }
     }
-    
+
     return componentType;
   }
 

@@ -11,8 +11,8 @@ import { ProfileService } from '../services/profile.service';
 @Injectable()
 export class VoteService {
   public profile: Profile;
-  
-  constructor(private http: HttpClient, private profileService: ProfileService) { 
+
+  constructor(private http: HttpClient, private profileService: ProfileService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -29,7 +29,7 @@ export class VoteService {
   }
 
   pass(comment: Comment): Observable<Vote> {
-    return this.vote(comment, Vote.PASS); 
+    return this.vote(comment, Vote.PASS);
   }
 
   // Send data to the polis URL
@@ -43,17 +43,17 @@ export class VoteService {
       'conversation_id': conversationId,
       'agid': 1,
       'xid': String(profileId),
-   };
+    };
 
-   return this.http.post(fullEndpointUrl, data);
+    return this.http.post(fullEndpointUrl, data);
   }
 
 
   private vote(comment: Comment, action: number): Observable<Vote> {
-    let vote = new Vote();
-    vote.comment=comment.id
-    vote.value=action;
-    
+    const vote = new Vote();
+    vote.comment = comment.id;
+    vote.value = action;
+
     let votePolisValue;
     switch (action) {
       case Vote.AGREE: {
@@ -70,13 +70,13 @@ export class VoteService {
       }
     }
     this.polisSave(votePolisValue, comment.polis_id, comment.conversationObj.polis_slug, this.profile.id).subscribe();
-   
+
     // Send the vote to the pushTogether backend
     return this.save(vote);
   }
 
   save(vote: Vote): Observable<Vote> {
-    let fullEndpointUrl = `${environment.apiUrl}/api/votes/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/votes/`;
     return this.http.post<Vote>(fullEndpointUrl, vote);
   }
 

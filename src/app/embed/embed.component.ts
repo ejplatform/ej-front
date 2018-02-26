@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
 
 import { ConversationService } from '../services/conversation.service';
@@ -24,8 +24,8 @@ export class EmbedComponent implements OnInit {
   @Input() profile: Profile;
   @Input() conversation: Conversation;
   public polisUrl = environment.polisUrl;
-  iframeHeight: number = 1500;
-  isHome: boolean = false;
+  iframeHeight = 1500;
+  isHome = false;
   pageTitle: String;
 
   constructor(private conversationService: ConversationService,
@@ -52,18 +52,18 @@ export class EmbedComponent implements OnInit {
   ngOnInit() {
     // this.profile = this.profileService.getProfile();
     if (this.conversation === undefined) {
-      let path = this.route.snapshot.url.map(p => p.path).join("/");
-      if(path == 'inicio' || path == ''){
+      let path = this.route.snapshot.url.map(p => p.path).join('/');
+      if (path === 'inicio' || path === '') {
         path = '';
         this.isHome = true;
         this.pageTitle = 'Por um Novo Programa para o Brasil';
-      } else if (path == 'sobre-nos') {
+      } else if (path === 'sobre-nos') {
         this.pageTitle = 'Sobre nós';
-      } else if (path == 'perguntas-frequentes') {
+      } else if (path === 'perguntas-frequentes') {
         this.pageTitle = 'Perguntas frequentes';
-      } else if (path == 'conversas') {
+      } else if (path === 'conversas') {
         this.pageTitle = 'Conversas';
-      } else if (path == 'termos-de-uso') {
+      } else if (path === 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
       this.polisUrl = this.polisUrl + path;
@@ -85,7 +85,7 @@ export class EmbedComponent implements OnInit {
 
     // Test if it is a comment. If it has the event.data.txt atribute, it is a comment
     if (event.data && event.data.tid !== undefined && event.data.conversation_id !== undefined && event.data.txt !== undefined) {
-      let comment = new Comment();
+      const comment = new Comment();
       comment.content = event.data.txt;
       comment.polis_id = event.data.tid;
       comment.conversation = this.conversation.id;
@@ -93,8 +93,8 @@ export class EmbedComponent implements OnInit {
     // Test if it is a vote
   } else if (event.data && event.data.tid !== undefined && event.data.vote !== undefined) {
       this.commentService.getByPolisId(event.data.tid, this.conversation.id).subscribe(comment => {
-        if (comment.length == 1){
-          let vote = new Vote;
+        if (comment.length === 1) {
+          const vote = new Vote;
           vote.comment = comment[0].id;
           vote.value = event.data.vote;
           vote.value = -vote.value;

@@ -12,7 +12,7 @@ export class SocialFacebookService {
 
   constructor(private authService: AuthService, private fb: FacebookService) {
 
-    let initParams: InitParams = {
+    const initParams: InitParams = {
       appId: environment.facebookAppId,
       xfbml: true,
       version: 'v2.10'
@@ -21,7 +21,7 @@ export class SocialFacebookService {
     fb.init(initParams);
   }
 
-  login(){
+  login() {
 
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,
@@ -34,7 +34,7 @@ export class SocialFacebookService {
           (resp) => this.loginReturn.emit(resp),
           (error) => this.loginReturn.emit(error)
         );
-    }).catch((error: any) =>{
+    }).catch((error: any) => {
         console.error(error);
     });
   }

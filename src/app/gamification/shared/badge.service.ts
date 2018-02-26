@@ -5,18 +5,18 @@ import { environment } from '../.././../environments/environment';
 import { Badge } from './badge-model';
 
 
-//FIXME remove local storage after api endpoint creation
-import * as _ from 'lodash'
+// FIXME remove local storage after api endpoint creation
+import * as _ from 'lodash';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 
 @Injectable()
 export class BadgeService {
 
-    constructor (private http: HttpClient, private localStorageService: LocalStorageService) {}
+    constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
     public list(): Observable<Badge[]> {
-        let fullEndpointUrl = `${environment.apiUrl}/api/gamification/badges/`;
+        const fullEndpointUrl = `${environment.apiUrl}/api/gamification/badges/`;
         return this.http.get<Badge[]>(fullEndpointUrl);
     }
 
@@ -27,23 +27,23 @@ export class BadgeService {
     // }
 
     // FIXME remove this method after save this information on backend
-    public seen(badge: Badge): Observable<Badge>  {
+    public seen(badge: Badge): Observable<Badge> {
         let levels = this.localStorageService.retrieve('levels');
-        if(_.isNil(levels)){
+        if (_.isNil(levels)) {
             levels = {};
         }
-        levels[badge.slug + '_' + badge.name] = true
+        levels[badge.slug + '_' + badge.name] = true;
         this.localStorageService.store('levels', levels);
         return Observable.of(<Badge>{});
     }
-    
+
     // FIXME remove this method after save this information on backend
     public wasSeen(badge: Badge): boolean {
-        let levelName = badge.slug + '_' + badge.name;
+        const levelName = badge.slug + '_' + badge.name;
         let levels = this.localStorageService.retrieve('levels');
-        if(_.isNil(levels)){
+        if (_.isNil(levels)) {
             levels = {};
         }
-        return levels[levelName] ==  true;
+        return levels[levelName] === true;
     }
 }

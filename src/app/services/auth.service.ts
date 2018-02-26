@@ -23,7 +23,7 @@ export class AuthService {
 
   signOut() {
     const profile: Profile = this.sessionService.currentProfile();
-    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/logout/`;
+    const fullEndpointUrl = `${environment.apiUrl}/rest-auth/logout/`;
     return this.http.post(fullEndpointUrl, profile).map(
       data => {
         return this.logoutSuccessCallback(profile);
@@ -35,24 +35,25 @@ export class AuthService {
   }
 
   signIn(profile: Profile) {
-    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/login/`;
+    const fullEndpointUrl = `${environment.apiUrl}/rest-auth/login/`;
     return this.http.post(fullEndpointUrl, profile).map(
         data => {
           return this.loginSuccessCallback(data);
         },
         resp => {
-          this.loginFailedCallback(resp);}
+          this.loginFailedCallback(resp);
+        }
       );
 
   }
 
   reset(profile: Profile) {
-    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/reset/`;
-    return this.http.post(fullEndpointUrl, profile)
+    const fullEndpointUrl = `${environment.apiUrl}/rest-auth/password/reset/`;
+    return this.http.post(fullEndpointUrl, profile);
   }
 
   signInFacebook(accessToken: string) {
-    let fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
     return this.http.post(fullEndpointUrl, {access_token: accessToken}).map(
         data => {
           return this.loginSuccessCallback(data);
@@ -64,17 +65,19 @@ export class AuthService {
   }
 
   signUp(profile: Profile): Observable<any> {
-    let fullEndpointUrl = `${environment.apiUrl}/rest-auth/registration/`;
+    const fullEndpointUrl = `${environment.apiUrl}/rest-auth/registration/`;
     return this.http.post(fullEndpointUrl, profile).map(
       data => {
         return this.loginSuccessCallback(data);
       },
-      resp => { this.loginFailedCallback(resp);}
+      resp => {
+        this.loginFailedCallback(resp);
+      }
     );
   }
 
   getToken() {
-    let fullEndpointUrl = `${environment.apiUrl}/api/profile/key/`;
+    const fullEndpointUrl = `${environment.apiUrl}/api/profile/key/`;
     return this.http.get(fullEndpointUrl).map(
       (data: any) => {
         return data.key;

@@ -11,7 +11,7 @@ export class CategoryService {
   constructor (private http: HttpClient) {}
 
     get(slug: string): Observable<Category> {
-      let fullEndpointUrl = environment.apiUrl + '/api/categories/'  + slug + '/';
+      const fullEndpointUrl = environment.apiUrl + '/api/categories/'  + slug + '/';
       return this.http.get<Category>(fullEndpointUrl);
     }
 }

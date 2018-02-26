@@ -15,20 +15,20 @@ describe('VoteComponent', () => {
   let component: VoteComponent;
   let fixture: ComponentFixture<VoteComponent>;
   const mocks = helpers.getMocks();
-  let commentReportService = null;
-  
+  const commentReportService = null;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [ VoteComponent ],
+      imports: [TranslateModule.forRoot(), HttpClientTestingModule, FormsModule],
+      declarations: [VoteComponent],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: SessionService, useValue: mocks.sessionService },
-        { provide: TourService, useValue: mocks.tourService },        
+        { provide: TourService, useValue: mocks.tourService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
