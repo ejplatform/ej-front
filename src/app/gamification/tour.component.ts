@@ -55,7 +55,7 @@ export class TourComponent implements OnInit {
 
   resolveComponent() {
     let componentType: any;
-    const step = !_.isNil(this.profile) ? this.profile.tour_step : '';
+    const step = _.isNil(this.profile) ? '' : this.profile.tour_step;
     componentType = this.componentByStep(_.toString(step));
     if (_.isNil(componentType)) {
       this.activeModal.close();
