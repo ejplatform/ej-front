@@ -11,6 +11,7 @@ import { Profile } from './models/profile';
 import { GlobalState } from './global.state';
 import { environment } from '../environments/environment';
 import * as _ from 'lodash';
+import * as Raven from 'raven-js';
 
 @Component({
   selector: 'app-root',
@@ -53,9 +54,11 @@ export class AppComponent implements OnInit  {
 
   ngOnInit(): void {
     this.profile = this.profileService.getProfile();
+    this.sentryUserData(this.profile);
 
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+      this.sentryUserData(profile);
     });
 
     // Register the OneSignal app
@@ -115,5 +118,18 @@ export class AppComponent implements OnInit  {
       this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
     }
     this.alreadeyCollapsed = !this.alreadeyCollapsed;
+  }
+
+  sentryUserData(profile) {
+    // Prepare user data to be sent to Sentry in case of an error
+    if (profile) {
+      Raven.setUserContext({
+        id: profile.id,
+        username: profile.username,
+        email: profile.email
+      });
+    } else {
+      Raven.setUserContext();
+    }
   }
 }
