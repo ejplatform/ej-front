@@ -95,6 +95,8 @@ export class ProfileComponent {
         }
       });
       this.userBadges = userBadges;
+    }, error => {
+      // handle request errors here
     });
   }
 

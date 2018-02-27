@@ -46,6 +46,8 @@ export class TourComponent implements OnInit {
         this.profile = profile;
         this.profileService.setProfile(profile);
         this.resolveComponent();
+      }, error => {
+        // handle request errors here
       });
 
     } else {

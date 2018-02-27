@@ -31,6 +31,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
 
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+    }, error => {
+      // handle request errors here
     });
 
     // get user_notifications now
@@ -50,6 +52,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
       this.route.params.subscribe(params => {
         this.setActive(params.id);
       });
+    }, error => {
+      // handle request errors here
     });
   }
 
@@ -76,6 +80,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
           this.unreadCount--;
         }
         currentNotification.status = 'read';
+      }, error => {
+        // handle request errors here
       });
     }
     this.user_notification = currentNotification;

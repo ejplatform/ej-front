@@ -52,6 +52,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+    }, error => {
+      // handle request errors here
     });
     this.route.params.subscribe(params => {
       if (params.slug) {
@@ -60,6 +62,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
             this.categoryId = conversation.category_id;
             categoryService.get(conversation.category_id.toString()).subscribe(category => {
               this._state.notifyDataChanged('category.data', category);
+            }, error => {
+              // handle request errors here
             });
           } else {
             this.categoryId = 0;
@@ -156,6 +160,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
           this.newCommentSuccess = false;
         });
 
+      }, error => {
+        // handle request errors here
       });
   }
 
@@ -181,6 +187,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
         if (!_.isNil(conversations[0])) {
           this.conversationCallback(conversations[0]);
         }
+      }, error => {
+        // handle request errors here
       });
     } else if (this.conversation === undefined) {
       let path = this.route.snapshot.url.map(p => p.path).join('/');

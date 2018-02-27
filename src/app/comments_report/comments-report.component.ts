@@ -95,6 +95,8 @@ export class CommentsReportComponent implements OnInit {
       this.commentsReport = <CommentReport[]>commentReportList.results;
       this.totalItems = commentReportList.count;
       this.loading = false;
+    }, error => {
+      // handle request errors here
     });
   }
 

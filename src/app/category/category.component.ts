@@ -50,6 +50,8 @@ export class CategoryComponent implements OnDestroy {
         conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
           this.conversationsLoaded = true;
           this.conversations = _.sortBy(conversations, ['position']);
+        }, error => {
+          // handle request errors here
         });
       }, error => {
         this.conversations = [];
