@@ -3,7 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { GlobalState } from './global.state';
 import { Ng2Webstorage } from 'ngx-webstorage';
@@ -83,7 +83,11 @@ if (environment.sentryDSN) {
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
     console.error(err);
-    Raven.captureException(err.originalError || err);
+    // If an HttpErrorResponse has been thrown, an event has already been sent to Sentry
+    // Therefore, the usual error handling must be bypassed on that case
+    if (!(err instanceof HttpErrorResponse)) {
+      Raven.captureException(err.originalError || err);
+    }
   }
 }
 
