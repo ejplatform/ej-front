@@ -25,25 +25,27 @@ export class CommentsReportComponent implements OnInit {
   selectedConversation: number;
   loading = false;
   @ViewChild('tabset') tabset;
-  
+
   constructor(private conversationService: ConversationService, private commentReportService: CommentReportService,
     private _changeDetectionRef : ChangeDetectorRef) {  }
-  
+
   ngAfterViewInit(){
     this.tabset.select(this.currentStatus);
     this._changeDetectionRef.detectChanges();
   }
-  
+
   ngOnInit() {
     this.totalItems = -1;
     this.selectedConversation = 0;
     this.currentStatus = Comment.UNMODERATED;
-    
+
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       this.conversations = _.sortBy(conversations, ['position']);
+    }, error => {
+      // handle request errors here
     });
   }
-  
+
   loadRejectedComments(){
     this.currentStatus = Comment.REJECTED;
     this.loadComments()
@@ -60,16 +62,16 @@ export class CommentsReportComponent implements OnInit {
   }
 
   tabChange($event: NgbTabChangeEvent){
-    switch ($event.nextId) { 
+    switch ($event.nextId) {
       case Comment.APPROVED:
         this.loadApprovedComments()
-        break; 
+        break;
       case Comment.UNMODERATED:
       this.loadModeratedComments()
-        break; 
-      case Comment.REJECTED: 
+        break;
+      case Comment.REJECTED:
       this.loadRejectedComments()
-        break; 
+        break;
     }
   }
 
@@ -95,6 +97,8 @@ export class CommentsReportComponent implements OnInit {
       this.commentsReport = <CommentReport[]>commentReportList.results;
       this.totalItems = commentReportList.count;
       this.loading = false;
+    }, error => {
+      // handle request errors here
     });
   }
 

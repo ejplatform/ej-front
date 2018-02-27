@@ -38,6 +38,8 @@ export class NotificationsComponent implements OnInit {
         }
       });
       this.unreadCount = count;
+    }, error => {
+      // handle request errors here
     });
   }
 

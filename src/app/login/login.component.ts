@@ -53,10 +53,14 @@ export class LoginComponent {
       if (data.error) {
         this.handleSocialError('Já existe um usuário registrado com o seu email do Facebook');
       }
+    }, error => {
+      // handle request errors here
     });
 
     this.authService.loginSuccess.subscribe(profile => {
       this.handleloginSuccess();
+    }, error => {
+      // handle request errors here
     });
   }
 

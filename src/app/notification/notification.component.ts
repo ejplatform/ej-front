@@ -31,13 +31,15 @@ export class NotificationComponent implements OnInit, AfterViewInit {
 
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
+    }, error => {
+      // handle request errors here
     });
 
     // get user_notifications now
     this.notificationService.list().subscribe((user_notifications) => {
       this.alerts = user_notifications;
       this.alertsLoaded = true;
-    
+
       let count = 0;
       this.alerts.forEach((notification) => {
         notification.notification.shorter_description = this.truncate(notification.notification.short_description);
@@ -50,6 +52,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
       this.route.params.subscribe(params => {
         this.setActive(params.id);
       });
+    }, error => {
+      // handle request errors here
     });
   }
 
@@ -76,6 +80,8 @@ export class NotificationComponent implements OnInit, AfterViewInit {
           this.unreadCount--;
         }
         currentNotification.status = 'read';
+      }, error => {
+        // handle request errors here
       });
     }
     this.user_notification = currentNotification;
@@ -93,7 +99,7 @@ export class NotificationComponent implements OnInit, AfterViewInit {
     const alerts = this.alerts.slice(0);
     alerts.forEach((user_notification) => {
       user_notification['hide'] = false;
-      
+
       if (!user_notification.notification.title.includes(this.search) &&
           !user_notification.notification.short_description.includes(this.search)) {
         user_notification['hide'] = true;

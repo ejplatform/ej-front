@@ -53,6 +53,8 @@ export class ConversationsComponent implements OnInit {
       this.categorizedConversations = categorizedConversations;
       this.categories = categories;
       this.conversationsLoaded = true;
+    }, error => {
+      // handle request errors here
     });
   }
 

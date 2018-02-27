@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { SessionService } from './services/session.service';
 
 import { CookieService } from 'ngx-cookie-service';
+
+import * as Raven from 'raven-js';
 
 @Injectable()
 export class HttpsRequestInterceptor implements HttpInterceptor {
@@ -36,6 +38,15 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
       request = request.clone({headers: request.headers.set('X-CSRFToken', csrftoken)});
     }
 
-    return next.handle(request);
+    return next.handle(request).catch(error => {
+      // HTTP errors must be handled diferently for Sentry
+      if (error instanceof HttpErrorResponse) {
+        Raven.captureMessage(error.message, {
+          level: 'warning'
+        });
+      }
+      return Observable.throw(error);
+    });
+
   }
 }

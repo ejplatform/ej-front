@@ -43,6 +43,8 @@ export class EmbedComponent implements OnInit {
         conversationService.get(params.id).subscribe(conversation => {
           this.polisUrl = conversation.polis_url;
           this.conversation = conversation;
+        }, error => {
+          // handle request errors here
         });
         this.pageTitle = 'Conversas';
       }
@@ -89,7 +91,9 @@ export class EmbedComponent implements OnInit {
       comment.content = event.data.txt;
       comment.polis_id = event.data.tid;
       comment.conversation = this.conversation.id;
-      this.commentService.create(comment).subscribe();
+      this.commentService.create(comment).subscribe( data => {}, error => {
+        // handle request errors here
+      });
     // Test if it is a vote
   } else if (event.data && event.data.tid !== undefined && event.data.vote !== undefined) {
       this.commentService.getByPolisId(event.data.tid, this.conversation.id).subscribe(comment => {
@@ -100,6 +104,8 @@ export class EmbedComponent implements OnInit {
           vote.value = -vote.value;
           this.voteService.save(vote).subscribe();
         }
+      }, error => {
+        // handle request errors here
       });
     } else if (event.data && event.data.name === 'outerIframeSetHeightMsg') {
       this.iframeHeight = event.data.height;
