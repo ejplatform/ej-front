@@ -41,12 +41,17 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.signIn(this.profile).subscribe((response) => {
-      this.handleloginSuccess();
-    }, error => this.handleError(error));
+    // Ensure that no leftover cookies interfere with the login
+    // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern
+    this.authService.cookieReset().subscribe(() => {
+      this.authService.signIn(this.profile).subscribe((response) => {
+        this.handleloginSuccess();
+      }, error => this.handleError(error));
+    });
   }
 
   loginWithFacebook() {
+    this.authService.cookieReset().subscribe();
     this.socialFacebookService.login();
 
     this.socialFacebookService.loginReturn.subscribe((data) => {
@@ -73,6 +78,7 @@ export class LoginComponent {
   }
 
   loginWithTwitter() {
+    this.authService.cookieReset().subscribe();
     const windowRef: Window = window.open(
                                 '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
                                 'twitter-window',

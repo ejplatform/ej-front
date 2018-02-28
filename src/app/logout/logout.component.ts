@@ -20,6 +20,9 @@ export class LogoutComponent {
         this.profile = null;
         this.router.navigate(['']);
       }, error => {
+        // If the logout call failed, there may be invalid cookies lingering on the browser. Clear them now
+        // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern
+        this.authService.cookieReset().subscribe();
         this.profileService.setProfile(null);
         this.profile = null;
         this.router.navigate(['']);
