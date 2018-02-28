@@ -12,7 +12,7 @@ export class FooterComponent {
 
   constructor(private _state: GlobalState) {
     this._state.subscribe('category.data', (category) => {
-      this.styles = category ? category.styles : null;
+      this.styles = (category && category.customizations) ? category.customizations.styles : null;
     });
   }
 

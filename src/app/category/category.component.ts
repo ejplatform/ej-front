@@ -42,7 +42,7 @@ export class CategoryComponent implements OnDestroy {
     this.route.params.subscribe(params => {
       categoryService.get(params.slug).subscribe(category => {
         this.category = category;
-        this.styles = category ? category.customizations.styles : null;
+        this.styles = (category && category.customizations) ? category.customizations.styles : null;
         this._state.notifyDataChanged('category.data', category);
 
         conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {

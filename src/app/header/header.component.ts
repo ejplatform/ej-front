@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
       this.isMenuCollapsed = isCollapsed;
     });
     this._state.subscribe('category.data', (category) => {
-      this.styles = category ? category.styles : null;
+      this.styles = (category && category.customizations) ? category.customizations.styles : null;
       this.category = category;
     });
 
