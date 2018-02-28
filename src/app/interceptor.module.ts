@@ -46,6 +46,11 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
           extra: { response_body: error.error }
         });
       }
+
+      if (error.status === 401 || error.status === 403) {
+        // TODO: the logout process must be triggered now
+      }
+
       return Observable.throw(error);
     });
 
