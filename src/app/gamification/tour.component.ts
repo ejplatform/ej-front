@@ -32,19 +32,20 @@ export class TourComponent implements OnInit {
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;
-      this.ngOnInit();
+      this.resolveComponent();
     });
 
     this.sessionService.sessionChangeEvent.subscribe(data => {
-      this.ngOnInit();
+      this.resolveComponent();
     });
   }
 
   ngOnInit() {
     if (!_.isNil(this.profile) && !_.isNil(this.profile.id) && (this.profile.tour_step === '' || _.isNil(this.profile.tour_step))) {
       this.profileService.me().subscribe(profile => {
+        profile.tour_step = _.isNil(profile.tour_step) ? Tour.STEP_TWO : profile.tour_step;
         this.profile = profile;
-        this.profileService.setProfile(profile);
+        this.profileService.setProfile(this.profile);
         this.resolveComponent();
       }, error => {
         // handle request errors here
