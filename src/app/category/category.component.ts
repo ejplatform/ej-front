@@ -9,18 +9,17 @@ import { Category } from '../models/category';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { GlobalState } from '../global.state';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
+  templateUrl: '../conversations/conversations.component.html',
   styleUrls: ['./category.component.scss'],
   providers: [ConversationService, CategoryService],
 })
 export class CategoryComponent implements OnDestroy {
 
   category: Category;
-  categoryContent: any;
   categories: string[] = [''];
   conversations: Conversation[];
   conversationsLoaded = false;
@@ -45,7 +44,6 @@ export class CategoryComponent implements OnDestroy {
         this.category = category;
         this.styles = category ? category.customizations.styles : null;
         this._state.notifyDataChanged('category.data', category);
-        this.categoryContent = this.sanitizer.bypassSecurityTrustHtml(this.category.customizations.content);
 
         conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
           this.conversationsLoaded = true;
@@ -61,6 +59,26 @@ export class CategoryComponent implements OnDestroy {
         this.router.navigate(['conversations']);
       });
     });
+  }
+
+  trustContent(html: any): SafeHtml {
+    if (_.isNil(html)) {
+      html = '';
+    } else {
+      html = this.sanitizer.bypassSecurityTrustHtml(html);
+    }
+    return html;
+  }
+
+  hasCategoryContent(): boolean {
+    let hasContent = false;
+
+    if (this.category && this.category.customizations && this.category.customizations.content) {
+      hasContent = true;
+    }
+
+    return hasContent;
+
   }
 
   ngOnDestroy() {
