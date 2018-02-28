@@ -58,6 +58,10 @@ export class ConversationsComponent implements OnInit {
     });
   }
 
+  hasCategoryContent(): boolean {
+    return false;
+  }
+
   groupConversations(category) {
     if (!category || category === '') {
       return [this.conversations];

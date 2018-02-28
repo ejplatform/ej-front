@@ -122,5 +122,5 @@ export class CategoryComponent implements OnDestroy {
 
     return newDate;
   }
-  
+
 }
