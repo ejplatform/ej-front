@@ -44,7 +44,7 @@ export class RegistrationComponent {
   register() {
     this.profile.password1 = this.profile.password;
     this.profile.password2 = this.profile.password_confirmation;
-    this.profile.tour_step = (this.category && this.category.has_tour) ? Tour.STEP_TWO : Tour.STEP_FINISH;
+    this.profile.tour_step = (!this.category || (this.category && this.category.has_tour)) ? Tour.STEP_TWO : Tour.STEP_FINISH;
     this.authService.signUp(this.profile).subscribe((response) => {
       this.handleloginSuccess();
     }, error => this.handleError(error));
