@@ -42,7 +42,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
       // HTTP errors must be handled diferently for Sentry
       if (error instanceof HttpErrorResponse) {
         Raven.captureMessage(error.message, {
-          level: 'warning'
+          level: 'warning',
+          extra: { response_body: error.error }
         });
       }
       return Observable.throw(error);
