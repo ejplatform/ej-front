@@ -7,7 +7,7 @@ import { GlobalState } from '../global.state';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  
+
   styles: any = null;
 
   constructor(private _state: GlobalState) {

@@ -23,7 +23,7 @@
     <div class="form-group email-field" [ngClass]="[ email.touched ? (email.valid ? 'is-valid' : 'is-invalid') : '' ]">
       <i class="inside-icon"></i>
       <input type="email" class="form-control" id="email" name="email" placeholder="{{'login.email' | translate }}"
-          [(ngModel)]="profile.email" required #email='ngModel'>
+          [(ngModel)]="user.email" required #email='ngModel'>
       <validation-message #emailErrors [field]="email" [prefix]="'login.email'"></validation-message>
     </div>
 
@@ -31,7 +31,7 @@
       <i class="inside-icon"></i>
       <input type="password" class="form-control"
         id="password" name="password" placeholder="{{'login.password' | translate }}"
-        [(ngModel)]="profile.password" required #password='ngModel'>
+        [(ngModel)]="user.password" required #password='ngModel'>
       <validation-message #passwordErrors [field]="password" [prefix]="'login.password'"></validation-message>
     </div>
 

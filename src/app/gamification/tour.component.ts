@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, ComponentFactoryResolver, ViewChild, ViewContainerRef,
+  ChangeDetectorRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { concat } from 'rxjs/observable/concat';
@@ -47,6 +48,7 @@ export class TourComponent implements OnInit {
         this.profile = profile;
         this.profileService.setProfile(this.profile);
         this.resolveComponent();
+
       }, error => {
         // handle request errors here
       });

@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { SessionService } from './services/session.service';
-
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 import * as Raven from 'raven-js';
@@ -11,10 +11,12 @@ import { environment } from '../environments/environment';
 import { Profile } from './models/profile';
 import { ProfileService } from './services/profile.service';
 
+
 @Injectable()
 export class HttpsRequestInterceptor implements HttpInterceptor {
 
-  constructor(private sessionService: SessionService, private inj: Injector, private cookieService: CookieService) { }
+  constructor(private sessionService: SessionService, private inj: Injector,
+    private cookieService: CookieService, private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.sessionService.getToken();
@@ -54,9 +56,9 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
       if (error.status === 401 || error.status === 403) {
         const auth = this.inj.get(AuthService);
         const profileService = this.inj.get(ProfileService);
-
         auth.signOut().subscribe( () => {
           profileService.setProfile(null);
+          this.router.navigate(['']);
         }, err => {
           // If the logout call failed, there may be invalid cookies lingering on the browser. Clear them now
           // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern

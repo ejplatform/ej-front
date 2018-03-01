@@ -64,6 +64,7 @@ export class ParticipateComponent implements OnInit, OnDestroy {
               this._state.notifyDataChanged('category.data', category);
             }, error => {
               // handle request errors here
+              console.log(error);
             });
           } else {
             this.categoryId = 0;

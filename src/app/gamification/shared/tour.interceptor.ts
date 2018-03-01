@@ -11,6 +11,7 @@ import { TourComponent } from '../tour.component';
 import * as _ from 'lodash';
 import { GlobalState } from '../../global.state';
 import { Category } from '../../models/category';
+import { TourService } from './tour.service';
 
 @Injectable()
 export class TourInterceptor implements HttpInterceptor {
@@ -19,12 +20,14 @@ export class TourInterceptor implements HttpInterceptor {
   category: Category;
   modal: any;
 
-  constructor(private _state: GlobalState, private sessionService: SessionService, private router: Router,
+  constructor(private _state: GlobalState, private sessionService: SessionService,
+    private router: Router, private tourService: TourService,
     private modalService: NgbModal, public activeModal: NgbActiveModal) {
     this.profile = this.sessionService.currentProfile();
 
     this.sessionService.sessionChangeEvent.subscribe(data => {
       this.profile = this.sessionService.currentProfile();
+      this.checkOrOpenTour();
     });
 
     this._state.subscribe('category.data', (category) => {
@@ -35,8 +38,14 @@ export class TourInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const authRequest = request;
+    this.checkOrOpenTour();
 
-    if (!this.profile || (this.profile && (this.profile.tour_step !== Tour.STEP_FINISH))) {
+    return next.handle(authRequest);
+
+  }
+
+  private checkOrOpenTour() {
+    if (this.shouldActiveTour()) {
       if (this.category) {
         const step = _.isNil(this.profile) ? '' : this.profile.tour_step;
 
@@ -51,13 +60,20 @@ export class TourInterceptor implements HttpInterceptor {
         this.openModal();
       }
     }
-
-
-    return next.handle(authRequest);
-
   }
 
-  openModal() {
+  private shouldActiveTour(): boolean {
+    let activateTour: boolean;
+    if (_.isNil(this.profile)) {
+      activateTour = true;
+    } else {
+      activateTour = this.tourService.existStep(this.profile.tour_step);
+      activateTour = activateTour && (this.profile.tour_step !== Tour.STEP_FINISH);
+    }
+    return activateTour;
+  }
+
+  private openModal() {
     Promise.resolve().then(() => {
       if (_.isNil(this.modal)) {
         this.modal = this.modalService.open(TourComponent, { backdrop: 'static', keyboard: false });

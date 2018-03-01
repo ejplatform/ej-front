@@ -21,7 +21,7 @@ import { SessionService } from '../services/session.service';
 })
 export class LoginComponent {
 
-  profile: Profile;
+  user: Profile;
   bsModalRef: any;
   bsRegistrationModalRef: any;
   loggedIn = new EventEmitter();
@@ -36,7 +36,7 @@ export class LoginComponent {
     private sessionService: SessionService, private router: Router) {
 
     this.bsModalRef = activeModal;
-    this.profile = new Profile();
+    this.user = new Profile();
 
   }
 
@@ -44,7 +44,7 @@ export class LoginComponent {
     // Ensure that no leftover cookies interfere with the login
     // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern
     this.authService.cookieReset().subscribe(() => {
-      this.authService.signIn(this.profile).subscribe((response) => {
+      this.authService.signIn(this.user).subscribe((response) => {
         this.handleloginSuccess();
       }, error => this.handleError(error));
     });
