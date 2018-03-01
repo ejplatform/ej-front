@@ -57,6 +57,10 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
         auth.signOut().subscribe( () => {
           profileService.setProfile(null);
+        }, err => {
+          // If the logout call failed, there may be invalid cookies lingering on the browser. Clear them now
+          // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern
+          auth.cookieReset().subscribe();
         });
       }
 
