@@ -17,7 +17,8 @@ export class ConversationsComponent implements OnInit {
   category: any = null;
   conversations: Conversation[];
   categorizedConversations: any = {};
-  categories: string[];
+  categories: any = {};
+  categoryNames: string[];
   conversationsLoaded = false;
   @Input() profile: Profile;
 
@@ -35,11 +36,13 @@ export class ConversationsComponent implements OnInit {
     this.conversationService.list().subscribe((conversations: Conversation[]) => {
       const uncategorizedConversations = [];
       const categorizedConversations = [];
-      const categories = [''];
+      const categories = {};
+      const categoryNames = [''];
       conversations.forEach((conversation) => {
         if (conversation.category_name) {
-          if (categories.indexOf(conversation.category_name) === -1) {
-            categories.push(conversation.category_name);
+          if (categoryNames.indexOf(conversation.category_name) === -1) {
+            categoryNames.push(conversation.category_name);
+            categories[conversation.category_name] = { styles: conversation.category_customizations.styles, slug: conversation.category_slug };
           }
           if (!categorizedConversations[conversation.category_name]) {
             categorizedConversations[conversation.category_name] = [];
@@ -52,6 +55,7 @@ export class ConversationsComponent implements OnInit {
       this.conversations = _.sortBy(uncategorizedConversations, ['position']);
       this.categorizedConversations = categorizedConversations;
       this.categories = categories;
+      this.categoryNames = categoryNames;
       this.conversationsLoaded = true;
     }, error => {
       // handle request errors here
