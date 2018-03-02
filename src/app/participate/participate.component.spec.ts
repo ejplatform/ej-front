@@ -14,6 +14,7 @@ import { ProfileService } from '../services/profile.service';
 import * as helpers from '../../spec/helpers';
 import { ParticipateComponent } from './participate.component';
 import { GlobalState } from '../global.state';
+import { CategoryService } from '../services/category.service';
 
 
 describe('ParticipateComponent', () => {
@@ -24,11 +25,12 @@ describe('ParticipateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(),FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [ TranslateModule.forRoot(), NgbModule.forRoot(), FormsModule, ReactiveFormsModule,
+        HttpClientTestingModule, RouterTestingModule],
       declarations: [ ParticipateComponent, SafePipe ],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
-        { provide: GlobalState, useValue: mocks.globalState }
+        { provide: CategoryService, useValue: mocks.categoryService }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

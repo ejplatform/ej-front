@@ -93,6 +93,21 @@ export function getMocks() {
                 subscribe: (fn: Function) => { },
             },
         },
+        categoryService: {
+            get: (id: number) => {
+                return Observable.of({});
+            },
+            getCurrent: () => {
+                return null;
+            },
+            setCurrent: () => {
+                return null;
+            },
+            categoryChangeEvent: {
+                subscribe: (fn: Function) => { },
+                next: (param: any) => { }
+            },
+        },
         profileService: {
             get: (id: number) => {
                 return Observable.of({});

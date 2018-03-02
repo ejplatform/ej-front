@@ -5,6 +5,8 @@ import * as _ from 'lodash';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { GlobalState } from '../global.state';
+import { Category } from '../models/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -18,15 +20,24 @@ export class NavigationBarComponent implements OnInit {
   @Input() profile: Profile;
   isMenuCollapsed = false;
 
-  styles: any = null;
+  category: Category;
 
-  constructor(private _state: GlobalState, private profileService: ProfileService) {
+  constructor(private _state: GlobalState, private profileService: ProfileService, private categoryService: CategoryService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
-    this._state.subscribe('category.data', (category) => {
-      this.styles = (category && category.customizations) ? category.customizations.styles : null;
+
+
+    this.category = this.categoryService.getCurrent();
+
+    this.categoryService.categoryChangeEvent.subscribe((category: Category) => {
+      this.category = category;
     });
+
+  }
+
+  getStyles() {
+    return this.category ? this.category.getStyle() : null;
   }
 
   ngOnInit() { }

@@ -14,10 +14,10 @@ export class ImageUploadComponent {
   @Output() onChange = new EventEmitter();
 
   fileChange($event: any) {
-    let fileList: FileList = event.target['files'];
+    const fileList: FileList = event.target['files'];
     if (fileList.length > 0) {
       const reader = new FileReader();
-      let file: File = fileList[0];
+      const file: File = fileList[0];
       reader.onload = (e: any) => {
         this.imageData = { name: file.name, content: e.target.result };
         this.imageDataChange.next(this.imageData);

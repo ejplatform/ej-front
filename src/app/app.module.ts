@@ -58,6 +58,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
+import { CategoryService } from './services/category.service';
 import { SocialFacebookService } from './services/social-facebook.service';
 import { ToastService } from './services/toast.service';
 import { SessionService } from './services/session.service';
@@ -145,6 +146,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SessionService,
     BadgeService,
     ProfileService,
+    CategoryService,
     SocialFacebookService,
     ToastService,
     CookieService,

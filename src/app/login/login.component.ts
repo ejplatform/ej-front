@@ -21,7 +21,7 @@ import { SessionService } from '../services/session.service';
 })
 export class LoginComponent {
 
-  profile: Profile;
+  user: Profile;
   bsModalRef: any;
   bsRegistrationModalRef: any;
   loggedIn = new EventEmitter();
@@ -36,17 +36,22 @@ export class LoginComponent {
     private sessionService: SessionService, private router: Router) {
 
     this.bsModalRef = activeModal;
-    this.profile = new Profile();
+    this.user = new Profile();
 
   }
 
   login() {
-    this.authService.signIn(this.profile).subscribe((response) => {
-      this.handleloginSuccess();
-    }, error => this.handleError(error));
+    // Ensure that no leftover cookies interfere with the login
+    // FIXME: this call should not be necessary and must be removed when csrftoken problems are no longer a concern
+    this.authService.cookieReset().subscribe(() => {
+      this.authService.signIn(this.user).subscribe((response) => {
+        this.handleloginSuccess();
+      }, error => this.handleError(error));
+    });
   }
 
   loginWithFacebook() {
+    this.authService.cookieReset().subscribe();
     this.socialFacebookService.login();
 
     this.socialFacebookService.loginReturn.subscribe((data) => {
@@ -73,6 +78,7 @@ export class LoginComponent {
   }
 
   loginWithTwitter() {
+    this.authService.cookieReset().subscribe();
     const windowRef: Window = window.open(
                                 '/accounts/twitter/login/?next=%2Fapi%2Fprofile%2Fclose',
                                 'twitter-window',

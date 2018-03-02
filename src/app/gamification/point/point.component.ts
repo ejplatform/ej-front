@@ -11,34 +11,34 @@ import { TourService } from '../shared/tour.service';
   styleUrls: ['./point.component.scss']
 })
 export class PointComponent implements OnInit {
-  profile: Profile;  
+  profile: Profile;
   currentStep = '';
-  
+
   constructor(public activeModal: NgbActiveModal, private profileService: ProfileService, private tourService: TourService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
-   }
+  }
 
   ngOnInit() {
     this.currentStep = this.profile.tour_step;
   }
 
-  saveProfile(){
+  saveProfile() {
     this.profile.tour_step = this.tourService.nextStep(this.profile.tour_step)
-    
-    this.profileService.save(this.profile).subscribe( profile => {
+
+    this.profileService.save(this.profile).subscribe(profile => {
       this.profileService.setProfile(profile);
     }, error => {
       console.log(error);
     });
   }
 
-  getImagePath(){
-    let path = ''
-    if(this.currentStep == Tour.STEP_FOUR){
+  getImagePath() {
+    let path = '';
+    if (this.currentStep === Tour.STEP_FOUR) {
       path = '/assets/images/medalha_simples.svg'
     }
-    return path
+    return path;
   }
 
 }

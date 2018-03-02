@@ -11,8 +11,8 @@ import { SocialFacebookService } from '../services/social-facebook.service';
 import { ToastService } from '../services/toast.service';
 import { LoginComponent } from '../login/login.component';
 import { SessionService } from '../services/session.service';
-import { GlobalState } from '../global.state';
 import { Category } from '../models/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-registration',
@@ -32,11 +32,13 @@ export class RegistrationComponent {
   @ViewChild('passwordErrors') passwordErrors;
   @ViewChild('passwordConfirmationErrors') passwordConfirmationErrors;
 
-  constructor(private _state: GlobalState, private authService: AuthService, private profileService: ProfileService,
+  constructor(private categoryService: CategoryService, private authService: AuthService, private profileService: ProfileService,
     private toastService: ToastService, public activeModal: NgbActiveModal, private socialFacebookService: SocialFacebookService,
     private sessionService: SessionService, private router: Router, private modalService: NgbModal) {
     this.profile = new Profile();
-    this._state.subscribe('category.data', (category) => {
+    this.category = this.categoryService.getCurrent();
+
+    this.categoryService.categoryChangeEvent.subscribe((category: Category) => {
       this.category = category ? category : null;
     });
   }

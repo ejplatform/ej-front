@@ -52,6 +52,11 @@ export class AuthService {
     return this.http.post(fullEndpointUrl, profile);
   }
 
+  cookieReset() {
+    const fullEndpointUrl = `${environment.apiUrl}/api/profile/reset/`;
+    return this.http.get(fullEndpointUrl, {responseType: 'text'});
+  }
+
   signInFacebook(accessToken: string) {
     const fullEndpointUrl = `${environment.apiUrl}/api/auth/facebook/`;
     return this.http.post(fullEndpointUrl, {access_token: accessToken}).map(

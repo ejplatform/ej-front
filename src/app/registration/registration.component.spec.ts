@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { SocialFacebookService } from '../services/social-facebook.service';
 import * as helpers from '../../spec/helpers';
 import { GlobalState } from '../global.state';
+import { CategoryService } from '../services/category.service';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -28,7 +29,7 @@ describe('RegistrationComponent', () => {
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: SessionService, useValue: mocks.sessionService },
         { provide: ToastService, useValue: mocks.toastService },
-        { provide: GlobalState, useValue: mocks.globalState },
+        { provide: CategoryService, useValue: mocks.categoryService },
         { provide: AuthService, useValue: mocks.authService },
         { provide: SocialFacebookService, useValue: mocks.socialFacebookService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },

@@ -22,11 +22,21 @@ export class TourService {
         return Tour.STEP_SIX;
       }
       case Tour.STEP_SIX: {
-        return Tour.STEP_SEVEN;
-      }
-      case Tour.STEP_SEVEN: {
         return Tour.STEP_FINISH;
       }
     }
   }
+
+  finshStep(): string {
+    return Tour.STEP_FINISH;
+  }
+
+  existStep(step: string): boolean {
+    let stepExists = (Tour.STEP_TWO === step) || (Tour.STEP_THREE === step) || (Tour.STEP_FOUR === step);
+
+    stepExists = stepExists || (Tour.STEP_FIVE === step) || (Tour.STEP_SIX === step);
+
+    return stepExists;
+  }
+
 }
