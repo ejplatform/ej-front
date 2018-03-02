@@ -1,4 +1,5 @@
 import { Comment } from '../comments/shared/comment.model';
+import { CategoryCustomization } from './category-customization';
 
 export class Conversation {
 
@@ -23,5 +24,7 @@ export class Conversation {
     public is_new: boolean;
     public category_id: number;
     public category_name: string;
+    public category_slug: string;
+    public category_customizations: CategoryCustomization;
 
 }

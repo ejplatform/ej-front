@@ -11,7 +11,7 @@ export class Category {
     public is_login_required: boolean;
     public slug: string;
 
-    public getStyle(): string {
+    public getStyle(): any {
         return (this.customizations) ? this.customizations.styles : null;
     }
 

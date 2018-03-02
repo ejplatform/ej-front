@@ -19,7 +19,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class CategoryComponent implements OnDestroy {
 
   category: Category;
-  categories: string[] = [''];
+  categories: any = {};
+  categoryNames: string[] = [''];
   conversations: Conversation[];
   conversationsLoaded = false;
   @Input() profile: Profile;
