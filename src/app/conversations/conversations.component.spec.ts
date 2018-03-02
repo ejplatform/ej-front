@@ -37,7 +37,8 @@ describe('ConversationsComponent', () => {
   });
 
   it('display all conversations in list', () => {
-    component.categories = [''];
+    component.categories = {};
+    component.categoryNames = [''];
     component.conversations = [
           <Conversation>{ title: 'comment 1', description: 'comment body 1' },
           <Conversation>{ title: 'comment 2', description: 'comment body 2' }];
