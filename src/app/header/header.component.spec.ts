@@ -9,29 +9,31 @@ import { AuthService } from '../services/auth.service';
 
 
 import { HeaderComponent } from './header.component';
-import * as helpers from "../../spec/helpers";
+import * as helpers from '../../spec/helpers';
 import { ProfileService } from '../services/profile.service';
 import { GlobalState } from '../global.state';
+import { CategoryService } from '../services/category.service';
 
 
 describe('HeaderComponent', () => {
 
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let mocks = helpers.getMocks();
-  
+  const mocks = helpers.getMocks();
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
+      declarations: [HeaderComponent],
       imports: [RouterTestingModule, TranslateModule.forRoot(), NgbModule.forRoot(), NgPipesModule],
-      providers: [{ provide: GlobalState, useValue: mocks.globalState },
-        { provide: AuthService, useValue: mocks.authService },        
-        { provide: ProfileService, useValue: mocks.profileService },
+      providers: [{ provide: CategoryService, useValue: mocks.categoryService },
+      { provide: GlobalState, useValue: mocks.globalState },
+      { provide: AuthService, useValue: mocks.authService },
+      { provide: ProfileService, useValue: mocks.profileService },
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -41,7 +43,7 @@ describe('HeaderComponent', () => {
   });
 
   it('display site-header', () => {
-      expect(fixture.debugElement.queryAll(By.css('.site-header')).length).toBe(1);
+    expect(fixture.debugElement.queryAll(By.css('.site-header')).length).toBe(1);
   });
 
 });

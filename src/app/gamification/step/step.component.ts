@@ -27,7 +27,9 @@ export class StepComponent implements OnInit {
 
   ngOnInit() {
     let componentType: any;
-    switch (_.toString(this.profile.tour_step)) {
+    const step = _.isNil(this.profile) ? '' : _.toString(this.profile.tour_step);
+
+    switch (step) {
       case Tour.STEP_THREE: {
         componentType = VoteComponent;
         break;
@@ -50,10 +52,6 @@ export class StepComponent implements OnInit {
       this.viewContainerRef.createComponent(compFactory);
     }
 
-  }
-
-  isEqualStepThree() {
-    // return this.currentStep === 'STEP_THREE' || this.currentStep === 'STEP_FIVE' || this.currentStep === 'STEP_THIRTEEN'
   }
 
 }

@@ -12,7 +12,7 @@ export class Tour {
   static STEP_TEN = 'STEP_TEN';
   static STEP_ELEVEN = 'STEP_ELEVEN';
   static STEP_TWELVE = 'STEP_TWELVE';
-  static STEP_THIRTEEN = 'STEP_THIRTEEN'  
+  static STEP_THIRTEEN = 'STEP_THIRTEEN';
   static STEP_FINISH = 'STEP_FINISH';
 
 }

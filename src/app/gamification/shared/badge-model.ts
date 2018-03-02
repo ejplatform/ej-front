@@ -8,6 +8,6 @@ export class Badge {
   public detail: string;
   public buttonName: string;
   public currentLevel: number;
-  public levels: any;  
-  
+  public levels: any;
+
 }

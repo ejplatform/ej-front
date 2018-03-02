@@ -16,13 +16,14 @@ import { CategoryService } from '../services/category.service';
 import { NudgeComponent } from '../nudge/nudge.component';
 import { Nudge } from '../nudge/shared/nudge-model';
 import { GlobalState } from '../global.state';
+import { Category } from '../models/category';
 
 
 @Component({
   selector: 'app-participate',
   templateUrl: './participate.component.html',
   styleUrls: ['./participate.component.scss'],
-  providers: [ConversationService, CommentService, VoteService, CategoryService],
+  providers: [ConversationService, CommentService, VoteService],
 })
 export class ParticipateComponent implements OnInit, OnDestroy {
 
@@ -44,10 +45,8 @@ export class ParticipateComponent implements OnInit, OnDestroy {
 
   constructor(private conversationService: ConversationService,
     private route: ActivatedRoute, private profileService: ProfileService,
-    private _state: GlobalState,
     private commentService: CommentService, private modalService: NgbModal,
-    private categoryService: CategoryService,
-    private voteService: VoteService) {
+    private categoryService: CategoryService, private voteService: VoteService) {
     this.profile = <Profile>{};
     this.profile = Object.assign(this.profile, this.profileService.getProfile());
     this.profileService.profileChangeEvent.subscribe(profile => {
@@ -60,14 +59,16 @@ export class ParticipateComponent implements OnInit, OnDestroy {
         conversationService.get(params.slug).subscribe(conversation => {
           if (conversation.category_id) {
             this.categoryId = conversation.category_id;
-            categoryService.get(conversation.category_id.toString()).subscribe(category => {
-              this._state.notifyDataChanged('category.data', category);
+            categoryService.get(conversation.category_id.toString()).subscribe(categorySerialized => {
+              const category =  Object.assign(new Category(), categorySerialized);
+              categoryService.setCurrent(category);
             }, error => {
               // handle request errors here
+              console.log(error);
             });
           } else {
             this.categoryId = 0;
-            this._state.notifyDataChanged('category.data', null);
+            categoryService.setCurrent(null);
           }
           this.conversationCallback(conversation);
         });
@@ -76,7 +77,7 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._state.notifyDataChanged('category.data', null);
+    this.categoryService.setCurrent(null);
   }
 
   conversationCallback(conversation) {

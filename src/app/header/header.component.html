@@ -1,4 +1,4 @@
-<header class="site-header" [ngClass]="{ 'logged': isLogged(), 'unlogged': !isLogged(), 'category-page': !!styles }">
+<header class="site-header" [ngClass]="{ 'logged': isLogged(), 'unlogged': !isLogged(), 'category-page': !!getStyles() }">
     <div *ngIf="profile" class='with-profile'>
         <div class="user-info" (click)="toggleMenu()"  >
             <div class="user-icon">
@@ -25,7 +25,7 @@
             </div>
         </div>  -->
     </div>
-    <div class="site-logo" [ngClass]="{ 'category-page': !!styles }">
+    <div class="site-logo" [ngClass]="{ 'category-page': !!getStyles() }">
         <h1><a routerLink="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
 
         <span *ngIf="category" class="header-category" routerLink="/{{category.slug}}">

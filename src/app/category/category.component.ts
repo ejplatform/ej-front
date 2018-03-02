@@ -8,14 +8,13 @@ import { Conversation } from '../models/conversation';
 import { Category } from '../models/category';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
-import { GlobalState } from '../global.state';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-category',
   templateUrl: '../conversations/conversations.component.html',
   styleUrls: ['./category.component.scss'],
-  providers: [ConversationService, CategoryService],
+  providers: [ConversationService],
 })
 export class CategoryComponent implements OnDestroy {
 
@@ -29,7 +28,6 @@ export class CategoryComponent implements OnDestroy {
   constructor(private conversationService: ConversationService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private _state: GlobalState,
     private sanitizer: DomSanitizer,
     private router: Router,
     private profileService: ProfileService) {
@@ -40,12 +38,13 @@ export class CategoryComponent implements OnDestroy {
       this.profile = profile;
     });
     this.route.params.subscribe(params => {
-      categoryService.get(params.slug).subscribe(category => {
-        this.category = category;
-        this.styles = (category && category.customizations) ? category.customizations.styles : null;
-        this._state.notifyDataChanged('category.data', category);
+      categoryService.get(params.slug).subscribe(categorySerialized => {
+        this.category =  Object.assign(new Category(), categorySerialized);
+        this.styles = this.category ? this.category.getStyle() : null;
+        categoryService.setCurrent(this.category);
 
-        conversationService.categorized(category.id).subscribe((conversations: Conversation[]) => {
+
+        conversationService.categorized(this.category.id).subscribe((conversations: Conversation[]) => {
           this.conversationsLoaded = true;
           this.conversations = _.sortBy(conversations, ['position']);
         }, error => {
@@ -55,7 +54,7 @@ export class CategoryComponent implements OnDestroy {
         this.conversations = [];
         this.conversationsLoaded = true;
         this.styles = null;
-        this._state.notifyDataChanged('category.data', null);
+        categoryService.setCurrent(null);
         this.router.navigate(['conversations']);
       });
     });
@@ -82,7 +81,7 @@ export class CategoryComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this._state.notifyDataChanged('category.data', null);
+    this.categoryService.setCurrent(null);
   }
 
   groupConversations() {
