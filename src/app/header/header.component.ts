@@ -10,6 +10,8 @@ import { RegistrationComponent } from '../registration/registration.component';
 import { AuthService } from '../services/auth.service';
 import { Profile } from '../models/profile';
 import { GlobalState } from '../global.state';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-header',
@@ -20,17 +22,19 @@ export class HeaderComponent implements OnInit {
 
   isMenuCollapsed = false;
   bsModalRef: any;
-  styles: any = null;
-  category: any = null;
+  category: Category;
   @Input() profile: Profile;
 
   constructor(private _state: GlobalState, private profileService: ProfileService,
-    private modalService: NgbModal, private router: Router, private authService: AuthService) {
+    private categoryService: CategoryService, private modalService: NgbModal,
+    private router: Router, private authService: AuthService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
-    this._state.subscribe('category.data', (category) => {
-      this.styles = (category && category.customizations) ? category.customizations.styles : null;
+
+    this.category = this.categoryService.getCurrent();
+
+    this.categoryService.categoryChangeEvent.subscribe((category: Category) => {
       this.category = category;
     });
 
@@ -41,6 +45,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  getStyles() {
+    return this.category ? this.category.getStyle() : null;
   }
 
   toggleMenu(keepOpen = false) {

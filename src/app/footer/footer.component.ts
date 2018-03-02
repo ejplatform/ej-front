@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { GlobalState } from '../global.state';
+import { Category } from '../models/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,9 +11,9 @@ export class FooterComponent {
 
   styles: any = null;
 
-  constructor(private _state: GlobalState) {
-    this._state.subscribe('category.data', (category) => {
-      this.styles = (category && category.customizations) ? category.customizations.styles : null;
+  constructor(private categoryService: CategoryService) {
+    categoryService.categoryChangeEvent.subscribe( (category: Category) => {
+      this.styles = category ? category.getStyle() : null;
     });
   }
 

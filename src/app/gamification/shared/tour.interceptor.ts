@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { SessionService } from '../../services/session.service';
@@ -9,29 +9,37 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TourComponent } from '../tour.component';
 import * as _ from 'lodash';
-import { GlobalState } from '../../global.state';
 import { Category } from '../../models/category';
 import { TourService } from './tour.service';
+import { CategoryService } from '../../services/category.service';
 
 @Injectable()
-export class TourInterceptor implements HttpInterceptor {
+export class TourInterceptor implements HttpInterceptor, OnInit {
 
   profile: Profile;
   category: Category;
+  categoryService: CategoryService;
   modal: any;
 
-  constructor(private _state: GlobalState, private sessionService: SessionService,
+  constructor( private injector: Injector, private sessionService: SessionService,
     private router: Router, private tourService: TourService,
     private modalService: NgbModal, public activeModal: NgbActiveModal) {
     this.profile = this.sessionService.currentProfile();
 
-    this.sessionService.sessionChangeEvent.subscribe(data => {
+    sessionService.sessionChangeEvent.subscribe(data => {
       this.profile = this.sessionService.currentProfile();
       this.checkOrOpenTour();
     });
 
-    this._state.subscribe('category.data', (category) => {
-      this.category = category ? category : null;
+  }
+
+  ngOnInit() {
+    this.categoryService = this.injector.get(CategoryService);
+
+    this.category = this.categoryService.getCurrent();
+
+    this.categoryService.categoryChangeEvent.subscribe((category: Category) => {
+      this.category = category;
     });
   }
 

@@ -6,23 +6,23 @@ import { By } from '@angular/platform-browser';
 
 
 import { FooterComponent } from './footer.component';
-import * as helpers from "../../spec/helpers";
+import * as helpers from '../../spec/helpers';
 import { GlobalState } from '../global.state';
+import { CategoryService } from '../services/category.service';
 
 describe('FooterComponent', () => {
 
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  let mocks = helpers.getMocks();
-  
+  const mocks = helpers.getMocks();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
-      providers: [{ provide: GlobalState, useValue: mocks.globalState }],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      declarations: [FooterComponent],
+      providers: [{ provide: CategoryService, useValue: mocks.categoryService }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,7 +32,7 @@ describe('FooterComponent', () => {
   });
 
   it('display component', () => {
-      expect(fixture.debugElement.queryAll(By.css('.sponsors')).length).toBe(1);
+    expect(fixture.debugElement.queryAll(By.css('.sponsors')).length).toBe(1);
   });
 
 });
