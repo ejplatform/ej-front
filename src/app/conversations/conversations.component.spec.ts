@@ -37,11 +37,11 @@ describe('ConversationsComponent', () => {
   });
 
   it('display all conversations in list', () => {
-    component.categories = { 'Category': {} };
-    component.categoryNames = ['Category'];
+    component.categories = {};
+    component.categoryNames = [''];
     component.conversations = [
-      <Conversation>{ category_name: 'Category', category_slug: 'category', category_customizations: { styles: { color: 'red' } }, title: 'comment 1', description: 'comment body 1' },
-      <Conversation>{ category_name: 'Category', category_slug: 'category', category_customizations: { styles: { color: 'red' } }, title: 'comment 2', description: 'comment body 2' }
+      <Conversation>{ title: 'comment 1', description: 'comment body 1' },
+      <Conversation>{ title: 'comment 2', description: 'comment body 2' }
     ];
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('.card')).length).toBe(2);
