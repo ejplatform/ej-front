@@ -9,6 +9,7 @@ import { Category } from '../models/category';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { GlobalState } from '../global.state';
 
 @Component({
   selector: 'app-category',
@@ -25,12 +26,14 @@ export class CategoryComponent implements OnDestroy {
   conversationsLoaded = false;
   @Input() profile: Profile;
   styles: any = null;
+  embed: boolean = false;
 
   constructor(private conversationService: ConversationService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private router: Router,
+    private _state: GlobalState,
     private profileService: ProfileService) {
 
     this.profile = <Profile>{};
@@ -40,6 +43,11 @@ export class CategoryComponent implements OnDestroy {
     });
     this.route.params.subscribe(params => {
       this.sendTagToOneSignal(params.slug);
+
+      if (params.embed === 'embed') {
+        this.embed = true;
+        this._state.notifyDataChanged('embed', true);
+      }
 
       categoryService.get(params.slug).subscribe(categorySerialized => {
         this.category =  Object.assign(new Category(), categorySerialized);
@@ -138,5 +146,4 @@ export class CategoryComponent implements OnDestroy {
 
     return newDate;
   }
-
 }

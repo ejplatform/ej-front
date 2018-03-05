@@ -20,6 +20,7 @@ export class ConversationsComponent implements OnInit {
   categories: any = {};
   categoryNames: string[];
   conversationsLoaded = false;
+  embed = false;
   @Input() profile: Profile;
 
   constructor(private conversationService: ConversationService,

@@ -27,5 +27,4 @@ export class CategoryService {
   getCurrent(): Category {
     return this.category;
   }
-
 }

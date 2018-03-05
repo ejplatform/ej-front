@@ -1,4 +1,4 @@
-<div class="page-title">
+<div class="page-title" *ngIf="!embed">
   <div class="container">
     <h1>{{'conversations.topic' | translate}}</h1>
   </div>
@@ -9,8 +9,8 @@
 </div>
 
 <div class="container">
-  <h3>{{'conversations.title' | translate}}</h3>
-  <h2>{{'conversations.subtitle' | translate}}</h2>
+  <h3 *ngIf="!embed">{{'conversations.title' | translate}}</h3>
+  <h2 *ngIf="!embed">{{'conversations.subtitle' | translate}}</h2>
 
   <div class="no-conversations" *ngIf="conversationsLoaded && conversations.length === 0">{{'conversations.none' | translate}}</div>
 
@@ -67,5 +67,5 @@
     </div>
   </div>
     
-  <p *ngIf="category" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.seeall' | translate}}</a></p>
+  <p *ngIf="category && !embed" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.seeall' | translate}}</a></p>
 </div>

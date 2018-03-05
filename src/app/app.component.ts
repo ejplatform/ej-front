@@ -25,6 +25,7 @@ export class AppComponent implements OnInit  {
   profile: Profile;
   isMenuCollapsed = false;
   alreadeyCollapsed = false;
+  embed = false;
 
   constructor(private _state: GlobalState, private translate: TranslateService,
     private profileService: ProfileService, private router: Router,
@@ -41,6 +42,10 @@ export class AppComponent implements OnInit  {
         this.alreadeyCollapsed = true;
       }
       this.isMenuCollapsed = isCollapsed;
+    });
+
+    this._state.subscribe('embed', (embed) => {
+      this.embed = true;
     });
 
     this.router.events.subscribe((val) => {

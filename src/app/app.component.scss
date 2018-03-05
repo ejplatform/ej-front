@@ -167,4 +167,14 @@
     }
 }
 
+.embed {
+  app-footer, app-navigation-bar, app-header {
+    display: none !important;
+  }
 
+  .wrapper {
+    left: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
