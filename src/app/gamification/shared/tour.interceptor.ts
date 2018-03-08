@@ -75,6 +75,9 @@ export class TourInterceptor implements HttpInterceptor, OnInit {
     if (_.isNil(this.profile)) {
       activateTour = true;
     } else {
+      if(_.isNil(this.profile.tour_step)) {
+        this.profile.tour_step = Tour.STEP_TWO
+      }
       activateTour = this.tourService.existStep(this.profile.tour_step);
       activateTour = activateTour && (this.profile.tour_step !== Tour.STEP_FINISH);
     }
