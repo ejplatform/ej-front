@@ -1,0 +1,14 @@
+$theme: 'light-theme';
+
+
+@mixin light-theme {
+  @if $theme == 'light-theme' {
+    @content
+  }
+};
+
+@mixin base-theme {
+  @if $theme == 'base-theme' {
+    @content
+  }
+};
