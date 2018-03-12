@@ -54,8 +54,6 @@ export class CommentComponent implements OnInit {
     }, error => {
       this.newCommentSuccess = false;
     });
-
-    this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe();
   }
 
   saveNextStepOnProfile() {
