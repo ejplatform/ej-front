@@ -16,7 +16,7 @@
     "e2e": "ng e2e"
   },
   "config": {
-    "theme": "default"
+    "theme": "theme-default"
   },
   "private": true,
   "dependencies": {
