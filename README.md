@@ -71,8 +71,17 @@ This project support themes configuration. To create a new theme follow the step
 
 The \_skin.scss file contain all the available sass variables that could be replaced in your theme to make your customization possible.
 
+# Development
+
 To run the application with docker-compose you need to define the theme variable to containers as follow:
 1. Build the applicationuwith the desired theme
 `THEME=custom-theme docker-compose build`
 1. Initialize the application
 `docker-compose up`
+
+# Production
+
+Build all available themes with the command:
+`npm run build-all`
+
+
