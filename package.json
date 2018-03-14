@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build -op=dist/$npm_package_config_theme --stats-json",
+    "build-all": "for d in ./themes/*/ ; do (npm config set empurrandojuntos:theme `basename $d` && npm run build); done",
     "theme:setup": "ln -sfn ../themes/$npm_package_config_theme src/theme",
     "prestart": "npm run theme:setup",
     "pretest": "npm run theme:setup",
