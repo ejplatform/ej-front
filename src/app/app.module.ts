@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpsRequestInterceptor } from './interceptor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { HttpModule } from '@angular/http';
@@ -163,6 +164,9 @@ export function HttpLoaderFactory(http: HttpClient) {
                     NudgeComponent,
                     SliderModalComponent,
                     RecoverPasswordComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+  CUSTOM_ELEMENTS_SCHEMA // Tells Angular we will have custom tags in our templates
+  ]
 })
 export class AppModule { }

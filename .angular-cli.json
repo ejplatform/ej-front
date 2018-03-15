@@ -14,7 +14,8 @@
           "input": "assets/onesignal",
           "glob": "*",
           "output": "."
-        }
+        },
+        { "glob": "**/*", "input": "../node_modules/ej-footer/dist", "output": "./assets/ej-footer" }
       ],
       "index": "index.html",
       "main": "main.ts",
