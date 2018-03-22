@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
+import { ThemeFooterComponent } from '../theme-footer/theme-footer.component';
 
 @Component({
   selector: 'app-footer',

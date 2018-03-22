@@ -68,6 +68,7 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
+import { ThemeFooterComponent } from './theme-footer/theme-footer.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
@@ -120,7 +121,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SafePipe,
     ValidationMessageComponent,
     ValidateOnBlurDirective,
-    CategoryComponent
+    CategoryComponent,
+    ThemeFooterComponent
   ],
   imports: [
     CommentsReportModule,
