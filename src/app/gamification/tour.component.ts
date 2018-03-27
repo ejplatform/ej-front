@@ -75,23 +75,6 @@ export class TourComponent implements OnInit {
     let componentType: any;
     switch (step) {
       case '': {
-        switch (this.sessionService.getTourStep()) {
-          case 'Registration': {
-            componentType = RegistrationComponent;
-            break;
-          }
-          case 'Login': {
-            componentType = LoginComponent;
-            break;
-          }
-          case 'RecoverPassword': {
-            componentType = RecoverPasswordComponent;
-            break;
-          }
-          default:
-            componentType = LoginComponent;
-
-        }
         break;
       }
       case Tour.STEP_ONE: {

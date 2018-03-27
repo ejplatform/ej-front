@@ -93,6 +93,7 @@ export class AuthService {
   private logoutSuccessCallback(profile: Profile) {
     this.sessionService.destroy();
     this.logoutSuccess.next(profile);
+    window.location.reload();
   }
 
   public loginFailedCallback(response: any): any {
