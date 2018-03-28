@@ -14,8 +14,12 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 
 // @import "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css";
 
+
 body, html {
     font-family: 'Roboto';
 }
+
+@import "theme/style";
+
 
  
