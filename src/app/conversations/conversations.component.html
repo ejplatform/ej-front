@@ -44,7 +44,7 @@
             <div class="title">
               <h4>{{'conversations.card.participation' | translate}}</h4>
             </div>
-            <div class='content'>
+            <div class='content' *ngIf="profile.id">
               <div class="profile">
                 <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
               </div>

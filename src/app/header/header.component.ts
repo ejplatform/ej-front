@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLogged() {
-    return _.isObject(this.profile);
+    return _.isObject(this.profile) && this.profile.id;
   }
 
   openLogin() {

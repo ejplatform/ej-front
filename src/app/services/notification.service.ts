@@ -19,7 +19,7 @@ export class NotificationService {
     // Listen for profile changes
     this.profileService.profileChangeEvent.subscribe(profile => {
       // Save the email as a hash in the onesignal profile
-      if (profile) {
+      if (profile && profile.id) {
         this.sendHashedEmail(profile.email);
 
       // Save the onsesignal userId, if available, in the API backend

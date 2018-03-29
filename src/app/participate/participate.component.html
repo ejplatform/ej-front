@@ -27,7 +27,7 @@
         <p class="comment-text">{{ "conversation.nocomments" | translate }}</p>
       </div>
 
-      <div class="new-comment">
+      <div class="new-comment" *ngIf="profile.id">
         <textarea maxlength='140' [ngModel]="newCommentText" (ngModelChange)="commentCharCounter($event)" id="new-comment" placeholder="{{ 'conversation.newcomment' | translate }}"></textarea>
         <small class="pull-right" [ngClass]="{ 'text-danger' : newCommentText && newCommentText.length > 139 }">{{ newCommentText ? newCommentText.length : '0' }} / 140</small>
         <p class="comment-message">
