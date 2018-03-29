@@ -1,3 +1,4 @@
+# Local docker-compose file
 version: '3.5'
 
 networks:
@@ -18,10 +19,11 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/angular/Dockerfile
-    volumes:
-      - .:/app
+    env_file:
+      - ./compose/local/angular.env
     ports:
       - '4200:4200'
-    command: /start.sh
+    volumes:
+      - .:/app
     networks:
       - empurrando-juntos

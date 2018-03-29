@@ -1,17 +1,7 @@
-# This image is intended for build purposes
-# It will not serve content in production by itself
-# Use nginx for that
+# This image is intended for production purposes only
+# The main purpose of this image is to generate
 FROM node:8
 
-# npm install (in separate dir due to docker cache)
-ADD package.json /tmp/npm_inst/package.json
-RUN cd /tmp/npm_inst &&\
-    npm install &&\
-    mkdir -p /app &&\
-    mv /tmp/npm_inst/node_modules /app/
+COPY ./compose/production/angular/build.sh /build.sh
 
-# build application
-WORKDIR /app
-ADD . /app
-
-RUN $(npm bin)/ng build --prod --build-optimizer --environment=prod
+CMD ["/build.sh", "prod", "dist/ej", "/"]

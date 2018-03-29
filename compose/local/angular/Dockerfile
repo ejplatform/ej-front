@@ -1,12 +1,12 @@
 # This image is intended for development purposes only
 FROM node:8
 
-ENV NPM_CONFIG_LOGLEVEL info
+COPY ./compose/local/angular/start.sh /start.sh
 
-ADD ./compose/local/angular/start.sh /start.sh
-RUN chmod +x /start.sh
+COPY . /app
 
-RUN mkdir -p /app
 WORKDIR /app
 
-CMD /start.sh
+RUN npm install
+
+CMD ["/start.sh"]
