@@ -7,7 +7,6 @@ import { CommentComponent } from './step/comment/comment.component';
 import { VoteComponent } from './step/vote/vote.component';
 import { BadgeComponent } from './badge/badge.component';
 import { PointComponent } from './point/point.component';
-import { TipComponent } from './tip/tip.component';
 import { GamificationRoutingModule, routedComponents } from './gamification.routing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,7 +25,7 @@ import { BadgeService } from './shared/badge.service';
     TourService,
     // BadgeService
   ],
-  declarations: [ routedComponents, TourComponent, StepComponent, CommentComponent, VoteComponent, BadgeComponent, PointComponent, TipComponent ],
+  declarations: [ routedComponents, TourComponent, StepComponent, CommentComponent, VoteComponent, BadgeComponent, PointComponent ],
   entryComponents: [ TourComponent, BadgeComponent ],
 })
 export class GamificationModule {

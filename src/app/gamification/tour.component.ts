@@ -13,7 +13,6 @@ import { StepComponent } from './step/step.component';
 import { Tour } from './shared/tour-model';
 import { TourService } from './shared/tour.service';
 import { BadgeComponent } from './badge/badge.component';
-import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
 import { SessionService } from '../services/session.service';
 import { RecoverPasswordComponent } from '../recover-password/recover-password.component';
@@ -21,7 +20,7 @@ import { RecoverPasswordComponent } from '../recover-password/recover-password.c
 @Component({
   selector: 'app-tour',
   template: '',
-  entryComponents: [RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent, TipComponent]
+  entryComponents: [RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent]
 })
 export class TourComponent implements OnInit {
   profile: Profile;
