@@ -2,12 +2,13 @@ import { Injectable, Inject, Output, EventEmitter } from '@angular/core';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Profile } from '../models/profile';
 import { Conversation } from '../models/conversation';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class SessionService {
     @Output() sessionChangeEvent: EventEmitter<any> = new EventEmitter(true);
 
-    constructor(private localStorageService: LocalStorageService) { }
+    constructor(private localStorageService: LocalStorageService, private cookieService: CookieService) { }
 
     destroy() {
         this.localStorageService.clear('currentProfile');
@@ -25,12 +26,12 @@ export class SessionService {
     }
 
     setToken(token: string): string {
-        this.localStorageService.store('token', token);
+        this.cookieService.set('token', token);
         return this.getToken();
     }
 
     getToken(): string {
-        return this.localStorageService.retrieve('token');
+        return this.cookieService.get('token');
     }
 
     setTourConversation(conversation: Conversation): Conversation {
