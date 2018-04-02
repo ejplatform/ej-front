@@ -21,29 +21,9 @@ export class CommentService {
     return this.http.get<Comment[]>(fullEndpointUrl);
   }
 
-  public getByPolisId(polisId: number, conversationId: number): Observable<Comment[]> {
-    const fullEndpointUrl = `${environment.apiUrl}/api/comments/?polis_id=${polisId}&conversation__id=${conversationId}`;
-    return this.http.get<Comment[]>(fullEndpointUrl);
-  }
-
   public create(comment: Comment): Observable<Comment> {
     const fullEndpointUrl = `${environment.apiUrl}/api/comments/`;
     return this.http.post<Comment>(fullEndpointUrl, comment);
-  }
-
-  public polisCreate(text: string, conversationId: string, profileId: number): Observable<any> {
-    const fullEndpointUrl = `https://polis.brasilqueopovoquer.org.br/api/v3/comments`;
-
-    const data = {
-      'txt': text,
-      'pid': 'mypid',
-      'conversation_id': conversationId,
-      'vote': -1,
-      'agid': 1,
-      'xid': String(profileId),
-    };
-
-    return this.http.post(fullEndpointUrl, data);
   }
 
   save(comment: Comment): Observable<Comment> {

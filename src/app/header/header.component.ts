@@ -82,16 +82,4 @@ export class HeaderComponent implements OnInit {
       window.location.reload();
     });
   }
-
-  @HostListener('window:message', ['$event'])
-  getPolisMessage(event) {
-    if (event.data === 'askForLogin') {
-      this.openLogin();
-      // FIXME refactor this like there is no tomorrow!!!
-      this.bsModalRef.componentInstance.loggedIn.subscribe(() => {
-        // FIXME see if it's necessary
-        window.location.reload();
-      });
-    }
-  }
 }
