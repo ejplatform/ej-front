@@ -5,12 +5,11 @@ import { ProfileService } from '../../services/profile.service';
 import { Profile } from '../../models/profile';
 import { Tour } from '../shared/tour-model';
 import { VoteComponent } from './vote/vote.component';
-import { CommentComponent } from './comment/comment.component';
 
 @Component({
   selector: 'app-tour-step',
   template: '',
-  entryComponents: [CommentComponent, VoteComponent]
+  entryComponents: [VoteComponent]
 })
 export class StepComponent implements OnInit {
   profile: Profile;
