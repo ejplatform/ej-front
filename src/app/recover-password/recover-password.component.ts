@@ -36,4 +36,10 @@ export class RecoverPasswordComponent {
       console.log(error);
     });
   }
+
+  openRegistration() {
+    this.activeModal.close();
+    this.modalService.open(RegistrationComponent);
+  }
+
 }

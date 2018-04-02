@@ -91,6 +91,11 @@ export class RegistrationComponent {
     }, 500);
   }
 
+  openLogin() {
+    this.activeModal.close();
+    this.modalService.open(LoginComponent);
+  }
+
   handleloginSuccess() {
     this.loggedIn.emit();
     this.activeModal.close();
