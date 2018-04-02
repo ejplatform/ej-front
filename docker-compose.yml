@@ -16,12 +16,8 @@ services:
       - empurrando-juntos
 
   angular:
-    environment:
-      - THEME=${THEME:-theme-default}
     build:
       context: .
-      args:
-        - THEME=${THEME:-theme-default}
       dockerfile: ./compose/local/angular/Dockerfile
     env_file:
       - ./compose/local/angular.env

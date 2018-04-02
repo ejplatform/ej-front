@@ -59,29 +59,3 @@ Run `$(npm bin)/ng e2e` to execute the end-to-end tests via [Protractor](http://
 ## Further help
 
 To get more help on the Angular CLI use `$(npm bin)/ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Themes
-
-This project support themes configuration. To create a new theme follow the steps bellow.
-
-1. Create the theme folder inside themes
-1. Create at least the file '\_skin.scss' inside the theme folder to make it work properly
-1. Configure application to use the new theme, e.g.:
-`npm config set empurrandojuntos:theme custom-theme`
-
-The \_skin.scss file contain all the available sass variables that could be replaced in your theme to make your customization possible.
-
-# Development
-
-To run the application with docker-compose you need to define the theme variable to containers as follow:
-1. Build the applicationuwith the desired theme
-`THEME=custom-theme docker-compose build`
-1. Initialize the application
-`docker-compose up`
-
-# Production
-
-Build all available themes with the command:
-`npm run build-all`
-
-

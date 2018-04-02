@@ -3,11 +3,6 @@ FROM node:8
 
 ENV NPM_CONFIG_LOGLEVEL info
 
-ARG THEME=theme-default
-ENV THEME $THEME
-
-RUN npm config set empurrandojuntos:theme $THEME
-
 ADD ./compose/local/angular/start.sh /start.sh
 RUN chmod +x /start.sh
 
