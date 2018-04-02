@@ -4,6 +4,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import * as helpers from '../../spec/helpers';
 import { ProfileService } from './profile.service';
 import { SessionService } from './session.service';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('SessionService', () => {
 
@@ -13,7 +14,8 @@ describe('SessionService', () => {
         TestBed.configureTestingModule({
             providers: [
                 SessionService,
-                { provide: LocalStorageService, useValue: mocks.localStorageService }
+                { provide: LocalStorageService, useValue: mocks.localStorageService },
+                { provide: CookieService, useValue: mocks.cookieService }
             ]
         });
     });
