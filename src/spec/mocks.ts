@@ -83,7 +83,6 @@ export function getMocks() {
             getTourConversation: () => {
                 return {};
             },
-            destroyTourStep: () => {},
             destroy: () => {
             },
             setToken: (token: string) => {

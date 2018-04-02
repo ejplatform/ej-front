@@ -36,8 +36,4 @@ export class RecoverPasswordComponent {
       console.log(error);
     });
   }
-
-  openRegistration() {
-    this.sessionService.setTourStep('Registration');
-  }
 }

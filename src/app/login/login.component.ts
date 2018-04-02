@@ -69,14 +69,6 @@ export class LoginComponent {
     });
   }
 
-  openRegistration() {
-    this.sessionService.setTourStep('Registration');
-  }
-
-  openRecoverPassword() {
-    this.sessionService.setTourStep('RecoverPassword');
-  }
-
   loginWithTwitter() {
     this.authService.cookieReset().subscribe();
     const windowRef: Window = window.open(

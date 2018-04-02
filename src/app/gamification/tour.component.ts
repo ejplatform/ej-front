@@ -81,7 +81,6 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_TWO: {
-        this.sessionService.destroyTourStep();
         componentType = PointComponent;
         break;
       }
@@ -90,6 +89,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_FOUR: {
+        this.sessionService.destroyTourConversation();
         componentType = PointComponent;
         break;
       }
@@ -98,6 +98,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_SIX: {
+        this.sessionService.destroyTourConversation();
         componentType = BadgeComponent;
         break;
       }

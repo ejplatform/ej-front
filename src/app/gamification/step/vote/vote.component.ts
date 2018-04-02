@@ -75,11 +75,8 @@ export class VoteComponent implements OnInit {
       if (this.profile.tour_step === Tour.STEP_FIVE && (this.amountVotes === 2)) {
         this.saveNextStepOnProfile();
         this.setRandomConversation();
-      } else if ((this.profile.tour_step !== Tour.STEP_FIVE) && (this.profile.tour_step !== Tour.STEP_TEN)) {
+      } else if (this.profile.tour_step !== Tour.STEP_FIVE) {
         this.saveNextStepOnProfile();
-      } else if (this.profile.tour_step === Tour.STEP_TEN && (this.amountVotes === 2)) {
-        this.saveNextStepOnProfile();
-        this.sessionService.destroyTourConversation();
       } else {
         this.conversationService.getNextUnvotedComment(this.conversation.id).subscribe(remoteComment => {
           this.comment = remoteComment;

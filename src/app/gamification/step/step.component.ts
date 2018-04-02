@@ -37,14 +37,6 @@ export class StepComponent implements OnInit {
         componentType = VoteComponent;
         break;
       }
-      case Tour.STEP_EIGHT: {
-        componentType = VoteComponent;
-        break;
-      }
-      case Tour.STEP_TEN: {
-        componentType = VoteComponent;
-        break;
-      }
     }
     if (!_.isNil(componentType)) {
       const compFactory = this.factory.resolveComponentFactory(componentType);

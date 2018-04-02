@@ -46,18 +46,4 @@ export class SessionService {
         this.localStorageService.clear('tourConversation');
     }
 
-    setTourStep(step: string): string {
-        this.localStorageService.store('tourStep', step);
-        this.sessionChangeEvent.emit(step);
-        return this.getTourStep();
-    }
-
-    getTourStep(): string {
-        return this.localStorageService.retrieve('tourStep');
-    }
-
-    destroyTourStep() {
-        this.localStorageService.clear('tourStep');
-    }
-
 }

@@ -91,10 +91,6 @@ export class RegistrationComponent {
     }, 500);
   }
 
-  openLogin() {
-    this.sessionService.setTourStep('Login');
-  }
-
   handleloginSuccess() {
     this.loggedIn.emit();
     this.activeModal.close();
