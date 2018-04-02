@@ -47,7 +47,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
         });
       }
 
-      if ((error.status === 401 || error.status === 403) && !error.url.match('rest-auth/logout')) {
+      if ((error.status === 401 || error.status === 403)) {
         const auth = this.inj.get(AuthService);
         const profileService = this.inj.get(ProfileService);
         auth.signOut().subscribe( () => {
