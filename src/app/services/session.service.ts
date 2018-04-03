@@ -30,6 +30,10 @@ export class SessionService {
         return this.getToken();
     }
 
+    destroyToken() {
+        this.cookieService.delete('token');
+    }
+
     getToken(): string {
         return this.cookieService.get('token');
     }

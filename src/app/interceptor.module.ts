@@ -49,6 +49,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
       if ((error.status === 401 || error.status === 403)) {
         const auth = this.inj.get(AuthService);
+        this.sessionService.destroyToken();
         const profileService = this.inj.get(ProfileService);
         auth.signOut().subscribe( () => {
           profileService.setProfile(null);
