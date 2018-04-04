@@ -34,6 +34,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
 import { GamificationModule } from './gamification/gamification.module';
+import { HotspotModule } from './hotspot/hotspot.module';
 
 // Application imports
 import { AppComponent } from './app.component';
@@ -134,6 +135,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgProgressModule,
     BrowserAnimationsModule,
     NgPipesModule,
+    HotspotModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,

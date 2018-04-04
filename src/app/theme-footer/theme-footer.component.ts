@@ -1,26 +1,21 @@
 import { HotspotModule } from './../hotspot/hotspot.module';
-import { Component, Input, Inject, NgModuleFactory, Compiler, ViewEncapsulation } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { PluginHotspot } from '../hotspot/plugin-hotspot';
 
 @Component({
   selector: 'theme-footer',
-  templateUrl: './footer.html',
-  styleUrls: ['./footer.scss'],
-  encapsulation: ViewEncapsulation.None,
+  template: ''
 })
 export class ThemeFooterComponent extends PluginHotspot {
 
-  hotspotComponent: any;
-  myModule: NgModuleFactory<any>;
-
-  constructor(compiler: Compiler) {
+  constructor(private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, ) {
     super('theme_footer');
-    compiler.compileModuleAsync(HotspotModule).then(value => {
-      this.myModule = value;
-    });
   }
 
   addHotspot(component: any) {
-    this.hotspotComponent = component;
+    const compFactory = this.factory.resolveComponentFactory(component);
+    this.viewContainerRef.clear();
+    this.viewContainerRef.createComponent(compFactory);
   }
+
 }
