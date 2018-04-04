@@ -13,7 +13,6 @@ import { StepComponent } from './step/step.component';
 import { Tour } from './shared/tour-model';
 import { TourService } from './shared/tour.service';
 import { BadgeComponent } from './badge/badge.component';
-import { TipComponent } from './tip/tip.component';
 import { PointComponent } from './point/point.component';
 import { SessionService } from '../services/session.service';
 import { RecoverPasswordComponent } from '../recover-password/recover-password.component';
@@ -21,7 +20,7 @@ import { RecoverPasswordComponent } from '../recover-password/recover-password.c
 @Component({
   selector: 'app-tour',
   template: '',
-  entryComponents: [RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent, TipComponent]
+  entryComponents: [RegistrationComponent, LoginComponent, StepComponent, BadgeComponent, PointComponent]
 })
 export class TourComponent implements OnInit {
   profile: Profile;
@@ -75,23 +74,6 @@ export class TourComponent implements OnInit {
     let componentType: any;
     switch (step) {
       case '': {
-        switch (this.sessionService.getTourStep()) {
-          case 'Registration': {
-            componentType = RegistrationComponent;
-            break;
-          }
-          case 'Login': {
-            componentType = LoginComponent;
-            break;
-          }
-          case 'RecoverPassword': {
-            componentType = RecoverPasswordComponent;
-            break;
-          }
-          default:
-            componentType = LoginComponent;
-
-        }
         break;
       }
       case Tour.STEP_ONE: {
@@ -99,7 +81,6 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_TWO: {
-        this.sessionService.destroyTourStep();
         componentType = PointComponent;
         break;
       }
@@ -108,6 +89,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_FOUR: {
+        this.sessionService.destroyTourConversation();
         componentType = PointComponent;
         break;
       }
@@ -116,6 +98,7 @@ export class TourComponent implements OnInit {
         break;
       }
       case Tour.STEP_SIX: {
+        this.sessionService.destroyTourConversation();
         componentType = BadgeComponent;
         break;
       }

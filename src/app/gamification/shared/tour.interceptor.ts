@@ -73,7 +73,7 @@ export class TourInterceptor implements HttpInterceptor, OnInit {
   private shouldActiveTour(): boolean {
     let activateTour: boolean;
     if (_.isNil(this.profile)) {
-      activateTour = true;
+      activateTour = false;
     } else {
       if(_.isNil(this.profile.tour_step)) {
         this.profile.tour_step = Tour.STEP_TWO

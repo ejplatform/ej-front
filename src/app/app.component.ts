@@ -91,7 +91,7 @@ export class AppComponent implements OnInit  {
             that.notificationService.saveInfo(notificationInfo);
 
             // Save the user email in OneSignal, if it's available
-            if (that.profile) {
+            if (that.profile && that.profile.id) {
               that.notificationService.sendHashedEmail(that.profile.email);
               that.notificationService.sendOneSignalId(userId);
             }
@@ -102,7 +102,7 @@ export class AppComponent implements OnInit  {
   }
 
   isLogged() {
-    return _.isObject(this.profile);
+    return _.isObject(this.profile) && this.profile.id;
   }
 
   hideNavigationBar(e, isCollapsed) {
@@ -122,7 +122,7 @@ export class AppComponent implements OnInit  {
 
   sentryUserData(profile) {
     // Prepare user data to be sent to Sentry in case of an error
-    if (profile) {
+    if (profile && profile.id) {
       Raven.setUserContext({
         id: profile.id,
         username: profile.username,
