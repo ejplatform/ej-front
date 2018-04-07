@@ -3,7 +3,7 @@ import { PluginHotspot } from '../hotspot/plugin-hotspot';
 import { Profile } from '../models/profile';
 
 @Component({
-  selector: 'theme-header',
+  selector: 'app-theme-header',
   template: ''
 })
 export class ThemeHeaderComponent extends PluginHotspot {

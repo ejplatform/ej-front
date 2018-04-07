@@ -3,7 +3,7 @@
    
   <div class="site-wrapper" [ngClass]="{'main-nav-opened': isMenuCollapsed}">
     <!-- <app-header [profile]="profile"></app-header> -->
-    <theme-header></theme-header>
+    <app-theme-header></app-theme-header>
     <app-navigation-bar *ngIf="profile" [profile]="profile"></app-navigation-bar>
     <div class="wrapper wrapper-bg">
         <router-outlet></router-outlet>
