@@ -14,7 +14,7 @@ import { Profile } from '../../../src/app/models/profile';
 import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
 
 @Component({
-  selector: 'app-header',
+  selector: 'theme-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
