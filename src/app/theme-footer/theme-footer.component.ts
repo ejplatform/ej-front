@@ -1,4 +1,3 @@
-import { HotspotModule } from './../hotspot/hotspot.module';
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { PluginHotspot } from '../hotspot/plugin-hotspot';
 

@@ -1,23 +1,25 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostListener, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
-
-import { ProfileService } from '../services/profile.service';
-import { LoginComponent } from '../login/login.component';
-import { RegistrationComponent } from '../registration/registration.component';
-import { AuthService } from '../services/auth.service';
-import { Profile } from '../models/profile';
-import { GlobalState } from '../global.state';
-import { CategoryService } from '../services/category.service';
-import { Category } from '../models/category';
+import { ProfileService } from '../../../src/app/services/profile.service';
+import { LoginComponent } from '../../../src/app/login/login.component';
+import { RegistrationComponent } from '../../../src/app/registration/registration.component';
+import { AuthService } from '../../../src/app/services/auth.service';
+import { GlobalState } from '../../../src/app/global.state';
+import { CategoryService } from '../../../src/app/services/category.service';
+import { Category } from '../../../src/app/models/category';
+import { Profile } from '../../../src/app/models/profile';
+import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
+@Hotspot('theme_header')
 export class HeaderComponent implements OnInit {
 
   isMenuCollapsed = false;
@@ -37,6 +39,8 @@ export class HeaderComponent implements OnInit {
     this.categoryService.categoryChangeEvent.subscribe((category: Category) => {
       this.category = category;
     });
+
+    this.profile = this.profileService.getProfile();
 
     this.profileService.profileChangeEvent.subscribe(profile => {
       this.profile = profile;

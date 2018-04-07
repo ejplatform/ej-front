@@ -9,21 +9,7 @@
             <div class="user-name">{{profile.name | shorten: 18: '...'}}</div>
         </div>
         <app-notifications [profile]="profile" ></app-notifications>
-        <!-- <ul id="top-right-menu" class="user-tools">
-            <li>
-                <a class="notifications active fa fa-exclamation-circle">
-                    <span class="notification-bubble">3</span>
-                    <span class="hidden-xs">Notificações</span>
-                </a>
-            </li>
-        </ul>
-
-        <div id="notification-wrapper">
-            <div class="notifications-panel">
-                <h2 class="notifications-title">Notificações</h2>
-                <a href="#" class="see-more">ver todos</a>
-            </div>
-        </div>  -->
+        
     </div>
     <div class="site-logo" [ngClass]="{ 'category-page': !!getStyles() }">
         <h1><a routerLink="/"><img src="/assets/images/logo.svg" alt="{{ 'header.site' | translate }}"></a></h1>
