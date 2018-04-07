@@ -34,7 +34,6 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { CommentsReportModule } from './comments_report/comments-report.module';
 import { SharedModule } from './shared/shared.module';
 import { GamificationModule } from './gamification/gamification.module';
-import { HotspotModule } from './hotspot/hotspot.module';
 
 // Application imports
 import { AppComponent } from './app.component';
@@ -43,7 +42,6 @@ import { EmbedComponent } from './embed/embed.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -70,6 +68,7 @@ import { ValidateOnBlurDirective } from './shared/validation-message/validate-on
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
 import { ThemeFooterComponent } from './theme-footer/theme-footer.component';
+import { ThemeHeaderComponent } from './theme-header/theme-header.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
@@ -77,6 +76,7 @@ import { BadgeComponent } from './gamification/badge/badge.component';
 import { environment } from '../environments/environment';
 
 import * as Raven from 'raven-js';
+import * as theme from '../theme';
 
 if (environment.sentryDSN) {
   Raven.config(environment.sentryDSN)
@@ -105,7 +105,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmbedComponent,
     ParticipateComponent,
     NavigationBarComponent,
-    HeaderComponent,
     FooterComponent,
     NotificationsComponent,
     NotificationComponent,
@@ -123,8 +122,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidationMessageComponent,
     ValidateOnBlurDirective,
     CategoryComponent,
-    ThemeFooterComponent
-  ],
+    ThemeFooterComponent,
+    ThemeHeaderComponent,
+  ].concat(theme.hotspots),
   imports: [
     CommentsReportModule,
     GamificationModule,
@@ -134,8 +134,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    NgPipesModule,
-    HotspotModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
@@ -166,7 +164,7 @@ export function HttpLoaderFactory(http: HttpClient) {
                     RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
-                    RecoverPasswordComponent],
+                    RecoverPasswordComponent].concat(theme.hotspots),
   bootstrap: [AppComponent]
 })
 export class AppModule { }
