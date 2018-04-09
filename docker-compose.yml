@@ -2,8 +2,8 @@
 version: '3.5'
 
 networks:
-  empurrando-juntos:
-    name: empurrando-juntos
+  ej:
+    name: ej
 
 services:
   nginx:
@@ -13,7 +13,7 @@ services:
     ports:
       - '80:80'
     networks:
-      - empurrando-juntos
+      - ej
 
   angular:
     environment:
@@ -30,4 +30,4 @@ services:
     volumes:
       - .:/app
     networks:
-      - empurrando-juntos
+      - ej
