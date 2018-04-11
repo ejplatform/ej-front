@@ -1,14 +1,24 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
   ul {
     &.info{
-      float: left;
+      @extend .d-flex;
+      @extend .justify-content-start;
+
       li {
-        margin-left: 30px;
+        &.us{
+          margin-left: 0px;
+        }     
+        margin-left: 20px;
+
       }
     }
+    
     &.social-media{
-      float: right;
+      @extend .d-flex;
+      @extend .justify-content-end;
     }
+
     list-style: none;
     li {
       display: inline;
