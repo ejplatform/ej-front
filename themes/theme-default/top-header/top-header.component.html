@@ -1,1 +1,36 @@
-<p>TOP HEADER EJ </p>
+<ul class='info'>
+    <li routerLinkActive="active">
+        <a [routerLink]="['/sobre-nos']">
+            {{'top-header.item.us' | translate}}
+        </a>
+    </li>
+    <li routerLinkActive="active">
+        <a [routerLink]="['/perguntas-frequentes']">
+            {{'top-header.item.asks' | translate}}
+        </a>
+    </li>
+    <li routerLinkActive="active">
+        <a [routerLink]="['/termos-de-uso']">
+            {{'top-header.item.terms' | translate}}
+        </a>
+    </li>
+</ul>
+
+<ul class='social-media'>
+    <li>
+        <a class="btn btn-social-icon btn-facebook" href="#">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </li>
+
+    <li>
+        <a class="btn btn-social-icon btn-twitter" href="#">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </li>
+    <li>
+        <a class="btn btn-social-icon btn-google" href="#">
+            <i class="fa fa-google"></i>
+        </a>
+    </li>
+</ul>
