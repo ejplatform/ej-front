@@ -4,12 +4,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import * as helpers from '../../spec/helpers';
+import * as helpers from '../../../src/spec/helpers';
 import { NavigationBarComponent } from './navigation-bar.component';
-import { ProfileService } from '../services/profile.service';
-import { GlobalState } from '../global.state';
-import { Profile } from '../models/profile';
-import { CategoryService } from '../services/category.service';
+import { ProfileService } from '../../../src/app/services/profile.service';
+import { GlobalState } from '../../../src/app/global.state';
+import { Profile } from '../../../src/app/models/profile';
+import { CategoryService } from '../../../src/app/services/category.service';
 
 describe('NavigationBarComponent', () => {
 

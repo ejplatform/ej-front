@@ -9,6 +9,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { CategoryComponent } from './category/category.component';
 
 export const rootRouterConfig: Routes = [
+  //FIXME remove this link to EmbedComponent
   { path: '', component: EmbedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'logout', component: LogoutComponent },
@@ -19,10 +20,15 @@ export const rootRouterConfig: Routes = [
       { path: ':slug', component: ConversationComponent },
     ],
   },
+  //FIXME remove this link to EmbedComponent
   { path: 'inicio', component: EmbedComponent },
+  //FIXME remove this link to EmbedComponent
   { path: 'sobre-nos', component: EmbedComponent },
+  //FIXME remove this link to EmbedComponent
   { path: 'perguntas-frequentes', component: EmbedComponent },
+  //FIXME remove this link to EmbedComponent
   { path: 'conversas', component: EmbedComponent },
+  //FIXME remove this link to EmbedComponent
   { path: 'termos-de-uso', component: EmbedComponent },
   { path: 'notifications/:id', component: NotificationComponent },
   { path: ':slug', component: CategoryComponent },

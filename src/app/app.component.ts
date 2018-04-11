@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+// import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
 import { NotificationService } from './services/notification.service';
 import { NotificationInfo } from './models/notification-info';
@@ -106,9 +106,9 @@ export class AppComponent implements OnInit  {
   }
 
   hideNavigationBar(e, isCollapsed) {
-    if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE ) {
-      return false;
-    }
+    // if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE ) {
+    //   return false;
+    // }
 
 
     if (this.alreadeyCollapsed && isCollapsed) {
