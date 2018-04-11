@@ -1,3 +1,16 @@
-p {
-    color: yellow;
+
+  ul {
+    &.info{
+      float: left;
+      li {
+        margin-left: 30px;
+      }
+    }
+    &.social-media{
+      float: right;
+    }
+    list-style: none;
+    li {
+      display: inline;
+    }
   }
