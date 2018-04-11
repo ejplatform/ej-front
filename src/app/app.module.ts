@@ -39,9 +39,9 @@ import { GamificationModule } from './gamification/gamification.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { PageComponent } from './page/page.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
-// import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -105,8 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    PageComponent,
     ParticipateComponent,
-    // NavigationBarComponent,
     FooterComponent,
     NotificationsComponent,
     NotificationComponent,
