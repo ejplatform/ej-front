@@ -41,7 +41,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+// import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -69,6 +69,8 @@ import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
 import { ThemeFooterComponent } from './theme-footer/theme-footer.component';
 import { ThemeHeaderComponent } from './theme-header/theme-header.component';
+import { ThemeTopHeaderComponent } from './theme-top-header/theme-top-header.component';
+import { ThemeMenuComponent } from './theme-menu/theme-menu.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
@@ -104,7 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     EmbedComponent,
     ParticipateComponent,
-    NavigationBarComponent,
+    // NavigationBarComponent,
     FooterComponent,
     NotificationsComponent,
     NotificationComponent,
@@ -124,6 +126,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CategoryComponent,
     ThemeFooterComponent,
     ThemeHeaderComponent,
+    ThemeTopHeaderComponent,
+    ThemeMenuComponent,
   ].concat(theme.hotspots),
   imports: [
     CommentsReportModule,
