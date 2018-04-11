@@ -5,22 +5,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import * as helpers from '../../../src/spec/helpers';
-import { NavigationBarComponent } from './navigation-bar.component';
+import { ThemeMenuComponent } from './theme-menu.component';
 import { ProfileService } from '../../../src/app/services/profile.service';
 import { GlobalState } from '../../../src/app/global.state';
 import { Profile } from '../../../src/app/models/profile';
 import { CategoryService } from '../../../src/app/services/category.service';
 
-describe('NavigationBarComponent', () => {
+describe('ThemeMenuComponent', () => {
 
-  let component: NavigationBarComponent;
-  let fixture: ComponentFixture<NavigationBarComponent>;
+  let component: ThemeMenuComponent;
+  let fixture: ComponentFixture<ThemeMenuComponent>;
   const mocks = helpers.getMocks();
 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NavigationBarComponent],
+      declarations: [ThemeMenuComponent],
       imports: [RouterTestingModule, TranslateModule.forRoot()],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
@@ -33,7 +33,7 @@ describe('NavigationBarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavigationBarComponent);
+    fixture = TestBed.createComponent(ThemeMenuComponent);
     component = fixture.componentInstance;
     component.profile = <Profile>{ id: 1 };
     fixture.detectChanges();

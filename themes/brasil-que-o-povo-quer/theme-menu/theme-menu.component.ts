@@ -14,11 +14,11 @@ import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
 
 @Component({
   selector: 'theme-menu',
-  templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss'],
+  templateUrl: './theme-menu.component.html',
+  styleUrls: ['./theme-menu.component.scss'],
 })
 @Hotspot('theme_menu')
-export class NavigationBarComponent implements OnInit, ThemeMenuInterface {
+export class ThemeMenuComponent implements OnInit, ThemeMenuInterface {
 
   static MAX_SIZE_FOR_AUTOMATIC_TOGGLE = 640;
 
@@ -28,7 +28,6 @@ export class NavigationBarComponent implements OnInit, ThemeMenuInterface {
   category: Category;
 
   constructor(private _state: GlobalState, private profileService: ProfileService, private categoryService: CategoryService) {
-    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -49,7 +48,7 @@ export class NavigationBarComponent implements OnInit, ThemeMenuInterface {
   ngOnInit() { }
 
   toggleMenu() {
-    if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
+    if (window.innerWidth > ThemeMenuComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
       return false;
     }
 
