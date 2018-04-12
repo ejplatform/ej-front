@@ -1,0 +1,54 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.sponsors{
+    @extend .justify-content-center;
+    @extend .mt-5;
+    display: flex;
+    list-style: none;
+    
+    @include media-breakpoint-down(sm) {  
+        padding-left: 0px !important;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.footer-content{
+    @extend .py-4;
+    .footer-menu{
+        @extend .d-flex;
+        @extend .justify-content-center;
+
+        @include media-breakpoint-down(sm) {  
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a{
+            color: white;
+        }
+        li{
+            ::after{
+                content: '/';
+                margin-left: 10px;
+            }
+            display: inline;
+            margin-left: 10px;
+        }
+
+    }
+    .copyright{
+        @extend .d-flex;
+        @extend .justify-content-center;
+        
+        text-align: center;
+        // width: 500px;
+        .text{
+            max-width: 500px;
+            font-size: 14px;
+            // background-color: blue;
+        }
+    }
+    color: white;    
+    background-color: rgb(35, 156, 71);
+}
+
