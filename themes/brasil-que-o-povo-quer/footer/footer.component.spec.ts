@@ -6,9 +6,9 @@ import { By } from '@angular/platform-browser';
 
 
 import { FooterComponent } from './footer.component';
-import * as helpers from '../../spec/helpers';
-import { GlobalState } from '../global.state';
-import { CategoryService } from '../services/category.service';
+import * as helpers from '../../../src/spec/helpers';
+import { GlobalState } from '../../../src/app/global.state';
+import { CategoryService } from '../../../src/app/services/category.service';
 
 describe('FooterComponent', () => {
 
