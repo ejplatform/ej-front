@@ -128,7 +128,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemeHeaderComponent,
     ThemeTopHeaderComponent,
     ThemeMenuComponent,
-  ].concat(theme.hotspots),
+    theme.hotspots
+  ],
   imports: [
     CommentsReportModule,
     GamificationModule,
@@ -168,7 +169,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                     RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
-                    RecoverPasswordComponent].concat(theme.hotspots),
+                    theme.hotspots,
+                    RecoverPasswordComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
