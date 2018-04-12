@@ -79,7 +79,7 @@ export class ConversationsComponent implements OnInit {
   }
 
   backgroundImage(conversation: Conversation): string {
-    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/images/card-bg.jpg' : conversation.background_image;
+    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/theme/card-bg.jpg' : conversation.background_image;
     return imagem_path;
   }
 

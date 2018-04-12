@@ -1,2 +1,18 @@
-
 $navbar-background-color: #60A976;
+
+.card-block {
+  background: #f5f5f5;
+
+  .participation .btn-primary {
+    background-color: #5f5f5f !important;
+    border: 0 !important;
+
+    img {
+      display: none;
+    }
+  }
+}
+
+.card-deck .card {
+  box-shadow: none !important;
+}
