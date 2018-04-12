@@ -42,7 +42,6 @@ import { EmbedComponent } from './embed/embed.component';
 import { PageComponent } from './page/page.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
-import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
 // import { CommentsComponent } from './comments/comments.component';
@@ -107,7 +106,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmbedComponent,
     PageComponent,
     ParticipateComponent,
-    FooterComponent,
     NotificationsComponent,
     NotificationComponent,
     ConversationsComponent,

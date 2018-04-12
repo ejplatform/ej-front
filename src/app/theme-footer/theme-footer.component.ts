@@ -2,7 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { PluginHotspot } from '../hotspot/plugin-hotspot';
 
 @Component({
-  selector: 'theme-footer',
+  selector: 'app-theme-footer',
   template: ''
 })
 export class ThemeFooterComponent extends PluginHotspot {
@@ -14,7 +14,8 @@ export class ThemeFooterComponent extends PluginHotspot {
   addHotspot(component: any) {
     const compFactory = this.factory.resolveComponentFactory(component);
     this.viewContainerRef.clear();
-    this.viewContainerRef.createComponent(compFactory);
+    const componentRef = this.viewContainerRef.createComponent(compFactory);
+    componentRef.changeDetectorRef.detectChanges();
   }
 
 }
