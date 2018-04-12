@@ -5,15 +5,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { NgPipesModule } from 'ngx-pipes';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../src/app/services/auth.service';
 
 
 import { HeaderComponent } from './header.component';
-import * as helpers from '../../spec/helpers';
-import { ProfileService } from '../services/profile.service';
-import { GlobalState } from '../global.state';
-import { CategoryService } from '../services/category.service';
-
+import * as helpers from '../../../src/spec/helpers';
+import { ProfileService } from '../../../src/app/services/profile.service';
+import { GlobalState } from '../../../src/app/global.state';
+import { CategoryService } from '../../../src/app/services/category.service';
 
 describe('HeaderComponent', () => {
 

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <ul class='d-flex justify-content-between'>
+                <li routerLinkActive="active">
+                    Logo
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/sobre-nos']">
+                        {{'header.item.know' | translate}}
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/perguntas-frequentes']">
+                        {{'header.item.groups' | translate}}
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/conversations']">
+                        {{'header.item.conversations' | translate}}
+                    </a>
+                </li>
+                <li ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="profile-menu" ngbDropdownToggle> {{'header.item.profile' | translate}}</button>
+                    <div ngbDropdownMenu aria-labelledby="profile-menu">
+                        <a class="dropdown-item" [routerLink]="['/profile']">
+                            {{'header.item.profile.more' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/rocket']">
+                            {{'header.item.profile.rocket' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/logout']">
+                            {{'header.item.profile.logout' | translate}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

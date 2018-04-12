@@ -2,18 +2,23 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import * as _ from 'lodash';
 
-import { Profile } from '../models/profile';
-import { ProfileService } from '../services/profile.service';
-import { GlobalState } from '../global.state';
-import { Category } from '../models/category';
-import { CategoryService } from '../services/category.service';
+import { Profile } from '../../../src/app/models/profile';
+import { ProfileService } from '../../../src/app/services/profile.service';
+import { GlobalState } from '../../../src/app/global.state';
+import { Category } from '../../../src/app/models/category';
+import { CategoryService } from '../../../src/app/services/category.service';
+
+import { ThemeMenuInterface } from '../../../src/app/theme-menu/theme-menu.component';
+import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
+
 
 @Component({
-  selector: 'app-navigation-bar',
-  templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss'],
+  selector: 'theme-menu',
+  templateUrl: './theme-menu.component.html',
+  styleUrls: ['./theme-menu.component.scss'],
 })
-export class NavigationBarComponent implements OnInit {
+@Hotspot('theme_menu')
+export class ThemeMenuComponent implements OnInit, ThemeMenuInterface {
 
   static MAX_SIZE_FOR_AUTOMATIC_TOGGLE = 640;
 
@@ -43,7 +48,7 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() { }
 
   toggleMenu() {
-    if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
+    if (window.innerWidth > ThemeMenuComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
       return false;
     }
 

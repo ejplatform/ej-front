@@ -5,6 +5,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TranslateService,  } from '@ngx-translate/core';
+import { NgPipesModule } from 'ngx-pipes';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -22,7 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
   ],
-  exports: [TranslateModule, FormsModule],
+  exports: [TranslateModule, FormsModule, CommonModule, NgPipesModule],
 })
 export class SharedModule { 
   static forRoot(): ModuleWithProviders {
