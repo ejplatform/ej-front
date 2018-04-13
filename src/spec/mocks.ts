@@ -76,6 +76,11 @@ export function getMocks() {
             retrieve: (key: string) => mocks.localStorageService.storage[key],
             store: (key: string, value: any) => { mocks.localStorageService.storage[key] = value; }
         },
+        cookieService: {
+            delete: (key: string) => { delete mocks.localStorageService.storage[key]; },
+            get: (key: string) => mocks.localStorageService.storage[key],
+            set: (key: string, value: any) => { mocks.localStorageService.storage[key] = value; }
+        },
         sessionService: {
             currentProfile: () => {
                 return { "id": 1, "name": "admin", "email": "admin@localhost.com" };
@@ -83,7 +88,6 @@ export function getMocks() {
             getTourConversation: () => {
                 return {};
             },
-            destroyTourStep: () => {},
             destroy: () => {
             },
             setToken: (token: string) => {

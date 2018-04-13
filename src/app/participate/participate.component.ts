@@ -30,7 +30,6 @@ export class ParticipateComponent implements OnInit, OnDestroy {
   @Input() profile: Profile;
   @Input() conversation: Conversation;
   @Input() promoted: String;
-  public polisUrl = environment.polisUrl;
   isHome = false;
   conversationLoaded = false;
   pageTitle: String;
@@ -92,15 +91,6 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     this.displayedStage = this.truncatedDialog ? 'dialog' : 'response';
     this.conversation = conversation;
     this.conversationLoaded = true;
-
-    // This call will load any polis embed on the page
-    // It will be removed as soon as polis graphs are no longer needed
-    setTimeout(() => {
-      const loadIframes = window['loadIframes'];
-      if (loadIframes && {}.toString.call(loadIframes) === '[object Function]') {
-        loadIframes();
-      }
-    }, 3000);
   }
 
   displayStage(stage) {
@@ -140,30 +130,18 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     newcomment.content = this.newCommentText;
     newcomment.conversation = this.conversation.id;
 
-    this.commentService.polisCreate(this.newCommentText, this.conversation.polis_slug, this.profile.id).subscribe(
-      (commentPolisData: any) => {
-        // 'commentPolisData' should contain two properties:
-        // - currentPid: number, participant id for the current conversation in polis
-        // - tid: number, comment id in polis
-        // Note: tid is only unique in its own conversation
-        newcomment.polis_id = commentPolisData.tid;
-
-        this.commentService.create(newcomment).subscribe(response => {
-          this.newCommentText = '';
-          this.newCommentSuccess = true;
-          if (!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)) {
-            this.openNudge(response.nudge.state);
-          }
-        }, response => {
-          if (!_.isNil(response.error['nudge'])) {
-            this.openNudge(response.error['nudge']['state']);
-          }
-          this.newCommentSuccess = false;
-        });
-
-      }, error => {
-        // handle request errors here
-      });
+    this.commentService.create(newcomment).subscribe(response => {
+      this.newCommentText = '';
+      this.newCommentSuccess = true;
+      if (!_.isNil(response.nudge) && _.includes(Nudge.ALL_STATES, response.nudge.state)) {
+        this.openNudge(response.nudge.state);
+      }
+    }, response => {
+      if (!_.isNil(response.error['nudge'])) {
+        this.openNudge(response.error['nudge']['state']);
+      }
+      this.newCommentSuccess = false;
+    });
   }
 
   openNudge(state) {
@@ -206,7 +184,6 @@ export class ParticipateComponent implements OnInit, OnDestroy {
       } else if (path === 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
-      this.polisUrl = this.polisUrl + path;
     }
   }
 }

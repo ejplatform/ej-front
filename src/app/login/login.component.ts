@@ -69,14 +69,6 @@ export class LoginComponent {
     });
   }
 
-  openRegistration() {
-    this.sessionService.setTourStep('Registration');
-  }
-
-  openRecoverPassword() {
-    this.sessionService.setTourStep('RecoverPassword');
-  }
-
   loginWithTwitter() {
     this.authService.cookieReset().subscribe();
     const windowRef: Window = window.open(
@@ -101,7 +93,6 @@ export class LoginComponent {
 
   handleError(error: any) {
     const errors  = _.isObject(error.error) ? error.error : JSON.parse(error.error);
-
     this.emailErrors.setErrors(errors['email']);
     this.passwordErrors.setErrors(errors['password']);
     this.passwordErrors.setErrors(errors['non_field_errors']);
@@ -111,6 +102,16 @@ export class LoginComponent {
     this.socialErrors = error;
   }
 
+  openRegistration() {
+    this.activeModal.close();
+    this.modalService.open(RegistrationComponent);
+  }
+
+  openRecoverPassword() {
+    this.activeModal.close();
+    this.modalService.open(RecoverPasswordComponent);
+  }
+  
   handleloginSuccess() {
     // Get profile info from the API
     this.profileService.me().subscribe( profile => {

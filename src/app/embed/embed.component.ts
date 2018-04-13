@@ -23,7 +23,6 @@ export class EmbedComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() conversation: Conversation;
-  public polisUrl = environment.polisUrl;
   iframeHeight = 1500;
   isHome = false;
   pageTitle: String;
@@ -41,7 +40,6 @@ export class EmbedComponent implements OnInit {
     this.route.params.subscribe( params => {
       if (params.id) {
         conversationService.get(params.id).subscribe(conversation => {
-          this.polisUrl = conversation.polis_url;
           this.conversation = conversation;
         }, error => {
           // handle request errors here
@@ -68,7 +66,6 @@ export class EmbedComponent implements OnInit {
       } else if (path === 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
-      this.polisUrl = this.polisUrl + path;
     }
   }
 
@@ -81,34 +78,4 @@ export class EmbedComponent implements OnInit {
   //   //   this.profileService.profileChangeEvent.emit(this.profile);
   //   // });
   // }
-
-  @HostListener('window:message', ['$event'])
-  getPolisMessages(event) {
-
-    // Test if it is a comment. If it has the event.data.txt atribute, it is a comment
-    if (event.data && event.data.tid !== undefined && event.data.conversation_id !== undefined && event.data.txt !== undefined) {
-      const comment = new Comment();
-      comment.content = event.data.txt;
-      comment.polis_id = event.data.tid;
-      comment.conversation = this.conversation.id;
-      this.commentService.create(comment).subscribe( data => {}, error => {
-        // handle request errors here
-      });
-    // Test if it is a vote
-  } else if (event.data && event.data.tid !== undefined && event.data.vote !== undefined) {
-      this.commentService.getByPolisId(event.data.tid, this.conversation.id).subscribe(comment => {
-        if (comment.length === 1) {
-          const vote = new Vote;
-          vote.comment = comment[0].id;
-          vote.value = event.data.vote;
-          vote.value = -vote.value;
-          this.voteService.save(vote).subscribe();
-        }
-      }, error => {
-        // handle request errors here
-      });
-    } else if (event.data && event.data.name === 'outerIframeSetHeightMsg') {
-      this.iframeHeight = event.data.height;
-    }
-  }
 }

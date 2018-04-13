@@ -1,0 +1,26 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+  ul {
+    &.info{
+      @extend .d-flex;
+      @extend .justify-content-start;
+
+      li {
+        &.us{
+          margin-left: 0px;
+        }     
+        margin-left: 20px;
+
+      }
+    }
+    
+    &.social-media{
+      @extend .d-flex;
+      @extend .justify-content-end;
+    }
+    padding-top: 10px;
+    list-style: none;
+    li {
+      display: inline;
+    }
+  }

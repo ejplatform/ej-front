@@ -39,10 +39,9 @@ import { GamificationModule } from './gamification/gamification.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { PageComponent } from './page/page.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { rootRouterConfig } from './app.routes';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -68,6 +67,10 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
+import { ThemeFooterComponent } from './theme-footer/theme-footer.component';
+import { ThemeHeaderComponent } from './theme-header/theme-header.component';
+import { ThemeTopHeaderComponent } from './theme-top-header/theme-top-header.component';
+import { ThemeMenuComponent } from './theme-menu/theme-menu.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
@@ -75,6 +78,7 @@ import { BadgeComponent } from './gamification/badge/badge.component';
 import { environment } from '../environments/environment';
 
 import * as Raven from 'raven-js';
+import * as theme from '../theme';
 
 if (environment.sentryDSN) {
   Raven.config(environment.sentryDSN)
@@ -101,9 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    PageComponent,
     ParticipateComponent,
-    NavigationBarComponent,
-    HeaderComponent,
     FooterComponent,
     NotificationsComponent,
     NotificationComponent,
@@ -120,7 +123,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     SafePipe,
     ValidationMessageComponent,
     ValidateOnBlurDirective,
-    CategoryComponent
+    CategoryComponent,
+    ThemeFooterComponent,
+    ThemeHeaderComponent,
+    ThemeTopHeaderComponent,
+    ThemeMenuComponent,
+    theme.hotspots
   ],
   imports: [
     CommentsReportModule,
@@ -131,7 +139,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
@@ -162,6 +169,7 @@ export function HttpLoaderFactory(http: HttpClient) {
                     RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
+                    theme.hotspots,
                     RecoverPasswordComponent],
   bootstrap: [AppComponent]
 })
