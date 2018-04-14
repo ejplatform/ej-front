@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Category } from '../../../src/app/models/category';
 import { CategoryService } from '../../../src/app/services/category.service';
-import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
+import { Hotspot } from '../../../src/app/hotspots/hotspot.decorator';
 
 
 @Component({

@@ -66,10 +66,10 @@ import { ValidationMessageComponent } from './shared/validation-message/validati
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
-import { ThemeFooterComponent } from './theme-footer/theme-footer.component';
-import { ThemeHeaderComponent } from './theme-header/theme-header.component';
-import { ThemeTopHeaderComponent } from './theme-top-header/theme-top-header.component';
-import { ThemeMenuComponent } from './theme-menu/theme-menu.component';
+import { ThemeFooterComponent } from './hotspots/components/theme-footer/theme-footer.component';
+import { ThemeHeaderComponent } from './hotspots/components/theme-header/theme-header.component';
+import { ThemeTopHeaderComponent } from './hotspots/components/theme-top-header/theme-top-header.component';
+import { ThemeMenuComponent } from './hotspots/components/theme-menu/theme-menu.component';
 
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
 import { BadgeInterceptor } from './gamification/shared/badge.interceptor';

@@ -8,21 +8,21 @@ import { GlobalState } from '../../../src/app/global.state';
 import { Category } from '../../../src/app/models/category';
 import { CategoryService } from '../../../src/app/services/category.service';
 
-import { ThemeMenuInterface } from '../../../src/app/theme-menu/theme-menu.component';
-import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
+import { ThemeMenuInterface } from '../../../src/app/hotspots/components/theme-menu/theme-menu.component';
+import { Hotspot } from '../../../src/app/hotspots/hotspot.decorator';
 
 
 @Component({
   selector: 'theme-menu',
-  templateUrl: './theme-menu.component.html',
-  styleUrls: ['./theme-menu.component.scss'],
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss'],
 })
 @Hotspot('theme_menu')
-export class ThemeMenuComponent implements OnInit, ThemeMenuInterface {
+export class MenuComponent implements OnInit, ThemeMenuInterface {
 
   static MAX_SIZE_FOR_AUTOMATIC_TOGGLE = 640;
 
-  @Input() profile: Profile;
+  profile: Profile;
   isMenuCollapsed = false;
 
   category: Category;
@@ -48,7 +48,7 @@ export class ThemeMenuComponent implements OnInit, ThemeMenuInterface {
   ngOnInit() { }
 
   toggleMenu() {
-    if (window.innerWidth > ThemeMenuComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
+    if (window.innerWidth > MenuComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE) {
       return false;
     }
 

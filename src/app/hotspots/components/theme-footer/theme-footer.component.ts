@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { PluginHotspot } from '../hotspot/plugin-hotspot';
+import { PluginHotspot } from '../../plugin-hotspot';
 
 @Component({
   selector: 'app-theme-footer',

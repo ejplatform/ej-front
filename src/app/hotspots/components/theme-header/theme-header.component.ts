@@ -1,15 +1,15 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
-import { PluginHotspot } from '../hotspot/plugin-hotspot';
-import { Profile } from '../models/profile';
+import { PluginHotspot } from '../../plugin-hotspot';
+import { Profile } from '../../../models/profile';
 
 @Component({
-  selector: 'app-theme-top-header',
+  selector: 'app-theme-header',
   template: ''
 })
-export class ThemeTopHeaderComponent extends PluginHotspot {
+export class ThemeHeaderComponent extends PluginHotspot {
 
   constructor(private viewContainerRef: ViewContainerRef, private factory: ComponentFactoryResolver, ) {
-    super('theme_top_header');
+    super('theme_header');
   }
 
   addHotspot(component: any) {

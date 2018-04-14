@@ -11,7 +11,7 @@ import { GlobalState } from '../../../src/app/global.state';
 import { CategoryService } from '../../../src/app/services/category.service';
 import { Category } from '../../../src/app/models/category';
 import { Profile } from '../../../src/app/models/profile';
-import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
+import { Hotspot } from '../../../src/app/hotspots/hotspot.decorator';
 
 @Component({
   selector: 'theme-header',

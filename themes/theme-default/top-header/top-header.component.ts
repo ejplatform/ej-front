@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Hotspot } from '../../../src/app/hotspot/hotspot.decorator';
+import { Hotspot } from '../../../src/app/hotspots/hotspot.decorator';
 
 @Component({
   selector: 'theme-top-header',

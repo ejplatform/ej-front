@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Input, ComponentRef } from '@angular/core';
-import { PluginHotspot } from '../hotspot/plugin-hotspot';
-import { Profile } from '../models/profile';
+import { PluginHotspot } from '../../plugin-hotspot';
+import { Profile } from '../../../models/profile';
 
 export interface ThemeMenuInterface {
   profile: Profile;
