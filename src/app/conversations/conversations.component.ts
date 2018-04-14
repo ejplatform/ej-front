@@ -38,6 +38,9 @@ export class ConversationsComponent implements OnInit {
       const categorizedConversations = [];
       const categories = {};
       const categoryNames = [''];
+      if(_.isNil(conversations)){
+        conversations = [];
+      }
       conversations.forEach((conversation) => {
         if (conversation.category_name) {
           if (categoryNames.indexOf(conversation.category_name) === -1) {
