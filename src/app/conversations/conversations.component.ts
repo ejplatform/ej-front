@@ -73,39 +73,9 @@ export class ConversationsComponent implements OnInit {
       return [this.categorizedConversations[category]];
     }
   }
-
-  amount() {
-    _.size(this.conversations);
-  }
-
   backgroundImage(conversation: Conversation): string {
-    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/images/card-bg.jpg' : conversation.background_image;
+    const imagem_path = (_.isNil(conversation.background_image)) ? '/assets/theme/card-bg.jpg' : conversation.background_image;
     return imagem_path;
-  }
-
-  ratio(conversation: Conversation) {
-    let ratio = conversation.user_participation_ratio;
-    if (!ratio) {
-      ratio = 0;
-    }
-    return ratio;
-  }
-
-  toPercentage(value) {
-    return Math.floor(value * 100);
-  }
-
-  parserDate(strDate: string) {
-    strDate = this.convertDate(strDate);
-    const newDate = new Date(strDate);
-    return newDate;
-  }
-
-  convertDate(date) {
-    const dateArray = date.split('-');
-    const newDate = dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0];
-
-    return newDate;
   }
 
 }
