@@ -38,16 +38,11 @@
         </div>
 
         <div class="card-block">
-          <div class="participation" *ngIf="ratio(conversation)">
-            <div class="title">
-              <h4>{{'conversations.card.participation' | translate}}</h4>
-            </div>
-          </div>
 
-          <div class="participation" *ngIf="!ratio(conversation)">
+          <div class="participation">
             <div class="title" class='button button-action'>
               <a routerLink="/conversations/{{conversation.slug}}" class='btn btn-primary btn-block' [ngStyle]="styles ? { 'background-color': styles.color, 'border-color': styles.color } : (categories[category] && categories[category].styles ? { 'background-color': categories[category].styles.color, 'border-color': categories[category].styles.color } : {})">
-                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}">{{'conversations.participatenow' | translate}}
+                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}">{{'conversations.participate' | translate}}
               </a>
             </div>
           </div>
@@ -57,5 +52,5 @@
     </div>
   </div>
     
-  <p *ngIf="category" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.seeall' | translate}}</a></p>
+  <p *ngIf="category" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.all' | translate}}</a></p>
 </div>
