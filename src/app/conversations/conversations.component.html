@@ -1,17 +1,15 @@
-<div class="page-title">
+<div *ngIf="hasConversation()" class="page-title">
   <div class="container">
     <h1>{{'conversations.topic' | translate}}</h1>
   </div>
 </div>
 
-<div class="row justify-content-center">
+<div *ngIf="hasConversation()" class="row justify-content-center">
   <div [innerHTML]="trustContent(category.customizations.content)"  *ngIf="hasCategoryContent()" ></div>
 </div>
 
-<div class="container">
+<div *ngIf="hasConversation()" class="container">
   <h2>{{'conversations.subtitle' | translate}}</h2>
-
-  <div class="no-conversations" *ngIf="conversationsLoaded && conversations.length === 0">{{'conversations.none' | translate}}</div>
 
   <div *ngFor="let category of categoryNames">
     <h2 *ngIf="category != ''" class="category-title"><a [ngStyle]="categories[category] && categories[category].styles ? { 'color': categories[category].styles.color } : {}" routerLink="/{{categories[category].slug}}/">{{category}}</a></h2>

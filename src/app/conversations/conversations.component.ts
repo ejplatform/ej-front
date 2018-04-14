@@ -38,7 +38,8 @@ export class ConversationsComponent implements OnInit {
       const categorizedConversations = [];
       const categories = {};
       const categoryNames = [''];
-      if(_.isNil(conversations)){
+
+      if(!this.hasConversation(conversations)){
         conversations = [];
       }
       conversations.forEach((conversation) => {
@@ -61,8 +62,14 @@ export class ConversationsComponent implements OnInit {
       this.categoryNames = categoryNames;
       this.conversationsLoaded = true;
     }, error => {
-      // handle request errors here
+      console.log(error);
     });
+  }
+
+  hasConversation(conversations = this.conversations){
+    let hasConversation = _.isNil(conversations)
+    hasConversation = hasConversation ? false : !_.isEmpty(conversations);
+    return hasConversation;
   }
 
   hasCategoryContent(): boolean {
