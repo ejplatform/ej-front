@@ -206,5 +206,16 @@
     "conversation.response": "Resposta",
     "conversation.collapse": "Fechar",
     "conversation.ouropinion": "Nossa opinião",
-    "home.button.rocket": "Acesse o Rocket Chat"
+    "home.button.rocket": "Acesse o Rocket Chat",
+    "how-it-works.title": "Como Funciona?",
+    "how-it-works.subtitle": "algum subtítulo",
+    "how-it-works.committee.title": "Comitê de Participação do Adolescente",
+    "how-it-works.committee.subtitle": "Comitê de participação do adolescente explica o que é o CPA",
+    "how-it-works.debate.title": "Grupos de Debate",
+    "how-it-works.debate.subtitle": "explica o que são os grupos de acompnhamento e tem link para algum lugar onde mostra os grupos existentes",
+    "how-it-works.conversations.title": "Conversas Participativas",
+    "how-it-works.conversations.subtitle": "explica o que são as conversas apenas com texto e já ajuda a explicar o que vem na sequência",
+    "how-it-works.button.rocket": "Acesse o Rocket",
+    "how-it-works.button.debate": "Conheça os Grupos",
+    "how-it-works.button.conversations": "Acesse as Conversas"    
 }

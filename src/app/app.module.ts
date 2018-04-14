@@ -55,6 +55,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
 import { SafePipe } from './shared/pipes/safe.pipe';
@@ -137,6 +138,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemeTopHeaderComponent,
     ThemeMenuComponent,
     HomeComponent,
+    HowItWorksComponent,
     theme.hotspots
   ],
   imports: [
