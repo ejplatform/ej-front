@@ -30,7 +30,7 @@ To run the application with docker-compose you need to define the theme variable
 1. Build the application with the desired theme:
 
   ```bash
-  THEME=custom-theme sudo docker-compose build
+  THEME=custom-theme docker-compose build
   ```
 1. Initialize the application
 
