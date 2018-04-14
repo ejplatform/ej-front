@@ -83,6 +83,12 @@ export class CategoryComponent implements OnDestroy {
 
   }
 
+  hasConversation(conversations = this.conversations){
+    let hasConversation = _.isNil(conversations)
+    hasConversation = hasConversation ? false : !_.isEmpty(conversations);
+    return hasConversation;
+  }
+
   sendTagToOneSignal(slug): void {
     const OneSignal = window['OneSignal'] || [];
     
