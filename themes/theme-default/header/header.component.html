@@ -23,8 +23,22 @@
                         {{'header.item.conversations' | translate}}
                     </a>
                 </li>
-                <li ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="profile-menu" ngbDropdownToggle> {{'header.item.profile' | translate}}</button>
+                <li *ngIf="!isLogged()" routerLinkActive="active">
+                    <a (click)="openLogin()">
+                        {{'header.item.login' | translate}}
+                    </a>
+                </li>
+                <li *ngIf="!isLogged()" routerLinkActive="active">
+                    <a (click)="openRegistration()">
+                        {{'header.item.register' | translate}}
+                    </a>
+                </li>
+
+                <li ngbDropdown *ngIf="isLogged()"  #profileMenu="ngbDropdown" class="d-inline-block">
+                    <a id="profile-menu" (click)="$event.stopPropagation(); profileMenu.open();"> {{'header.item.profile' | translate}}</a>
+                    <img [src]="profile.image" (click)="$event.stopPropagation(); profileMenu.open();" class="rounded-circle" ngbDropdownToggle>
+                    <i (click)="$event.stopPropagation(); profileMenu.open();" class="fa fa-angle-down"></i>
+
                     <div ngbDropdownMenu aria-labelledby="profile-menu">
                         <a class="dropdown-item" [routerLink]="['/profile']">
                             {{'header.item.profile.more' | translate}}

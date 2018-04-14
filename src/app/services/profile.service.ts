@@ -11,14 +11,12 @@ import { SessionService } from './session.service';
 @Injectable()
 export class ProfileService {
 
-  private profile: Profile;
-
   @Output() profileChangeEvent: EventEmitter<Profile> = new EventEmitter(true);
 
   constructor(private http: HttpClient, private sessionService: SessionService) {}
 
   get(profile?: Profile): Observable<Profile> {
-    const contextProfile = _.isObject(profile) ? profile : this.profile;
+    const contextProfile = _.isObject(profile) ? profile : <Profile>{};
     if (_.isObject(contextProfile) && contextProfile.id) {
       const fullEndpointUrl = `${environment.apiUrl}/api/profile/${contextProfile.id}/`;
       return this.http.get<Profile>(fullEndpointUrl);
@@ -61,14 +59,12 @@ export class ProfileService {
   }
 
   setProfile(profile: Profile) {
-    this.profile = profile;
     this.sessionService.setProfile(profile);
     this.profileChangeEvent.emit(profile);
   }
 
   getProfile(): Profile {
-    this.profile = this.sessionService.currentProfile();
-    return this.profile;
+    return this.sessionService.currentProfile();
   }
 
 }
