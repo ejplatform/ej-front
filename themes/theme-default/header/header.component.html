@@ -36,7 +36,7 @@
 
                 <li ngbDropdown *ngIf="isLogged()"  #profileMenu="ngbDropdown" class="d-inline-block">
                     <a id="profile-menu" (click)="$event.stopPropagation(); profileMenu.open();"> {{'header.item.profile' | translate}}</a>
-                    <img [src]="profile.image" (click)="$event.stopPropagation(); profileMenu.open();" class="rounded-circle" ngbDropdownToggle>
+                    <img [src]="profile.image" (click)="$event.stopPropagation(); profileMenu.open();" class="rounded-circle" >
                     <i (click)="$event.stopPropagation(); profileMenu.open();" class="fa fa-angle-down"></i>
 
                     <div ngbDropdownMenu aria-labelledby="profile-menu">
