@@ -1,0 +1,23 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.container{
+    text-align: center;
+    h1{
+        @extend .pt-5;
+        @extend .px-5;
+        @extend .mx-5;
+
+
+        color: lightslategray;
+    }
+    h3{
+        @extend .pt-4;
+        @extend .px-5;
+        @extend .mx-5;
+        color: lightgray;
+    }
+    .rocket{
+        @extend .my-4;
+
+    }
+}
