@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HowItWorksComponent } from './how-it-works.component';
 import * as helpers from '../../spec/helpers';
@@ -16,7 +17,7 @@ describe('HowItWorksComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TranslateModule.forRoot(), NgbModule.forRoot()],
+      imports: [TranslateModule.forRoot(), RouterTestingModule],
       declarations: [ HowItWorksComponent ],
       providers: [ ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
