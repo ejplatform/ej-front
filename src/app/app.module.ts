@@ -88,7 +88,6 @@ import { SessionService } from './services/session.service';
 
 import * as Raven from 'raven-js';
 import * as theme from '../theme';
-import { hotspots } from '../../themes/brasil-que-o-povo-quer';
 
 if (environment.sentryDSN) {
   Raven.config(environment.sentryDSN)
