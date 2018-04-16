@@ -69,7 +69,7 @@ import { ThemeFooterComponent } from './hotspots/components/theme-footer/theme-f
 import { ThemeHeaderComponent } from './hotspots/components/theme-header/theme-header.component';
 import { ThemeTopHeaderComponent } from './hotspots/components/theme-top-header/theme-top-header.component';
 import { ThemeMenuComponent } from './hotspots/components/theme-menu/theme-menu.component';
-
+import { ThemeComeAddComponent } from './hotspots/components/theme-come-add/theme-come-add.component';
 
 // Gamification Tour components
 import { TourInterceptor } from './gamification/shared/tour.interceptor';
@@ -138,6 +138,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemeMenuComponent,
     HomeComponent,
     HowItWorksComponent,
+    ThemeComeAddComponent,
     theme.hotspots
   ],
   imports: [
