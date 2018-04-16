@@ -19,11 +19,12 @@
 
         <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
           <a routerLink="/conversations/{{conversation.slug}}">
+            <div class="card-title">
+              <h5>{{conversation.description}}</h5>
+            </div>
+
             <div class="card-numbers">
-              <div class="card-title">
-                <h5>{{conversation.description}}</h5>
-              </div>
-              <span class="category">{{'conversations.subject' | translate}}: {{conversation.title}}</span>
+              <span class="category">{{'conversations.subject' | translate}}: <strong>{{conversation.title}}</strong></span>
               <span>
                 <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments' |
                 translate}}
