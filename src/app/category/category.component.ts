@@ -39,6 +39,8 @@ export class CategoryComponent implements OnDestroy {
       this.profile = profile;
     });
     this.route.params.subscribe(params => {
+      this.sendTagToOneSignal(params.slug);
+
       categoryService.get(params.slug).subscribe(categorySerialized => {
         this.category =  Object.assign(new Category(), categorySerialized);
         this.styles = this.category ? this.category.getStyle() : null;
@@ -79,6 +81,26 @@ export class CategoryComponent implements OnDestroy {
 
     return hasContent;
 
+  }
+
+  hasConversation(conversations = this.conversations){
+    let hasConversation = _.isNil(conversations)
+    hasConversation = hasConversation ? false : !_.isEmpty(conversations);
+    return hasConversation;
+  }
+
+  sendTagToOneSignal(slug): void {
+    const OneSignal = window['OneSignal'] || [];
+    
+    if (OneSignal) {
+      OneSignal.push(() => {
+        const key = 'category';
+        const value = slug;
+        OneSignal.sendTag(key, value, (tagsSent) => {
+          console.log('OneSignal: Sent tag with key ' + key + ' and value ' + value);
+        });
+      });
+    }
   }
 
   ngOnDestroy() {

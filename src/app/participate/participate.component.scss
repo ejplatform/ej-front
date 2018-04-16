@@ -1,15 +1,5 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
-#polis-iframe {
-  width: 100%;
-  border: none;
-}
-
-#polis-embed {
-  margin-left: 40%;
-  transform: translateX(-35%);
-}
-
 .facebook-responsive {
   overflow:hidden;
   padding-bottom:56.25%;
@@ -375,13 +365,6 @@ h1#conversation-title {
 
   @include media-breakpoint-down(md) {
     font-size: 22px !important;
-  }
-}
-
-
-@media screen and (max-width: 40em){
-  .polis {
-    display: none;
   }
 }
 

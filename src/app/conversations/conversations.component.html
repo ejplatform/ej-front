@@ -1,63 +1,47 @@
-<div class="page-title">
+<div *ngIf="hasConversation()" class="page-title">
   <div class="container">
     <h1>{{'conversations.topic' | translate}}</h1>
   </div>
 </div>
 
-<div class="row justify-content-center">
+<div *ngIf="hasConversation()" class="row justify-content-center">
   <div [innerHTML]="trustContent(category.customizations.content)"  *ngIf="hasCategoryContent()" ></div>
 </div>
 
-<div class="container">
-  <h3>{{'conversations.title' | translate}}</h3>
+<div *ngIf="hasConversation()" class="container">
   <h2>{{'conversations.subtitle' | translate}}</h2>
-
-  <div class="no-conversations" *ngIf="conversationsLoaded && conversations.length === 0">{{'conversations.none' | translate}}</div>
 
   <div *ngFor="let category of categoryNames">
     <h2 *ngIf="category != ''" class="category-title"><a [ngStyle]="categories[category] && categories[category].styles ? { 'color': categories[category].styles.color } : {}" routerLink="/{{categories[category].slug}}/">{{category}}</a></h2>
     
     <div *ngFor="let local_conversations of groupConversations(category); let i = index" class="card-deck">
-      <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngClass]="{ 'new' : conversation.is_new }" [ngStyle]="styles && conversation.is_new ? { 'box-shadow': '0 0 0 5px ' + styles.color + ', 0 0 2px 7px rgba(0, 0, 0, 0.12), 0 2px 2px 6px rgba(0, 0, 0, 0.24)' } : (conversation.is_new && categories[category] && categories[category].styles ? { 'box-shadow': '0 0 0 5px ' + categories[category].styles.color + ', 0 0 2px 7px rgba(0, 0, 0, 0.12), 0 2px 2px 6px rgba(0, 0, 0, 0.24)' } : {})">
+      <div *ngFor="let conversation of local_conversations; let e = index" class="card" [ngStyle]="styles && conversation.is_new ? { 'box-shadow': '0 0 0 5px ' + styles.color + ', 0 0 2px 7px rgba(0, 0, 0, 0.12), 0 2px 2px 6px rgba(0, 0, 0, 0.24)' } : (conversation.is_new && categories[category] && categories[category].styles ? { 'box-shadow': '0 0 0 5px ' + categories[category].styles.color + ', 0 0 2px 7px rgba(0, 0, 0, 0.12), 0 2px 2px 6px rgba(0, 0, 0, 0.24)' } : {})">
 
         <div class="card-cover" [ngStyle]="{'background-image' : 'url('+backgroundImage(conversation)+')' }">
           <a routerLink="/conversations/{{conversation.slug}}">
+            <div class="card-title">
+              <h5>{{conversation.description}}</h5>
+            </div>
+
             <div class="card-numbers">
-              <span class="category">{{conversation.title}} </span>
-              <span *ngIf="conversation.approved_comments">
+              <span class="category">{{'conversations.subject' | translate}}: <strong>{{conversation.title}}</strong></span>
+              <span>
                 <strong>{{conversation.approved_comments | number:'1.0'}}</strong> {{'conversations.card.comments' |
                 translate}}
               </span>
-              <span *ngIf="conversation.total_votes">
+              <span>
                 <strong>{{conversation.total_votes | number:'1.0'}}</strong> {{'conversations.card.votes' | translate}}
               </span>
             </div>
           </a>
         </div>
 
-        <div class="card-title">
-          <h5>{{conversation.description}}</h5>
-        </div>
-
         <div class="card-block">
-          <div class="participation" *ngIf="ratio(conversation)">
-            <div class="title">
-              <h4>{{'conversations.card.participation' | translate}}</h4>
-            </div>
-            <div class='content'>
-              <div class="profile">
-                <img onError="this.src='/assets/images/icons/profile_icon.svg'" [src]="profile.image ? profile.image : '/assets/images/icons/profile_icon.svg'" alt="{{'navigation-bar.item.profile' | translate}}">
-              </div>
-              <p class="bar">
-              <ngb-progressbar showValue="true" [value]="toPercentage(ratio(conversation))" type="warning"></ngb-progressbar>
-              </p>
-            </div>
-          </div>
 
-          <div class="participation" *ngIf="!ratio(conversation)">
+          <div class="participation">
             <div class="title" class='button button-action'>
               <a routerLink="/conversations/{{conversation.slug}}" class='btn btn-primary btn-block' [ngStyle]="styles ? { 'background-color': styles.color, 'border-color': styles.color } : (categories[category] && categories[category].styles ? { 'background-color': categories[category].styles.color, 'border-color': categories[category].styles.color } : {})">
-                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}"> Participe Agora!
+                <img src="/assets/images/icons/conversas_icon.svg" alt="{{'navigation-bar.item.conversations' | translate}}">{{'conversations.participate' | translate}}
               </a>
             </div>
           </div>
@@ -67,5 +51,5 @@
     </div>
   </div>
     
-  <p *ngIf="category" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.seeall' | translate}}</a></p>
+  <p *ngIf="category" class="see-all-conversations"><a routerLink="/conversations" [ngStyle]="styles ? { 'color': styles.color } : {}">{{'conversations.all' | translate}}</a></p>
 </div>

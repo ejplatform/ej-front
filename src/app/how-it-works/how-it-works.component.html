@@ -1,0 +1,50 @@
+<div class="container">
+    <h1>{{'how-it-works.title' | translate }}</h1>
+    <h3>{{'how-it-works.subtitle' | translate }}</h3>
+    <div class="cards row">
+
+        <div class="card col-4">
+            <div class="card-header">
+                <img src="/assets/images/icons/committee.svg" alt="committee" class="rounded-circle">
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">{{ 'how-it-works.committee.title' | translate }}</h4>
+                <p class="card-text">{{ 'how-it-works.committee.title' | translate }}</p>
+            </div>
+            <div class="card-footer">
+                <button *ngIf="isChatActive()" class='rocket' (click)="gotoRocket()">
+                    <i class="fa fa-comment"></i>
+                    {{ 'how-it-works.button.rocket' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="card col-4">
+            <div class="card-header">
+                <img src="/assets/images/icons/debate.svg" alt="debate" class="rounded-circle">
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">{{ 'how-it-works.debate.title' | translate }}</h4>
+                <p class="card-text">{{ 'how-it-works.debate.subtitle' | translate }}</p>
+            </div>
+            <div class="card-footer">
+                <button *ngIf="isChatActive()" class='debate' (click)="gotoGroups()">
+                    {{ 'how-it-works.button.debate' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="card col-4">
+            <div class="card-header">
+                <img src="/assets/images/icons/conversations.svg" alt="conversations" class="rounded-circle">
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">{{ 'how-it-works.conversations.title' | translate }}</h4>
+                <p class="card-text">{{ 'how-it-works.conversations.subtitle' | translate }}</p>
+            </div>
+            <div class="card-footer">
+                <button class='conversations' (click)="gotoConversations()">
+                    {{ 'how-it-works.button.conversations' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

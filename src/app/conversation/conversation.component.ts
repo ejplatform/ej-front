@@ -20,7 +20,6 @@ export class ConversationComponent implements OnInit {
   @Input() profile: Profile;
   isHome = false;
   pageTitle: String;
-  public polisUrl = environment.polisUrl;
 
   constructor(private conversationService: ConversationService, private route: ActivatedRoute, private profileService: ProfileService) {
     this.profile = <Profile>{};
@@ -51,7 +50,6 @@ export class ConversationComponent implements OnInit {
       } else if (path === 'termos-de-uso') {
         this.pageTitle = 'Termos de uso';
       }
-      this.polisUrl = this.polisUrl + path;
     }
   }
 

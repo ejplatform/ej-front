@@ -19,8 +19,3 @@
   <br>
   <app-participate [promoted]="true"></app-participate>
 </div>
-
-<div *ngIf="!isHome">
-  <iframe id="polis-iframe" [src]="polisUrl | safe" [height]="iframeHeight" frameborder="0" scrolling="no"></iframe>
-  <app-conversations></app-conversations>
-</div>

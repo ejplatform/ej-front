@@ -1,12 +1,13 @@
 <ng-progress></ng-progress>
 <div class="app-root" [ngClass]="{'logged': isLogged()}" >
-   
+  <app-theme-top-header></app-theme-top-header>
   <div class="site-wrapper" [ngClass]="{'main-nav-opened': isMenuCollapsed}">
-    <app-header [profile]="profile"></app-header>
-    <app-navigation-bar *ngIf="profile" [profile]="profile"></app-navigation-bar>
+    <app-theme-header></app-theme-header>
+    <!-- <app-navigation-bar *ngIf="profile" [profile]="profile"></app-navigation-bar> -->
+    <app-theme-menu *ngIf="profile" [profile]="profile"></app-theme-menu>
     <div class="wrapper wrapper-bg">
         <router-outlet></router-outlet>
     </div>
   </div>
-  <app-footer></app-footer>  
+  <app-theme-footer></app-theme-footer>  
 </div>

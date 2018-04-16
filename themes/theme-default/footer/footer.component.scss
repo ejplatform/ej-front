@@ -1,0 +1,50 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '../style.scss';
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #464646;
+    height: 300px;
+    @media screen and (max-width: $tablet-breakpoint) {
+        flex-direction: column;
+    }
+}
+
+h2,
+p {
+    color: white;
+    text-align: center;
+}
+
+.right-content {
+    position: absolute;
+    right: 100px;
+    >p {
+        text-align: left;
+        padding-left: 15px;
+        margin: 0;
+    }
+    @media screen and (max-width: $tablet-breakpoint) {
+        position: inherit;
+        >p {
+            margin-top: 10px;
+            text-align: center;
+            padding: 0;
+        }
+    }
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    >li {
+        a {
+            font-size: 30px;
+            color: white;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+# Production docker-compose file
+# Used only to test the Production Image
+
+version: '3.5'
+
+services:
+  frontend:
+    image: ejplatform/ej-front:latest
+    ports:
+      - "80:80"

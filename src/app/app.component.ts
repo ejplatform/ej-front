@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+// import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfileService } from './services/profile.service';
 import { NotificationService } from './services/notification.service';
 import { NotificationInfo } from './models/notification-info';
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit  {
             that.notificationService.saveInfo(notificationInfo);
 
             // Save the user email in OneSignal, if it's available
-            if (that.profile) {
+            if (that.profile && that.profile.id) {
               that.notificationService.sendHashedEmail(that.profile.email);
               that.notificationService.sendOneSignalId(userId);
             }
@@ -102,13 +102,13 @@ export class AppComponent implements OnInit  {
   }
 
   isLogged() {
-    return _.isObject(this.profile);
+    return _.isObject(this.profile) && this.profile.id;
   }
 
   hideNavigationBar(e, isCollapsed) {
-    if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE ) {
-      return false;
-    }
+    // if (window.innerWidth > NavigationBarComponent.MAX_SIZE_FOR_AUTOMATIC_TOGGLE ) {
+    //   return false;
+    // }
 
 
     if (this.alreadeyCollapsed && isCollapsed) {
@@ -122,7 +122,7 @@ export class AppComponent implements OnInit  {
 
   sentryUserData(profile) {
     // Prepare user data to be sent to Sentry in case of an error
-    if (profile) {
+    if (profile && profile.id) {
       Raven.setUserContext({
         id: profile.id,
         username: profile.username,

@@ -23,13 +23,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
     // If there is an API key stored, send it in this request
     if (token) {
-      // API token should never be sent to the polis backend
-      if (!request.url.includes('polis.brasilqueopovoquer.org.br')) {
-        request = request.clone({ headers: request.headers.set('Authorization', 'Token ' + token) });
-      }
-
+      request = request.clone({ headers: request.headers.set('Authorization', 'Token ' + token) });
     } else {
-
       // If there is no key, allow cookies to be sent, but only if this is a request for an API key
       if (request.url.includes('/profile/key')) {
         request = request.clone({ withCredentials: true });
@@ -38,9 +33,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     }
 
     // Send a csrftoken header, if it's the data is available as a cookie
-    // However, don't do it when sending requests to Polis
     const csrftoken = this.cookieService.get('csrftoken');
-    if (csrftoken && !request.url.includes('polis.brasilqueopovoquer.org.br')) {
+    if (csrftoken) {
       request = request.clone({ headers: request.headers.set('X-CSRFToken', csrftoken) });
     }
 
@@ -53,8 +47,9 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
         });
       }
 
-      if (error.status === 401 || error.status === 403) {
+      if ((error.status === 401 || error.status === 403)) {
         const auth = this.inj.get(AuthService);
+        this.sessionService.destroyToken();
         const profileService = this.inj.get(ProfileService);
         auth.signOut().subscribe( () => {
           profileService.setProfile(null);

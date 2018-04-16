@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <ul class='d-flex justify-content-between'>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/']">
+                        Logo
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/sobre-nos']">
+                        {{'header.item.know' | translate}}
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/perguntas-frequentes']">
+                        {{'header.item.groups' | translate}}
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/conversations']">
+                        {{'header.item.conversations' | translate}}
+                    </a>
+                </li>
+                <li *ngIf="!isLogged()" routerLinkActive="active">
+                    <a (click)="openLogin()">
+                        {{'header.item.login' | translate}}
+                    </a>
+                </li>
+                <li *ngIf="!isLogged()" routerLinkActive="active">
+                    <a (click)="openRegistration()">
+                        {{'header.item.register' | translate}}
+                    </a>
+                </li>
+
+                <li ngbDropdown *ngIf="isLogged()"  #profileMenu="ngbDropdown" class="d-inline-block">
+                    <a id="profile-menu" (click)="$event.stopPropagation(); profileMenu.open();"> {{'header.item.profile' | translate}}</a>
+                    <img [src]="profile.image" (click)="$event.stopPropagation(); profileMenu.open();" class="rounded-circle" >
+                    <i (click)="$event.stopPropagation(); profileMenu.open();" class="fa fa-angle-down"></i>
+
+                    <div ngbDropdownMenu aria-labelledby="profile-menu">
+                        <a class="dropdown-item" [routerLink]="['/profile']">
+                            {{'header.item.profile.more' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/rocket']">
+                            {{'header.item.profile.rocket' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/logout']">
+                            {{'header.item.profile.logout' | translate}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

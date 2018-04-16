@@ -38,6 +38,8 @@ export class RecoverPasswordComponent {
   }
 
   openRegistration() {
-    this.sessionService.setTourStep('Registration');
+    this.activeModal.close();
+    this.modalService.open(RegistrationComponent);
   }
+
 }

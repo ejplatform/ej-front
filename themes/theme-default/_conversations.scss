@@ -1,0 +1,72 @@
+.card {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.54) !important;
+  border-radius: 16px !important;
+
+  a:hover, a:hover h5 {
+    text-decoration: none !important;
+  }
+}
+
+.card-block {
+  background: #f5f5f5;
+  margin-top: -20px;
+  padding-bottom: 20px !important;
+  padding-top: 60px !important;
+  border-radius: 16px !important;
+
+  .participation {
+    border-radius: 24px;
+    background-color: #4A4A4A;
+
+    .btn-primary {
+      background: transparent url(/assets/theme/star.png) left 4px no-repeat !important;
+      font-weight: bolder;
+      border: 0 !important;
+
+      img {
+        display: none;
+      }
+    }
+  }
+}
+
+.card-cover {
+  border-radius: 16px;
+  background-color: #f5f5f5;
+
+  .card-numbers {
+    background: transparent !important;
+    bottom: -30px !important;
+
+    .category {
+      text-align: center;
+      font-size: 11px !important;
+      color: #b4b4b4 !important;
+      font-weight: normal !important;
+      margin-bottom: 10px;
+    }
+
+    span + span {
+      color: #646464;
+      font-size: 11px !important;
+      font-weight: normal;
+
+      strong {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.card-title {
+  text-shadow: none !important;
+  text-align: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  h5 {
+    flex: 1;
+  }
+}

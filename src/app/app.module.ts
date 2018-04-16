@@ -16,6 +16,7 @@ import { LOCALE_ID } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { HttpModule } from '@angular/http';
+import { rootRouterConfig } from './app.routes';
 
 // Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,14 +40,10 @@ import { GamificationModule } from './gamification/gamification.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmbedComponent } from './embed/embed.component';
+import { PageComponent } from './page/page.component';
 import { ParticipateComponent } from './participate/participate.component';
-import { rootRouterConfig } from './app.routes';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notification/notification.component';
-// import { CommentsComponent } from './comments/comments.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { LoginComponent } from './login/login.component';
@@ -55,26 +52,42 @@ import { NudgeComponent } from './nudge/nudge.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { LogoutComponent } from './logout/logout.component';
+import { HomeSliderComponent } from './home-slider/home-slider.component';
+import { CategoryComponent } from './category/category.component';
+import { HomeComponent } from './home/home.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
+import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
+
+
+
+// Hotspots components
+import { ThemeFooterComponent } from './hotspots/components/theme-footer/theme-footer.component';
+import { ThemeHeaderComponent } from './hotspots/components/theme-header/theme-header.component';
+import { ThemeTopHeaderComponent } from './hotspots/components/theme-top-header/theme-top-header.component';
+import { ThemeMenuComponent } from './hotspots/components/theme-menu/theme-menu.component';
+
+
+// Gamification Tour components
+import { TourInterceptor } from './gamification/shared/tour.interceptor';
+import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
+import { BadgeComponent } from './gamification/badge/badge.component';
+import { environment } from '../environments/environment';
+import { BadgeService } from './gamification/shared/badge.service';
+
+// Services
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { CategoryService } from './services/category.service';
 import { SocialFacebookService } from './services/social-facebook.service';
 import { ToastService } from './services/toast.service';
 import { SessionService } from './services/session.service';
-import { BadgeService } from './gamification/shared/badge.service';
-import { SafePipe } from './shared/pipes/safe.pipe';
-import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
-import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
-import { HomeSliderComponent } from './home-slider/home-slider.component';
-import { CategoryComponent } from './category/category.component';
-
-import { TourInterceptor } from './gamification/shared/tour.interceptor';
-import { BadgeInterceptor } from './gamification/shared/badge.interceptor';
-import { BadgeComponent } from './gamification/badge/badge.component';
-import { environment } from '../environments/environment';
 
 import * as Raven from 'raven-js';
+import * as theme from '../theme';
 
 if (environment.sentryDSN) {
   Raven.config(environment.sentryDSN)
@@ -101,10 +114,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ProfileComponent,
     EmbedComponent,
+    PageComponent,
     ParticipateComponent,
-    NavigationBarComponent,
-    HeaderComponent,
-    FooterComponent,
     NotificationsComponent,
     NotificationComponent,
     ConversationsComponent,
@@ -120,7 +131,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     SafePipe,
     ValidationMessageComponent,
     ValidateOnBlurDirective,
-    CategoryComponent
+    CategoryComponent,
+    ThemeFooterComponent,
+    ThemeHeaderComponent,
+    ThemeTopHeaderComponent,
+    ThemeMenuComponent,
+    HomeComponent,
+    HowItWorksComponent,
+    theme.hotspots
   ],
   imports: [
     CommentsReportModule,
@@ -131,7 +149,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     InlineEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    NgPipesModule,
     ToastrModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2Webstorage.forRoot({ prefix: 'empurrandojuntos', caseSensitive: true }) ,
@@ -155,6 +172,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TourInterceptor, multi: true },
+    // Wait defininition if the badges will be displayed for the user anytime
     // { provide: HTTP_INTERCEPTORS, useClass: BadgeInterceptor, multi: true },
 
   ],
@@ -162,6 +180,7 @@ export function HttpLoaderFactory(http: HttpClient) {
                     RegistrationComponent,
                     NudgeComponent,
                     SliderModalComponent,
+                    theme.hotspots,
                     RecoverPasswordComponent],
   bootstrap: [AppComponent]
 })

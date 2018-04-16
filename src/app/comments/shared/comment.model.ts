@@ -12,7 +12,6 @@ export class Comment {
     public conversation: number;
     public conversationObj: Conversation;
     public nudge: Nudge;
-    public polis_id: number;
     public approval: string;
     public rejection_reason: string;
 

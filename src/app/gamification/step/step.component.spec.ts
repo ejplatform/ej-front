@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { StepComponent } from './step.component';
-import { CommentComponent } from './comment/comment.component';
 import { VoteComponent } from './vote/vote.component';
 import { ProfileService } from '../../services/profile.service';
 import { TourService } from '../shared/tour.service';
@@ -22,7 +21,7 @@ describe('StepComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), NgbModule.forRoot(), HttpClientTestingModule, FormsModule],
-      declarations: [StepComponent, VoteComponent, CommentComponent],
+      declarations: [StepComponent, VoteComponent],
       providers: [
         { provide: ProfileService, useValue: mocks.profileService },
         { provide: NgbActiveModal, useValue: mocks.ngbActiveModal },
