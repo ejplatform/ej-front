@@ -16,7 +16,6 @@ import { VoteService } from '../services/vote.service';
 @Component({
   selector: 'app-embed',
   templateUrl: './embed.component.html',
-  styleUrls: ['./embed.component.scss'],
   providers: [ConversationService, CommentService, VoteService],
 })
 export class EmbedComponent implements OnInit {

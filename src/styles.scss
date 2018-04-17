@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~font-awesome/css/font-awesome.css";
-
+@import '../scss/main.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 @import 'variables';
@@ -10,12 +8,6 @@
 
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
-
-body, html {
-    font-family: 'Roboto';
-}
-
-@import "theme/style";
 
 
  

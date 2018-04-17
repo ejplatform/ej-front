@@ -1,0 +1,66 @@
+/**
+ * Conventions and architecture overview:
+ *
+ *   - We adopt a ITCSS architecture
+ *   - Naming conventions and classes are based on SUIT CSS
+ *   - It uses Bourbon as a Sass mixin library
+ *   - Multi-line comments are acceptable since we'll strip them away during
+ *     minification
+ *
+ *   ITCSS: https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+ *   SUITE CSS: https://suitcss.github.io/
+ */
+
+
+// SETTINGS
+// Global variables, site-wide settings, config switches, etc.
+@import 'settings/config';
+@import 'settings/colors';
+@import 'settings/spacing';
+@import 'settings/typography';
+@import 'settings/global';
+
+
+// TOOLS
+// Site-wide mixins and functions.
+// We use Bourbon (https://www.bourbon.io/docs/) as a library of Sass functions
+@import 'tools/bourbon/bourbon';
+@import 'tools/aliases';
+
+
+// GENERIC
+// Low-specificity, far-reaching rulesets (e.g. resets).
+@import 'generic/normalize';
+@import 'generic/overrides';
+
+
+// ELEMENTS
+// Unclassed HTML elements (e.g. a {}, blockquote {}, address {}).
+@import 'elements/headings';
+@import 'elements/elements';
+
+
+// OBJECTS
+// Objects, abstractions, and design patterns (e.g. .layout {}).
+
+
+// COMPONENTS
+// Discrete, complete chunks of UI (e.g. .c-carousel {}). This layer is where
+// most application-specific code resides.
+@import 'components/buttons';
+@import 'components/page';
+@import 'components/page-header';
+@import 'components/page-footer';
+@import 'components/page-sidebar';
+@import 'components/home/index';
+
+
+// UTILITIES
+// High-specificity, very explicit selectors. Overrides and helper classes
+// (e.g. .hidden {}).
+@import 'utilities/links';
+
+
+// THEMES
+// Themes can override anything in the application
+@import 'themes/default/settings.scss';

@@ -11,7 +11,6 @@ import { BadgeService } from '../gamification/shared/badge.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
 

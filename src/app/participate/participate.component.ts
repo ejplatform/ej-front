@@ -22,7 +22,6 @@ import { Category } from '../models/category';
 @Component({
   selector: 'app-participate',
   templateUrl: './participate.component.html',
-  styleUrls: ['./participate.component.scss'],
   providers: [ConversationService, CommentService, VoteService],
 })
 export class ParticipateComponent implements OnInit, OnDestroy {
@@ -157,7 +156,6 @@ export class ParticipateComponent implements OnInit, OnDestroy {
     if (str.length > 140) {
       this.newCommentText = this.newCommentText.substr(0, 140);
     }
-
   }
 
   ngOnInit() {

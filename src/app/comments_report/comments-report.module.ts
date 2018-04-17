@@ -15,8 +15,8 @@ import { CommentsReportComponent } from './comments-report.component';
     CommonModule,
     NgMathPipesModule,
     SharedModule,
-    CommentsReportRoutingModule, 
-    NgbModule,   
+    CommentsReportRoutingModule,
+    NgbModule,
   ],
 
   declarations: [routedComponents, CommentsReportRejectComponent, CommentReportComponent]

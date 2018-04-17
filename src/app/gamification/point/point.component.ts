@@ -8,7 +8,6 @@ import { TourService } from '../shared/tour.service';
 @Component({
   selector: 'app-point',
   templateUrl: './point.component.html',
-  styleUrls: ['./point.component.scss']
 })
 export class PointComponent implements OnInit {
   profile: Profile;

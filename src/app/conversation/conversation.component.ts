@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.component.html',
-  styleUrls: ['./conversation.component.scss'],
   providers: [ConversationService],
 })
 export class ConversationComponent implements OnInit {

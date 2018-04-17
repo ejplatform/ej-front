@@ -14,24 +14,24 @@ describe('CommentReportComponent', () => {
   let component: CommentReportComponent;
   let fixture: ComponentFixture<CommentReportComponent>;
   const mocks = helpers.getMocks();
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), NgPipesModule, HttpClientTestingModule],      
-      declarations: [ CommentReportComponent ],
+      imports: [TranslateModule.forRoot(), NgPipesModule, HttpClientTestingModule],
+      declarations: [CommentReportComponent],
       providers: [
         { provide: CommentReportService, useValue: mocks.commentReportService },
         { provide: ProfileService, useValue: mocks.profileService },
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommentReportComponent);
     component = fixture.componentInstance;
-    component.commentReport = <CommentReport>{content: 'some', author: {}, conversation: {}}
+    component.commentReport = <CommentReport>{ content: 'some', author: {}, conversation: {} }
     fixture.detectChanges();
   });
 

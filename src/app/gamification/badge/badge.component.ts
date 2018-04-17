@@ -12,7 +12,6 @@ import { BadgeService } from '../shared/badge.service';
 @Component({
   selector: 'app-badge',
   templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss']
 })
 export class BadgeComponent implements OnInit {
   profile: Profile;

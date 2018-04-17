@@ -13,7 +13,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-category',
   templateUrl: '../conversations/conversations.component.html',
-  styleUrls: ['./category.component.scss'],
   providers: [ConversationService],
 })
 export class CategoryComponent implements OnDestroy {

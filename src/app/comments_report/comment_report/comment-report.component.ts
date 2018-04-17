@@ -9,8 +9,7 @@ import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-comment-report',
   templateUrl: './comment-report.component.html',
-  styleUrls: ['./comment-report.component.scss'],
-  providers: [CommentService],  
+  providers: [CommentService],
 })
 export class CommentReportComponent implements OnInit {
 
@@ -19,34 +18,34 @@ export class CommentReportComponent implements OnInit {
   profile: Profile;
   comment: Comment;
   isCollapsed = false;
-  
-  constructor(private commentReportService: CommentReportService, private commentService: CommentService, 
-    private profileService: ProfileService) { 
-      this.profile = <Profile>{};
-      this.profile = Object.assign(this.profile, this.profileService.getProfile());
-      this.profileService.profileChangeEvent.subscribe(profile => {
-        this.profile = profile;
-      });
-    }
+
+  constructor(private commentReportService: CommentReportService, private commentService: CommentService,
+    private profileService: ProfileService) {
+    this.profile = <Profile>{};
+    this.profile = Object.assign(this.profile, this.profileService.getProfile());
+    this.profileService.profileChangeEvent.subscribe(profile => {
+      this.profile = profile;
+    });
+  }
 
   ngOnInit() {
     this.comment = this.getRelatedComment();
-    if(this.comment.approval === Comment.REJECTED){
+    if (this.comment.approval === Comment.REJECTED) {
       this.isCollapsed = true;
     }
   }
 
-  approveComment(){
-    let comment =  this.getRelatedComment();
+  approveComment() {
+    let comment = this.getRelatedComment();
     comment.approval = Comment.APPROVED;
     this.commentService.save(comment).subscribe((comment: Comment) => {
       this.onApprovalChange.next(this.commentReport);
-    }, (error) =>{ 
+    }, (error) => {
       console.log(error);
     });
   }
 
-  toggleCollapsed(){
+  toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -55,34 +54,34 @@ export class CommentReportComponent implements OnInit {
     this.onApprovalChange.next(this.commentReport);
   }
 
-  couldBeRejected(){
+  couldBeRejected() {
     let couldReject = false;
-    if(this.profile.is_superuser && (this.commentReport.approval !==  Comment.REJECTED) ){
-      couldReject =  true;
+    if (this.profile.is_superuser && (this.commentReport.approval !== Comment.REJECTED)) {
+      couldReject = true;
     }
     return couldReject;
   }
 
-  couldBeApproved(){
+  couldBeApproved() {
     let couldApprove = false;
-    if(this.profile.is_superuser && (this.commentReport.approval !==  Comment.APPROVED) ){
-      couldApprove =  true;
+    if (this.profile.is_superuser && (this.commentReport.approval !== Comment.APPROVED)) {
+      couldApprove = true;
     }
     return couldApprove;
   }
 
-  alreadyRejected(){
+  alreadyRejected() {
     return this.commentReport.approval === Comment.REJECTED
   }
 
-  private getRelatedComment(){
-    let comment =  new Comment();
+  private getRelatedComment() {
+    let comment = new Comment();
     comment.id = this.commentReport.id;
     comment.content = this.commentReport.content;
     comment.approval = this.commentReport.approval;
     comment.rejection_reason = this.commentReport.rejection_reason;
     comment.conversation = this.commentReport.conversation.id;
-    return comment;    
+    return comment;
   }
 
 }

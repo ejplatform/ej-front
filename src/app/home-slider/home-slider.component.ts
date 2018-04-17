@@ -10,7 +10,6 @@ import { Profile } from '../models/profile';
 @Component({
   selector: 'app-home-slider',
   templateUrl: './home-slider.component.html',
-  styleUrls: ['./home-slider.component.css'],
 })
 export class HomeSliderComponent implements OnInit {
 

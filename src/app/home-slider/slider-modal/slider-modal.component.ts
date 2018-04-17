@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-slider-modal',
   templateUrl: './slider-modal.component.html',
-  styleUrls: ['./slider-modal.component.css'],
 })
 export class SliderModalComponent implements OnInit {
 

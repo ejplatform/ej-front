@@ -11,7 +11,6 @@ import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
   providers: [NotificationService],
 })
 export class NotificationComponent implements OnInit, AfterViewInit {

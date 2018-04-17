@@ -17,7 +17,6 @@ import { CategoryService } from '../services/category.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
 

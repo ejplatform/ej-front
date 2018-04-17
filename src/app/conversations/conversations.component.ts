@@ -9,7 +9,6 @@ import { ProfileService } from '../services/profile.service';
 @Component({
   selector: 'app-conversations',
   templateUrl: './conversations.component.html',
-  styleUrls: ['./conversations.component.scss'],
   providers: [ConversationService],
 })
 export class ConversationsComponent implements OnInit {

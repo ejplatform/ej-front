@@ -1,50 +1,34 @@
-<div class="container">
+<div class="how-it-works">
     <h1>{{'how-it-works.title' | translate }}</h1>
-    <h3>{{'how-it-works.subtitle' | translate }}</h3>
-    <div class="cards row">
+    <h2>{{'how-it-works.subtitle' | translate }}</h2>
 
-        <div class="card col-4">
-            <div class="card-header">
-                <img src="/assets/images/icons/committee.svg" alt="committee" class="rounded-circle">
-            </div>
-            <div class="card-block">
-                <h4 class="card-title">{{ 'how-it-works.committee.title' | translate }}</h4>
-                <p class="card-text">{{ 'how-it-works.committee.title' | translate }}</p>
-            </div>
-            <div class="card-footer">
-                <button *ngIf="isChatActive()" class='rocket' (click)="gotoRocket()">
-                    <i class="fa fa-comment"></i>
-                    {{ 'how-it-works.button.rocket' | translate }}
-                </button>
-            </div>
-        </div>
-        <div class="card col-4">
-            <div class="card-header">
-                <img src="/assets/images/icons/debate.svg" alt="debate" class="rounded-circle">
-            </div>
-            <div class="card-block">
-                <h4 class="card-title">{{ 'how-it-works.debate.title' | translate }}</h4>
-                <p class="card-text">{{ 'how-it-works.debate.subtitle' | translate }}</p>
-            </div>
-            <div class="card-footer">
-                <button *ngIf="isChatActive()" class='debate' (click)="gotoGroups()">
-                    {{ 'how-it-works.button.debate' | translate }}
-                </button>
-            </div>
-        </div>
-        <div class="card col-4">
-            <div class="card-header">
-                <img src="/assets/images/icons/conversations.svg" alt="conversations" class="rounded-circle">
-            </div>
-            <div class="card-block">
-                <h4 class="card-title">{{ 'how-it-works.conversations.title' | translate }}</h4>
-                <p class="card-text">{{ 'how-it-works.conversations.subtitle' | translate }}</p>
-            </div>
-            <div class="card-footer">
-                <button class='conversations' (click)="gotoConversations()">
-                    {{ 'how-it-works.button.conversations' | translate }}
-                </button>
-            </div>
-        </div>
+    <div class="how-it-works__cards">
+        <article class="how-it-works__card">
+            <img class="how-it-works__card-icon" src="/assets/images/icons/committee.svg" alt="committee">
+            <h1>{{ 'how-it-works.committee.title' | translate }}</h1>
+            <p>{{ 'how-it-works.committee.title' | translate }}</p>
+            <button *ngIf="isChatActive()" class='rocket' (click)="gotoRocket()">
+                <i class="fa fa-comment"></i>
+                {{ 'how-it-works.button.rocket' | translate }}
+            </button>
+        </article>
+
+        <article class="how-it-works__card">
+            <img class="how-it-works__card-icon" src="/assets/images/icons/debate.svg" alt="committee">
+            <h1>{{ 'how-it-works.debate.title' | translate }}</h1>
+            <p>{{ 'how-it-works.debate.subtitle' | translate }}</p>
+            <button *ngIf="isChatActive()" class='debate' (click)="gotoGroups()">
+                {{ 'how-it-works.button.debate' | translate }}
+            </button>
+        </article>
+
+        <article class="how-it-works__card">
+            <img class="how-it-works__card-icon" src="/assets/images/icons/conversations.svg" alt="conversations">
+            <h1>{{ 'how-it-works.conversations.title' | translate }}</h1>
+            <p>{{ 'how-it-works.conversations.subtitle' | translate }}</p>
+            <button *ngIf="isChatActive()" class='debate' (click)="gotoGroups()">
+                {{ 'how-it-works.button.conversations' | translate }}
+            </button>
+        </article>
     </div>
 </div>

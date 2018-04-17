@@ -8,8 +8,8 @@ describe('CommentService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule],
-      
+      imports: [HttpClientTestingModule],
+
       providers: [CommentService]
     });
   });

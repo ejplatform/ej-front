@@ -12,7 +12,6 @@ import { CommentReportList } from './shared/comment-report-list.model';
 @Component({
   selector: 'app-comments-report',
   templateUrl: './comments-report.component.html',
-  styleUrls: ['./comments-report.component.scss'],
   providers: [CommentReportService, ConversationService],
 })
 export class CommentsReportComponent implements OnInit {
@@ -27,9 +26,9 @@ export class CommentsReportComponent implements OnInit {
   @ViewChild('tabset') tabset;
 
   constructor(private conversationService: ConversationService, private commentReportService: CommentReportService,
-    private _changeDetectionRef : ChangeDetectorRef) {  }
+    private _changeDetectionRef: ChangeDetectorRef) { }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.tabset.select(this.currentStatus);
     this._changeDetectionRef.detectChanges();
   }
@@ -46,47 +45,47 @@ export class CommentsReportComponent implements OnInit {
     });
   }
 
-  loadRejectedComments(){
+  loadRejectedComments() {
     this.currentStatus = Comment.REJECTED;
-    this.loadComments()
+    this.loadComments();
   }
 
-  loadModeratedComments(){
+  loadModeratedComments() {
     this.currentStatus = Comment.UNMODERATED;
-    this.loadComments()
+    this.loadComments();
   }
 
-  loadApprovedComments(){
+  loadApprovedComments() {
     this.currentStatus = Comment.APPROVED;
-    this.loadComments()
+    this.loadComments();
   }
 
-  tabChange($event: NgbTabChangeEvent){
+  tabChange($event: NgbTabChangeEvent) {
     switch ($event.nextId) {
       case Comment.APPROVED:
-        this.loadApprovedComments()
+        this.loadApprovedComments();
         break;
       case Comment.UNMODERATED:
-      this.loadModeratedComments()
+        this.loadModeratedComments();
         break;
       case Comment.REJECTED:
-      this.loadRejectedComments()
+        this.loadRejectedComments();
         break;
     }
   }
 
-  filterByConversation(){
+  filterByConversation() {
     this.loadComments(1);
   }
 
-  updateCommentsList(commentReport){
+  updateCommentsList(commentReport) {
     this.commentsReport.splice(this.commentsReport.indexOf(commentReport), 1);
   }
 
-  loadComments(page?: any){
-    let params = {};
+  loadComments(page?: any) {
+    const params = {};
 
-    if(this.selectedConversation != 0 ){
+    if (this.selectedConversation !== 0) {
       params['conversation_id'] = this.selectedConversation;
     }
     this.currentPage = page || 1;

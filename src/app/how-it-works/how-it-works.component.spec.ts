@@ -14,22 +14,20 @@ describe('HowItWorksComponent', () => {
   let component: HowItWorksComponent;
   let fixture: ComponentFixture<HowItWorksComponent>;
   const mocks = helpers.getMocks();
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), RouterTestingModule],
-      declarations: [ HowItWorksComponent ],
-      providers: [ ],
+      declarations: [HowItWorksComponent],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HowItWorksComponent);
     component = fixture.componentInstance;
-
-    
   });
 
   it('should create', () => {

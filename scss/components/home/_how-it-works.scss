@@ -1,0 +1,16 @@
+.how-it-works {
+    text-align: center;
+    >h1 {
+        color: lightslategray;
+    }
+    >h2 {
+        color: lightgray;
+    }
+    &__card {
+        >h1 {}
+        >p {}
+    }
+    &__card-icon {
+        color: black;
+    }
+}
