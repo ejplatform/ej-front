@@ -62,6 +62,10 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { ValidateOnBlurDirective } from './shared/validation-message/validate-onblur.directive';
 
+// Generic modules
+import { RawHtmlComponent} from '../ng-components/raw-html/raw-html.component';
+import { RawHtmlLoaderService } from '../ng-components/raw-html/raw-html.service';
+import { UpTargetDirective } from '../ng-components/up-target/up-target.directive';
 
 
 // Hotspots components
@@ -131,6 +135,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SafePipe,
     ValidationMessageComponent,
     ValidateOnBlurDirective,
+    UpTargetDirective,
     CategoryComponent,
     ThemeFooterComponent,
     ThemeHeaderComponent,
@@ -138,6 +143,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemeMenuComponent,
     HomeComponent,
     HowItWorksComponent,
+    RawHtmlComponent,
     theme.hotspots
   ],
   imports: [
@@ -167,6 +173,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SocialFacebookService,
     ToastService,
     CookieService,
+    RawHtmlLoaderService,
     { provide: ErrorHandler, useClass: RavenErrorHandler },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },

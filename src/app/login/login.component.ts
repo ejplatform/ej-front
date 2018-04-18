@@ -110,10 +110,10 @@ export class LoginComponent {
     this.activeModal.close();
     this.modalService.open(RecoverPasswordComponent);
   }
-  
+
   handleloginSuccess() {
     // Get profile info from the API
-    this.profileService.me().subscribe( profile => {
+    this.profileService.me().subscribe(profile => {
       this.profileService.setProfile(profile);
       this.bsModalRef.close();
       this.loggedIn.emit();

@@ -1,12 +1,29 @@
 <div class="container">
-    <h1> {{ pageTitle }} </h1>
-    <h3> {{ pageSubtitle }} </h3>
-    <button *ngIf="isChatActive()" class='rocket' (click)="gotoRocket()">
-        <i class="fa fa-comment"></i>
-        {{ 'home.button.rocket' | translate }}
-    </button>
+  <h1> {{ pageTitle }} </h1>
+  <h3> {{ pageSubtitle }} </h3>
+  <button *ngIf="isChatActive()" class='rocket' (click)="gotoRocket()">
+    <i class="fa fa-comment"></i>
+    {{ 'home.button.rocket' | translate }}
+  </button>
 </div>
 
 <app-how-it-works></app-how-it-works>
 
 <app-conversations></app-conversations>
+
+<h1>TESTE</h1>
+<div>
+  <ul>
+    <li>
+      <a routerLink="/conversations">conversations (ng)</a>
+    </li>
+    <li>
+      <a href="/conversations" up-target="main">conversations (up)</a>
+    </li>
+    <li>
+      <a href="/">conversations (raw)</a>
+    </li>
+  </ul>
+
+  <raw-html htmlData="<a href=/conversations up-target=main>hello world!</a>" upBind></raw-html>
+</div>

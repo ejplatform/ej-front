@@ -20,7 +20,7 @@ export class PageComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let path = this.route.snapshot.url.map(p => p.path).join('/');
+    const path = this.route.snapshot.url.map(p => p.path).join('/');
     if (path === 'sobre-nos') {
       this.pageTitle = 'Sobre nós';
       this.pageContent = 'Nós somos...';
@@ -33,7 +33,6 @@ export class PageComponent implements OnInit {
     } else if (path === 'rocket') {
       this.pageTitle = 'Rocket Chat';
       this.pageContent = 'Abriu o chat...';
-
     }
   }
 
